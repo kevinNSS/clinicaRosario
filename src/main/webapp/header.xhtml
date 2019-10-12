@@ -10,23 +10,30 @@
     </h:head>
     <h:body>
         <ui:composition>
-            
-            <p:growl id="growl" life="3000" />
-            
-            <p:layout fullPage="true">
-                <p:layoutUnit position="north" size="65" header="#{bundle.AppName}" style="background-color: gray;">
-                    <p:panelGrid columns="2" style="width:130%">
-                        <p:graphicImage value="/images/ufg.jpg" width="100"/>
-                                        <p:panelGrid columns="3" style="margin-left:30%">
-                                            <p:outputLabel value="Juan Pérez" style="color: white"/>
-                                            <p:link>
-                                                <p:graphicImage value="/images/logout.png" width="50" />
-                                            </p:link>
-                                        </p:panelGrid>
-                    </p:panelGrid>
-                </p:layoutUnit>
-            </p:layout>
-            
+                <nav class="navbar navbar-dark bg-dark">
+                    <a class="navbar-brand" href="index.xhtml">
+                        <p:graphicImage value="/images/ufg.jpg" width="75" height="80"/>
+                    </a>
+                    <h:form class="form-inline">
+                        <h4><b><p:outputLabel value="Juan Pérez" style="color: white; padding-right: 45px;"/></b></h4>
+                        <p:commandButton title="Cerrar Sesión" icon="ui-icon-power" action="login?faces-redirect=true" style="width: 65px; height: 40px;"/>
+                    </h:form>
+                </nav>
+            <!-- <p:growl id="growl" life="3000" />
+             
+             <p:layout fullPage="true">
+                 <p:layoutUnit position="north" size="65" style="background-color: gray;">
+                     <p:panelGrid columns="2" style="width:130%">
+                         <p:graphicImage value="/images/ufg.jpg" width="100"/>
+                                         <p:panelGrid columns="3" style="margin-left:30%">
+                                             <p:outputLabel value="Juan Pérez" style="color: white"/>
+                                             <p:link>
+                                                 <p:graphicImage value="/images/logout.png" width="50" />
+                                             </p:link>
+                                         </p:panelGrid>
+                     </p:panelGrid>
+                 </p:layoutUnit>
+             </p:layout>-->
         </ui:composition>
     </h:body>
 </html>
