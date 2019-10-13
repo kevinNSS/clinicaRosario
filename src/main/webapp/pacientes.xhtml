@@ -3,11 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <f:view contentType="text/html"></f:view>
-        <title>Facelet Title</title>
+        <title>Pacientes</title>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>
     <h:body>
         <ui:insert name="header">
@@ -15,15 +17,25 @@
         </ui:insert>
         <br/>
         <hr/>
-        <!-- FORMULARIO DE INGRESO DE PACIENTES-->
-        <ui:insert name="ingresoPacientes">
-            <ui:include src="pages/pacientes/newPacientes.xhtml"/>
-        </ui:insert>
-        
-        <!--FORMULARIO PARA EDITAR INFORMACIÓN DE PACIENTES-->
-        <ui:insert name="editarPacientes">
-            <ui:include src="pages/pacientes/editPacientes.xhtml"/>
-        </ui:insert>
+        <div class="container-fluid">
+            <h:form>
+                <h:commandButton style="float: right;" value="Tabla de Pacientes" action="#{pacientesController.mostrarTabla()}" rendered="#{pacientesController.mostrarTablaPaciente == false}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Paciente" action="#{pacientesController.nuevoPaciente()}" rendered="#{pacientesController.mostrarFormIngreso == false}" class="buttonNew"/>
+            </h:form>
+            <br/><br/><br/>
+            <ui:insert name="tablaPacientes">
+                <ui:include src="pages/pacientes/tablaPacientes.xhtml"/>
+            </ui:insert>
+            <!-- FORMULARIO DE INGRESO DE PACIENTES-->
+            <ui:insert name="ingresoPacientes">
+                <ui:include src="pages/pacientes/newPacientes.xhtml"/>
+            </ui:insert>
+
+            <!--FORMULARIO PARA EDITAR INFORMACIÓN DE PACIENTES-->
+            <ui:insert name="editarPacientes">
+                <ui:include src="pages/pacientes/editPacientes.xhtml"/>
+            </ui:insert>
+        </div>
     </h:body>
 </html>
 

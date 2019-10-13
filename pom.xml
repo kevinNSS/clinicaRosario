@@ -16,10 +16,28 @@
     
     <dependencies>
         <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.5.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>2.5.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
@@ -34,6 +52,12 @@
             <artifactId>primefaces</artifactId>
             <version>7.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/cupertino -->
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>cupertino</artifactId>
+            <version>1.0.10</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
         <dependency>
             <groupId>javax.faces</groupId>
@@ -42,6 +66,15 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
