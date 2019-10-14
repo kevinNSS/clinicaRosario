@@ -7,6 +7,7 @@
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "MenuBar.css"/>
     </h:head>
     <h:body>
         <ui:composition>
@@ -19,6 +20,27 @@
                         <p:commandButton title="Cerrar Sesión" icon="ui-icon-power" action="login?faces-redirect=true" style="width: 65px; height: 40px;"/>
                     </h:form>
                 </nav>
+            
+            <h:form> 
+
+
+                <p:growl id="messages"/>
+
+                <p:menubar styleClass="centeredMenuBar">
+
+                    <p:menuitem value="inicio" url="#" style="width: 190px;" icon="pi pi-times" />
+                    <p:menuitem value="laboratorio" url="#" style="width: 190px; " icon="pi pi-times" />
+                    <p:menuitem value="pacientes" url="#" style="width: 190px; " icon="pi pi-times" />
+                    <p:menuitem value="empleados" url="#" style="width: 190px;" icon="pi pi-times" />
+                    <p:menuitem value="examenes" url="#" style="width: 190px; " icon="pi pi-times" />
+                    <p:menuitem value="reportes" url="#" style="width: 190px; " icon="pi pi-times" />
+                    <p:menuitem value="promociones" url="#" style="width: 190px; " icon="pi pi-times" />
+		    
+
+
+                </p:menubar>
+            </h:form>
+            
         </ui:composition>
     </h:body>
 </html>
