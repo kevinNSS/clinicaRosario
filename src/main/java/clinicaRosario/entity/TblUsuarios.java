@@ -42,7 +42,7 @@ public class TblUsuarios implements Serializable {
     private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 256)
     @Column(name = "CONTRASENA")
     private String contrasena;
     @JoinColumn(name = "USUARIO_EMPLEADO", referencedColumnName = "ID_EMPLEADO")

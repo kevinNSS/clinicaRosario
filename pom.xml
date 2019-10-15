@@ -53,10 +53,11 @@
             <version>7.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.primefaces.themes/cupertino -->
+        <!-- https://mvnrepository.com/artifact/net.bootsfaces/bootsfaces -->
         <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>cupertino</artifactId>
-            <version>1.0.10</version>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+            <version>1.4.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
         <dependency>
@@ -66,15 +67,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    
-    <repositories>
-        <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>

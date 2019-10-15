@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_empleados")
@@ -45,7 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblEmpleados.findByTelEmpleado2", query = "SELECT t FROM TblEmpleados t WHERE t.telEmpleado2 = :telEmpleado2")
     , @NamedQuery(name = "TblEmpleados.findByFechaNacimiento", query = "SELECT t FROM TblEmpleados t WHERE t.fechaNacimiento = :fechaNacimiento")
     , @NamedQuery(name = "TblEmpleados.findByFechaContratacion", query = "SELECT t FROM TblEmpleados t WHERE t.fechaContratacion = :fechaContratacion")
-    , @NamedQuery(name = "TblEmpleados.findBySueldo", query = "SELECT t FROM TblEmpleados t WHERE t.sueldo = :sueldo")})
+    , @NamedQuery(name = "TblEmpleados.findBySueldo", query = "SELECT t FROM TblEmpleados t WHERE t.sueldo = :sueldo")
+    , @NamedQuery(name = "TblEmpleados.findByContrasena", query = "SELECT t FROM TblEmpleados t WHERE t.contrasena = :contrasena")})
 public class TblEmpleados implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,10 +100,13 @@ public class TblEmpleados implements Serializable {
     @NotNull
     @Column(name = "SUELDO")
     private double sueldo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 256)
+    @Column(name = "contrasena")
+    private String contrasena;
     @OneToMany(mappedBy = "usuarioEmpleado")
     private Collection<TblUsuarios> tblUsuariosCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "encargadoFacturacion")
-    private Collection<TblFacturaEncabezado> tblFacturaEncabezadoCollection;
     @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
     @ManyToOne
     private TblCargos idCargo;
@@ -118,7 +121,7 @@ public class TblEmpleados implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public TblEmpleados(String idEmpleado, String primerNombreEmpleado, String primerApellidoEmpleado, String segundoApellidoEmpleado, String direccionEmpleado, String telEmpleado1, Date fechaNacimiento, Date fechaContratacion, double sueldo) {
+    public TblEmpleados(String idEmpleado, String primerNombreEmpleado, String primerApellidoEmpleado, String segundoApellidoEmpleado, String direccionEmpleado, String telEmpleado1, Date fechaNacimiento, Date fechaContratacion, double sueldo, String contrasena) {
         this.idEmpleado = idEmpleado;
         this.primerNombreEmpleado = primerNombreEmpleado;
         this.primerApellidoEmpleado = primerApellidoEmpleado;
@@ -128,6 +131,7 @@ public class TblEmpleados implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.fechaContratacion = fechaContratacion;
         this.sueldo = sueldo;
+        this.contrasena = contrasena;
     }
 
     public String getIdEmpleado() {
@@ -218,6 +222,14 @@ public class TblEmpleados implements Serializable {
         this.sueldo = sueldo;
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
     @XmlTransient
     public Collection<TblUsuarios> getTblUsuariosCollection() {
         return tblUsuariosCollection;
@@ -225,15 +237,6 @@ public class TblEmpleados implements Serializable {
 
     public void setTblUsuariosCollection(Collection<TblUsuarios> tblUsuariosCollection) {
         this.tblUsuariosCollection = tblUsuariosCollection;
-    }
-
-    @XmlTransient
-    public Collection<TblFacturaEncabezado> getTblFacturaEncabezadoCollection() {
-        return tblFacturaEncabezadoCollection;
-    }
-
-    public void setTblFacturaEncabezadoCollection(Collection<TblFacturaEncabezado> tblFacturaEncabezadoCollection) {
-        this.tblFacturaEncabezadoCollection = tblFacturaEncabezadoCollection;
     }
 
     public TblCargos getIdCargo() {
@@ -274,7 +277,7 @@ public class TblEmpleados implements Serializable {
 
     @Override
     public String toString() {
-        return "clinicaRosario.entity.TblEmpleados[ idEmpleado=" + idEmpleado + " ]";
+        return "com.mycompany.entity.TblEmpleados[ idEmpleado=" + idEmpleado + " ]";
     }
     
 }

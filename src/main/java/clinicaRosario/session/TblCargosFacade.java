@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Stateless
 public class TblCargosFacade extends AbstractFacade<TblCargos> {

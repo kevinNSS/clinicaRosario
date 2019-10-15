@@ -7,6 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <f:view contentType="text/html"></f:view>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <title>Pacientes</title>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>

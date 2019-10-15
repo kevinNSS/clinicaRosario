@@ -6,15 +6,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <f:view contentType="text/html"></f:view>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <title>Laboratorio Clinico El Rosario</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
     </h:head>
     <h:body>
         <ui:insert name="header">
             <ui:include src="header.xhtml"/>
         </ui:insert>
-        <br/>
-        <hr/>
+
     </h:body>
 </html>
 
