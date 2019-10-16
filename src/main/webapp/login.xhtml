@@ -4,20 +4,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-         <link rel="stylesheet" type="text/css" href="resources/css/signin.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/signin.css"/>
         <title>Laboratorio Clinico El Rosario</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:panelGrid style="margin-left: auto; margin-right: auto; margin-top: 200px;border: 3px solid #f1f1f1">
-                <p:outputLabel value="Usuario"/>
-                <p:inputText id="txtUsuario" value="#{loginController.usuario}" required="true"/>
-                <br/>
-                <p:outputLabel value="Password"/>
-                <p:password id="txtPassword" value="#{loginController.contra}" required="true"/>
-                <br/>
-                <p:commandButton style="width: 200px;" action="#{loginController.iniciarSesion()}" value="Iniciar Sesión"/>
-            </h:panelGrid>
+        <h:form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
+            <p:inputText placeholder="Usuario" value="#{loginController.usuario}" class="form-control"/>
+            <p:password placeholder="Contraseña" value="#{loginController.contra}" class="form-control"/>
+            <br/>
+            <h:commandButton class="btn btn-lg btn-primary btn-block" action="#{loginController.iniciarSesion()}" value="Acceder"/>
+            <p class="mt-5 mb-3 text-muted">&copy; 2019 Laboratorio Clinico El Rosario</p>
         </h:form>
     </h:body>
 </html>

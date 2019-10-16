@@ -25,6 +25,9 @@ public class loginController implements Serializable {
     private String usuario;
     private String contra;
     private String tipoUsuario;
+    private String nombreUsuario;
+    private String primerN;
+    private String primerA;
 
     @PostConstruct
     public void init() {
@@ -48,6 +51,9 @@ public class loginController implements Serializable {
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("tblEmpleados", us);
                 tipoUsuario = us.getIdCargo().getNombreCargo();
+                primerN = us.getPrimerNombreEmpleado();
+                primerA = us.getPrimerApellidoEmpleado();
+                nombreUsuario = primerN + " " + primerA;
                 redireccion = "index?faces-redirect=true";            
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));

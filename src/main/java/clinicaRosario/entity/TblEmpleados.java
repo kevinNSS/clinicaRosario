@@ -105,8 +105,6 @@ public class TblEmpleados implements Serializable {
     @Size(min = 1, max = 256)
     @Column(name = "contrasena")
     private String contrasena;
-    @OneToMany(mappedBy = "usuarioEmpleado")
-    private Collection<TblUsuarios> tblUsuariosCollection;
     @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
     @ManyToOne
     private TblCargos idCargo;
@@ -228,15 +226,6 @@ public class TblEmpleados implements Serializable {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
-    }
-
-    @XmlTransient
-    public Collection<TblUsuarios> getTblUsuariosCollection() {
-        return tblUsuariosCollection;
-    }
-
-    public void setTblUsuariosCollection(Collection<TblUsuarios> tblUsuariosCollection) {
-        this.tblUsuariosCollection = tblUsuariosCollection;
     }
 
     public TblCargos getIdCargo() {
