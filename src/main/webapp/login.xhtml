@@ -9,6 +9,7 @@
     </h:head>
     <h:body>
         <h:form class="form-signin">
+            <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
             <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
             <p:inputText placeholder="Usuario" value="#{loginController.usuario}" class="form-control"/>
             <p:password placeholder="Contraseña" value="#{loginController.contra}" class="form-control"/>

@@ -6,9 +6,11 @@
 package clinicaRosario.session;
 
 import clinicaRosario.entity.TblEstados;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,14 @@ public class TblEstadosFacade extends AbstractFacade<TblEstados> {
     public TblEstadosFacade() {
         super(TblEstados.class);
     }
-    
+
+    public List<TblEstados> finAllByTipoEstado(String tipoExamen) {
+        String consulta;
+        consulta = "FROM TblEstados e WHERE e.tipoEstado = ?1";
+        Query query = em.createQuery(consulta);
+        query.setParameter(1, tipoExamen);
+        List<TblEstados> lista = query.getResultList();
+        return lista;
+    }
+
 }

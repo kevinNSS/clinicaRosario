@@ -62,10 +62,10 @@ public class TblExamenes implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idExamen")
     private Collection<TblFacturaDetalle> tblFacturaDetalleCollection;
     @JoinColumn(name = "ESTADO_EXAMEN", referencedColumnName = "ID_ESTADO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private TblEstados estadoExamen;
     @JoinColumn(name = "TIPO_EXAMEN", referencedColumnName = "ID_TIPO_EXAMEN")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private TblTipoExamenes tipoExamen;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idExamen")
     private Collection<TblExpedientes> tblExpedientesCollection;

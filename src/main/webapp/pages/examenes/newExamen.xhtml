@@ -3,36 +3,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Examenes</title>
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoExamen">
+            <h:form id="formIngresoExamen" rendered="#{examenesController.mostrarFormExamen == true}">
                 <div class="container">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="nombreExamen" value="Nombre del examen"/>
-                            <p:inputText id="nombreExamen" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar este campo"/>
+                            <p:inputText id="nombreExamen" placeholder="Nombre del Examen" class="form-control" value="#{examenesController.selected.nombreExamen}" required="true" requiredMessage="Es necesario llenar el nombre del examen"/>
                         </div>
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="tipoExamen" value="Tipo de examen:"/>
-                            <p:inputText id="tipoExamen" placeholder="" class="form-control" value="" required="false" requiredMessage="Es necesario llenar este campo"/>
-                        </div>
+                        <!--<div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="tipoExamen" value="Estado del examen:"/>
+                            <h:selectOneMenu id="tipoExamen" class="form-control" value="#{examenesController.selected.tipoExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                                <f:selectItems value="#{tipoExamenes.allTipoExamen}" var="tipoExamen" itemLabel="#{tipoExamen.nombreTipoExamen}" itemValue="#{tipoExamen}"/>
+                            </h:selectOneMenu>
+                        </div>-->
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="precioExamen" value="Precio del examen:"/>
-                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar este campo"/>
+                            <p:inputText id="precioExamen" placeholder="Precio del examen" class="form-control" value="#{examenesController.selected.precioExamen}" required="true" requiredMessage="Es necesario llenar el precio del examen"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estadoExamen" value="Estado del examen:"/>
-                            <p:inputText id="estadoExamen" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar este campo"/>
+                            <h:selectOneMenu id="estadoExamen" class="form-control" value="#{examenesController.selected.estadoExamen}" required="true" requiredMessage="Es necesario llenar el estado del examen">
+                                <f:selectItems value="#{examenesController.estadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <h:outputLabel for="descripcion" value="Descripción:"/>
+                            <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{examenesController.selected.descripcionExamen}" required="true" requiredMessage="Es necesario llenar una descripción del examen"/>
                         </div>
                     </div>
                     <br/>
-                    <h:commandButton  value="Ingresar"  class="btn btn-primary btn-lg btn-block"/>
-                    </div>
-                    <br/>
+                    <h:commandButton  value="Ingresar" actionListener="#{examenesController.ingresarExamen()}" class="btn btn-primary btn-lg btn-block"/>
+                </div>
+                <br/>
                 <br/><br/>
             </h:form>
         </ui:composition>

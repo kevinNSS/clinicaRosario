@@ -2,11 +2,13 @@ package clinicaRosario.controller;
 
 import clinicaRosario.entity.TblPacientes;
 import clinicaRosario.session.TblPacientesFacade;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import lombok.Getter;
@@ -51,13 +53,16 @@ public class pacientesController implements Serializable {
         mostrarTablaPaciente = true;
     }
 
-    public void ingresoPacientes() {
+    public void ingresoPacientes() throws IOException {
         n1 = numero.nextInt(10);
         n2 = numero.nextInt(10);
         n3 = numero.nextInt(10);
         n4 = numero.nextInt(10);
         tblPacientes.setIdPaciente(tblPacientes.getPrimerNombrePaciente().substring(0, 1).toUpperCase() + tblPacientes.getPrimerApellidoPaciente().substring(0, 1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
         tblPacientesFacade.create(tblPacientes);
+        mostrarFormIngreso = false;
+        mostrarTablaPaciente = true;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("pacientes.xhtml");
     }
     
     public List<TblPacientes> getAll(){
