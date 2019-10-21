@@ -5,7 +5,7 @@
  */
 package clinicaRosario.session;
 
-import clinicaRosario.entity.TblTipoExamenes;
+import clinicaRosario.entity.TblPromociones;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author 2016
  */
 @Stateless
-public class TblTipoExamenesFacade extends AbstractFacade<TblTipoExamenes> {
+public class TblPromocionesFacade extends AbstractFacade<TblPromociones> {
 
     @PersistenceContext(unitName = "com.mycompany_clinicaRosario_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class TblTipoExamenesFacade extends AbstractFacade<TblTipoExamenes> {
         return em;
     }
 
-    public TblTipoExamenesFacade() {
-        super(TblTipoExamenes.class);
+    public TblPromocionesFacade() {
+        super(TblPromociones.class);
     }
     
 }

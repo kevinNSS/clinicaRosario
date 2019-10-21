@@ -20,8 +20,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
-                <h:commandButton style="float: right;" value="Tabla de Examenes" action="#{examenesController.mostrarTablaDeExamen()}" rendered="#{examenesController.mostrarTablaExamen == false}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Agregar Examen" action="#{examenesController.nuevoExamen()}" rendered="#{examenesController.mostrarFormExamen == false}" class="buttonNew"/>
+                <h:commandButton style="float: right;" value="Tabla de Examenes" action="#{tblExamenesController.mostrarTablaDeExamen()}" rendered="#{tblExamenesController.mostrarTablaExamen == false}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Examen" action="#{tblExamenesController.nuevoExamen()}" rendered="#{tblExamenesController.mostrarFormExamen == false}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE EXAMENES -->

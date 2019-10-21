@@ -10,64 +10,69 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoExamen" rendered="#{examenesController.mostrarFormExamen == true}">
+            <h:form id="formIngresoExamen" rendered="#{tblExamenesController.mostrarFormExamen == true}">
                 <div class="container">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="nombreExamen" value="Nombre del examen"/>
-                            <p:inputText id="nombreExamen" placeholder="Nombre del Examen" class="form-control" value="#{examenesController.selected.nombreExamen}" required="true" requiredMessage="Es necesario llenar el nombre del examen" onkeypress="return validares(event)"/>
+                            <p:inputText id="nombreExamen" placeholder="Nombre del Examen" class="form-control" value="#{tblExamenesController.selected.nombreExamen}" required="true" requiredMessage="Es necesario llenar el nombre del examen" onkeypress="return validares(event)"/>
                         </div>
-                        <!--<div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="tipoExamen" value="Estado del examen:"/>
-                            <h:selectOneMenu id="tipoExamen" class="form-control" value="#{examenesController.selected.tipoExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
-                                <f:selectItems value="#{tipoExamenes.allTipoExamen}" var="tipoExamen" itemLabel="#{tipoExamen.nombreTipoExamen}" itemValue="#{tipoExamen}"/>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="tipoExamen" value="Tipo de Examen:"/>
+                            <h:selectOneMenu id="tipoExamen" class="form-control" value="#{tblExamenesController.selected.tipoExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.allTipoExamen}" var="tipoExamen" itemLabel="#{tipoExamen.nombreTipoExamen}" itemValue="#{tipoExamen}"/>
                             </h:selectOneMenu>
-                        </div>-->
+                        </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="precioExamen" value="Precio del examen:"/>
-                            <p:inputText id="precioExamen" placeholder="Precio del examen" class="form-control" value="#{examenesController.selected.precioExamen}" required="true" requiredMessage="Es necesario llenar el precio del examen" onkeypress="return valida(event)"/>
+                            <p:inputText id="precioExamen" placeholder="Precio del examen" class="form-control" value="#{tblExamenesController.selected.precioExamen}" required="true" requiredMessage="Es necesario llenar el precio del examen" onkeypress="return valida(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estadoExamen" value="Estado del examen:"/>
-                            <h:selectOneMenu id="estadoExamen" class="form-control" value="#{examenesController.selected.estadoExamen}" required="true" requiredMessage="Es necesario llenar el estado del examen">
-                                <f:selectItems value="#{examenesController.estadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
+                            <h:selectOneMenu id="estadoExamen" class="form-control" value="#{tblExamenesController.selected.estadoExamen}" required="true" requiredMessage="Es necesario llenar el estado del examen">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.estadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-12">
                             <h:outputLabel for="descripcion" value="Descripción:"/>
-                            <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{examenesController.selected.descripcionExamen}" required="true" requiredMessage="Es necesario llenar una descripción del examen" onkeypress="return validanumle(event)"/>
+                            <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{tblExamenesController.selected.descripcionExamen}" required="true" requiredMessage="Es necesario llenar una descripción del examen" onkeypress="return validanumle(event)"/>
                         </div>
                         <script type='text/javascript'></script>
-                            <script type="text/javascript">
-                                function validares(e) {
+                        <script type="text/javascript">
+                            function validares(e) {
                                 tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla===8) return true;
-                                patron =/[A-Za-z\s\ñ\Ñ]/;
+                                if (tecla === 8)
+                                    return true;
+                                patron = /[A-Za-z\s\ñ\Ñ]/;
                                 te = String.fromCharCode(tecla);
                                 return patron.test(te);
-                                }
-                            </script>
-                         <script type="text/javascript">
-                                  function valida(e) {
-                                  tecla = (document.all) ? e.keyCode : e.which;
-                                  if (tecla===8) return true;
-                                  patron =/[0-9\.]/;
-                                  te = String.fromCharCode(tecla);
-                                  return patron.test(te);
-                                  }
-                            </script>
+                            }
+                        </script>
                         <script type="text/javascript">
-                                  function validanumle(e) {
-                                  tecla = (document.all) ? e.keyCode : e.which;
-                                  if (tecla===8) return true;
-                                  patron =/[A-Za-z0-9\s\ñ\Ñ]/;
-                                  te = String.fromCharCode(tecla);
-                                  return patron.test(te);
-                                  }
-                            </script>
+                            function valida(e) {
+                                tecla = (document.all) ? e.keyCode : e.which;
+                                if (tecla === 8)
+                                    return true;
+                                patron = /[0-9\.]/;
+                                te = String.fromCharCode(tecla);
+                                return patron.test(te);
+                            }
+                        </script>
+                        <script type="text/javascript">
+                            function validanumle(e) {
+                                tecla = (document.all) ? e.keyCode : e.which;
+                                if (tecla === 8)
+                                    return true;
+                                patron = /[A-Za-z0-9\s\ñ\Ñ]/;
+                                te = String.fromCharCode(tecla);
+                                return patron.test(te);
+                            }
+                        </script>
                     </div>
                     <br/>
-                    <h:commandButton  value="Ingresar" actionListener="#{examenesController.ingresarExamen()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblExamenesController.ingresarExamen()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/>
                 <br/><br/>

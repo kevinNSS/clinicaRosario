@@ -14,10 +14,10 @@
         <ui:composition>
             <nav class="navbar navbar-light " style="background-color:#CCEAE9;">
                 <a class="navbar-brand" href="index.xhtml">
-                    <p:graphicImage value="/images/ufg.jpg" width="75" height="80"/>
+                    <p:graphicImage value="/images/logo.jpeg" width="85" height="90"/>
                 </a>
                 <h:form class="form-inline">
-                    <h4><b><p:outputLabel value="#{loginController.nombreUsuario}" style="color: white; padding-right: 45px;"/></b></h4>
+                    <h4><b><p:outputLabel value="#{loginController.nombreUsuario}" style="color: black; padding-right: 45px;"/></b></h4>
                     <p:commandButton title="Cerrar Sesión" icon="ui-icon-power" actionListener="#{loginController.cerrarSesion()}" action="login?faces-redirect=true" style="width: 65px; height: 40px;"/>
                 </h:form>
             </nav>

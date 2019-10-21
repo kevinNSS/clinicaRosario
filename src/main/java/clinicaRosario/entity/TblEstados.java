@@ -38,6 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblEstados.findByTipoEstado", query = "SELECT t FROM TblEstados t WHERE t.tipoEstado = :tipoEstado")})
 public class TblEstados implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
+    private Collection<TblPromociones> tblPromocionesCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -173,6 +176,15 @@ public class TblEstados implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblEstados[ idEstado=" + idEstado + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TblPromociones> getTblPromocionesCollection() {
+        return tblPromocionesCollection;
+    }
+
+    public void setTblPromocionesCollection(Collection<TblPromociones> tblPromocionesCollection) {
+        this.tblPromocionesCollection = tblPromocionesCollection;
     }
     
 }

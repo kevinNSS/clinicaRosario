@@ -11,17 +11,17 @@
     <h:body>
         <ui:composition>
             <div class="container">
-                <h:form id="formTablaExamen" rendered="#{examenesController.mostrarTablaExamen == true}" style="text-align: center;">
-                    <p:dataTable id="tablaExamenes" value="#{examenesController.all}" var="examen">
+                <h:form id="formTablaExamen" rendered="#{tblExamenesController.mostrarTablaExamen == true}" style="text-align: center;">
+                    <p:dataTable id="tablaExamenes" value="#{tblExamenesController.all}" var="examen">
                         <p:column headerText="ID Examen">
                             <h:outputLabel id="idExamen" value="#{examen.idExamen}"/>
                         </p:column>
                         <p:column headerText="Nombre Examen">
                             <h:outputLabel id="nombreExam" value="#{examen.nombreExamen}"/>
                         </p:column>
-                        <!--<p:column headerText="Tipo Examen">
-                            <h:outputLabel id="tipoExam" value="#{examen.tipoExamen}"/>
-                        </p:column>-->
+                        <p:column headerText="Tipo Examen">
+                            <h:outputLabel id="tipoExam" value="#{examen.tipoExamen.nombreTipoExamen}"/>
+                        </p:column>
                         <p:column headerText="Precio Examen">
                             <h:outputLabel id="precioExam" value="#{examen.precioExamen}"/>
                         </p:column>

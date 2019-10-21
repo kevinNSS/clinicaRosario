@@ -38,6 +38,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblExamenes.findByPrecioExamen", query = "SELECT t FROM TblExamenes t WHERE t.precioExamen = :precioExamen")})
 public class TblExamenes implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "examen1")
+    private Collection<TblPromociones> tblPromocionesCollection;
+    @OneToMany(mappedBy = "examen2")
+    private Collection<TblPromociones> tblPromocionesCollection1;
+    @OneToMany(mappedBy = "examen3")
+    private Collection<TblPromociones> tblPromocionesCollection2;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -173,6 +180,33 @@ public class TblExamenes implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblExamenes[ idExamen=" + idExamen + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TblPromociones> getTblPromocionesCollection() {
+        return tblPromocionesCollection;
+    }
+
+    public void setTblPromocionesCollection(Collection<TblPromociones> tblPromocionesCollection) {
+        this.tblPromocionesCollection = tblPromocionesCollection;
+    }
+
+    @XmlTransient
+    public Collection<TblPromociones> getTblPromocionesCollection1() {
+        return tblPromocionesCollection1;
+    }
+
+    public void setTblPromocionesCollection1(Collection<TblPromociones> tblPromocionesCollection1) {
+        this.tblPromocionesCollection1 = tblPromocionesCollection1;
+    }
+
+    @XmlTransient
+    public Collection<TblPromociones> getTblPromocionesCollection2() {
+        return tblPromocionesCollection2;
+    }
+
+    public void setTblPromocionesCollection2(Collection<TblPromociones> tblPromocionesCollection2) {
+        this.tblPromocionesCollection2 = tblPromocionesCollection2;
     }
     
 }
