@@ -79,9 +79,14 @@ public class TblPromocionesController implements Serializable {
         }
     }
     
+    public void leerPromocion(TblPromociones promoSelected){
+        current = promoSelected;
+    }
+    
     public void mostrarFormularioPromocion(){
         mostrarFormProm = true;
         mostrarTablaProm = false;
+        current = new TblPromociones();
     }
     
     public void mostrarTablaPromocion(){

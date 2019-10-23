@@ -17,10 +17,11 @@
             <ui:include src="header.xhtml"/>
         </ui:insert>
         <br/>
+        <hr/>
         <div class="container-fluid">
             <h:form>
-                <h:commandButton style="float: right;" value="Tabla de Pacientes" action="#{pacientesController.mostrarTabla()}" rendered="#{pacientesController.mostrarTablaPaciente == false}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Agregar Paciente" action="#{pacientesController.nuevoPaciente()}" rendered="#{pacientesController.mostrarFormIngreso == false}" class="buttonNew"/>
+                <h:commandButton style="float: right;" value="Tabla de Pacientes" action="#{pacientesController.mostrarTabla()}" rendered="#{(pacientesController.mostrarTablaPaciente == false) and (loginController.tipoUsuario == 'secretaria') or (pacientesController.mostrarTablaPaciente == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Paciente" action="#{pacientesController.nuevoPaciente()}" rendered="#{(pacientesController.mostrarFormIngreso == false) and (loginController.tipoUsuario == 'secretaria') or (pacientesController.mostrarFormIngreso == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <ui:insert name="tablaPacientes">

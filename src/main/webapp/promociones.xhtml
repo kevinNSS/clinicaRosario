@@ -15,14 +15,15 @@
         <ui:insert name="header">
             <ui:include src="header.xhtml"/>
         </ui:insert>
-        <h:form>
-            <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
-            <h:commandButton style="float: right;" value="Tabla de Promociones" action="#{tblPromocionesController.mostrarTablaPromocion()}" rendered="#{tblPromocionesController.mostrarTablaProm == false}" class="buttonNew"/>
-            <h:commandButton  style="float: right;" value="Agregar Promoción" action="#{tblPromocionesController.mostrarFormularioPromocion()}" rendered="#{tblPromocionesController.mostrarFormProm == false}" class="buttonNew"/>
-        </h:form>
         <br/>
         <hr/>
         <div class="container-fluid">
+            <h:form>
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
+                <h:commandButton style="float: right;" value="Tabla de Promociones" action="#{tblPromocionesController.mostrarTablaPromocion()}" rendered="#{(tblPromocionesController.mostrarTablaProm == false) and (loginController.tipoUsuario == 'secretaria') or (tblPromocionesController.mostrarTablaProm == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Promoción" action="#{tblPromocionesController.mostrarFormularioPromocion()}" rendered="#{(tblPromocionesController.mostrarFormProm == false) and (loginController.tipoUsuario == 'secretaria') or (tblPromocionesController.mostrarFormProm == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+            </h:form>
+            <br/><br/><br/>
             <!-- TABLA DE EXAMENES -->
             <ui:insert name="tablaExamenes">
                 <ui:include src="pages/promociones/tablaPromociones.xhtml"/>

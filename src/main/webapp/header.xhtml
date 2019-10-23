@@ -14,7 +14,7 @@
         <ui:composition>
             <nav class="navbar navbar-light " style="background-color:#CCEAE9;">
                 <a class="navbar-brand" href="index.xhtml">
-                    <p:graphicImage value="/images/logo.jpeg" width="85" height="90"/>
+                    <p:graphicImage value="/images/logoL.jpeg" width="85" height="90"/>
                 </a>
                 <h:form class="form-inline">
                     <h4><b><p:outputLabel value="#{loginController.nombreUsuario}" style="color: black; padding-right: 45px;"/></b></h4>
@@ -43,8 +43,11 @@
                     <p:menuitem value="Promociones" outcome="promociones" style="text-align: center; width: 160px;" icon="pi pi-star">
                         <f:param name="i" value="5" />
                     </p:menuitem>
-                    <p:menuitem value="Reportes" outcome="index" style="text-align: center; width: 160px;" icon="pi pi-star">
+                    <p:menuitem value="Inventario" outcome="index" style="text-align: center; width: 160px;" icon="pi pi-star">
                         <f:param name="i" value="6" />
+                    </p:menuitem>
+                    <p:menuitem value="Reportes" outcome="index" style="text-align: center; width: 160px;" icon="pi pi-star">
+                        <f:param name="i" value="7" />
                     </p:menuitem>
                 </p:tabMenu>
             </h:form>
