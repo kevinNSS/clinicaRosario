@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Empleados</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
+    </h:head>
+    <h:body>
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <br/>
+        <hr/>
+        <div class="container-fluid">
+            <h:form>
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
+            </h:form>
+            <br/><br/><br/>
+            <!-- TABLA DE EMPLEADOS -->
+            <ui:insert name="tablaEmpleados">
+                <ui:include src="pages/empleados/tablaEmpleados.xhtml"/>
+            </ui:insert>
+
+            <!-- FORMULARIO DE INGRESO DE EMPLEADOS-->
+            <ui:insert name="ingresoEmpleados">
+                <ui:include src="pages/empleados/newEmpleado.xhtml"/>
+            </ui:insert>
+
+            <!--FORMULARIO PARA EDITAR EMPLEADOS-->
+            <ui:insert name="editarEmpleados">
+                <ui:include src="pages/empleados/editEmpleado.xhtml"/>
+            </ui:insert>
+        </div>
+    </h:body>
+</html>
+
