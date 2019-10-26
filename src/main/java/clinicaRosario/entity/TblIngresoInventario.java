@@ -56,13 +56,11 @@ public class TblIngresoInventario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_INGRESO")
-    @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
+    private String fechaIngreso;
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_CADUCIDAD")
-    @Temporal(TemporalType.DATE)
-    private Date fechaCaducidad;
+    private String fechaCaducidad;
     @JoinColumn(name = "ID_INVENTARIO", referencedColumnName = "ID_INVENTARIO")
     @ManyToOne(optional = false)
     private TblInventario idInventario;
@@ -74,7 +72,7 @@ public class TblIngresoInventario implements Serializable {
         this.idIngresoInventario = idIngresoInventario;
     }
 
-    public TblIngresoInventario(Integer idIngresoInventario, int cantidad, int proveedor, Date fechaIngreso, Date fechaCaducidad) {
+    public TblIngresoInventario(Integer idIngresoInventario, int cantidad, int proveedor, String fechaIngreso, String fechaCaducidad) {
         this.idIngresoInventario = idIngresoInventario;
         this.cantidad = cantidad;
         this.proveedor = proveedor;
@@ -106,19 +104,19 @@ public class TblIngresoInventario implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public Date getFechaIngreso() {
+    public String getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getFechaCaducidad() {
+    public String getFechaCaducidad() {
         return fechaCaducidad;
     }
 
-    public void setFechaCaducidad(Date fechaCaducidad) {
+    public void setFechaCaducidad(String fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
     }
 

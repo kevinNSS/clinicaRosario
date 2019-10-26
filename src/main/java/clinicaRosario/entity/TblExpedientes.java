@@ -45,8 +45,11 @@ public class TblExpedientes implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_INGRESO")
-    @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
+    private String fechaIngreso;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "RESULTADO")
+    private String resultado;
     @JoinColumn(name = "ID_EXAMEN", referencedColumnName = "ID_EXAMEN")
     @ManyToOne(optional = false)
     private TblExamenes idExamen;
@@ -61,7 +64,7 @@ public class TblExpedientes implements Serializable {
         this.idExpediente = idExpediente;
     }
 
-    public TblExpedientes(Integer idExpediente, Date fechaIngreso) {
+    public TblExpedientes(Integer idExpediente, String fechaIngreso) {
         this.idExpediente = idExpediente;
         this.fechaIngreso = fechaIngreso;
     }
@@ -74,12 +77,20 @@ public class TblExpedientes implements Serializable {
         this.idExpediente = idExpediente;
     }
 
-    public Date getFechaIngreso() {
+    public String getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
 
     public TblExamenes getIdExamen() {

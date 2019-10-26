@@ -52,11 +52,9 @@ public class TblPromociones implements Serializable {
     @Column(name = "NOMBRE_PROMOCION")
     private String nombrePromocion;
     @Column(name = "FECHA_INICIO")
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
+    private String fechaInicio;
     @Column(name = "FECHA_FINALIZACION")
-    @Temporal(TemporalType.DATE)
-    private Date fechaFinalizacion;
+    private String fechaFinalizacion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "TOTAL_PAGAR")
@@ -103,22 +101,22 @@ public class TblPromociones implements Serializable {
         this.nombrePromocion = nombrePromocion;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFinalizacion() {
+    public String getFechaFinalizacion() {
         return fechaFinalizacion;
     }
 
-    public void setFechaFinalizacion(Date fechaFinalizacion) {
+    public void setFechaFinalizacion(String fechaFinalizacion) {
         this.fechaFinalizacion = fechaFinalizacion;
     }
-
+    
     public double getTotalPagar() {
         return totalPagar;
     }

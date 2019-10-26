@@ -53,8 +53,7 @@ public class TblFacturaEncabezado implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_FACTURACION")
-    @Temporal(TemporalType.DATE)
-    private Date fechaFacturacion;
+    private String fechaFacturacion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "SUB_TOTAL")
@@ -90,7 +89,7 @@ public class TblFacturaEncabezado implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public TblFacturaEncabezado(Integer idFactura, Date fechaFacturacion, double subTotal, double iva, double descuentoTotal, double total) {
+    public TblFacturaEncabezado(Integer idFactura, String fechaFacturacion, double subTotal, double iva, double descuentoTotal, double total) {
         this.idFactura = idFactura;
         this.fechaFacturacion = fechaFacturacion;
         this.subTotal = subTotal;
@@ -107,11 +106,11 @@ public class TblFacturaEncabezado implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public Date getFechaFacturacion() {
+    public String getFechaFacturacion() {
         return fechaFacturacion;
     }
 
-    public void setFechaFacturacion(Date fechaFacturacion) {
+    public void setFechaFacturacion(String fechaFacturacion) {
         this.fechaFacturacion = fechaFacturacion;
     }
 

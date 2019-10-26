@@ -89,13 +89,11 @@ public class TblEmpleados implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_NACIMIENTO")
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_CONTRATACION")
-    @Temporal(TemporalType.DATE)
-    private Date fechaContratacion;
+    private String fechaContratacion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "SUELDO")
@@ -119,7 +117,7 @@ public class TblEmpleados implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public TblEmpleados(String idEmpleado, String primerNombreEmpleado, String primerApellidoEmpleado, String segundoApellidoEmpleado, String direccionEmpleado, String telEmpleado1, Date fechaNacimiento, Date fechaContratacion, double sueldo, String contrasena) {
+    public TblEmpleados(String idEmpleado, String primerNombreEmpleado, String primerApellidoEmpleado, String segundoApellidoEmpleado, String direccionEmpleado, String telEmpleado1, String fechaNacimiento, String fechaContratacion, double sueldo, String contrasena) {
         this.idEmpleado = idEmpleado;
         this.primerNombreEmpleado = primerNombreEmpleado;
         this.primerApellidoEmpleado = primerApellidoEmpleado;
@@ -196,19 +194,19 @@ public class TblEmpleados implements Serializable {
         this.telEmpleado2 = telEmpleado2;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Date getFechaContratacion() {
+    public String getFechaContratacion() {
         return fechaContratacion;
     }
 
-    public void setFechaContratacion(Date fechaContratacion) {
+    public void setFechaContratacion(String fechaContratacion) {
         this.fechaContratacion = fechaContratacion;
     }
 
