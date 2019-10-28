@@ -2,12 +2,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Expedientes</title>
+        <title>Empleados</title>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>
     <h:body>
         <ui:composition>
+            <h:form id="formIngresoEmpleado"> 
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <div class="container">
+                    <div class="form-row">
+                        
+                        
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="paciente" value="Paciente:"/>
+                            <p:inputText id="paciente" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.primerNombrePaciente}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
+                        </div>
+                      
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="examen" value="Examen:"/>
+                            <h:selectOneMenu id="examen" class="form-control" value="#{tblExamenesController.selected.tipoExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.allTipoExamen}" var="tipoExamen" itemLabel="#{tipoExamen.nombreTipoExamen}" itemValue="#{tipoExamen}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="fechaIngreso" value="Fecha de ingreso:"/>
+                            <p:inputText id="fechanacimiento" placeholder="" type="date" class="form-control" value="#{pacientesController.tblPacientes.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <h:outputLabel for="result" value="Resultado:"/>
+                            <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{tblExamenesController.selected.descripcionExamen}" required="true" requiredMessage="Es necesario llenar una descripción del examen" onkeypress="return validanumle(event)"/>
+                        </div>
+                        
+                        <br/>
+                        <br/>
+                    </div>
+                    <h:commandButton  value="Ingresar" actionListener="#{pacientesController.ingresoPacientes()}" class="btn btn-primary btn-lg btn-block"/>
+                </div>
+                <br/><br/>
+            </h:form>
 
         </ui:composition>
     </h:body>
