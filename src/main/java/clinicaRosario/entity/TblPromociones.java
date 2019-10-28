@@ -6,7 +6,6 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Entity
 @Table(name = "tbl_promociones")
@@ -51,8 +48,10 @@ public class TblPromociones implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "NOMBRE_PROMOCION")
     private String nombrePromocion;
+    @Size(max = 10)
     @Column(name = "FECHA_INICIO")
     private String fechaInicio;
+    @Size(max = 10)
     @Column(name = "FECHA_FINALIZACION")
     private String fechaFinalizacion;
     @Basic(optional = false)
@@ -116,7 +115,7 @@ public class TblPromociones implements Serializable {
     public void setFechaFinalizacion(String fechaFinalizacion) {
         this.fechaFinalizacion = fechaFinalizacion;
     }
-    
+
     public double getTotalPagar() {
         return totalPagar;
     }

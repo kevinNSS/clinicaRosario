@@ -97,9 +97,8 @@ public class pacientesController implements Serializable {
                 n4 = numero.nextInt(10);
                 tblPacientes.setIdPaciente(tblPacientes.getPrimerNombrePaciente().substring(0, 1).toUpperCase() + tblPacientes.getPrimerApellidoPaciente().substring(0, 1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
                 tblPacientesFacade.create(tblPacientes);
-                mostrarFormIngreso = false;
-                mostrarTablaPaciente = true;
-                FacesContext.getCurrentInstance().getExternalContext().redirect("pacientes.xhtml");
+                tblPacientes = new TblPacientes();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos ingresados Exitosamente!"));
             }
         } catch (ParseException e) {
           

@@ -45,14 +45,14 @@
                             <h:outputLabel for="Total" value="TOTAL:"/>
                             <p:inputText id="total" class="form-control" value="#{tblPromocionesController.selected.totalPagar}" required="true" requiredMessage="Es necesario llenar el valor de la promoción"/>
                         </div>
-                        <!--<div class="form-group col-xs-12 col-md-2">
+                        <div class="form-group col-xs-12 col-md-2">
                             <h:outputLabel for="fechaInicio" value="Fecha de Inicio:"/>
-                            <p:inputText id="fechainicio" placeholder="" type="date" class="form-control" value="#{pacientesController.tblPacientes.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
+                            <p:inputText id="fechainicio" type="date" class="form-control" value="#{tblPromocionesController.selected.fechaInicio}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
                         </div>
                         <div class="form-group col-xs-12 col-md-2">
                             <h:outputLabel for="fechaFinaliza" value="Fecha de Finalización:"/>
-                            <p:inputText id="fechafin" placeholder="" type="date" class="form-control" value="#{pacientesController.tblPacientes.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
-                        </div>-->
+                            <p:inputText id="fechafin" type="date" class="form-control" value="#{tblPromocionesController.selected.fechaFinalizacion}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
+                        </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estado" value="Estado:"/>
                             <h:selectOneMenu id="estado" class="form-control" value="#{tblPromocionesController.selected.estado}" required="true" requiredMessage="Es necesario ponerle un estado a la promoción">

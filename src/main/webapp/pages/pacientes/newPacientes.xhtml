@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoApellido" value="Segundo Apellido:"/>
-                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.segundoApellidoPaciente}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.segundoApellidoPaciente}" onkeypress="return validares(event)"/>
                         </div>
                     </div>
                     <div class="form-row">
@@ -40,23 +40,23 @@
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telefono" value="Telefono:"/>
-                            <p:inputText id="telefono" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.telPaciente}" required="true" requiredMessage="Es necesario llenar el campo del telefono." maxlength="8" onkeypress="return validarnum(event)"/>
+                            <p:inputText id="telefono" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.telPaciente}" maxlength="8" onkeypress="return validarnum(event)"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="correo" value="Correo:"/>
-                            <p:inputText id="correo" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.correoPaciente}" required="false" requiredMessage="" onkeydown="validate(this.value);"/>
+                            <p:inputText id="correo" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.correoPaciente}" onkeydown="validate(this.value);"/>
                             <span  id="check"></span><br />
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telresponsable" value="Telefono Responsable:"/>
-                            <p:inputText id="telresponsable" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.telResponsable}" required="true" requiredMessage="Es necesario llenar el campo del telefono resposable." maxlength="8" onkeypress="return validarnum(event)"/>
+                            <p:inputText id="telresponsable" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.telResponsable}" maxlength="8" onkeypress="return validarnum(event)"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="" value="Sexo"/>
+                            <h:outputLabel for="sexo" value="Sexo"/>
                             <h:selectOneMenu id="sexo" class="form-control" value="#{pacientesController.tblPacientes.sexo}" required="true">
                                 <f:selectItem itemLabel="Hombre" itemValue="Hombre"/>
                                 <f:selectItem itemLabel="Mujer" itemValue="Mujer"/>

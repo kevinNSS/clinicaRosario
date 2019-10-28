@@ -66,9 +66,6 @@ public class TblPacientes implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "PRIMER_APELLIDO_PACIENTE")
     private String primerApellidoPaciente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "SEGUNDO_APELLIDO_PACIENTE")
     private String segundoApellidoPaciente;
     @Basic(optional = false)
@@ -76,19 +73,11 @@ public class TblPacientes implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "DIRECCION_PACIENTE")
     private String direccionPaciente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
     @Column(name = "TEL_PACIENTE")
     private String telPaciente;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
     @Column(name = "CORREO_PACIENTE")
     private String correoPaciente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
     @Column(name = "TEL_RESPONSABLE")
     private String telResponsable;
     @Basic(optional = false)

@@ -73,6 +73,7 @@ public class TblPromocionesController implements Serializable {
     public void crearPromocion() {
         try {
             ejbFacade.create(current);
+            current = new TblPromociones();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos ingresados Exitosamente!"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Necesita llenar los campos requeridos!"));

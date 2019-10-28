@@ -51,8 +51,8 @@ public class loginController implements Serializable {
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("tblEmpleados", us);
                 tipoUsuario = us.getIdCargo().getNombreCargo();
-                primerN = us.getPrimerNombreEmpleado();
-                primerA = us.getPrimerApellidoEmpleado();
+                primerN = us.getPrimerNombreEmpleado().toUpperCase();
+                primerA = us.getPrimerApellidoEmpleado().toUpperCase();
                 nombreUsuario = primerN + " " + primerA;
                 redireccion = "index?faces-redirect=true";            
             } else {

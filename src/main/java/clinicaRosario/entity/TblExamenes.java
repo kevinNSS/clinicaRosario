@@ -58,7 +58,6 @@ public class TblExamenes implements Serializable {
     @Column(name = "NOMBRE_EXAMEN")
     private String nombreExamen;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "DESCRIPCION_EXAMEN")
     private String descripcionExamen;
