@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Inventario</title>
+        <f:view contentType="text/html"></f:view>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>
@@ -19,7 +20,8 @@
         <hr/>
         <div class="container-fluid">
             <h:form>
-                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <h:commandButton  style="float: right;" value="Agregar Producto a Inventario" action="#{pacientesController.nuevoPaciente()}" rendered="#{(pacientesController.mostrarFormIngreso == false) and (loginController.tipoUsuario == 'secretaria') or (pacientesController.mostrarFormIngreso == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE INVENTARIO -->
