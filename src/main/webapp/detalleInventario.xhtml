@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Detalle de Inventario</title>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
+    </h:head>
+    <h:body>
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <br/>
+        <hr/>
+        <div class="container-fluid">
+            <h:form>
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <h:commandButton  style="float: right;" value="Mostrar Inventario" action="inventario?faces-redirect=true" class="buttonNew"/>
+            </h:form>
+            <br/><br/><br/>
+            <!-- TABLA DEL DETALLE DE INVENTARIO -->
+            <ui:insert name="tablaDetalleInventario">
+                <ui:include src="pages/detalleInventario/tablaDetalleInventario.xhtml"/>
+            </ui:insert>
+
+            <!-- FORMULARIO DE INGRESO DEL DETALLE DE INVENTARIO-->
+            <ui:insert name="nuevoInventario">
+                <ui:include src="pages/detalleInventario/newDetalleInventario.xhtml"/>
+            </ui:insert>
+
+            <!--FORMULARIO PARA EDITAR EL DETALLE DE INVENTARIO-->
+            <ui:insert name="editarInventario">
+                <ui:include src="pages/detalleInventario/editDetalleInventario.xhtml"/>
+            </ui:insert>
+        </div>
+    </h:body>
+</html>
+

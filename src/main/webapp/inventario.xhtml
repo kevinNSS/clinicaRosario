@@ -21,6 +21,7 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <h:commandButton  style="float: right;" value="Mostrar Detalle de Inventario" action="detalleInventario?faces-redirect=true" class="buttonNew"/>
                 <h:commandButton  style="float: right;" value="Agregar Producto a Inventario" action="#{pacientesController.nuevoPaciente()}" rendered="#{(pacientesController.mostrarFormIngreso == false) and (loginController.tipoUsuario == 'secretaria') or (pacientesController.mostrarFormIngreso == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>

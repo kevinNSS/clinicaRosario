@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -24,13 +23,14 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Named("tblPromocionesController")
-@SessionScoped
+@ViewScoped
 public class TblPromocionesController implements Serializable {
 
     private TblPromociones current;

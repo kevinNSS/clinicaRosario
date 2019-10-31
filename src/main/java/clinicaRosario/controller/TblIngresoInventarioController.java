@@ -4,6 +4,7 @@ import clinicaRosario.entity.TblIngresoInventario;
 import clinicaRosario.session.TblIngresoInventarioFacade;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -41,6 +42,16 @@ public class TblIngresoInventarioController implements Serializable {
 
     public void leerDetalleInventario(TblIngresoInventario infoDetalleInventario) {
         tblIngresoInventario = infoDetalleInventario;
+    }
+    
+    public void nuevoDetalleInventario(){
+        tblIngresoInventario = new TblIngresoInventario();
+    }
+    
+    public void crearDetalleInventario(){
+        tblIngresoInventarioFacade.create(tblIngresoInventario);
+        tblIngresoInventario = new TblIngresoInventario();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
 
     @FacesConverter(forClass = TblIngresoInventario.class)
