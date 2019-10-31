@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clinicaRosario.controller;
 
 import clinicaRosario.entity.TblIngresoInventario;
+import clinicaRosario.session.TblIngresoInventarioFacade;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -22,15 +19,30 @@ import lombok.Setter;
 @ViewScoped
 public class TblIngresoInventarioController implements Serializable {
 
-    /**
-     *
-     *
-     * AQUI VAN LOS METODOS
-     *
-     *
-     */
-    
-    
+    private TblIngresoInventario tblIngresoInventario;
+    @EJB
+    private TblIngresoInventarioFacade tblIngresoInventarioFacade;
+    private Boolean mostrarTblIngresoInventario = true;
+    private Boolean mostrarFormIngresoInventario = false;
+
+    public void init() {
+        tblIngresoInventario = new TblIngresoInventario();
+    }
+
+    public void mostrarTablaIngresoInventari() {
+        mostrarTblIngresoInventario = true;
+        mostrarFormIngresoInventario = false;
+    }
+
+    public void mostrarFormIngresoInventario() {
+        mostrarTblIngresoInventario = false;
+        mostrarFormIngresoInventario = true;
+    }
+
+    public void leerDetalleInventario(TblIngresoInventario infoDetalleInventario) {
+        tblIngresoInventario = infoDetalleInventario;
+    }
+
     @FacesConverter(forClass = TblIngresoInventario.class)
     public static class TblTipoExamenesControllerConverter implements Converter {
 

@@ -8,6 +8,10 @@ import clinicaRosario.entity.TblExamenes;
 import clinicaRosario.session.TblPromocionesFacade;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -65,32 +69,48 @@ public class TblPromocionesController implements Serializable {
     public List<TblExamenes> getAvaibleExamenes() {
         return tblExamenesFacade.findAllExamenesByEstado();
     }
-    
-    public List<TblPromociones> getAllPromociones(){
+
+    public List<TblPromociones> getAllPromociones() {
         return ejbFacade.findAll();
     }
 
+    //convertir dos fechas para promociones y dar formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    private Date datePromo1;
+    private Date datePromo2;
+
+    //metodo de conversion 2 fechas de promociones
+    public void setConversionFechaPromo(String promoFecha, String promoFecha2) throws ParseException {
+        this.datePromo1 = formatoFecha.parse(promoFecha);
+        this.datePromo2 = formatoFecha.parse(promoFecha2);
+    }
+
     public void crearPromocion() {
-        try {
-            ejbFacade.create(current);
-            current = new TblPromociones();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos ingresados Exitosamente!"));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Necesita llenar los campos requeridos!"));
+        try{
+            setConversionFechaPromo(current.getFechaInicio(),current.getFechaFinalizacion());
+            if(datePromo1.after(datePromo2) || datePromo1.equals(datePromo2)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Fechas no validas para la promocion!"));
+            }else{
+                ejbFacade.create(current);
+                current = new TblPromociones();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos ingresados Exitosamente!"));
+            }
+        }catch(ParseException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
         }
     }
-    
-    public void leerPromocion(TblPromociones promoSelected){
+
+    public void leerPromocion(TblPromociones promoSelected) {
         current = promoSelected;
     }
-    
-    public void mostrarFormularioPromocion(){
+
+    public void mostrarFormularioPromocion() {
         mostrarFormProm = true;
         mostrarTablaProm = false;
         current = new TblPromociones();
     }
-    
-    public void mostrarTablaPromocion(){
+
+    public void mostrarTablaPromocion() {
         mostrarFormProm = false;
         mostrarTablaProm = true;
     }
