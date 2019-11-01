@@ -36,6 +36,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TblExpedientes.findByFechaIngreso", query = "SELECT t FROM TblExpedientes t WHERE t.fechaIngreso = :fechaIngreso")})
 public class TblExpedientes implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "REPORTADO_POR")
+    private int reportadoPor;
+    @JoinColumn(name = "ID_TBL_HECES", referencedColumnName = "id_tabla_heces")
+    @ManyToOne
+    private TblHeces idTblHeces;
+    @JoinColumn(name = "ID_TBL_HEMOGRAMA", referencedColumnName = "id_tbl_hemograma")
+    @ManyToOne
+    private TblHemograma idTblHemograma;
+    @JoinColumn(name = "ID_TBL_ORINA", referencedColumnName = "id_tbl_orina")
+    @ManyToOne
+    private TblOrina idTblOrina;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -132,6 +146,38 @@ public class TblExpedientes implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblExpedientes[ idExpediente=" + idExpediente + " ]";
+    }
+
+    public int getReportadoPor() {
+        return reportadoPor;
+    }
+
+    public void setReportadoPor(int reportadoPor) {
+        this.reportadoPor = reportadoPor;
+    }
+
+    public TblHeces getIdTblHeces() {
+        return idTblHeces;
+    }
+
+    public void setIdTblHeces(TblHeces idTblHeces) {
+        this.idTblHeces = idTblHeces;
+    }
+
+    public TblHemograma getIdTblHemograma() {
+        return idTblHemograma;
+    }
+
+    public void setIdTblHemograma(TblHemograma idTblHemograma) {
+        this.idTblHemograma = idTblHemograma;
+    }
+
+    public TblOrina getIdTblOrina() {
+        return idTblOrina;
+    }
+
+    public void setIdTblOrina(TblOrina idTblOrina) {
+        this.idTblOrina = idTblOrina;
     }
     
 }

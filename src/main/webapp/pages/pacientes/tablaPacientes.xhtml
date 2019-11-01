@@ -3,9 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Pacientes</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>
@@ -13,17 +15,17 @@
         <ui:composition>
             <div class="container">
                 <h:form id="formTablaPacientes" rendered="#{pacientesController.mostrarTablaPaciente == true}">
-                        <p:dataTable value="#{pacientesController.all}" var="pacientes" style="text-align: center;">
-                            <p:column headerText="ID">
-                                    #{pacientes.idPaciente}
-                            </p:column>
-                            <p:column headerText="Nombre">
-                                    #{pacientes.primerNombrePaciente} #{pacientes.segundoNombrePaciente} #{pacientes.primerApellidoPaciente} #{pacientes.segundoApellidoPaciente}
-                            </p:column>
-                            <p:column headerText="Teléfono">
-                                    #{pacientes.telPaciente}
-                            </p:column>
-                        </p:dataTable>
+                    <p:dataTable value="#{pacientesController.all}" var="pacientes" style="text-align: center;">
+                        <p:column headerText="ID">
+                            #{pacientes.idPaciente}
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            #{pacientes.primerNombrePaciente} #{pacientes.segundoNombrePaciente} #{pacientes.primerApellidoPaciente} #{pacientes.segundoApellidoPaciente}
+                        </p:column>
+                        <p:column headerText="Teléfono">
+                            #{pacientes.telPaciente}
+                        </p:column>
+                    </p:dataTable>
                 </h:form>
             </div>
         </ui:composition>

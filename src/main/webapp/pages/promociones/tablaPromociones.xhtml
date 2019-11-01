@@ -4,9 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Promociones</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>
     <h:body>
         <ui:composition>
@@ -31,29 +34,29 @@
                 </h:form>
                 <p:dialog id="tblInfoPromocion" header="Información de promoción" widgetVar="infoDialog" modal="true">
                     <h:panelGrid columns="2">
-                            <b>Nombre de la promoción: </b> 
-                            #{tblPromocionesController.current.nombrePromocion}<br/><br/>
+                        <b>Nombre de la promoción: </b> 
+                        #{tblPromocionesController.current.nombrePromocion}<br/><br/>
 
-                            <b>Examen 1: </b>
-                            #{tblPromocionesController.current.examen1.nombreExamen}<br/><br/>
+                        <b>Examen 1: </b>
+                        #{tblPromocionesController.current.examen1.nombreExamen}<br/><br/>
 
-                            <b>Examen 2: </b>
-                            #{tblPromocionesController.current.examen2.nombreExamen}<br/><br/>
+                        <b>Examen 2: </b>
+                        #{tblPromocionesController.current.examen2.nombreExamen}<br/><br/>
 
-                            <b>Examen 3: </b>
-                            #{tblPromocionesController.current.examen3.nombreExamen}<br/><br/>
+                        <b>Examen 3: </b>
+                        #{tblPromocionesController.current.examen3.nombreExamen}<br/><br/>
 
-                            <b>Fecha de inicio de promoción: </b>
-                            #{tblPromocionesController.current.fechaInicio}<br/><br/>
+                        <b>Fecha de inicio de promoción: </b>
+                        #{tblPromocionesController.current.fechaInicio}<br/><br/>
 
-                            <b>Fecha de finalización de promoción: </b>
-                            #{tblPromocionesController.current.fechaFinalizacion}<br/><br/>
+                        <b>Fecha de finalización de promoción: </b>
+                        #{tblPromocionesController.current.fechaFinalizacion}<br/><br/>
 
-                            <b>Total a Pagar por la promoción: </b>
-                            #{tblPromocionesController.current.totalPagar}<br/><br/>
+                        <b>Total a Pagar por la promoción: </b>
+                        #{tblPromocionesController.current.totalPagar}<br/><br/>
 
-                            <b>Estado de la promoción: </b>
-                            #{tblPromocionesController.current.estado.nombreEstado}<br/><br/>
+                        <b>Estado de la promoción: </b>
+                        #{tblPromocionesController.current.estado.nombreEstado}<br/><br/>
                     </h:panelGrid>
                 </p:dialog>  
             </div>

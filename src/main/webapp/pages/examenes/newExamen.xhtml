@@ -7,6 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Examenes</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>
     <h:body>
         <ui:composition>

@@ -7,6 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Inventario</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>

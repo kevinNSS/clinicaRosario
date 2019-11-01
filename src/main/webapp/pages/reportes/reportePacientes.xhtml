@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="container">
+                <h:form id="tablaPromociones" rendered="#{tblPromocionesController.mostrarTablaProm == true}" style="text-align: center;">
+                    <p:dataTable id="tablaExamenes" value="#{tblPromocionesController.allPromociones}" var="promociones">
+                        <f:facet name="{Exporters}">
+                            <div style="float:right;padding-top: 5px;">
+                                <h:commandLink>
+                                    <p:graphicImage name="./images/excel.png" width="24"/>
+                                    <p:dataExporter type="xls" target="tablaPromociones" fileName="Promociones" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage name="./images/pdf.png" width="24"/>
+                                    <p:dataExporter type="pdf" target="tablaPromociones" fileName="Promociones"/>
+                                </h:commandLink>
+                            </div>
+                        </f:facet>
+
+                        <p:column headerText="Nombre de la Promoción">
+                            <h:outputLabel id="nombreProm" value="#{promociones.nombrePromocion}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Inicio">
+                            <h:outputLabel id="fechaIProm" value="#{promociones.fechaInicio}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Finalización">
+                            <h:outputLabel id="fechaFProm" value="#{promociones.fechaFinalizacion}"/>
+                        </p:column>
+                        <p:column headerText="Estado de la Promoción">
+                            <h:outputLabel id="estadoProm" value="#{promociones.estado.nombreEstado}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <h:commandLink>
+                        <p:graphicImage name="./images/excel.png" width="24"/>
+                        <p:outputLabel value="Excel"/>
+                        <p:dataExporter type="xls" target="tablaPromociones" fileName="Promociones" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage name="./images/pdf.png" width="24"/>
+                        <p:dataExporter type="pdf" target="tablaPromociones" fileName="Promociones"/>
+                    </h:commandLink>
+                </h:form>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+
