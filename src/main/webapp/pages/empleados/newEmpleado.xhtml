@@ -19,43 +19,43 @@
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="primerNombre" value="Primer Nombre:"/>
-                            <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.primerNombrePaciente}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
+                            <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoNombre" value="Segundo Nombre:"/>
-                            <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.segundoNombrePaciente}" required="false" requiredMessage="" onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.segundoNombreEmpleado}" required="false" requiredMessage="" onkeypress="return validares(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="primerApellido" value="Primer Apellido:"/>
-                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.primerApellidoPaciente}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return validares(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoApellido" value="Segundo Apellido:"/>
-                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.segundoApellidoPaciente}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.segundoApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return validares(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="direccion" value="Direccion:"/>
-                            <p:inputText id="direccion" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.direccionPaciente}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return valida(event)"/>
+                            <p:inputText id="direccion" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.direccionEmpleado}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return valida(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telefono1" value="Telefono 1:"/>
-                            <p:inputText id="telefono1" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.telPaciente}" required="true" requiredMessage="Es necesario llenar el campo del telefono 1." maxlength="8" onkeypress="return validarnum(event)"/>
+                            <p:inputText id="telefono1" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.telEmpleado1}" required="true" requiredMessage="Es necesario llenar el campo del telefono 1." maxlength="8" onkeypress="return validarnum(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telefono2" value="Telefono 2:"/>
-                            <p:inputText id="telefono2" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.telPaciente}" required="true" requiredMessage="Es necesario llenar el campo del telefono 2." maxlength="8" onkeypress="return validarnum(event)"/>
+                            <p:inputText id="telefono2" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.telEmpleado2}" required="true" requiredMessage="Es necesario llenar el campo del telefono 2." maxlength="8" onkeypress="return validarnum(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="fechanacimiento" value="Fecha Nacimiento:"/>
-                            <p:inputText id="fechanacimiento" placeholder="" type="date" class="form-control" value="#{pacientesController.tblPacientes.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
+                            <p:inputText id="fechanacimiento" placeholder="" type="date" class="form-control" value="#{tblEmpleadosController.tblEmpleados.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="fechacontratacion" value="Fecha Contratacion:"/>
-                            <p:inputText id="fechacontratacion" placeholder="" type="date" class="form-control" value="#{pacientesController.tblPacientes.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de contratacion."/>
+                            <p:inputText id="fechacontratacion" placeholder="" type="date" class="form-control" value="#{tblEmpleadosController.tblEmpleados.fechaContratacion}" required="true" requiredMessage="Es necesario llenar el campo de contratacion."/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="sueldo" value="Sueldo:"/>
-                            <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblExamenesController.selected.precioExamen}" required="true" requiredMessage="Es necesario llenar el campo sueldo" onkeypress="return valida(event)"/>
+                            <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.sueldo}" required="true" requiredMessage="Es necesario llenar el campo sueldo" onkeypress="return valida(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estadoEmpleado" value="Estado del empleado:"/>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="contrasena" value="Contraseña:"/>
-                            <p:inputText id="contrasena" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.direccionPaciente}" required="true" requiredMessage="Es necesario llenar el campo de contraseña." onkeypress="return valida(event)"/>
+                            <p:inputText id="contrasena" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.contrasena}" required="true" requiredMessage="Es necesario llenar el campo de contraseña." onkeypress="return valida(event)"/>
                         </div>
                         <br/>
                         <br/>
