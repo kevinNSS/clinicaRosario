@@ -14,22 +14,8 @@
     <h:body>
         <ui:composition>
             <div class="container">
-                <h:form id="tablaPromociones" rendered="#{tblPromocionesController.mostrarTablaProm == true}" style="text-align: center;">
-                    <p:dataTable id="tablaExamenes" value="#{tblPromocionesController.allPromociones}" var="promociones">
-                        <f:facet name="{Exporters}">
-                            <div style="float:right;padding-top: 5px;">
-                                <h:commandLink>
-                                    <p:graphicImage name="./images/excel.png" width="24"/>
-                                    <p:dataExporter type="xls" target="tablaPromociones" fileName="Promociones" />
-                                </h:commandLink>
-
-                                <h:commandLink>
-                                    <p:graphicImage name="./images/pdf.png" width="24"/>
-                                    <p:dataExporter type="pdf" target="tablaPromociones" fileName="Promociones"/>
-                                </h:commandLink>
-                            </div>
-                        </f:facet>
-
+                <h:form id="formTblPromocion" rendered="#{tblPromocionesController.mostrarTablaProm == true}" style="text-align: center;">
+                    <p:dataTable id="tablaPromociones" value="#{tblPromocionesController.allPromociones}" var="promociones">
                         <p:column headerText="Nombre de la Promoción">
                             <h:outputLabel id="nombreProm" value="#{promociones.nombrePromocion}"/>
                         </p:column>
@@ -49,9 +35,10 @@
                         <p:outputLabel value="Excel"/>
                         <p:dataExporter type="xls" target="tablaPromociones" fileName="Promociones" />
                     </h:commandLink>
-
+                    &nbsp;&nbsp;
                     <h:commandLink>
                         <p:graphicImage name="./images/pdf.png" width="24"/>
+                        <p:outputLabel value="PDF"/>
                         <p:dataExporter type="pdf" target="tablaPromociones" fileName="Promociones"/>
                     </h:commandLink>
                 </h:form>

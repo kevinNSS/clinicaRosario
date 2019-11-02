@@ -24,32 +24,20 @@
 
             <h:form> 
                 <p:growl id="messages"/>
-                <p:tabMenu activeIndex="#{param.i}">
-                    <p:menuitem value="Inicio" outcome="index" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="0" />
-                    </p:menuitem>
-                    <p:menuitem value="Laboratorio" outcome="expedientes" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="1" />
-                    </p:menuitem>
-                    <p:menuitem value="Pacientes" outcome="pacientes" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="2" />
-                    </p:menuitem>
-                    <p:menuitem value="Empleados" outcome="empleados" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="3" />
-                    </p:menuitem>
-                    <p:menuitem value="Examenes" outcome="examenes" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="4" />
-                    </p:menuitem>
-                    <p:menuitem value="Promociones" outcome="promociones" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="5" />
-                    </p:menuitem>
-                    <p:menuitem value="Inventario" outcome="inventario" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="6" />
-                    </p:menuitem>
-                    <p:menuitem value="Reportes" outcome="reportes" style="text-align: center; width: 160px;" icon="pi pi-star">
-                        <f:param name="i" value="7" />
-                    </p:menuitem>
-                </p:tabMenu>
+                <p:menubar>
+                    <p:menuitem value="Inicio" outcome="index" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    <p:menuitem value="Pacientes" outcome="pacientes" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    <p:menuitem value="Empleados" outcome="empleados" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    <p:menuitem value="Examenes" outcome="examenes" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    <p:menuitem value="Promociones" outcome="promociones" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    <p:menuitem value="Inventario" outcome="inventario" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    <p:submenu label="Laboratorio" icon="pi pi-pencil">
+                        <p:menuitem value="Examenes de Heces" outcome="heces" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                        <p:menuitem value="Examenes de Orina" outcome="orines" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                        <p:menuitem value="Examenes Hemograma" outcome="hemogramas" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                    </p:submenu>
+                    <p:menuitem value="Reportes" outcome="reportes" style="text-align: center; width: 160px;" icon="pi pi-star"/>
+                </p:menubar>
             </h:form>
         </ui:composition>
     </h:body>

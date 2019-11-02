@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Detalle de Inventario</title>
+        <title>Hemogramas</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>
@@ -19,23 +19,22 @@
         <hr/>
         <div class="container-fluid">
             <h:form>
-                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
-                <h:commandButton  style="float: right;" value="Mostrar Inventario" action="inventario?faces-redirect=true" class="buttonNew"/>
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
             </h:form>
             <br/><br/><br/>
-            <!-- TABLA DEL DETALLE DE INVENTARIO -->
-            <ui:insert name="tablaDetalleInventario">
-                <ui:include src="pages/detalleInventario/tablaDetalleInventario.xhtml"/>
+            <!-- TABLA DE EXPEDIENTES DE HEMOGRAMA DE PACIENTES -->
+            <ui:insert name="tablaHemograma">
+                <ui:include src="pages/expedientes/examenesHemograma/tablaHemograma.xhtml"/>
             </ui:insert>
 
-            <!-- FORMULARIO DE INGRESO DEL DETALLE DE INVENTARIO-->
-            <ui:insert name="nuevoInventario">
-                <ui:include src="pages/detalleInventario/newDetalleInventario.xhtml"/>
+            <!-- FORMULARIO DE INGRESO DE EXPEDIENTES DE HEMOGRAMAS DE PACIENTES-->
+            <ui:insert name="newExamHemograma">
+                <ui:include src="pages/expedientes/examenesHemograma/newExamHemograma.xhtml"/>
             </ui:insert>
 
-            <!--FORMULARIO PARA EDITAR EL DETALLE DE INVENTARIO-->
-            <ui:insert name="editarInventario">
-                <ui:include src="pages/detalleInventario/editDetalleInventario.xhtml"/>
+            <!--FORMULARIO PARA EDITAR EXPEDIENTES DE HEMOGRAMAS DE PACIENTES-->
+            <ui:insert name="editExamHemograma">
+                <ui:include src="pages/expedientes/examenesHemograma/editExamHemograma.xhtml"/>
             </ui:insert>
         </div>
     </h:body>

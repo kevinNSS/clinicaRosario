@@ -3,6 +3,7 @@ package clinicaRosario.controller;
 import clinicaRosario.entity.TblIngresoInventario;
 import clinicaRosario.session.TblIngresoInventarioFacade;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -26,6 +27,7 @@ public class TblIngresoInventarioController implements Serializable {
     private Boolean mostrarTblIngresoInventario = true;
     private Boolean mostrarFormIngresoInventario = false;
 
+    @PostConstruct
     public void init() {
         tblIngresoInventario = new TblIngresoInventario();
     }
