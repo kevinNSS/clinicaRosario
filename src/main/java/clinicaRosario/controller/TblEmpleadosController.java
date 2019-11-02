@@ -1,7 +1,13 @@
 package clinicaRosario.controller;
 
 import clinicaRosario.entity.TblEmpleados;
+import clinicaRosario.entity.TblEstados;
+import clinicaRosario.session.TblEmpleadosFacade;
+import clinicaRosario.session.TblEstadosFacade;
 import java.io.Serializable;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,13 +23,58 @@ import lombok.Setter;
 @ViewScoped
 public class TblEmpleadosController implements Serializable {
 
-    /**
-     *
-     *
-     * AQUI VAN LOS METODOS
-     *
-     *
-     */
+    private TblEmpleados tblEmpleados;
+    @EJB
+    private TblEmpleadosFacade tblEmpleadosFacade;
+    @EJB 
+    private TblEstadosFacade tblEstadosFacade;
+    private Boolean mostrarTblEmpleados = true;
+    private Boolean mostrarFormEmpleados = false;
+    private String estadoEmpleado = "empleados";
+    
+    public void init(){
+        if (tblEmpleados == null) {
+            tblEmpleados = new TblEmpleados();
+        }
+    }
+    
+    public void mostrarTablaEmpleado(){
+        mostrarTblEmpleados = true;
+        mostrarFormEmpleados = false;
+    }
+    
+    public void mostrarFormularioEmpleado(){
+        mostrarTblEmpleados = false;
+        mostrarFormEmpleados = true;
+       
+    }
+    
+    public void nuevoEmpleado(){
+        tblEmpleados = new TblEmpleados();
+    }
+    
+    public void leerEmpleado(TblEmpleados empleadoSeleccionado){
+        tblEmpleados = empleadoSeleccionado;
+    }
+    
+    public List<TblEstados> getEstadosEmpleados(){
+        return tblEstadosFacade.finAllByTipoEstado(estadoEmpleado);
+    }
+    
+    public void crearEmpleado(){
+        try {
+            tblEmpleadosFacade.create(tblEmpleados); 
+            tblEmpleados = new TblEmpleados();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso","¡Datos Ingresados Exitosamente!"));
+            
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso","¡Llene los campos requeridos!"));
+            
+        }
+    }
+    
+    
+    
     @FacesConverter(forClass = TblEmpleados.class)
     public static class TblExamenesControllerConverter implements Converter {
 
