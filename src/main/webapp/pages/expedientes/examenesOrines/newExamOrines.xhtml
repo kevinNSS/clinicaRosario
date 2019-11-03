@@ -12,7 +12,114 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <h:form>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <!--formulario encabezado-->
+                            <p>Examen de orines para el paciente:</p>
+                            <h:outputLabel   value="Paciente"/>
+                            <h:inputText class="form-control" value="" placeholder="paciente"/>
+                            <h:outputLabel   value="Fecha"/>
+                            <h:inputText class="form-control" type="date" value="" />
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <!--formulario parte1-->
+                        <br/>
+                        <br/>
+                            <p>EXAMEN FISICO QUIMICO</p>
+                            <h:outputLabel   value="Color"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Color"/>
+                            <br/>
+                            <h:outputLabel   value="Aspecto"/>
+                            <h:inputText class="form-control" type="text"   placeholder="Aspecto"/>
+                            <br/>
+                            <h:outputLabel   value="Densidad"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Densidad"/>
+                            <br/>
+                            <h:outputLabel   value="pH"/>
+                            <h:inputText class="form-control" type="text"  placeholder="pH"/>
+                            <br/>
+                            <h:outputLabel   value="Proteina"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Proteina"/>
+                            <br/>
+                            <h:outputLabel   value="Glucosa"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Glucosa"/>
+                            <br/>
+                            <h:outputLabel   value="Sangre Oculta"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Sangre Oculta"/>
+                            <br/>
+                            <h:outputLabel   value="Cuerpos cetónicos"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Cuerpos cetónicos"/>
+                            <br/>
+                            <h:outputLabel   value="Urobilinogeno"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Urobilinogeno"/>
+                            <br/>
+                            <h:outputLabel   value="Bilirrubina"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Bilirrubina"/>
+                            <br/>
+                            <h:outputLabel   value="Nitratos"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Nitritos"/>
+                            <br/>
+                            <h:outputLabel   value="Hemoglobina"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Hemoglobina"/>
+                            <br/>
+                            <h:outputLabel   value="Esterasa leucocitaria"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Esterasa leucocitaria"/>
+                    </div>
+                    <div class="col">
+                        <!--formulario parte2-->
+                        <br/>
+                        <br/>
+                            <p>EXAMEN MICROSCÓPICO</p>
+                            <h:outputLabel   value="CILINDROS"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Granulosos"/>
+                            <br/>
+                            <h:outputLabel   value="Leucocitarios"/>
+                            <h:inputText class="form-control" type="text"   placeholder="Leucocitarios"/>
+                            <br/>
+                            <h:outputLabel   value="Hemáticos"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Hemáticos"/>
+                            <br/>
+                            <h:outputLabel   value="Hialinos"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Hialinos"/>
+                            <br/>
+                            <h:outputLabel   value="Hematies"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Hematies"/>
+                            <br/>
+                            <h:outputLabel   value="Leucocitos"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Leucocitos"/>
+                            <br/>
+                            <h:outputLabel   value="Celulas epiteliales"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Celulas epiteliales"/>
+                            <br/>
+                            <h:outputLabel   value="Cristales"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Cristales"/>
+                            <br/>
+                            <h:outputLabel   value="Parasitológico"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Parasitológico"/>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="row">
+                    <div class="col">
+                        <!--formulario Footer-->
+                        <br/>
+                        <hr/>
+                            <h:outputLabel  value="Observaciones"/>
+                            <h:inputText  class="form-control" type="text"  placeholder="Observaciones"/>
+                            <br/>
+                             <h:outputLabel   value="Reportado por"/>
+                            <h:inputText class="form-control" type="text"  placeholder="Reportado por"/>
+                    </div>
+                </div>
+                <!--Footer-->
+                <br/>
+                <h:commandButton  value="Ingresar"  class="btn btn-primary btn-lg btn-block"/>
+            </div>
+                <br/><br/>
+            </h:form>
         </ui:composition>
     </h:body>
 </html>
