@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facturación</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
+    </h:head>
+    <h:body>
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <br/>
+        <hr/>
+        <div class="container-fluid">
+            <h:form>
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
+                <h:commandButton style="float: right;" value="Tabla de Facturaciones" action="#{tblFacturaEncabezadoController.mostrarTablaFacturacion}" rendered="#{(tblFacturaEncabezadoController.mostrarTablaFacturacion == false) and (loginController.tipoUsuario == 'secretaria') or (tblExamenesController.mostrarTablaExamen == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Factura" action="#{tblFacturaEncabezadoController.mostrarFormFacturacion()}" rendered="#{(tblFacturaEncabezadoController.mostrarFormularioFacturacion == false) and (loginController.tipoUsuario == 'secretaria') or (tblExamenesController.mostrarFormExamen == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+            </h:form>
+            <br/><br/><br/>
+            <!-- TABLA DE EXAMENES -->
+            <ui:insert name="tablaFacturacion">
+                <ui:include src="pages/facturacion/tablaFacturacion.xhtml"/>
+            </ui:insert>
+
+            <!-- FORMULARIO DE INGRESO DE EXAMENES-->
+            <ui:insert name="newFacturacion">
+                <ui:include src="pages/facturacion/newFacturacion.xhtml"/>
+            </ui:insert>
+        </div>
+    </h:body>
+</html>
+

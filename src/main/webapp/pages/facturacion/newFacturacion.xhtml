@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facturación</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <h:form id="formIngresoPaciente" rendered="#{pacientesController.mostrarFormIngreso == true}">
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <div class="container">
+                    <div class="form-row">
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="paciente" value="Paciente"/>
+                            <h:selectOneMenu id="paciente" class="form-control" value="#{facturacionController.tblFacturaEncabezado.idPaciente}" required="true">
+                                <f:selectItems value="#{facturacionController.allPacientes}" var="pacientes" itemLabel="#{(pacientes.primerNombrePaciente) + (pacientes.primerApellidoPaciente)}" itemValue="#{pacientes}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="fechaFacturacion" value="Fecha Facturación"/>
+                            <p:inputText id="fechaFacturacion" type="date" class="form-control" value="#{facturacionController.tblFacturaEncabezado.fechaFacturacion}" required="true" requiredMessage="Es necesario llenar el campo de fecha de facturación."/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <h:outputLabel for="empleado" value="Encargado Facturación"/>
+                        <h:selectOneMenu id="empleado" class="form-control" value="#{facturacionController.tblFacturaEncabezado.encargadoFacturacion}" required="true">
+                            <f:selectItems value="#{facturacionController.allEmpleados}" var="empleados" itemLabel="#{(empleados.primerNombreEmpleado) + (empleados.primerApellidoEmpleado)}" itemValue="#{empleados}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <h:outputLabel for="estadoFac" value="Estado Facturación"/>
+                        <h:selectOneMenu id="estadoFac" class="form-control" value="#{facturacionController.tblFacturaEncabezado.estado}" required="true">
+                            <f:selectItems value="#{facturacionController.allEstadosFactura}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <h:outputLabel for="subTotal" value="Sub Total"/>
+                        <p:inputText id="subTotal" class="form-control" value="#{facturacionController.tblFacturaEncabezado.subTotal}" required="true" onkeypress="return valida(event)"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <h:outputLabel for="iva" value="IVA"/>
+                        <p:inputText id="iva" class="form-control" value="#{facturacionController.tblFacturaEncabezado.iva}" required="true" onkeypress="return valida(event)"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <h:outputLabel for="descuento" value="descuento"/>
+                        <p:inputText id="descuento" class="form-control" value="#{facturacionController.tblFacturaEncabezado.descuentoTotal}" required="true" onkeypress="return valida(event)"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <h:outputLabel for="total" value="Total"/>
+                        <p:inputText id="total" class="form-control" value="#{facturacionController.tblFacturaEncabezado.total}" required="true" onkeypress="return valida(event)"/>
+                    </div>
+                    <br/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblFacturaEncabezadoController.crearFacturacion()}" class="btn btn-primary btn-lg btn-block"/>
+                </div>
+                <br/><br/>
+                <script type="text/javascript">
+                    function validares(e) {
+                        tecla = (document.all) ? e.keyCode : e.which;
+                        if (tecla === 8)
+                            return true;
+                        patron = /[A-Za-z\s\ñ\Ñ]/;
+                        te = String.fromCharCode(tecla);
+                        return patron.test(te);
+                    }
+                </script>
+                <script type="text/javascript">
+                    function valida(e) {
+                        tecla = (document.all) ? e.keyCode : e.which;
+                        if (tecla === 8)
+                            return true;
+                        patron = /[0-9\.]/;
+                        te = String.fromCharCode(tecla);
+                        return patron.test(te);
+                    }
+                </script>
+                <script type="text/javascript">
+                    function validanumle(e) {
+                        tecla = (document.all) ? e.keyCode : e.which;
+                        if (tecla === 8)
+                            return true;
+                        patron = /[A-Za-z0-9\s\ñ\Ñ]/;
+                        te = String.fromCharCode(tecla);
+                        return patron.test(te);
+                    }
+                </script>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

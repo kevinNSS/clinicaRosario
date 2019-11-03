@@ -63,7 +63,6 @@ public class TblFacturaEncabezado implements Serializable {
     @Column(name = "IVA")
     private double iva;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "DESCUENTO_TOTAL")
     private double descuentoTotal;
     @Basic(optional = false)
