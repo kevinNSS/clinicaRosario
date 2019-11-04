@@ -2,8 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Orines</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
@@ -14,14 +15,18 @@
         <ui:composition>
             <h:form>
             <div class="container">
+                <!--formulario encabezado boleta-->
+                            <h2 align="center">LABORATORIO CLINICO EL ROSARIO</h2>
+                            <h5 align="center">2a calle oriente entre 2a y 4a av sur El Rosario La Paz</h5>
+                            <h6 align="center">Examen de Orina para el paciente:</h6>
                 <div class="row">
                     <div class="col">
                         <!--formulario encabezado-->
                             <p>Examen de orines para el paciente:</p>
                             <h:outputLabel   value="Paciente"/>
-                            <h:inputText class="form-control" value="" placeholder="paciente"/>
+                            <p:inputText class="form-control" value="" placeholder="paciente"/>
                             <h:outputLabel   value="Fecha"/>
-                            <h:inputText class="form-control" type="date" value="" />
+                            <p:inputText class="form-control" type="date" value="" />
                     </div>
                     <div class="w-100"></div>
                     <div class="col">
@@ -30,43 +35,77 @@
                         <br/>
                             <p>EXAMEN FISICO QUIMICO</p>
                             <h:outputLabel   value="Color"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Color"/>
+                            <h:selectOneMenu id="colororina" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Amarillo" itemValue="Amarillo"/>
+                                <f:selectItem itemLabel="Ambar" itemValue="Ambar"/>
+                                <f:selectItem itemLabel="Rojo" itemValue="Rojo"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Aspecto"/>
-                            <h:inputText class="form-control" type="text"   placeholder="Aspecto"/>
+                            <h:selectOneMenu id="aspectorina" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Limpio" itemValue="Limpio"/>
+                                <f:selectItem itemLabel="Ligeramentes turbio" itemValue="Ligeramente turbio"/>
+                                <f:selectItem itemLabel="Turbio" itemValue="Turbio"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Densidad"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Densidad"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Densidad"/>
                             <br/>
                             <h:outputLabel   value="pH"/>
-                            <h:inputText class="form-control" type="text"  placeholder="pH"/>
+                            <p:inputText class="form-control" type="text"  placeholder="pH"/>
                             <br/>
                             <h:outputLabel   value="Proteina"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Proteina"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Proteina"/>
                             <br/>
                             <h:outputLabel   value="Glucosa"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Glucosa"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Glucosa"/>
                             <br/>
                             <h:outputLabel   value="Sangre Oculta"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Sangre Oculta"/>
+                            <h:selectOneMenu id="sangreoculta" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Cuerpos cetónicos"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Cuerpos cetónicos"/>
+                            <h:selectOneMenu id="cuerposcetonicos" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Urobilinogeno"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Urobilinogeno"/>
+                             <h:selectOneMenu id="urobilinogeno" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Bilirrubina"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Bilirrubina"/>
+                            <h:selectOneMenu id="bilirrubina" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
                             <br/>
-                            <h:outputLabel   value="Nitratos"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Nitritos"/>
+                            <h:outputLabel   value="Nitritos"/>
+                            <h:selectOneMenu id="nitritos" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Hemoglobina"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Hemoglobina"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Hemoglobina"/>
                             <br/>
                             <h:outputLabel   value="Esterasa leucocitaria"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Esterasa leucocitaria"/>
+                            <h:selectOneMenu id="esterasaleucocitaria" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue="" />
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
                     </div>
                     <div class="col">
                         <!--formulario parte2-->
@@ -74,31 +113,36 @@
                         <br/>
                             <p>EXAMEN MICROSCÓPICO</p>
                             <h:outputLabel   value="CILINDROS"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Granulosos"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Granulosos"/>
                             <br/>
                             <h:outputLabel   value="Leucocitarios"/>
-                            <h:inputText class="form-control" type="text"   placeholder="Leucocitarios"/>
+                            <p:inputText class="form-control" type="text"   placeholder="Leucocitarios"/>
                             <br/>
                             <h:outputLabel   value="Hemáticos"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Hemáticos"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Hemáticos"/>
                             <br/>
                             <h:outputLabel   value="Hialinos"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Hialinos"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Hialinos"/>
                             <br/>
                             <h:outputLabel   value="Hematies"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Hematies"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Hematies"/>
                             <br/>
                             <h:outputLabel   value="Leucocitos"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Leucocitos"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Leucocitos"/>
                             <br/>
                             <h:outputLabel   value="Celulas epiteliales"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Celulas epiteliales"/>
+                            <h:selectOneMenu id="celulasepiteliales" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue="" />
+                                <f:selectItem itemLabel="Escasas" itemValue="Escases"/>
+                                <f:selectItem itemLabel="Moderadas" itemValue="Moderadas"/>
+                                <f:selectItem itemLabel="Abundantes" itemValue="Abundantes"/>
+                            </h:selectOneMenu>
                             <br/>
                             <h:outputLabel   value="Cristales"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Cristales"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Cristales"/>
                             <br/>
                             <h:outputLabel   value="Parasitológico"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Parasitológico"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Parasitológico"/>
                     </div>
                 </div>
                 <!--Footer-->
@@ -108,10 +152,10 @@
                         <br/>
                         <hr/>
                             <h:outputLabel  value="Observaciones"/>
-                            <h:inputText  class="form-control" type="text"  placeholder="Observaciones"/>
+                            <p:inputText  class="form-control" type="text"  placeholder="Observaciones"/>
                             <br/>
                              <h:outputLabel   value="Reportado por"/>
-                            <h:inputText class="form-control" type="text"  placeholder="Reportado por"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Reportado por"/>
                     </div>
                 </div>
                 <!--Footer-->
