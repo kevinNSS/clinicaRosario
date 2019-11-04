@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Orines</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
@@ -12,7 +13,27 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <div class="container">
+                <h:form id="formTablaExamOrines" rendered="#{examOrinesController.mostrarTblOrina == true}" style="text-align: center;">
+                    <p:dataTable id="tablaExamenesOrines" value="#{examOrinesController.allExamenesOrina}" var="examenOrina">
+                        <p:column headerText="Pacientes">
+                            <h:outputLabel id="pacientes" value="#{examenOrina.paciente.primerNombrePaciente}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Ingreso">
+                            <h:outputLabel id="fechaIngreso" value="#{examenOrina.fechaRegistro}"/>
+                        </p:column>
+                        <p:column headerText="Color">
+                            <h:outputLabel id="color" value="#{examenOrina.color}"/>
+                        </p:column>
+                        <p:column headerText="Aspecto">
+                            <h:outputLabel id="aspecto" value="#{examenOrina.aspecto}"/>
+                        </p:column>
+                        <p:column headerText="Observaciones">
+                            <h:outputLabel id="Observaciones" value="#{examenOrina.observaciones}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>

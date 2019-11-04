@@ -25,19 +25,19 @@
             <h:form> 
                 <p:growl id="messages"/>
                 <p:menubar>
-                    <p:menuitem value="Inicio" outcome="index" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                    <p:menuitem value="Pacientes" outcome="pacientes" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                    <p:menuitem value="Empleados" outcome="empleados" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                    <p:menuitem value="Examenes" outcome="examenes" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                    <p:menuitem value="Promociones" outcome="promociones" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                    <p:menuitem value="Inventario" outcome="inventario" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
+                    <p:menuitem value="Inicio" outcome="index" icon="pi pi-star"/>
+                    <p:menuitem value="Pacientes" outcome="pacientes" icon="pi pi-star"/>
+                    <p:menuitem value="Empleados" outcome="empleados" icon="pi pi-star"/>
+                    <p:menuitem value="Examenes" outcome="examenes" icon="pi pi-star"/>
+                    <p:menuitem value="Promociones" outcome="promociones" icon="pi pi-star"/>
+                    <p:menuitem value="Inventario" outcome="inventario"  icon="pi pi-star"/>
                     <p:submenu label="Laboratorio" icon="pi pi-pencil">
-                        <p:menuitem value="Examenes de Heces" outcome="heces" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                        <p:menuitem value="Examenes de Orina" outcome="orines" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                        <p:menuitem value="Examenes Hemograma" outcome="hemogramas" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
+                        <p:menuitem value="Examenes de Heces" outcome="heces"  icon="pi pi-star"/>
+                        <p:menuitem value="Examenes de Orina" outcome="orines" action="#{examOrinesController.nuevoFormulario()}" icon="pi pi-star"/>
+                        <p:menuitem value="Examenes Hemograma" outcome="hemogramas" icon="pi pi-star"/>
                     </p:submenu>
-                    <p:menuitem value="Facturaciones" outcome="facturacion" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
-                    <p:menuitem value="Reportes" outcome="reportes" style="text-align:center !important; width: 140px;" icon="pi pi-star"/>
+                    <p:menuitem value="Facturaciones" outcome="facturacion" icon="pi pi-star"/>
+                    <p:menuitem value="Reportes" outcome="reportes" icon="pi pi-star"/>
                 </p:menubar>
             </h:form>
         </ui:composition>

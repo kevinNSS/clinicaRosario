@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -129,12 +131,17 @@ public class TblOrina implements Serializable {
     @Size(max = 25)
     @Column(name = "Cristales")
     private String cristales;
+    @Column(name = "fecha_registro")
+    private String fechaRegistro;
     @Size(max = 25)
     @Column(name = "Parasitologico")
     private String parasitologico;
     @Size(max = 50)
     @Column(name = "Observaciones")
     private String observaciones;
+    @JoinColumn(name = "paciente", referencedColumnName = "ID_PACIENTE")
+    @ManyToOne
+    private TblPacientes paciente;
     @OneToMany(mappedBy = "idTblOrina")
     private Collection<TblExpedientes> tblExpedientesCollection;
 
@@ -289,6 +296,14 @@ public class TblOrina implements Serializable {
         this.hialinos = hialinos;
     }
 
+    public String getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
     public String getOtros() {
         return otros;
     }
@@ -343,6 +358,22 @@ public class TblOrina implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public String getpH() {
+        return pH;
+    }
+
+    public void setpH(String pH) {
+        this.pH = pH;
+    }
+
+    public TblPacientes getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(TblPacientes paciente) {
+        this.paciente = paciente;
     }
 
     @XmlTransient

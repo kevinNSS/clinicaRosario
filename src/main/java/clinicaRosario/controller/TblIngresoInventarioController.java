@@ -1,72 +1,208 @@
 package clinicaRosario.controller;
 
 import clinicaRosario.entity.TblIngresoInventario;
+import clinicaRosario.controller.util.JsfUtil;
+import clinicaRosario.controller.util.PaginationHelper;
 import clinicaRosario.session.TblIngresoInventarioFacade;
+
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
-import lombok.Getter;
-import lombok.Setter;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 
-@Getter
-@Setter
 @Named("tblIngresoInventarioController")
-@ViewScoped
+@SessionScoped
 public class TblIngresoInventarioController implements Serializable {
 
-    private TblIngresoInventario tblIngresoInventario;
+    private TblIngresoInventario current;
+    private DataModel items = null;
     @EJB
-    private TblIngresoInventarioFacade tblIngresoInventarioFacade;
-    private Boolean mostrarTblIngresoInventario = true;
-    private Boolean mostrarFormIngresoInventario = false;
+    private clinicaRosario.session.TblIngresoInventarioFacade ejbFacade;
+    private PaginationHelper pagination;
+    private int selectedItemIndex;
 
-    @PostConstruct
-    public void init() {
-        tblIngresoInventario = new TblIngresoInventario();
+    public TblIngresoInventarioController() {
     }
 
-    public void mostrarTablaIngresoInventari() {
-        mostrarTblIngresoInventario = true;
-        mostrarFormIngresoInventario = false;
+    public TblIngresoInventario getSelected() {
+        if (current == null) {
+            current = new TblIngresoInventario();
+            selectedItemIndex = -1;
+        }
+        return current;
     }
 
-    public void mostrarFormIngresoInventario() {
-        mostrarTblIngresoInventario = false;
-        mostrarFormIngresoInventario = true;
+    private TblIngresoInventarioFacade getFacade() {
+        return ejbFacade;
     }
 
-    public void leerDetalleInventario(TblIngresoInventario infoDetalleInventario) {
-        tblIngresoInventario = infoDetalleInventario;
+    public PaginationHelper getPagination() {
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                }
+            };
+        }
+        return pagination;
     }
-    
-    public void nuevoDetalleInventario(){
-        tblIngresoInventario = new TblIngresoInventario();
+
+    public String prepareList() {
+        recreateModel();
+        return "List";
     }
-    
-    public void crearDetalleInventario(){
-        tblIngresoInventarioFacade.create(tblIngresoInventario);
-        tblIngresoInventario = new TblIngresoInventario();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+
+    public String prepareView() {
+        current = (TblIngresoInventario) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+
+    public String prepareCreate() {
+        current = new TblIngresoInventario();
+        selectedItemIndex = -1;
+        return "Create";
+    }
+
+    public String create() {
+        try {
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblIngresoInventarioCreated"));
+            return prepareCreate();
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String prepareEdit() {
+        current = (TblIngresoInventario) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "Edit";
+    }
+
+    public String update() {
+        try {
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblIngresoInventarioUpdated"));
+            return "View";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String destroy() {
+        current = (TblIngresoInventario) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        return "List";
+    }
+
+    public String destroyAndView() {
+        performDestroy();
+        recreateModel();
+        updateCurrentItem();
+        if (selectedItemIndex >= 0) {
+            return "View";
+        } else {
+            // all items were removed - go back to list
+            recreateModel();
+            return "List";
+        }
+    }
+
+    private void performDestroy() {
+        try {
+            getFacade().remove(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblIngresoInventarioDeleted"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
+    }
+
+    private void updateCurrentItem() {
+        int count = getFacade().count();
+        if (selectedItemIndex >= count) {
+            // selected index cannot be bigger than number of items:
+            selectedItemIndex = count - 1;
+            // go to previous page if last page disappeared:
+            if (pagination.getPageFirstItem() >= count) {
+                pagination.previousPage();
+            }
+        }
+        if (selectedItemIndex >= 0) {
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
+        }
+    }
+
+    public DataModel getItems() {
+        if (items == null) {
+            items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+
+    private void recreateModel() {
+        items = null;
+    }
+
+    private void recreatePagination() {
+        pagination = null;
+    }
+
+    public String next() {
+        getPagination().nextPage();
+        recreateModel();
+        return "List";
+    }
+
+    public String previous() {
+        getPagination().previousPage();
+        recreateModel();
+        return "List";
+    }
+
+    public SelectItem[] getItemsAvailableSelectMany() {
+        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+    }
+
+    public SelectItem[] getItemsAvailableSelectOne() {
+        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    }
+
+    public TblIngresoInventario getTblIngresoInventario(java.lang.Integer id) {
+        return ejbFacade.find(id);
     }
 
     @FacesConverter(forClass = TblIngresoInventario.class)
-    public static class TblTipoExamenesControllerConverter implements Converter {
+    public static class TblIngresoInventarioControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TblTipoExamenesController controller = (TblTipoExamenesController) facesContext.getApplication().getELResolver().
+            TblIngresoInventarioController controller = (TblIngresoInventarioController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "tblIngresoInventarioController");
-            return controller.getTblTipoExamenes(getKey(value));
+            return controller.getTblIngresoInventario(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -93,5 +229,7 @@ public class TblIngresoInventarioController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TblIngresoInventario.class.getName());
             }
         }
+
     }
+
 }
