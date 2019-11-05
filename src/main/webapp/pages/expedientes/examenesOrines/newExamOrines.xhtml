@@ -22,12 +22,11 @@
                     <div class="row">
                         <div class="col">
                             <!--formulario encabezado-->
-                            <p>Examen de orines para el paciente:</p>
-                            <!--<h:outputLabel  value="Paciente"/>
+                            <h:outputLabel  value="Paciente"/>
                             <p:selectOneMenu class="form-control" value="#{examOrinesController.tblOrina.paciente}" required="true" requiredMessage="Es necesario llenar el paciente al que se le hace el examen">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="" var="paciente" itemLabel="" itemValue=""/>
-                            </p:selectOneMenu>-->
+                                <f:selectItems value="#{examOrinesController.allPacientes}" var="paciente" itemLabel="#{paciente.primerNombrePaciente}" itemValue="#{paciente}"/>
+                            </p:selectOneMenu>
                             <h:outputLabel   value="Fecha"/>
                             <p:inputText class="form-control" type="date" value="#{examOrinesController.tblOrina.fechaRegistro}" />
                         </div>

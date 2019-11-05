@@ -13,51 +13,55 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoPaciente" rendered="#{pacientesController.mostrarFormIngreso == true}">
+            <h:form id="formIngresoFactura">
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
                 <div class="container">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="paciente" value="Paciente"/>
-                            <h:selectOneMenu id="paciente" class="form-control" value="#{facturacionController.tblFacturaEncabezado.idPaciente}" required="true">
-                                <f:selectItems value="#{facturacionController.allPacientes}" var="pacientes" itemLabel="#{(pacientes.primerNombrePaciente) + (pacientes.primerApellidoPaciente)}" itemValue="#{pacientes}"/>
+                            <h:selectOneMenu id="paciente" class="form-control" value="#{tblFacturaEncabezadoController.selected.idPaciente}" required="true">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblFacturaEncabezadoController.allPacientes}" var="pacientes" itemLabel="#{pacientes.primerNombrePaciente}" itemValue="#{pacientes}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="fechaFacturacion" value="Fecha Facturación"/>
-                            <p:inputText id="fechaFacturacion" type="date" class="form-control" value="#{facturacionController.tblFacturaEncabezado.fechaFacturacion}" required="true" requiredMessage="Es necesario llenar el campo de fecha de facturación."/>
+                            <p:inputText id="fechaFacturacion" type="date" class="form-control" value="#{tblFacturaEncabezadoController.selected.fechaFacturacion}" required="true" requiredMessage="Es necesario llenar el campo de Fecha Facturación."/>
                         </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="empleado" value="Encargado Facturación"/>
+                            <h:selectOneMenu id="empleado" class="form-control" value="#{tblFacturaEncabezadoController.selected.encargadoFacturacion}" required="true">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblFacturaEncabezadoController.allEmpleados}" var="empleados" itemLabel="#{empleados.primerNombreEmpleado}" itemValue="#{empleados}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="estadoFac" value="Estado Facturación"/>
+                            <h:selectOneMenu id="estadoFac" class="form-control" value="#{tblFacturaEncabezadoController.selected.estado}" required="true">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblFacturaEncabezadoController.allEstadosFactura}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="subTotal" value="Sub Total"/>
+                            <p:inputText id="subTotal" class="form-control" value="#{tblFacturaEncabezadoController.selected.subTotal}" required="true" onkeypress="return valida(event)"/>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="iva" value="IVA"/>
+                            <p:inputText id="iva" class="form-control" value="#{tblFacturaEncabezadoController.selected.iva}" required="true" onkeypress="return valida(event)"/>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="descuento" value="descuento"/>
+                            <p:inputText id="descuento" class="form-control" value="#{tblFacturaEncabezadoController.selected.descuentoTotal}" required="true" onkeypress="return valida(event)"/>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="total" value="Total"/>
+                            <p:inputText id="total" class="form-control" value="#{tblFacturaEncabezadoController.selected.total}" required="true" onkeypress="return valida(event)"/>
+                        </div>
+                        <br/>
+                        <br/>
                     </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <h:outputLabel for="empleado" value="Encargado Facturación"/>
-                        <h:selectOneMenu id="empleado" class="form-control" value="#{facturacionController.tblFacturaEncabezado.encargadoFacturacion}" required="true">
-                            <f:selectItems value="#{facturacionController.allEmpleados}" var="empleados" itemLabel="#{(empleados.primerNombreEmpleado) + (empleados.primerApellidoEmpleado)}" itemValue="#{empleados}"/>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <h:outputLabel for="estadoFac" value="Estado Facturación"/>
-                        <h:selectOneMenu id="estadoFac" class="form-control" value="#{facturacionController.tblFacturaEncabezado.estado}" required="true">
-                            <f:selectItems value="#{facturacionController.allEstadosFactura}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <h:outputLabel for="subTotal" value="Sub Total"/>
-                        <p:inputText id="subTotal" class="form-control" value="#{facturacionController.tblFacturaEncabezado.subTotal}" required="true" onkeypress="return valida(event)"/>
-                    </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <h:outputLabel for="iva" value="IVA"/>
-                        <p:inputText id="iva" class="form-control" value="#{facturacionController.tblFacturaEncabezado.iva}" required="true" onkeypress="return valida(event)"/>
-                    </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <h:outputLabel for="descuento" value="descuento"/>
-                        <p:inputText id="descuento" class="form-control" value="#{facturacionController.tblFacturaEncabezado.descuentoTotal}" required="true" onkeypress="return valida(event)"/>
-                    </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <h:outputLabel for="total" value="Total"/>
-                        <p:inputText id="total" class="form-control" value="#{facturacionController.tblFacturaEncabezado.total}" required="true" onkeypress="return valida(event)"/>
-                    </div>
-                    <br/>
-                    <h:commandButton  value="Ingresar" actionListener="#{tblFacturaEncabezadoController.crearFacturacion()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblFacturaEncabezadoController.crearFactura()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
                 <script type="text/javascript">
