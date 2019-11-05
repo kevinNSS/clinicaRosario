@@ -16,6 +16,12 @@
             <div class="container">
                 <h:form id="formTblPromocion" rendered="#{tblPromocionesController.mostrarTablaProm == true}" style="text-align: center;">
                     <p:dataTable id="tablaPromociones" value="#{tblPromocionesController.allPromociones}" var="promociones">
+                        <f:facet name="header">  
+                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
+                        </f:facet>
+                        <f:facet name="footer">  
+                            <h5><h:outputText style="text-align: center;"  value="2a calle oriente entre 2a y 4a av sur El Rosario La Paz"/></h5>
+                        </f:facet>  
                         <p:column headerText="Nombre de la Promoción">
                             <h:outputLabel id="nombreProm" value="#{promociones.nombrePromocion}"/>
                         </p:column>

@@ -13,31 +13,33 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoPaciente" rendered="#{pacientesController.mostrarFormIngreso == true}">
+            <h:form id="formIngresoPaciente">
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
                 <div class="container">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="nombreProducto" value="Nombre del Producto:"/>
-                            <p:inputText id="nombreProducto" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.primerNombrePaciente}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
+                            <p:inputText id="nombreProducto" placeholder="" class="form-control" value="#{tblInventarioController.tblInventario.nombreProducto}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="stock" value="Stock:"/>
-                            <p:inputText id="stock" placeholder="" class="form-control" value="#{pacientesController.tblPacientes.segundoNombrePaciente}" required="false" requiredMessage="" onkeypress="return validares(event)"/>
+                            <p:inputText id="stock" placeholder="" class="form-control" value="#{tblInventarioController.tblInventario.stockProducto}" required="false" requiredMessage="" onkeypress="return validares(event)"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="unidadMedida" value="Unidad de Medida"/>
-                            <h:selectOneMenu id="unidadMedida" class="form-control" value="#{pacientesController.tblPacientes.sexo}" required="true">
+                            <h:selectOneMenu id="unidadMedida" class="form-control" value="#{tblInventarioController.tblInventario.unidadMedida}" required="true">
                                 <f:selectItem itemLabel="Metro" itemValue="Metro"/>
                                 <f:selectItem itemLabel="Kilogramo" itemValue="Kilogramo"/>
                                 <f:selectItem itemLabel="Litro" itemValue="Litro"/>
+                                <f:selectItem itemLabel="Gramo" itemValue="Gramo"/>
+                                <f:selectItem itemLabel="Miligramo" itemValue="Miligramo"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
                     <br/>
-                    <h:commandButton  value="Ingresar" actionListener="#{pacientesController.ingresoPacientes()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblInventarioController.crearInventario()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
             </h:form>

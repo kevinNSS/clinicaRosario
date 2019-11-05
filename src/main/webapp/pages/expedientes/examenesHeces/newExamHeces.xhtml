@@ -2,8 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Heces</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
@@ -12,8 +13,172 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <h:form> 
+                <div class="container">
+                    <!--formulario encabezado boleta-->
+                            <h2 align="center">LABORATORIO CLINICO EL ROSARIO</h2>
+                            <h5 align="center">2a calle oriente entre 2a y 4a av sur El Rosario La Paz</h5>
+                            <h6 align="center">Examen de HECES para el paciente:</h6>
+                   <div class="form-row">
+                            <!--formulario datos boleta-->
+                             <div class="form-group col-xs-12 col-md-3">
+                            <h:outputLabel for="idPaciente" value="ID Paciente:"/>
+                            <p:inputText id="idpaciente" class="form-control" value="" />
+                            </div>
+                            <div class="form-group col-xs-12 col-md-4">
+                            <h:outputLabel for="fechaboleta" value="Fecha de reporte:"/>
+                            <p:inputText id="fechaboleta" placeholder="" type="date" class="form-control" value=""/>
+                            </div>
+                             <div class="form-group col-xs-12 col-md-8">
+                            <h:outputLabel for="nombrePaciente" value="Nombre del paciente:"/>
+                            <p:inputText id="nombrepaciente" class="form-control" value="" />
+                            </div>
+                    <div class="w-100"><h6 align="center">EXAMEN GENERAL DE HECES</h6></div>
+                    <div class="col">
+                        
+                        <h:outputLabel for="colorheces"   value="Color"/>
+                            <h:selectOneMenu id="colorheces" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Cafe" itemValue="Cafe"/>
+                                <f:selectItem itemLabel="Blanco" itemValue="Blanco"/>
+                                <f:selectItem itemLabel="Negro" itemValue="Negro"/>
+                                <f:selectItem itemLabel="Rojo" itemValue="Rojo"/>
+                            </h:selectOneMenu>
+                        <br/>
+                        <h:outputLabel for="consistencia"  value="Consistencia"/>
+                         <h:selectOneMenu id="consistenciaheces" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Dura" itemValue="Dura"/>
+                                <f:selectItem itemLabel="Pastosa" itemValue="Pastosa"/>
+                                <f:selectItem itemLabel="Blanda" itemValue="Blanda"/>
+                                <f:selectItem itemLabel="Liquida" itemValue="Liquida"/>
+                                <f:selectItem itemLabel="Diarreica" itemValue="Diarreica"/>
+                            </h:selectOneMenu>
+                            <br/> 
+                            <h:outputLabel for="mucus"  value="Mucus"/>
+                         <h:selectOneMenu id="mucusheces" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                            </h:selectOneMenu>
+                            <br/> 
+                            <h:outputLabel for="hematies"  value="Hematies"/>
+                            <p:inputText id="hematies" class="form-control" type="text" placeholder="Resultado"/>
+                            <br/>
+                            <h:outputLabel for="leucocitos"  value="Leucocitos"/>
+                            <p:inputText id="leucocitos" class="form-control" type="text" placeholder="Resultado"/>
+                            <br/>                           
+                    </div>
+                    <div class="col">
+                        <h:outputLabel for="macrofagos"  value="Macrofagos"/>
+                            <p:inputText id="macrofagos" class="form-control" type="text" placeholder="Resultado"/>
+                            <br/>
+                            <h:outputLabel for="restosalimenticios"  value="Restos alimenticios"/>
+                            <p:inputText id="restosalimenticios" class="form-control" type="text" placeholder="Resultado"/>
+                            <br/>
+                            <h:outputLabel for="microscopicos"  value="Microscopicos"/>
+                            <h:selectOneMenu id="microscopicos" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Escasos" itemValue="Escasos"/>
+                                <f:selectItem itemLabel="Moderados" itemValue="Moderados"/>
+                                <f:selectItem itemLabel="Abundantes" itemValue="Abundantes"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <h:outputLabel for="macroscopicos"  value="Macroscopicos"/>
+                            <h:selectOneMenu id="macroscopicos" class="form-control" >
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Escasos" itemValue="Escasos"/>
+                                <f:selectItem itemLabel="Moderados" itemValue="Moderados"/>
+                                <f:selectItem itemLabel="Abundantes" itemValue="Abundantes"/>
+                            </h:selectOneMenu>
+                            <br/>      
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="form-group col-xs-12 col-md-3"><p align="center">PROTOZOARIOS</p>
+                        <h:outputLabel for="entamoeba"  value="Entamoeba histolyca"/>
+                        <br/>
+                        <h:outputLabel for="entamoebacoli"  value="Entamoeba coli"/>
+                         <br/>
+                         <h:outputLabel for="endolimaxnana"  value="Endolimax nana"/>
+                         <br/>
+                         <h:outputLabel for="giardialamblia"  value="Giardia lamblia"/>
+                         <br/>
+                         <h:outputLabel for="trichomonashominis"  value="Trichomonas hominis"/>
+                         <br/>
+                         <h:outputLabel for="chilomastixmesnilii"  value="Chilomastix mesnilii"/>
+                         <br/>
+                         <h:outputLabel for="lodamoebabustchilii"  value="Lodamoeba butschlii"/>
+                         <br/>
+                         <h:outputLabel for="otros"  value="Otros"/>
+                         <br/>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-2"><p align="center">ACTIVOS</p>
+                        <p:inputText id="entamoeba1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="entamoebacoli1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="endolimaxnana1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="giardialamblia1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="trichomonas1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="chilomastix1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="lodamoeba1" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="otros1" class="form-control" type="text" placeholder="Resultado"/>  
+                    </div>
+                    <div class="form-group col-xs-12 col-md-2"><p align="center">QUISTES</p>
+                        <p:inputText id="entamoeba2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="entamoebacoli2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="endolimaxnana2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="giardialamblia2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="trichomonas2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="chilomastix2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="lodamoeba2" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="otros2" class="form-control" type="text" placeholder="Resultado"/>       
+                    </div>
+                    <div class="form-group col-xs-12 col-md-2"><p align="center">METAZOARIOS</p>
+                        <h:outputLabel for="ascaris"  value="Ascaris lumbricoides"/> <br/>
+                        <h:outputLabel for="trichuris"  value="Trichuris trichura"/> <br/>
+                        <h:outputLabel for="uncinarias"  value="Uncinarias"/> <br/>
+                        <h:outputLabel for="strongyloides"  value="Strongyloides estercoralis"/> <br/>
+                        <h:outputLabel for="enterobius"  value="Enterobius vermicularis"/> <br/>
+                        <h:outputLabel for="taeniasp"  value="Taenia sp"/> <br/>
+                        <h:outputLabel for="otros"  value="Otros"/>
+                     
+                    </div>
+                    <div class="form-group col-xs-12 col-md-3"><p align="center">RESULTADOS</p>
+                        <p:inputText id="ascaris" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="trichuris" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="uncinarias" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="strongyloides" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="enterobius" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="taeniasp" class="form-control" type="text" placeholder="Resultado"/>
+                        <p:inputText id="otros" class="form-control" type="text" placeholder="Resultado"/>
+                        
+                    </div>
+                   
+                            
+                            
+                            
+                        </div>
+                            <div class="row">
+                    <div class="col">
+                        <!--formulario Footer-->
+                        <br/>
+                        <hr/>
+                            <h:outputLabel  value="Observaciones"/>
+                            <p:inputText  class="form-control" type="text"  placeholder="Observaciones"/>
+                            <br/>
+                             <h:outputLabel   value="Reportado por"/>
+                            <p:inputText class="form-control" type="text"  placeholder="Reportado por"/>
+                    </div>
+                </div>
+                            <!--Footer-->
+                <br/>
+                <h:commandButton  value="Ingresar"  class="btn btn-primary btn-lg btn-block"/>
+                <br/>
+                <br/>
+                <br/>
+                    </div>
+            </h:form>
         </ui:composition>
+
     </h:body>
 </html>
 

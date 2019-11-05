@@ -27,9 +27,6 @@ public class TblCargosFacade extends AbstractFacade<TblCargos> {
 
     public TblCargosFacade() {
         super(TblCargos.class);
-    }
-    
-    public List<TblCargos> finAllByTipoCargo(String tipoExamen) 
-            
+    }        
     
 }
