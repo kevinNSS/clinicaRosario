@@ -29,7 +29,9 @@
                             <h:outputLabel id="estadoProm" value="#{promociones.estado.nombreEstado}"/>
                         </p:column>
                         <p:column headerText="Estado de la Promoción">
-                            <p:commandButton value="Leer" action="#{tblPromocionesController.leerPromocion(promociones)}" update=":tblInfoPromocion" oncomplete="PF('infoDialog').show()" class="pi pi-eye"/>                        </p:column>
+                            <p:commandButton value="Leer" action="#{tblPromocionesController.leerPromocion(promociones)}" update=":tblInfoPromocion" oncomplete="PF('infoDialog').show()" class="pi pi-eye"/>
+                            <p:commandButton value="Modificar" action="#{tblPromocionesController.leerPromocion(promociones)}" update=":tblModiPromocion" oncomplete="PF('infoDialog').show()" class="pi pi-eye"/>                        </p:column>
+                            
                     </p:dataTable>
                 </h:form>
                 <p:dialog id="tblInfoPromocion" header="Información de promoción" widgetVar="infoDialog" modal="true">
@@ -58,7 +60,37 @@
                         <b>Estado de la promoción: </b>
                         #{tblPromocionesController.current.estado.nombreEstado}<br/><br/>
                     </h:panelGrid>
-                </p:dialog>  
+                </p:dialog> 
+                
+                <p:dialog id="tblModiPromocion" header="Modificación de promoción" widgetVar="infoDialog" modal="true">
+                    
+                    <h:panelGrid columns="1">
+                        <b>Examen 1: </b>
+                        <h:outputLabel for="examen1"/>
+                        <h:selectOneMenu id="examen1" class="form-control" value="#{tblPromocionesController.selected.examen1}" required="true" requiredMessage="Es necesario ingresar al menos un examen en la promoción">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPromocionesController.avaibleExamenes}" var="examen1" itemLabel="#{examen1.nombreExamen}" itemValue="#{examen1}"/>
+                        </h:selectOneMenu>
+                        
+                        <b>Examen 2: </b>
+                        <h:outputLabel for="examen1"/>
+                            <h:selectOneMenu id="examen2" class="form-control" value="#{tblPromocionesController.selected.examen2}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPromocionesController.avaibleExamenes}" var="examen2" itemLabel="#{examen2.nombreExamen}" itemValue="#{examen2}"/>
+                            </h:selectOneMenu>
+                        
+                        <b>Examen 3: </b>
+                        <h:outputLabel for="examen1"/>
+                            <h:selectOneMenu id="examen3" class="form-control" value="#{tblPromocionesController.selected.examen3}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPromocionesController.avaibleExamenes}" var="examen3" itemLabel="#{examen3.nombreExamen}" itemValue="#{examen3}"/>
+                            </h:selectOneMenu><br/><br/>
+                        
+                        <div align="right">    
+                        <p:commandButton value="Actualizar" action="#{tblPromocionesController.leerPromocion(promociones)}" update=":tblModiPromocion" oncomplete="PF('infoDialog').show()" class="pi pi-eye"/>
+                        </div>
+                    </h:panelGrid>
+                </p:dialog>
             </div>
         </ui:composition>
     </h:body>
