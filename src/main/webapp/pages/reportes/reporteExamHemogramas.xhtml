@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Reportes</title>
+        <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
+        <h:outputStylesheet library = "css" name = "bootstrap.css"/>
+        <h:outputStylesheet library = "css" name = "buttons.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="container">
+                <h:form id="formTablaReportesHemogramas" rendered="#{reportesController.mostrarReporteHemograma == true}">
+                    <p:dataTable id="tablaReporteHemogramas" value="#{tblHemogramaController.allExpedientesHemogramas}" var="expedienteHemograma" style="text-align: center;">
+                        <f:facet name="header">  
+                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
+                        </f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <h5><p:column colspan="2" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Paciente" />
+                                <p:column headerText="Fecha de Ingreso" />
+                            </p:row>
+                        </p:columnGroup>
+                        <p:column headerText="Paciente">
+                            <h:outputText value="#{expedienteHemograma.idPaciente.primerNombrePaciente} "/> <h:outputText value="#{expedienteHemograma.idPaciente.segundoNombrePaciente} "/> <h:outputText value="#{expedienteHemograma.idPaciente.primerApellidoPaciente} "/> <h:outputText value="#{expedienteHemograma.idPaciente.segundoApellidoPaciente}"/>                   
+                        </p:column>
+                        <p:column headerText="Fecha de Ingreso">
+                            <h:outputText value="#{expedienteHemograma.fechaIngreso}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <h5>El Total De Registros Es: #{tblHemogramaController.allExpedientesHemogramas.size()}</h5>
+                        </f:facet>
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage name="./images/excel.png" width="24"/>
+                        <p:outputLabel value="Excel"/>
+                        <p:dataExporter type="xls" target="tablaReporteHemogramas" fileName="Reporte Examenes Hemogramas" />
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:commandLink>
+                        <p:graphicImage name="./images/pdf.png" width="24"/>
+                        <p:outputLabel value="PDF"/>
+                        <p:dataExporter type="pdf" target="tablaReporteHemogramas" fileName="Reporte Examenes Hemogramas"/>
+                    </h:commandLink>
+                </h:form>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -6,50 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Reportes</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>
     </h:head>
     <h:body>
         <ui:composition>
-            <div class="container">
-                <h:form id="formTblPromocion" rendered="#{tblPromocionesController.mostrarTablaProm == true}" style="text-align: center;">
-                    <p:dataTable id="tablaPromociones" value="#{tblPromocionesController.allPromociones}" var="promociones">
-                        <f:facet name="header">  
-                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
-                        </f:facet>
-                        <f:facet name="footer">  
-                            <h5><h:outputText style="text-align: center;"  value="2a calle oriente entre 2a y 4a av sur El Rosario La Paz"/></h5>
-                        </f:facet>  
-                        <p:column headerText="Nombre de la Promoción">
-                            <h:outputLabel id="nombreProm" value="#{promociones.nombrePromocion}"/>
-                        </p:column>
-                        <p:column headerText="Fecha de Inicio">
-                            <h:outputLabel id="fechaIProm" value="#{promociones.fechaInicio}"/>
-                        </p:column>
-                        <p:column headerText="Fecha de Finalización">
-                            <h:outputLabel id="fechaFProm" value="#{promociones.fechaFinalizacion}"/>
-                        </p:column>
-                        <p:column headerText="Estado de la Promoción">
-                            <h:outputLabel id="estadoProm" value="#{promociones.estado.nombreEstado}"/>
-                        </p:column>
-                    </p:dataTable>
 
-                    <h:commandLink>
-                        <p:graphicImage name="./images/excel.png" width="24"/>
-                        <p:outputLabel value="Excel"/>
-                        <p:dataExporter type="xls" target="tablaPromociones" fileName="Promociones" />
-                    </h:commandLink>
-                    &nbsp;&nbsp;
-                    <h:commandLink>
-                        <p:graphicImage name="./images/pdf.png" width="24"/>
-                        <p:outputLabel value="PDF"/>
-                        <p:dataExporter type="pdf" target="tablaPromociones" fileName="Promociones"/>
-                    </h:commandLink>
-                </h:form>
-            </div>
         </ui:composition>
     </h:body>
 </html>
-

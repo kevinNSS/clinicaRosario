@@ -30,10 +30,26 @@ public class TblExpedientesFacade extends AbstractFacade<TblExpedientes> {
     public TblExpedientesFacade() {
         super(TblExpedientes.class);
     }
-    
-    public List<TblExpedientes> findAllExpedientesHemograma(){
+
+    public List<TblExpedientes> findAllExpedientesHemograma() {
         String consulta;
         consulta = "FROM TblExpedientes e WHERE e.idTblHemograma != null";
+        Query query = em.createQuery(consulta);
+        List<TblExpedientes> lista = query.getResultList();
+        return lista;
+    }
+
+    public List<TblExpedientes> findAllExpedientesHeces() {
+        String consulta;
+        consulta = "FROM TblExpedientes e WHERE e.idTblHeces != null";
+        Query query = em.createQuery(consulta);
+        List<TblExpedientes> lista = query.getResultList();
+        return lista;
+    }
+
+    public List<TblExpedientes> findAllExpedientesOrines() {
+        String consulta;
+        consulta = "FROM TblExpedientes e WHERE e.idTblOrina != null";
         Query query = em.createQuery(consulta);
         List<TblExpedientes> lista = query.getResultList();
         return lista;

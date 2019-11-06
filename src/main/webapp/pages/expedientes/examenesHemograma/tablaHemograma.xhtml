@@ -16,23 +16,12 @@
             <div class="container">
                 <h:form id="formTablaPacientes" rendered="#{tblHemogramaController.mostrarTblHemograma == true}">
                     <p:dataTable value="#{tblHemogramaController.allExpedientesHemogramas}" var="expedienteHemograma" style="text-align: center;">
-                        <f:facet name="header">  
-                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
-                        </f:facet>
-                        <p:columnGroup type="header">
-                            <p:row>
-                                <h5><p:column colspan="2" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
-                            </p:row>
-                        </p:columnGroup>
                         <p:column headerText="Paciente">
                             #{expedienteHemograma.idPaciente.primerNombrePaciente} #{expedienteHemograma.idPaciente.segundoNombrePaciente} #{expedienteHemograma.idPaciente.primerApellidoPaciente} #{expedienteHemograma.idPaciente.segundoApellidoPaciente}
                         </p:column>
                         <p:column headerText="Fecha de Ingreso">
                             #{expedienteHemograma.fechaIngreso}
                         </p:column>
-                        <f:facet name="footer">
-                            <h5>El Total De Registros Es: #{tblHemogramaController.allExpedientesHemogramas.size()}</h5>
-                        </f:facet>
                     </p:dataTable>
                 </h:form>
             </div>

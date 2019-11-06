@@ -16,10 +16,13 @@
             <ui:include src="header.xhtml"/>
         </ui:insert>
         <br/>
+        <h2><h:outputLabel value="EXAMENES DE HECES" style="padding-left: 30px;"/></h2>
         <hr/>
         <div class="container-fluid">
             <h:form>
-                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <h:commandButton style="float: right;" value="Tabla de Examenes Heces" action="#{tblHecesController.mostrarTablaExamHeces()}" rendered="#{(tblHecesController.mostrarTblHeces == false) and (loginController.tipoUsuario == 'secretaria') or (tblHecesController.mostrarTblHeces == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Examen Heces" action="#{tblHecesController.mostrarFormularioExamHeces()}" rendered="#{(tblHecesController.mostrarFormHeces == false) and (loginController.tipoUsuario == 'secretaria') or (tblHecesController.mostrarFormHeces == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE EXPEDIENTES DE HECES DE PACIENTES -->

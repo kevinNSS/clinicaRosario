@@ -7,6 +7,7 @@ import clinicaRosario.entity.TblExpedientes;
 import clinicaRosario.session.TblHecesFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -56,6 +57,9 @@ public class TblHecesController implements Serializable {
     }
 
     public TblExpedientes getTblExpedientes() {
+        if (tblExpedientes == null) {
+            tblExpedientes = new TblExpedientes();
+        }
         return tblExpedientes;
     }
 
@@ -109,17 +113,21 @@ public class TblHecesController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
-    
-    public void mostrarTablaExamHeces(){
+
+    public void mostrarTablaExamHeces() {
         mostrarFormHeces = false;
         mostrarTblHeces = true;
     }
-    
-    public void mostrarFormularioExamHeces(){
+
+    public void mostrarFormularioExamHeces() {
         mostrarFormHeces = true;
         mostrarTblHeces = false;
         tblExpedientes = new TblExpedientes();
         current = new TblHeces();
+    }
+    
+    public List<TblExpedientes> getAllExamHeces(){
+        return tblExpedientesFacade.findAllExpedientesHeces();
     }
 
     public void create() {
@@ -128,7 +136,7 @@ public class TblHecesController implements Serializable {
         tblExpedientesFacade.create(tblExpedientes);
         current = new TblHeces();
         tblExpedientes = new TblExpedientes();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso","¡Datos Ingresados Exitosamente!"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
 
     public String prepareEdit() {

@@ -16,22 +16,34 @@
             <ui:include src="header.xhtml"/>
         </ui:insert>
         <br/>
+        <h2><h:outputLabel value="REPORTES" style="padding-left: 30px;"/></h2>
         <hr/>
         <div class="container-fluid">
             <h:form>
-                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
+                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+                <h:commandButton  value="Examenes Hemograma" action="#{reportesController.mostrarReporteExamHemogramas()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  value="Examenes Heces" action="#{reportesController.mostrarReporteExamHeces()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  value="Examenes Orina" action="#{reportesController.mostrarReporteExamOrina()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  value="Pacientes" action="#{reportesController.mostrarReporteExamenesPacientes()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  value="Ventas" action="#{reportesController.mostrarReporteFinancieroFacturas()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
-            <br/><br/><br/>
-            <!-- REPORTE DE EXAMENES -->
-            <ui:insert name="reporteExamenes">
-                <ui:include src="pages/reportes/reporteExamenes.xhtml"/>
+            <br/><br/><br/><br/><br/>
+            <!-- REPORTE DE EXAMENES HEMOGRAMAS-->
+            <ui:insert name="reporteExamenesHemogramas">
+                <ui:include src="pages/reportes/reporteExamHemogramas.xhtml"/>
             </ui:insert>
-
+            <!-- REPORTE DE EXAMENES HECES-->
+            <ui:insert name="reporteExamenesHeces">
+                <ui:include src="pages/reportes/reportesExamHeces.xhtml"/>
+            </ui:insert>
+            <!-- REPORTE DE EXAMENES ORINA-->
+            <ui:insert name="reporteExamenesOrina">
+                <ui:include src="pages/reportes/reporteExamOrina.xhtml"/>
+            </ui:insert>
             <!-- REPORTE DE PACIENTES-->
             <ui:insert name="reportePacientes">
                 <ui:include src="pages/reportes/reportePacientes.xhtml"/>
             </ui:insert>
-
             <!--REPORTE DE GANANCIAS-->
             <ui:insert name="reporteGanancias">
                 <ui:include src="pages/reportes/reporteGanancias.xhtml"/>

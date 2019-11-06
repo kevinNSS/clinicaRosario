@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Heces</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
@@ -12,7 +13,18 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <div class="container">
+                <h:form id="formTablaPacientes" rendered="#{tblHecesController.mostrarTblHeces == true}">
+                    <p:dataTable value="#{tblHecesController.allExamHeces}" var="expedienteHeces" style="text-align: center;">
+                        <p:column headerText="Paciente">
+                            #{expedienteHeces.idPaciente.primerNombrePaciente} #{expedienteHeces.idPaciente.segundoNombrePaciente} #{expedienteHeces.idPaciente.primerApellidoPaciente} #{expedienteHeces.idPaciente.segundoApellidoPaciente}
+                        </p:column>
+                        <p:column headerText="Fecha de Ingreso">
+                            #{expedienteHeces.fechaIngreso}
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>
