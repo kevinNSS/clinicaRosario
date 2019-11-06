@@ -40,6 +40,11 @@ public class TblFacturaEncabezadoController implements Serializable {
     @EJB
     private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
     private String tipoExamen = "factura";
+    private TblFacturaDetalle f1;
+    private TblFacturaDetalle f2;
+    private TblFacturaDetalle f3;
+    private TblFacturaDetalle f4;
+    private TblFacturaDetalle f5;
 
     public Boolean getMostrarTblFactura() {
         return mostrarTblFactura;
@@ -57,7 +62,78 @@ public class TblFacturaEncabezadoController implements Serializable {
         this.mostrarFormFactura = mostrarFormFactura;
     }
 
+    public TblFacturaDetalle getF1() {
+        if (f1 == null) {
+            f1 = new TblFacturaDetalle();
+        }
+        return f1;
+    }
+
+    public void setF1(TblFacturaDetalle f1) {
+        this.f1 = f1;
+    }
+
+    public TblFacturaDetalle getF2() {
+        if (f2 == null) {
+            f2 = new TblFacturaDetalle();
+        }
+        return f2;
+    }
+
+    public void setF2(TblFacturaDetalle f2) {
+        this.f2 = f2;
+    }
+
+    public TblFacturaDetalle getF3() {
+        if (f3 == null) {
+            f3 = new TblFacturaDetalle();
+        }
+        return f3;
+    }
+
+    public void setF3(TblFacturaDetalle f3) {
+        this.f3 = f3;
+    }
+
+    public TblFacturaDetalle getF4() {
+        if (f4 == null) {
+            f4 = new TblFacturaDetalle();
+        }
+        return f4;
+    }
+
+    public void setF4(TblFacturaDetalle f4) {
+        this.f4 = f4;
+    }
+
+    public TblFacturaDetalle getF5() {
+        if (f5 == null) {
+            f5 = new TblFacturaDetalle();
+        }
+        return f5;
+    }
+
+    public void setF5(TblFacturaDetalle f5) {
+        this.f5 = f5;
+    }
+
     public TblFacturaEncabezadoController() {
+    }
+
+    public TblFacturaDetalle getTblFacturaDetalle() {
+        return tblFacturaDetalle;
+    }
+
+    public String getTipoExamen() {
+        return tipoExamen;
+    }
+
+    public void setTipoExamen(String tipoExamen) {
+        this.tipoExamen = tipoExamen;
+    }
+
+    public void setTblFacturaDetalle(TblFacturaDetalle tblFacturaDetalle) {
+        this.tblFacturaDetalle = tblFacturaDetalle;
     }
 
     public TblFacturaEncabezado getSelected() {
@@ -106,13 +182,13 @@ public class TblFacturaEncabezadoController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
-    
-    public void mostrarTablaFactura(){
+
+    public void mostrarTablaFactura() {
         mostrarFormFactura = false;
         mostrarTblFactura = true;
     }
-    
-    public void mostrarFormularioFactura(){
+
+    public void mostrarFormularioFactura() {
         mostrarFormFactura = true;
         mostrarTblFactura = false;
         current = new TblFacturaEncabezado();
@@ -120,15 +196,17 @@ public class TblFacturaEncabezadoController implements Serializable {
 
     public void create() {
         ejbFacade.create(current);
+        f1.setIdFacturaEncabezado(current);
+        tblFacturaDetalleFacade.create(f1);
         current = new TblFacturaEncabezado();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso","¡Datos Ingresados Exitosamente!"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
-    
-    public List<TblFacturaEncabezado> getAllFacturas(){
+
+    public List<TblFacturaEncabezado> getAllFacturas() {
         return ejbFacade.findAll();
     }
-    
-    public List<TblEstados> getAllEstadosFacturacion(){
+
+    public List<TblEstados> getAllEstadosFacturacion() {
         return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
     }
 

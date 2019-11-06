@@ -3,13 +3,16 @@ package clinicaRosario.controller;
 import clinicaRosario.entity.TblHemograma;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
+import clinicaRosario.entity.TblExpedientes;
 import clinicaRosario.session.TblHemogramaFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -28,8 +31,29 @@ public class TblHemogramaController implements Serializable {
     private clinicaRosario.session.TblHemogramaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    @EJB
+    private clinicaRosario.session.TblExpedientesFacade tblExpedientesFacade;
+    private TblExpedientes tblExpedientes;
+    private Boolean mostrarFormHemograma = false;
+    private Boolean mostrarTblHemograma = true;
 
     public TblHemogramaController() {
+    }
+
+    public Boolean getMostrarFormHemograma() {
+        return mostrarFormHemograma;
+    }
+
+    public void setMostrarFormHemograma(Boolean mostrarFormHemograma) {
+        this.mostrarFormHemograma = mostrarFormHemograma;
+    }
+
+    public Boolean getMostrarTblHemograma() {
+        return mostrarTblHemograma;
+    }
+
+    public void setMostrarTblHemograma(Boolean mostrarTblHemograma) {
+        this.mostrarTblHemograma = mostrarTblHemograma;
     }
 
     public TblHemograma getSelected() {
@@ -38,6 +62,17 @@ public class TblHemogramaController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+
+    public TblExpedientes getTblExpedientes() {
+        if (tblExpedientes == null) {
+            tblExpedientes = new TblExpedientes();
+        }
+        return tblExpedientes;
+    }
+
+    public void setTblExpedientes(TblExpedientes tblExpedientes) {
+        this.tblExpedientes = tblExpedientes;
     }
 
     private TblHemogramaFacade getFacade() {
@@ -78,16 +113,30 @@ public class TblHemogramaController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public void mostrarFormularioHemograma(){
+        mostrarFormHemograma = true;
+        mostrarTblHemograma = false;
+        tblExpedientes = new TblExpedientes();
+        current = new TblHemograma();
+    }
+    
+    public void mostrarTablaHemograma(){
+        mostrarFormHemograma = false;
+        mostrarTblHemograma = true;
+    }
+    
+    public List<TblExpedientes> getAllExpedientesHemogramas(){
+        return tblExpedientesFacade.findAllExpedientesHemograma();
+    }
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblHemogramaCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public void create() {
+        ejbFacade.create(current);
+        tblExpedientes.setIdTblHemograma(current);
+        tblExpedientesFacade.create(tblExpedientes);
+        current = new TblHemograma();
+        tblExpedientes = new TblExpedientes();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "¡Datos Ingresados Exitosamente!"));
     }
 
     public String prepareEdit() {

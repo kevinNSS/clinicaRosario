@@ -3,6 +3,7 @@ package clinicaRosario.controller;
 import clinicaRosario.entity.TblHeces;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
+import clinicaRosario.entity.TblExpedientes;
 import clinicaRosario.session.TblHecesFacade;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -28,8 +30,37 @@ public class TblHecesController implements Serializable {
     private clinicaRosario.session.TblHecesFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private Boolean mostrarTblHeces = true;
+    private Boolean mostrarFormHeces = false;
+    @EJB
+    private clinicaRosario.session.TblExpedientesFacade tblExpedientesFacade;
+    private TblExpedientes tblExpedientes;
 
     public TblHecesController() {
+    }
+
+    public Boolean getMostrarTblHeces() {
+        return mostrarTblHeces;
+    }
+
+    public void setMostrarTblHeces(Boolean mostrarTblHeces) {
+        this.mostrarTblHeces = mostrarTblHeces;
+    }
+
+    public Boolean getMostrarFormHeces() {
+        return mostrarFormHeces;
+    }
+
+    public void setMostrarFormHeces(Boolean mostrarFormHeces) {
+        this.mostrarFormHeces = mostrarFormHeces;
+    }
+
+    public TblExpedientes getTblExpedientes() {
+        return tblExpedientes;
+    }
+
+    public void setTblExpedientes(TblExpedientes tblExpedientes) {
+        this.tblExpedientes = tblExpedientes;
     }
 
     public TblHeces getSelected() {
@@ -78,16 +109,26 @@ public class TblHecesController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public void mostrarTablaExamHeces(){
+        mostrarFormHeces = false;
+        mostrarTblHeces = true;
+    }
+    
+    public void mostrarFormularioExamHeces(){
+        mostrarFormHeces = true;
+        mostrarTblHeces = false;
+        tblExpedientes = new TblExpedientes();
+        current = new TblHeces();
+    }
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblHecesCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public void create() {
+        ejbFacade.create(current);
+        tblExpedientes.setIdTblHeces(current);
+        tblExpedientesFacade.create(tblExpedientes);
+        current = new TblHeces();
+        tblExpedientes = new TblExpedientes();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso","¡Datos Ingresados Exitosamente!"));
     }
 
     public String prepareEdit() {

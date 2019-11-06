@@ -58,14 +58,20 @@
                             <h:outputLabel for="total" value="Total"/>
                             <p:inputText id="total" class="form-control" value="#{tblFacturaEncabezadoController.selected.total}" required="true" onkeypress="return valida(event)"/>
                         </div>
-                        
+
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="examenes" value="Examenes"/>
-                            <p:inputText id="examenes" class="form-control" value="" required="true" onkeypress=""/>
+                            <h:selectOneMenu id="examenes" class="form-control" value="#{tblFacturaEncabezadoController.f1.idExamen}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.all}" var="examenes" itemLabel="#{examenes.nombreExamen}" itemValue="#{examenes}"/>
+                            </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="promociones" value="Promociones"/>
-                            <p:inputText id="promociones" class="form-control" value="" required="true" onkeypress=""/>
+                            <h:selectOneMenu id="promociones" class="form-control" value="#{tblFacturaEncabezadoController.f1.idPromocion}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPromocionesController.allPromociones}" var="promociones" itemLabel="#{promociones.nombrePromocion}" itemValue="#{promociones}"/>
+                            </h:selectOneMenu>
                         </div>
                         <br/>
                         <br/>

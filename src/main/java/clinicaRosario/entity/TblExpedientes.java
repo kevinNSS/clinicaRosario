@@ -43,7 +43,6 @@ public class TblExpedientes implements Serializable {
     @Column(name = "ID_EXPEDIENTE")
     private Integer idExpediente;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "RESULTADO")
     private String resultado;
@@ -53,7 +52,6 @@ public class TblExpedientes implements Serializable {
     @Column(name = "FECHA_INGRESO")
     private String fechaIngreso;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "REPORTADO_POR")
     private int reportadoPor;
     @JoinColumn(name = "ID_EXAMEN", referencedColumnName = "ID_EXAMEN")

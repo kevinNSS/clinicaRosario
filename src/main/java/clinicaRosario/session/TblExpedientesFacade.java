@@ -6,9 +6,11 @@
 package clinicaRosario.session;
 
 import clinicaRosario.entity.TblExpedientes;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,11 @@ public class TblExpedientesFacade extends AbstractFacade<TblExpedientes> {
         super(TblExpedientes.class);
     }
     
+    public List<TblExpedientes> findAllExpedientesHemograma(){
+        String consulta;
+        consulta = "FROM TblExpedientes e WHERE e.idTblHemograma != null";
+        Query query = em.createQuery(consulta);
+        List<TblExpedientes> lista = query.getResultList();
+        return lista;
+    }
 }

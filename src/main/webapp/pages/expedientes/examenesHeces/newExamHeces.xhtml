@@ -21,17 +21,23 @@
                             <h6 align="center">Examen de HECES para el paciente:</h6>
                    <div class="form-row">
                             <!--formulario datos boleta-->
-                             <div class="form-group col-xs-12 col-md-3">
+                            <div class="form-group col-xs-12 col-md-4">
                             <h:outputLabel for="idPaciente" value="ID Paciente:"/>
-                            <p:inputText id="idpaciente" class="form-control" value="" />
+                            <h:selectOneMenu id="idPaciente" class="form-control" value="#{tblHecesController.tblExpedientes.idPaciente}" required="true" requiredMessage="Es necesario llenar el campo de paciente">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPacientesController.allPacientes}" var="pacientes" itemLabel="#{pacientes.primerNombrePaciente}" itemValue="#{pacientes}"/>
+                            </h:selectOneMenu>
                             </div>
                             <div class="form-group col-xs-12 col-md-4">
                             <h:outputLabel for="fechaboleta" value="Fecha de reporte:"/>
-                            <p:inputText id="fechaboleta" placeholder="" type="date" class="form-control" value=""/>
+                            <p:inputText id="fechaboleta" type="date" value="#{tblHecesController.tblExpedientes.fechaIngreso}" class="form-control" />
                             </div>
-                             <div class="form-group col-xs-12 col-md-8">
-                            <h:outputLabel for="nombrePaciente" value="Nombre del paciente:"/>
-                            <p:inputText id="nombrepaciente" class="form-control" value="" />
+                            <div class="form-group col-xs-12 col-md-4">
+                            <h:outputLabel for="idPaciente" value="ID Paciente:"/>
+                            <h:selectOneMenu id="idPaciente" class="form-control" value="#{tblHecesController.tblExpedientes.idExamen}" required="true" requiredMessage="Es necesario llenar el campo de examen">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.all}" var="examenes" itemLabel="#{examenes.nombreExamen}" itemValue="#{examenes}"/>
+                            </h:selectOneMenu>
                             </div>
                     <div class="w-100"><h6 align="center">EXAMEN GENERAL DE HECES</h6></div>
                     <div class="col">
@@ -47,7 +53,7 @@
                         <br/>
                         <h:outputLabel for="consistencia"  value="Consistencia"/>
                          <h:selectOneMenu id="consistenciaheces" class="form-control" >
-                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItem itemLabel="Dura" itemValue="Dura"/>
                                 <f:selectItem itemLabel="Pastosa" itemValue="Pastosa"/>
                                 <f:selectItem itemLabel="Blanda" itemValue="Blanda"/>
@@ -57,7 +63,7 @@
                             <br/> 
                             <h:outputLabel for="mucus"  value="Mucus"/>
                          <h:selectOneMenu id="mucusheces" class="form-control" >
-                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
                                 <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
                             </h:selectOneMenu>
@@ -78,7 +84,7 @@
                             <br/>
                             <h:outputLabel for="microscopicos"  value="Microscopicos"/>
                             <h:selectOneMenu id="microscopicos" class="form-control" >
-                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItem itemLabel="Escasos" itemValue="Escasos"/>
                                 <f:selectItem itemLabel="Moderados" itemValue="Moderados"/>
                                 <f:selectItem itemLabel="Abundantes" itemValue="Abundantes"/>
@@ -86,7 +92,7 @@
                             <br/>
                             <h:outputLabel for="macroscopicos"  value="Macroscopicos"/>
                             <h:selectOneMenu id="macroscopicos" class="form-control" >
-                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItem itemLabel="Escasos" itemValue="Escasos"/>
                                 <f:selectItem itemLabel="Moderados" itemValue="Moderados"/>
                                 <f:selectItem itemLabel="Abundantes" itemValue="Abundantes"/>

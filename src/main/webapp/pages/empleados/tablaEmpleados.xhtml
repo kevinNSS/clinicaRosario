@@ -17,10 +17,7 @@
                 <h:form id="formTablaEmpleados" rendered="#{tblEmpleadosController.mostrarTblEmpleados == true}" style="text-align: center;">
                     <p:dataTable id="tablaEmpleado" value="#{tblEmpleadosController.allEmpleados}" var="empleados">
                         <p:column headerText="Nombre del Empleado">
-                            <h:outputLabel id="nombreEmpleado" value="#{empleados.primerNombreEmpleado}"/>
-                        </p:column>
-                        <p:column headerText="Apellido del Empleado">
-                            <h:outputLabel id="apellidoEmpleado" value="#{empleados.primerApellidoEmpleado}"/>
+                            #{empleados.primerNombreEmpleado} #{empleados.segundoNombreEmpleado} #{empleados.primerApellidoEmpleado} #{empleados.segundoApellidoEmpleado}
                         </p:column>
                         <p:column headerText="Cargo del Empleado">
                             <h:outputLabel id="cargoEmpleado" value="#{empleados.idCargo.nombreCargo}"/>

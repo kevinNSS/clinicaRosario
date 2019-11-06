@@ -15,16 +15,28 @@
     <h:body>
         <ui:composition>
 
-            <h:form id="formIngresoEmpleado">
+            <h:form id="formIngresoHemograma" rendered="#{tblHemogramaController.mostrarFormHemograma == true}">
                 <div class="container">
+                    <!--formulario encabezado boleta-->
+                    <h2 align="center">LABORATORIO CLINICO EL ROSARIO</h2>
+                    <h5 align="center">2a calle oriente entre 2a y 4a av sur El Rosario La Paz</h5>
+                    <h6 align="center">Examen de Hemograma para el paciente:</h6><br/><br/>
                     <div class="row">
                         <div class="col">
                             <!--formulario encabezado-->
                             <h:outputLabel value="Boleta de examen para el paciente"/>
-                            <h:outputLabel value="Paciente"/>
-                            <h:inputText type="text" class="form-control" placeholder="paciente"/>
+                            <h:outputLabel for="pacienteOrines" value="Paciente"/>
+                            <h:selectOneMenu id="pacienteOrines" class="form-control" value="#{tblHemogramaController.tblExpedientes.idPaciente}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPacientesController.allPacientes}" var="pacientes" itemLabel="#{pacientes.primerNombrePaciente}" itemValue="#{pacientes}"/>
+                            </h:selectOneMenu>
                             <h:outputLabel value="fecha"/>
-                            <p:inputText type="date" class="form-control"/>
+                            <p:inputText type="date" value="#{tblHemogramaController.tblExpedientes.fechaIngreso}" class="form-control"/>
+                            <h:outputLabel for="examenOrina" value="Examen"/>
+                            <h:selectOneMenu id="examenOrina" class="form-control" value="#{tblHemogramaController.tblExpedientes.idExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.all}" var="examenes" itemLabel="#{examenes.nombreExamen}" itemValue="#{examenes}"/>
+                            </h:selectOneMenu>
                         </div><!--formulario encabezado-->
 
                         <div class="w-100"></div>
@@ -35,43 +47,43 @@
                             <h:outputLabel value="HEMOGRAMA"/>
                             <br/>
                             <h:outputLabel value="Globulos Rojos"/>
-                            <h:inputText type="text" class="form-control" placeholder="Globulos rojos"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.globulosrojos}" placeholder="Globulos rojos"/>
                             <br/>
                             <h:outputLabel value="Hemoglobina"/>
-                            <h:inputText type="text" class="form-control"  placeholder="Hemoglobina"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.hemoglobina}" placeholder="Hemoglobina"/>
                             <br/>
                             <h:outputLabel value="Hematocrito"/>
-                            <h:inputText type="text" class="form-control" placeholder="Hematocrito"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.hematocrito}" placeholder="Hematocrito"/>
                             <br/>
                             <h:outputLabel value="VCM"/>
-                            <h:inputText type="text" class="form-control" placeholder="VCM"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.vcm}" placeholder="VCM"/>
                             <br/>
                             <h:outputLabel value="HCM"/>
-                            <h:inputText type="text" class="form-control" placeholder="HCM"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.hcm}" placeholder="HCM"/>
                             <br/>
                             <h:outputLabel value="CHCM"/>
-                            <h:inputText type="text" class="form-control" placeholder="CHCM"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.chcm}" placeholder="CHCM"/>
                             <br/>
                             <h:outputLabel value="Leucocitos"/>
-                            <h:inputText type="text" class="form-control" placeholder="LEUCOCITOS"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.leucocitos}" placeholder="LEUCOCITOS"/>
                             <br/>
                             <h:outputLabel value="Neutrofilos segmentados"/>
-                            <h:inputText type="text" class="form-control" placeholder="Neutrofilos segmentados"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.neutrofilossegmentados}" placeholder="Neutrofilos segmentados"/>
                             <br/>
                             <h:outputLabel value="Neutrofilos en banda"/>
-                            <h:inputText type="text" class="form-control" placeholder="Neutrofilos en banda"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.neutrofilosenbanda}" placeholder="Neutrofilos en banda"/>
                             <br/>
                             <h:outputLabel value="Linfocitos"/>
-                            <h:inputText type="text" class="form-control" placeholder="Linfocitos"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.linfocitos}" placeholder="Linfocitos"/>
                             <br/>
                             <h:outputLabel value="Monocitos"/>
-                            <h:inputText type="text" class="form-control" placeholder="Monocitos"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.monocitos}" placeholder="Monocitos"/>
                             <br/>
                             <h:outputLabel value="Eosinofilos"/>
-                            <h:inputText type="text" class="form-control" placeholder="Eosinofilos"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.eosinofilos}" placeholder="Eosinofilos"/>
                             <br/>
                             <h:outputLabel value="Basofilos"/>
-                            <h:inputText type="text" class="form-control" placeholder="Basofilos"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.basofilos}" placeholder="Basofilos"/>
                         </div>
                         <div class="col">
                             <!--texto a la derecha-->
@@ -98,16 +110,16 @@
                             <br/>
                             <hr/>
                             <h:outputLabel value="Recuento de plaquetas"/>
-                            <h:inputText type="text" class="form-control" placeholder="Recuento de plaquetas"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.recuentoplaquetas}" placeholder="Recuento de plaquetas"/>
                             <br/>
                             <h:outputLabel value="Recuento de reticulocitos"/>
-                            <h:inputText type="text" class="form-control" placeholder="Recuento de reticulocitos"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.recuentoreticulocitos}" placeholder="Recuento de reticulocitos"/>
                             <br/>
                             <h:outputLabel value="Eritrosedimentacion"/>
-                            <h:inputText type="text" class="form-control" placeholder="Eritrosedimentacion"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.eritrosedimentacion}" placeholder="Eritrosedimentacion"/>
                             <br/>
                             <h:outputLabel value="Gota gruesa"/>
-                            <h:inputText type="text" class="form-control" placeholder="Gota gruesa"/>
+                            <p:inputText type="text" class="form-control" value="#{tblHemogramaController.selected.gotagruesa}" placeholder="Gota gruesa"/>
                         </div>
                         <!--texto a la derecha-->
                         <div class="col">
@@ -121,7 +133,8 @@
                         <!--texto a la derecha-->
                     </div><!--Footer-->
                     <br/>
-                    <h:inputText type="button" class="btn btn-primary btn-log btn-block" value="Ingresar"/>
+                    <br/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblHemogramaController.create()}"  class="btn btn-primary btn-lg btn-block"/>
                     <br/>
                     <br/>
                 </div>
