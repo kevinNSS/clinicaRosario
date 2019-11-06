@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblHemogramaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblHemogramaEmpty}" rendered="#{tblHemogramaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblHemogramaController.items.rowCount > 0}">
+                    <h:outputText value="#{tblHemogramaController.pagination.pageFirstItem + 1}..#{tblHemogramaController.pagination.pageLastItem + 1}/#{tblHemogramaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblHemogramaController.previous}" value="#{bundle.Previous} #{tblHemogramaController.pagination.pageSize}" rendered="#{tblHemogramaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblHemogramaController.next}" value="#{bundle.Next} #{tblHemogramaController.pagination.pageSize}" rendered="#{tblHemogramaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblHemogramaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_idTblHemograma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTblHemograma}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_globulosrojos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.globulosrojos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_hemoglobina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hemoglobina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_hematocrito}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hematocrito}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_vcm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vcm}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_hcm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hcm}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_chcm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chcm}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_leucocitos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leucocitos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_neutrofilossegmentados}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.neutrofilossegmentados}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_neutrofilosenbanda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.neutrofilosenbanda}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_linfocitos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.linfocitos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_monocitos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.monocitos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_eosinofilos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.eosinofilos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_basofilos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.basofilos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_recuentoplaquetas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.recuentoplaquetas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_recuentoreticulocitos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.recuentoreticulocitos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_eritrosedimentacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.eritrosedimentacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_gotagruesa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gotagruesa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_otrosHemogramas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.otrosHemogramas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHemogramaTitle_oservaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.oservaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblHemogramaController.prepareView}" value="#{bundle.ListTblHemogramaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblHemogramaController.prepareEdit}" value="#{bundle.ListTblHemogramaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblHemogramaController.destroy}" value="#{bundle.ListTblHemogramaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblHemogramaController.prepareCreate}" value="#{bundle.ListTblHemogramaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblHemogramaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

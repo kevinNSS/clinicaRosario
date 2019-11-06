@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblFacturaEncabezadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_idFactura}" for="idFactura" />
+                    <h:inputText id="idFactura" value="#{tblFacturaEncabezadoController.selected.idFactura}" title="#{bundle.EditTblFacturaEncabezadoTitle_idFactura}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_idFactura}"/>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_fechaFacturacion}" for="fechaFacturacion" />
+                    <h:inputText id="fechaFacturacion" value="#{tblFacturaEncabezadoController.selected.fechaFacturacion}" title="#{bundle.EditTblFacturaEncabezadoTitle_fechaFacturacion}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_fechaFacturacion}"/>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_subTotal}" for="subTotal" />
+                    <h:inputText id="subTotal" value="#{tblFacturaEncabezadoController.selected.subTotal}" title="#{bundle.EditTblFacturaEncabezadoTitle_subTotal}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_subTotal}"/>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_iva}" for="iva" />
+                    <h:inputText id="iva" value="#{tblFacturaEncabezadoController.selected.iva}" title="#{bundle.EditTblFacturaEncabezadoTitle_iva}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_iva}"/>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_descuentoTotal}" for="descuentoTotal" />
+                    <h:inputText id="descuentoTotal" value="#{tblFacturaEncabezadoController.selected.descuentoTotal}" title="#{bundle.EditTblFacturaEncabezadoTitle_descuentoTotal}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_descuentoTotal}"/>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_total}" for="total" />
+                    <h:inputText id="total" value="#{tblFacturaEncabezadoController.selected.total}" title="#{bundle.EditTblFacturaEncabezadoTitle_total}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_total}"/>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_idPaciente}" for="idPaciente" />
+                    <h:selectOneMenu id="idPaciente" value="#{tblFacturaEncabezadoController.selected.idPaciente}" title="#{bundle.EditTblFacturaEncabezadoTitle_idPaciente}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_idPaciente}">
+                        <f:selectItems value="#{tblPacientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_estado}" for="estado" />
+                    <h:selectOneMenu id="estado" value="#{tblFacturaEncabezadoController.selected.estado}" title="#{bundle.EditTblFacturaEncabezadoTitle_estado}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_estado}">
+                        <f:selectItems value="#{tblEstadosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblFacturaEncabezadoLabel_encargadoFacturacion}" for="encargadoFacturacion" />
+                    <h:selectOneMenu id="encargadoFacturacion" value="#{tblFacturaEncabezadoController.selected.encargadoFacturacion}" title="#{bundle.EditTblFacturaEncabezadoTitle_encargadoFacturacion}" required="true" requiredMessage="#{bundle.EditTblFacturaEncabezadoRequiredMessage_encargadoFacturacion}">
+                        <f:selectItems value="#{tblEmpleadosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tblFacturaEncabezadoController.update}" value="#{bundle.EditTblFacturaEncabezadoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblFacturaEncabezadoViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblFacturaEncabezadoController.prepareList}" value="#{bundle.EditTblFacturaEncabezadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblFacturaEncabezadoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

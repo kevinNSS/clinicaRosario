@@ -6,7 +6,6 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,9 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -34,7 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TblIngresoInventario.findAll", query = "SELECT t FROM TblIngresoInventario t")
     , @NamedQuery(name = "TblIngresoInventario.findByIdIngresoInventario", query = "SELECT t FROM TblIngresoInventario t WHERE t.idIngresoInventario = :idIngresoInventario")
     , @NamedQuery(name = "TblIngresoInventario.findByCantidad", query = "SELECT t FROM TblIngresoInventario t WHERE t.cantidad = :cantidad")
-    , @NamedQuery(name = "TblIngresoInventario.findByProveedor", query = "SELECT t FROM TblIngresoInventario t WHERE t.proveedor = :proveedor")
     , @NamedQuery(name = "TblIngresoInventario.findByFechaIngreso", query = "SELECT t FROM TblIngresoInventario t WHERE t.fechaIngreso = :fechaIngreso")
     , @NamedQuery(name = "TblIngresoInventario.findByFechaCaducidad", query = "SELECT t FROM TblIngresoInventario t WHERE t.fechaCaducidad = :fechaCaducidad")})
 public class TblIngresoInventario implements Serializable {
@@ -51,19 +48,20 @@ public class TblIngresoInventario implements Serializable {
     private int cantidad;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "PROVEEDOR")
-    private int proveedor;
-    @Basic(optional = false)
-    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "FECHA_INGRESO")
     private String fechaIngreso;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "FECHA_CADUCIDAD")
     private String fechaCaducidad;
     @JoinColumn(name = "ID_INVENTARIO", referencedColumnName = "ID_INVENTARIO")
     @ManyToOne(optional = false)
     private TblInventario idInventario;
+    @JoinColumn(name = "PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
+    @ManyToOne(optional = false)
+    private TblProveedores proveedor;
 
     public TblIngresoInventario() {
     }
@@ -72,10 +70,9 @@ public class TblIngresoInventario implements Serializable {
         this.idIngresoInventario = idIngresoInventario;
     }
 
-    public TblIngresoInventario(Integer idIngresoInventario, int cantidad, int proveedor, String fechaIngreso, String fechaCaducidad) {
+    public TblIngresoInventario(Integer idIngresoInventario, int cantidad, String fechaIngreso, String fechaCaducidad) {
         this.idIngresoInventario = idIngresoInventario;
         this.cantidad = cantidad;
-        this.proveedor = proveedor;
         this.fechaIngreso = fechaIngreso;
         this.fechaCaducidad = fechaCaducidad;
     }
@@ -94,14 +91,6 @@ public class TblIngresoInventario implements Serializable {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public int getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(int proveedor) {
-        this.proveedor = proveedor;
     }
 
     public String getFechaIngreso() {
@@ -126,6 +115,14 @@ public class TblIngresoInventario implements Serializable {
 
     public void setIdInventario(TblInventario idInventario) {
         this.idInventario = idInventario;
+    }
+
+    public TblProveedores getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(TblProveedores proveedor) {
+        this.proveedor = proveedor;
     }
 
     @Override

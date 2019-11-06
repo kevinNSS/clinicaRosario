@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblExpedientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_idExpediente}" for="idExpediente" />
+                    <h:inputText id="idExpediente" value="#{tblExpedientesController.selected.idExpediente}" title="#{bundle.EditTblExpedientesTitle_idExpediente}" required="true" requiredMessage="#{bundle.EditTblExpedientesRequiredMessage_idExpediente}"/>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_fechaIngreso}" for="fechaIngreso" />
+                    <h:inputText id="fechaIngreso" value="#{tblExpedientesController.selected.fechaIngreso}" title="#{bundle.EditTblExpedientesTitle_fechaIngreso}" required="true" requiredMessage="#{bundle.EditTblExpedientesRequiredMessage_fechaIngreso}"/>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_resultado}" for="resultado" />
+                    <h:inputText id="resultado" value="#{tblExpedientesController.selected.resultado}" title="#{bundle.EditTblExpedientesTitle_resultado}" required="true" requiredMessage="#{bundle.EditTblExpedientesRequiredMessage_resultado}"/>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_idExamen}" for="idExamen" />
+                    <h:selectOneMenu id="idExamen" value="#{tblExpedientesController.selected.idExamen}" title="#{bundle.EditTblExpedientesTitle_idExamen}" required="true" requiredMessage="#{bundle.EditTblExpedientesRequiredMessage_idExamen}">
+                        <f:selectItems value="#{tblExamenesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_idPaciente}" for="idPaciente" />
+                    <h:selectOneMenu id="idPaciente" value="#{tblExpedientesController.selected.idPaciente}" title="#{bundle.EditTblExpedientesTitle_idPaciente}" required="true" requiredMessage="#{bundle.EditTblExpedientesRequiredMessage_idPaciente}">
+                        <f:selectItems value="#{tblPacientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_reportadoPor}" for="reportadoPor" />
+                    <h:inputText id="reportadoPor" value="#{tblExpedientesController.selected.reportadoPor}" title="#{bundle.EditTblExpedientesTitle_reportadoPor}" required="true" requiredMessage="#{bundle.EditTblExpedientesRequiredMessage_reportadoPor}"/>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_idTblHeces}" for="idTblHeces" />
+                    <h:selectOneMenu id="idTblHeces" value="#{tblExpedientesController.selected.idTblHeces}" title="#{bundle.EditTblExpedientesTitle_idTblHeces}" >
+                        <f:selectItems value="#{tblHecesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_idTblHemograma}" for="idTblHemograma" />
+                    <h:selectOneMenu id="idTblHemograma" value="#{tblExpedientesController.selected.idTblHemograma}" title="#{bundle.EditTblExpedientesTitle_idTblHemograma}" >
+                        <f:selectItems value="#{tblHemogramaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblExpedientesLabel_idTblOrina}" for="idTblOrina" />
+                    <h:selectOneMenu id="idTblOrina" value="#{tblExpedientesController.selected.idTblOrina}" title="#{bundle.EditTblExpedientesTitle_idTblOrina}" >
+                        <f:selectItems value="#{tblOrinaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tblExpedientesController.update}" value="#{bundle.EditTblExpedientesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblExpedientesViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblExpedientesController.prepareList}" value="#{bundle.EditTblExpedientesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblExpedientesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

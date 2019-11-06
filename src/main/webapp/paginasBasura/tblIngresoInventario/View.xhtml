@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblIngresoInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblIngresoInventarioLabel_idIngresoInventario}"/>
+                    <h:outputText value="#{tblIngresoInventarioController.selected.idIngresoInventario}" title="#{bundle.ViewTblIngresoInventarioTitle_idIngresoInventario}"/>
+                    <h:outputText value="#{bundle.ViewTblIngresoInventarioLabel_cantidad}"/>
+                    <h:outputText value="#{tblIngresoInventarioController.selected.cantidad}" title="#{bundle.ViewTblIngresoInventarioTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewTblIngresoInventarioLabel_proveedor}"/>
+                    <h:outputText value="#{tblIngresoInventarioController.selected.proveedor}" title="#{bundle.ViewTblIngresoInventarioTitle_proveedor}"/>
+                    <h:outputText value="#{bundle.ViewTblIngresoInventarioLabel_fechaIngreso}"/>
+                    <h:outputText value="#{tblIngresoInventarioController.selected.fechaIngreso}" title="#{bundle.ViewTblIngresoInventarioTitle_fechaIngreso}"/>
+                    <h:outputText value="#{bundle.ViewTblIngresoInventarioLabel_fechaCaducidad}"/>
+                    <h:outputText value="#{tblIngresoInventarioController.selected.fechaCaducidad}" title="#{bundle.ViewTblIngresoInventarioTitle_fechaCaducidad}"/>
+                    <h:outputText value="#{bundle.ViewTblIngresoInventarioLabel_idInventario}"/>
+                    <h:outputText value="#{tblIngresoInventarioController.selected.idInventario}" title="#{bundle.ViewTblIngresoInventarioTitle_idInventario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblIngresoInventarioController.destroyAndView}" value="#{bundle.ViewTblIngresoInventarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblIngresoInventarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblIngresoInventarioController.prepareCreate}" value="#{bundle.ViewTblIngresoInventarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblIngresoInventarioController.prepareList}" value="#{bundle.ViewTblIngresoInventarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblIngresoInventarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

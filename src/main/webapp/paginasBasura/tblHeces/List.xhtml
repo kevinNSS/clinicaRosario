@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblHecesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblHecesEmpty}" rendered="#{tblHecesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblHecesController.items.rowCount > 0}">
+                    <h:outputText value="#{tblHecesController.pagination.pageFirstItem + 1}..#{tblHecesController.pagination.pageLastItem + 1}/#{tblHecesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblHecesController.previous}" value="#{bundle.Previous} #{tblHecesController.pagination.pageSize}" rendered="#{tblHecesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblHecesController.next}" value="#{bundle.Next} #{tblHecesController.pagination.pageSize}" rendered="#{tblHecesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblHecesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_idTablaHeces}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTablaHeces}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_color}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.color}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_consistencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.consistencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_mucus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mucus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_hematies}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hematies}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_leucocitos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leucocitos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_macrofagos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.macrofagos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_restosalimenticios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.restosalimenticios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_microscopicos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.microscopicos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_macroscopicos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.macroscopicos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_entamoebahistolyca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entamoebahistolyca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_entamoebacoli}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entamoebacoli}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_endolimaxnana}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endolimaxnana}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_giardiaLamblia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.giardiaLamblia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_trichomonasHominis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.trichomonasHominis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_chilomastixmesnilli}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chilomastixmesnilli}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_lodamoebabustchlli}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lodamoebabustchlli}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_otrosprotozoarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.otrosprotozoarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_ascarislumbricoides}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ascarislumbricoides}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_trichuristrichiura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.trichuristrichiura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_uncinarias}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uncinarias}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_strongyloidesestercoralis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.strongyloidesestercoralis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_enterobiusvermicularis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.enterobiusvermicularis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_taeniasp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taeniasp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_otrosmetazoarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.otrosmetazoarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblHecesTitle_observaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblHecesController.prepareView}" value="#{bundle.ListTblHecesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblHecesController.prepareEdit}" value="#{bundle.ListTblHecesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblHecesController.destroy}" value="#{bundle.ListTblHecesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblHecesController.prepareCreate}" value="#{bundle.ListTblHecesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblHecesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

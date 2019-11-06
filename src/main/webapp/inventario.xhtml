@@ -21,9 +21,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
-                <h:commandButton  style="float: right;" value="Mostrar Detalle de Inventario" action="detalleInventario?faces-redirect=true" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Agregar Producto a Inventario" action="#{tblInventarioController.mostrarFormInventario()}" rendered="#{(tblInventarioController.mostrarFormularioInventario == false) and (loginController.tipoUsuario == 'secretaria') or (tblInventarioController.mostrarFormularioInventario == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Mostrar Tabla de Inventario" action="#{tblInventarioController.mostrarTblInventario()}" rendered="#{(tblInventarioController.mostrarTablaInventario == false) and (loginController.tipoUsuario == 'secretaria') or (tblInventarioController.mostrarTablaInventario == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Producto a Inventario" action="#{tblInventarioController.mostrarFormularioInventario()}" rendered="#{(tblInventarioController.mostrarFormInventario == false) and (loginController.tipoUsuario == 'secretaria') or (tblInventarioController.mostrarFormInventario == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Mostrar Tabla de Inventario" action="#{tblInventarioController.mostrarTablaInventario()}" rendered="#{(tblInventarioController.mostrarTblInventario == false) and (loginController.tipoUsuario == 'secretaria') or (tblInventarioController.mostrarTblInventario == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE INVENTARIO -->

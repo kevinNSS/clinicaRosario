@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblOrinaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_idTblOrina}"/>
+                    <h:outputText value="#{tblOrinaController.selected.idTblOrina}" title="#{bundle.ViewTblOrinaTitle_idTblOrina}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_color}"/>
+                    <h:outputText value="#{tblOrinaController.selected.color}" title="#{bundle.ViewTblOrinaTitle_color}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_aspecto}"/>
+                    <h:outputText value="#{tblOrinaController.selected.aspecto}" title="#{bundle.ViewTblOrinaTitle_aspecto}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_densidad}"/>
+                    <h:outputText value="#{tblOrinaController.selected.densidad}" title="#{bundle.ViewTblOrinaTitle_densidad}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_PH}"/>
+                    <h:outputText value="#{tblOrinaController.selected.PH}" title="#{bundle.ViewTblOrinaTitle_PH}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_proteina}"/>
+                    <h:outputText value="#{tblOrinaController.selected.proteina}" title="#{bundle.ViewTblOrinaTitle_proteina}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_glucosa}"/>
+                    <h:outputText value="#{tblOrinaController.selected.glucosa}" title="#{bundle.ViewTblOrinaTitle_glucosa}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_sangreoculta}"/>
+                    <h:outputText value="#{tblOrinaController.selected.sangreoculta}" title="#{bundle.ViewTblOrinaTitle_sangreoculta}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_cuerposcetonicos}"/>
+                    <h:outputText value="#{tblOrinaController.selected.cuerposcetonicos}" title="#{bundle.ViewTblOrinaTitle_cuerposcetonicos}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_urobilinogeno}"/>
+                    <h:outputText value="#{tblOrinaController.selected.urobilinogeno}" title="#{bundle.ViewTblOrinaTitle_urobilinogeno}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_bilirrubina}"/>
+                    <h:outputText value="#{tblOrinaController.selected.bilirrubina}" title="#{bundle.ViewTblOrinaTitle_bilirrubina}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_nitritos}"/>
+                    <h:outputText value="#{tblOrinaController.selected.nitritos}" title="#{bundle.ViewTblOrinaTitle_nitritos}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_hemoglobina}"/>
+                    <h:outputText value="#{tblOrinaController.selected.hemoglobina}" title="#{bundle.ViewTblOrinaTitle_hemoglobina}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_esterasaleucocitaria}"/>
+                    <h:outputText value="#{tblOrinaController.selected.esterasaleucocitaria}" title="#{bundle.ViewTblOrinaTitle_esterasaleucocitaria}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_granulosos}"/>
+                    <h:outputText value="#{tblOrinaController.selected.granulosos}" title="#{bundle.ViewTblOrinaTitle_granulosos}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_leucocitarios}"/>
+                    <h:outputText value="#{tblOrinaController.selected.leucocitarios}" title="#{bundle.ViewTblOrinaTitle_leucocitarios}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_hematicos}"/>
+                    <h:outputText value="#{tblOrinaController.selected.hematicos}" title="#{bundle.ViewTblOrinaTitle_hematicos}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_hialinos}"/>
+                    <h:outputText value="#{tblOrinaController.selected.hialinos}" title="#{bundle.ViewTblOrinaTitle_hialinos}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_fechaRegistro}"/>
+                    <h:outputText value="#{tblOrinaController.selected.fechaRegistro}" title="#{bundle.ViewTblOrinaTitle_fechaRegistro}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_otros}"/>
+                    <h:outputText value="#{tblOrinaController.selected.otros}" title="#{bundle.ViewTblOrinaTitle_otros}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_hematies}"/>
+                    <h:outputText value="#{tblOrinaController.selected.hematies}" title="#{bundle.ViewTblOrinaTitle_hematies}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_leucocitos}"/>
+                    <h:outputText value="#{tblOrinaController.selected.leucocitos}" title="#{bundle.ViewTblOrinaTitle_leucocitos}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_celulasepteliales}"/>
+                    <h:outputText value="#{tblOrinaController.selected.celulasepteliales}" title="#{bundle.ViewTblOrinaTitle_celulasepteliales}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_cristales}"/>
+                    <h:outputText value="#{tblOrinaController.selected.cristales}" title="#{bundle.ViewTblOrinaTitle_cristales}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_parasitologico}"/>
+                    <h:outputText value="#{tblOrinaController.selected.parasitologico}" title="#{bundle.ViewTblOrinaTitle_parasitologico}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_observaciones}"/>
+                    <h:outputText value="#{tblOrinaController.selected.observaciones}" title="#{bundle.ViewTblOrinaTitle_observaciones}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_pH}"/>
+                    <h:outputText value="#{tblOrinaController.selected.pH}" title="#{bundle.ViewTblOrinaTitle_pH}"/>
+                    <h:outputText value="#{bundle.ViewTblOrinaLabel_paciente}"/>
+                    <h:outputText value="#{tblOrinaController.selected.paciente}" title="#{bundle.ViewTblOrinaTitle_paciente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblOrinaController.destroyAndView}" value="#{bundle.ViewTblOrinaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblOrinaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblOrinaController.prepareCreate}" value="#{bundle.ViewTblOrinaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblOrinaController.prepareList}" value="#{bundle.ViewTblOrinaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblOrinaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

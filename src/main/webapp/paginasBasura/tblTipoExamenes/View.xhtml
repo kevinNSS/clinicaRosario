@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblTipoExamenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblTipoExamenesLabel_idTipoExamen}"/>
+                    <h:outputText value="#{tblTipoExamenesController.selected.idTipoExamen}" title="#{bundle.ViewTblTipoExamenesTitle_idTipoExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblTipoExamenesLabel_nombreTipoExamen}"/>
+                    <h:outputText value="#{tblTipoExamenesController.selected.nombreTipoExamen}" title="#{bundle.ViewTblTipoExamenesTitle_nombreTipoExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblTipoExamenesLabel_descripcionTipoExamen}"/>
+                    <h:outputText value="#{tblTipoExamenesController.selected.descripcionTipoExamen}" title="#{bundle.ViewTblTipoExamenesTitle_descripcionTipoExamen}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblTipoExamenesController.destroyAndView}" value="#{bundle.ViewTblTipoExamenesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblTipoExamenesEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblTipoExamenesController.prepareCreate}" value="#{bundle.ViewTblTipoExamenesCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblTipoExamenesController.prepareList}" value="#{bundle.ViewTblTipoExamenesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblTipoExamenesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

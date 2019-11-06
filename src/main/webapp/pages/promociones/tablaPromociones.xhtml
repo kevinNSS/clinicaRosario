@@ -14,7 +14,7 @@
     <h:body>
         <ui:composition>
             <div class="container">
-                <h:form id="formTablaExamen" rendered="#{tblPromocionesController.mostrarTablaProm == true}" style="text-align: center;">
+                <h:form id="formTablaExamen" rendered="#{tblPromocionesController.mostrarTblPromocion == true}" style="text-align: center;">
                     <p:dataTable id="tablaExamenes" value="#{tblPromocionesController.allPromociones}" var="promociones">
                         <p:column headerText="Nombre de la Promoción">
                             <h:outputLabel id="nombreProm" value="#{promociones.nombrePromocion}"/>
@@ -35,28 +35,28 @@
                 <p:dialog id="tblInfoPromocion" header="Información de promoción" widgetVar="infoDialog" modal="true">
                     <h:panelGrid columns="2">
                         <b>Nombre de la promoción: </b> 
-                        #{tblPromocionesController.current.nombrePromocion}<br/><br/>
+                        #{tblPromocionesController.selected.nombrePromocion}<br/><br/>
 
                         <b>Examen 1: </b>
-                        #{tblPromocionesController.current.examen1.nombreExamen}<br/><br/>
+                        #{tblPromocionesController.selected.examen1.nombreExamen}<br/><br/>
 
                         <b>Examen 2: </b>
-                        #{tblPromocionesController.current.examen2.nombreExamen}<br/><br/>
+                        #{tblPromocionesController.selected.examen2.nombreExamen}<br/><br/>
 
                         <b>Examen 3: </b>
-                        #{tblPromocionesController.current.examen3.nombreExamen}<br/><br/>
+                        #{tblPromocionesController.selected.examen3.nombreExamen}<br/><br/>
 
                         <b>Fecha de inicio de promoción: </b>
-                        #{tblPromocionesController.current.fechaInicio}<br/><br/>
+                        #{tblPromocionesController.selected.fechaInicio}<br/><br/>
 
                         <b>Fecha de finalización de promoción: </b>
-                        #{tblPromocionesController.current.fechaFinalizacion}<br/><br/>
+                        #{tblPromocionesController.selected.fechaFinalizacion}<br/><br/>
 
                         <b>Total a Pagar por la promoción: </b>
-                        #{tblPromocionesController.current.totalPagar}<br/><br/>
+                        #{tblPromocionesController.selected.totalPagar}<br/><br/>
 
                         <b>Estado de la promoción: </b>
-                        #{tblPromocionesController.current.estado.nombreEstado}<br/><br/>
+                        #{tblPromocionesController.selected.estado.nombreEstado}<br/><br/>
                     </h:panelGrid>
                 </p:dialog>  
             </div>

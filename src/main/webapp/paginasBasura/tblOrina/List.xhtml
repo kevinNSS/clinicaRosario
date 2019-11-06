@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblOrinaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblOrinaEmpty}" rendered="#{tblOrinaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblOrinaController.items.rowCount > 0}">
+                    <h:outputText value="#{tblOrinaController.pagination.pageFirstItem + 1}..#{tblOrinaController.pagination.pageLastItem + 1}/#{tblOrinaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblOrinaController.previous}" value="#{bundle.Previous} #{tblOrinaController.pagination.pageSize}" rendered="#{tblOrinaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblOrinaController.next}" value="#{bundle.Next} #{tblOrinaController.pagination.pageSize}" rendered="#{tblOrinaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblOrinaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_idTblOrina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTblOrina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_color}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.color}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_aspecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aspecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_densidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.densidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_PH}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.PH}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_proteina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proteina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_glucosa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.glucosa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_sangreoculta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sangreoculta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_cuerposcetonicos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cuerposcetonicos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_urobilinogeno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urobilinogeno}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_bilirrubina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bilirrubina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_nitritos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nitritos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_hemoglobina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hemoglobina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_esterasaleucocitaria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.esterasaleucocitaria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_granulosos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.granulosos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_leucocitarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leucocitarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_hematicos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hematicos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_hialinos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hialinos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_otros}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.otros}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_hematies}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hematies}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_leucocitos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leucocitos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_celulasepteliales}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.celulasepteliales}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_cristales}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cristales}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_parasitologico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parasitologico}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_observaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_pH}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pH}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblOrinaTitle_paciente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paciente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblOrinaController.prepareView}" value="#{bundle.ListTblOrinaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblOrinaController.prepareEdit}" value="#{bundle.ListTblOrinaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblOrinaController.destroy}" value="#{bundle.ListTblOrinaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblOrinaController.prepareCreate}" value="#{bundle.ListTblOrinaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblOrinaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

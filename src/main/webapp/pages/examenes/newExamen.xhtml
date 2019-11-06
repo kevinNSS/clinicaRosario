@@ -24,7 +24,7 @@
                             <h:outputLabel for="tipoExamen" value="Tipo de Examen:"/>
                             <h:selectOneMenu id="tipoExamen" class="form-control" value="#{tblExamenesController.selected.tipoExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblExamenesController.allTipoExamen}" var="tipoExamen" itemLabel="#{tipoExamen.nombreTipoExamen}" itemValue="#{tipoExamen}"/>
+                                <f:selectItems value="#{tblTipoExamenesController.allTipoExamen}" var="tipoExamen" itemLabel="#{tipoExamen.nombreTipoExamen}" itemValue="#{tipoExamen}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
@@ -35,51 +35,51 @@
                             <h:outputLabel for="estadoExamen" value="Estado del examen:"/>
                             <h:selectOneMenu id="estadoExamen" class="form-control" value="#{tblExamenesController.selected.estadoExamen}" required="true" requiredMessage="Es necesario llenar el estado del examen">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblExamenesController.estadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
+                                <f:selectItems value="#{tblExamenesController.allEstadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-12">
                             <h:outputLabel for="descripcion" value="Descripción:"/>
                             <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{tblExamenesController.selected.descripcionExamen}" onkeypress="return validanumle(event)"/>
                         </div>
-                        <script type='text/javascript'></script>
-                        <script type="text/javascript">
-                            function validares(e) {
-                                tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla === 8)
-                                    return true;
-                                patron = /[A-Za-z\s\ñ\Ñ]/;
-                                te = String.fromCharCode(tecla);
-                                return patron.test(te);
-                            }
-                        </script>
-                        <script type="text/javascript">
-                            function valida(e) {
-                                tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla === 8)
-                                    return true;
-                                patron = /[0-9\.]/;
-                                te = String.fromCharCode(tecla);
-                                return patron.test(te);
-                            }
-                        </script>
-                        <script type="text/javascript">
-                            function validanumle(e) {
-                                tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla === 8)
-                                    return true;
-                                patron = /[A-Za-z0-9\s\ñ\Ñ]/;
-                                te = String.fromCharCode(tecla);
-                                return patron.test(te);
-                            }
-                        </script>
                     </div>
                     <br/>
-                    <h:commandButton  value="Ingresar" actionListener="#{tblExamenesController.ingresarExamen()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblExamenesController.create()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/>
                 <br/><br/>
             </h:form>
+            <script type='text/javascript'></script>
+            <script type="text/javascript">
+                function validares(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z\s\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type="text/javascript">
+                function valida(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[0-9\.]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type="text/javascript">
+                function validanumle(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z0-9\s\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
         </ui:composition>
     </h:body>
 </html>

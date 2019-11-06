@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblExamenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblExamenesEmpty}" rendered="#{tblExamenesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblExamenesController.items.rowCount > 0}">
+                    <h:outputText value="#{tblExamenesController.pagination.pageFirstItem + 1}..#{tblExamenesController.pagination.pageLastItem + 1}/#{tblExamenesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblExamenesController.previous}" value="#{bundle.Previous} #{tblExamenesController.pagination.pageSize}" rendered="#{tblExamenesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblExamenesController.next}" value="#{bundle.Next} #{tblExamenesController.pagination.pageSize}" rendered="#{tblExamenesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblExamenesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblExamenesTitle_idExamen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idExamen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblExamenesTitle_nombreExamen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreExamen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblExamenesTitle_descripcionExamen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionExamen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblExamenesTitle_precioExamen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioExamen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblExamenesTitle_estadoExamen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoExamen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblExamenesTitle_tipoExamen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoExamen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblExamenesController.prepareView}" value="#{bundle.ListTblExamenesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblExamenesController.prepareEdit}" value="#{bundle.ListTblExamenesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblExamenesController.destroy}" value="#{bundle.ListTblExamenesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblExamenesController.prepareCreate}" value="#{bundle.ListTblExamenesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblExamenesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -6,15 +6,13 @@
 package clinicaRosario.session;
 
 import clinicaRosario.entity.TblExamenes;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Stateless
 public class TblExamenesFacade extends AbstractFacade<TblExamenes> {
@@ -30,18 +28,5 @@ public class TblExamenesFacade extends AbstractFacade<TblExamenes> {
     public TblExamenesFacade() {
         super(TblExamenes.class);
     }
-
-    public List<TblExamenes> findAllExamenesByEstado() {
-        List<TblExamenes> lista = null;
-        String consulta;
-        try {
-            consulta = "FROM TblExamenes e WHERE e.estadoExamen.nombreEstado = ?1";
-            Query query = em.createQuery(consulta);
-            query.setParameter(1, "ACTIVO");
-            lista = query.getResultList();
-        } catch (Exception e) {
-
-        }
-        return lista;
-    }
+    
 }

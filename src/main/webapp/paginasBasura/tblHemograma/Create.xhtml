@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTblHemogramaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_idTblHemograma}" for="idTblHemograma" />
+                    <h:inputText id="idTblHemograma" value="#{tblHemogramaController.selected.idTblHemograma}" title="#{bundle.CreateTblHemogramaTitle_idTblHemograma}" required="true" requiredMessage="#{bundle.CreateTblHemogramaRequiredMessage_idTblHemograma}"/>
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_globulosrojos}" for="globulosrojos" />
+                    <h:inputText id="globulosrojos" value="#{tblHemogramaController.selected.globulosrojos}" title="#{bundle.CreateTblHemogramaTitle_globulosrojos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_hemoglobina}" for="hemoglobina" />
+                    <h:inputText id="hemoglobina" value="#{tblHemogramaController.selected.hemoglobina}" title="#{bundle.CreateTblHemogramaTitle_hemoglobina}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_hematocrito}" for="hematocrito" />
+                    <h:inputText id="hematocrito" value="#{tblHemogramaController.selected.hematocrito}" title="#{bundle.CreateTblHemogramaTitle_hematocrito}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_vcm}" for="vcm" />
+                    <h:inputText id="vcm" value="#{tblHemogramaController.selected.vcm}" title="#{bundle.CreateTblHemogramaTitle_vcm}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_hcm}" for="hcm" />
+                    <h:inputText id="hcm" value="#{tblHemogramaController.selected.hcm}" title="#{bundle.CreateTblHemogramaTitle_hcm}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_chcm}" for="chcm" />
+                    <h:inputText id="chcm" value="#{tblHemogramaController.selected.chcm}" title="#{bundle.CreateTblHemogramaTitle_chcm}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_leucocitos}" for="leucocitos" />
+                    <h:inputText id="leucocitos" value="#{tblHemogramaController.selected.leucocitos}" title="#{bundle.CreateTblHemogramaTitle_leucocitos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_neutrofilossegmentados}" for="neutrofilossegmentados" />
+                    <h:inputText id="neutrofilossegmentados" value="#{tblHemogramaController.selected.neutrofilossegmentados}" title="#{bundle.CreateTblHemogramaTitle_neutrofilossegmentados}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_neutrofilosenbanda}" for="neutrofilosenbanda" />
+                    <h:inputText id="neutrofilosenbanda" value="#{tblHemogramaController.selected.neutrofilosenbanda}" title="#{bundle.CreateTblHemogramaTitle_neutrofilosenbanda}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_linfocitos}" for="linfocitos" />
+                    <h:inputText id="linfocitos" value="#{tblHemogramaController.selected.linfocitos}" title="#{bundle.CreateTblHemogramaTitle_linfocitos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_monocitos}" for="monocitos" />
+                    <h:inputText id="monocitos" value="#{tblHemogramaController.selected.monocitos}" title="#{bundle.CreateTblHemogramaTitle_monocitos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_eosinofilos}" for="eosinofilos" />
+                    <h:inputText id="eosinofilos" value="#{tblHemogramaController.selected.eosinofilos}" title="#{bundle.CreateTblHemogramaTitle_eosinofilos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_basofilos}" for="basofilos" />
+                    <h:inputText id="basofilos" value="#{tblHemogramaController.selected.basofilos}" title="#{bundle.CreateTblHemogramaTitle_basofilos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_recuentoplaquetas}" for="recuentoplaquetas" />
+                    <h:inputText id="recuentoplaquetas" value="#{tblHemogramaController.selected.recuentoplaquetas}" title="#{bundle.CreateTblHemogramaTitle_recuentoplaquetas}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_recuentoreticulocitos}" for="recuentoreticulocitos" />
+                    <h:inputText id="recuentoreticulocitos" value="#{tblHemogramaController.selected.recuentoreticulocitos}" title="#{bundle.CreateTblHemogramaTitle_recuentoreticulocitos}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_eritrosedimentacion}" for="eritrosedimentacion" />
+                    <h:inputText id="eritrosedimentacion" value="#{tblHemogramaController.selected.eritrosedimentacion}" title="#{bundle.CreateTblHemogramaTitle_eritrosedimentacion}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_gotagruesa}" for="gotagruesa" />
+                    <h:inputText id="gotagruesa" value="#{tblHemogramaController.selected.gotagruesa}" title="#{bundle.CreateTblHemogramaTitle_gotagruesa}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_otrosHemogramas}" for="otrosHemogramas" />
+                    <h:inputText id="otrosHemogramas" value="#{tblHemogramaController.selected.otrosHemogramas}" title="#{bundle.CreateTblHemogramaTitle_otrosHemogramas}" />
+                    <h:outputLabel value="#{bundle.CreateTblHemogramaLabel_oservaciones}" for="oservaciones" />
+                    <h:inputText id="oservaciones" value="#{tblHemogramaController.selected.oservaciones}" title="#{bundle.CreateTblHemogramaTitle_oservaciones}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblHemogramaController.create}" value="#{bundle.CreateTblHemogramaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tblHemogramaController.prepareList}" value="#{bundle.CreateTblHemogramaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTblHemogramaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

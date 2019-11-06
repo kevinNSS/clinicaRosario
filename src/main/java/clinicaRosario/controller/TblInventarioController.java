@@ -6,12 +6,13 @@ import clinicaRosario.controller.util.PaginationHelper;
 import clinicaRosario.session.TblInventarioFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -19,11 +20,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Named("tblInventarioController")
 @SessionScoped
 public class TblInventarioController implements Serializable {
@@ -39,8 +36,24 @@ public class TblInventarioController implements Serializable {
     private int n2;
     private int n3;
     private int n4;
-    private Boolean mostrarFormularioInventario = false;
-    private Boolean mostrarTablaInventario = true;
+    private Boolean mostrarFormInventario = false;
+    private Boolean mostrarTblInventario = true;
+
+    public Boolean getMostrarFormInventario() {
+        return mostrarFormInventario;
+    }
+
+    public void setMostrarFormInventario(Boolean mostrarFormInventario) {
+        this.mostrarFormInventario = mostrarFormInventario;
+    }
+
+    public Boolean getMostrarTblInventario() {
+        return mostrarTblInventario;
+    }
+
+    public void setMostrarTblInventario(Boolean mostrarTblInventario) {
+        this.mostrarTblInventario = mostrarTblInventario;
+    }
 
     public TblInventarioController() {
     }
@@ -51,28 +64,6 @@ public class TblInventarioController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
-    }
-    
-     public void mostrarFormInventario(){
-        mostrarFormularioInventario = true;
-        mostrarTablaInventario = false;
-        current = new TblInventario();
-    }
-    
-    public void mostrarTblInventario(){
-        mostrarFormularioInventario = false;
-        mostrarTablaInventario = true;
-    }
-    
-    public void crearInventario(){
-        n1 = numero.nextInt(10);
-        n2 = numero.nextInt(10);
-        n3 = numero.nextInt(10);
-        n4 = numero.nextInt(10);
-        current.setIdInventario(current.getNombreProducto().substring(0, 1).toUpperCase() + current.getNombreProducto().substring(1, 2).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
-        ejbFacade.create(current);
-        current = new TblInventario();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
 
     private TblInventarioFacade getFacade() {
@@ -113,16 +104,32 @@ public class TblInventarioController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public void mostrarFormularioInventario(){
+        mostrarFormInventario = true;
+        mostrarTblInventario = false;
+        current = new TblInventario();
+    }
+    
+    public void mostrarTablaInventario(){
+        mostrarFormInventario = false;
+        mostrarTblInventario = true;
+    }
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblInventarioCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public void create() {
+        n1 = numero.nextInt(10);
+        n2 = numero.nextInt(10);
+        n3 = numero.nextInt(10);
+        n4 = numero.nextInt(10);
+        current.setIdInventario(current.getNombreProducto().substring(0, 1).toUpperCase() + current.getNombreProducto().substring(current.getNombreProducto().length() -1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
+        current.setStockProducto(0);
+        ejbFacade.create(current);
+        current = new TblInventario();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+    }
+    
+    public List<TblInventario> getAllInventario(){
+       return ejbFacade.findAll();
     }
 
     public String prepareEdit() {

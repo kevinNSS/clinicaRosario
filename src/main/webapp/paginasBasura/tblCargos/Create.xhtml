@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTblCargosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTblCargosLabel_idCargo}" for="idCargo" />
+                    <h:inputText id="idCargo" value="#{tblCargosController.selected.idCargo}" title="#{bundle.CreateTblCargosTitle_idCargo}" required="true" requiredMessage="#{bundle.CreateTblCargosRequiredMessage_idCargo}"/>
+                    <h:outputLabel value="#{bundle.CreateTblCargosLabel_nombreCargo}" for="nombreCargo" />
+                    <h:inputText id="nombreCargo" value="#{tblCargosController.selected.nombreCargo}" title="#{bundle.CreateTblCargosTitle_nombreCargo}" required="true" requiredMessage="#{bundle.CreateTblCargosRequiredMessage_nombreCargo}"/>
+                    <h:outputLabel value="#{bundle.CreateTblCargosLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{tblCargosController.selected.descripcion}" title="#{bundle.CreateTblCargosTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateTblCargosRequiredMessage_descripcion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblCargosController.create}" value="#{bundle.CreateTblCargosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tblCargosController.prepareList}" value="#{bundle.CreateTblCargosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTblCargosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

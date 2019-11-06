@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Stateless
 public class TblEmpleadosFacade extends AbstractFacade<TblEmpleados> {
@@ -30,7 +30,7 @@ public class TblEmpleadosFacade extends AbstractFacade<TblEmpleados> {
     public TblEmpleadosFacade() {
         super(TblEmpleados.class);
     }
-    
+
     public TblEmpleados iniciarSesion(TblEmpleados us) {
         TblEmpleados tblEmpleados = null;
         String consulta;
@@ -49,5 +49,4 @@ public class TblEmpleadosFacade extends AbstractFacade<TblEmpleados> {
         }
         return tblEmpleados;
     }
-    
 }

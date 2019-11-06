@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblPacientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_idPaciente}" for="idPaciente" />
+                    <h:inputText id="idPaciente" value="#{tblPacientesController.selected.idPaciente}" title="#{bundle.EditTblPacientesTitle_idPaciente}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_idPaciente}"/>
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_primerNombrePaciente}" for="primerNombrePaciente" />
+                    <h:inputText id="primerNombrePaciente" value="#{tblPacientesController.selected.primerNombrePaciente}" title="#{bundle.EditTblPacientesTitle_primerNombrePaciente}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_primerNombrePaciente}"/>
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_segundoNombrePaciente}" for="segundoNombrePaciente" />
+                    <h:inputText id="segundoNombrePaciente" value="#{tblPacientesController.selected.segundoNombrePaciente}" title="#{bundle.EditTblPacientesTitle_segundoNombrePaciente}" />
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_primerApellidoPaciente}" for="primerApellidoPaciente" />
+                    <h:inputText id="primerApellidoPaciente" value="#{tblPacientesController.selected.primerApellidoPaciente}" title="#{bundle.EditTblPacientesTitle_primerApellidoPaciente}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_primerApellidoPaciente}"/>
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_segundoApellidoPaciente}" for="segundoApellidoPaciente" />
+                    <h:inputText id="segundoApellidoPaciente" value="#{tblPacientesController.selected.segundoApellidoPaciente}" title="#{bundle.EditTblPacientesTitle_segundoApellidoPaciente}" />
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_direccionPaciente}" for="direccionPaciente" />
+                    <h:inputText id="direccionPaciente" value="#{tblPacientesController.selected.direccionPaciente}" title="#{bundle.EditTblPacientesTitle_direccionPaciente}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_direccionPaciente}"/>
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_telPaciente}" for="telPaciente" />
+                    <h:inputText id="telPaciente" value="#{tblPacientesController.selected.telPaciente}" title="#{bundle.EditTblPacientesTitle_telPaciente}" />
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_correoPaciente}" for="correoPaciente" />
+                    <h:inputText id="correoPaciente" value="#{tblPacientesController.selected.correoPaciente}" title="#{bundle.EditTblPacientesTitle_correoPaciente}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_correoPaciente}"/>
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_telResponsable}" for="telResponsable" />
+                    <h:inputText id="telResponsable" value="#{tblPacientesController.selected.telResponsable}" title="#{bundle.EditTblPacientesTitle_telResponsable}" />
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_sexo}" for="sexo" />
+                    <h:inputText id="sexo" value="#{tblPacientesController.selected.sexo}" title="#{bundle.EditTblPacientesTitle_sexo}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_sexo}"/>
+                    <h:outputLabel value="#{bundle.EditTblPacientesLabel_fechaNacimiento}" for="fechaNacimiento" />
+                    <h:inputText id="fechaNacimiento" value="#{tblPacientesController.selected.fechaNacimiento}" title="#{bundle.EditTblPacientesTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditTblPacientesRequiredMessage_fechaNacimiento}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tblPacientesController.update}" value="#{bundle.EditTblPacientesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblPacientesViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblPacientesController.prepareList}" value="#{bundle.EditTblPacientesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblPacientesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

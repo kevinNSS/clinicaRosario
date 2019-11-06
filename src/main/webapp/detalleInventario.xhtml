@@ -20,7 +20,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
-                <h:commandButton  style="float: right;" value="Mostrar Inventario" action="inventario?faces-redirect=true" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Producto a Inventario" action="#{tblIngresoInventarioController.mostrarFormularioDetalle()}" rendered="#{(tblIngresoInventarioController.mostrarFormInventarioDetalle == false) and (loginController.tipoUsuario == 'secretaria') or (tblIngresoInventarioController.mostrarFormInventarioDetalle == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Mostrar Tabla de Inventario" action="#{tblIngresoInventarioController.mostrarTablaDetalle()}" rendered="#{(tblIngresoInventarioController.mostrarTblInventarioDetalle == false) and (loginController.tipoUsuario == 'secretaria') or (tblIngresoInventarioController.mostrarTblInventarioDetalle == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DEL DETALLE DE INVENTARIO -->

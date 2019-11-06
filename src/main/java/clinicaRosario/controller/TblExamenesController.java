@@ -4,15 +4,15 @@ import clinicaRosario.entity.TblExamenes;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
 import clinicaRosario.entity.TblEstados;
-import clinicaRosario.entity.TblTipoExamenes;
 import clinicaRosario.session.TblExamenesFacade;
-import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -21,14 +21,10 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.faces.view.ViewScoped;
-import lombok.Getter;
-import lombok.Setter;
+import sun.security.util.Length;
 
-@Getter
-@Setter
 @Named("tblExamenesController")
-@ViewScoped
+@SessionScoped
 public class TblExamenesController implements Serializable {
 
     private TblExamenes current;
@@ -37,18 +33,38 @@ public class TblExamenesController implements Serializable {
     private clinicaRosario.session.TblExamenesFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-
+    private Boolean mostrarTblExamen = true;
+    private Boolean mostrarFormExamen = false;
+    @EJB
+    private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
+    private String tipoExamen = "examenes";
     Random numero = new Random();
     private int n1;
     private int n2;
-    private Boolean mostrarTablaExamen = true;
-    private Boolean mostrarFormExamen = false;
-    private String tipoEstado = "examenes";
 
-    @EJB
-    private clinicaRosario.session.TblTipoExamenesFacade tblTipoExamenesFacade;
-    @EJB
-    private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
+    public Boolean getMostrarTblExamen() {
+        return mostrarTblExamen;
+    }
+
+    public void setMostrarTblExamen(Boolean mostrarTblExamen) {
+        this.mostrarTblExamen = mostrarTblExamen;
+    }
+
+    public Boolean getMostrarFormExamen() {
+        return mostrarFormExamen;
+    }
+
+    public void setMostrarFormExamen(Boolean mostrarFormExamen) {
+        this.mostrarFormExamen = mostrarFormExamen;
+    }
+
+    public String getTipoExamen() {
+        return tipoExamen;
+    }
+
+    public void setTipoExamen(String tipoExamen) {
+        this.tipoExamen = tipoExamen;
+    }
 
     public TblExamenesController() {
     }
@@ -82,44 +98,98 @@ public class TblExamenesController implements Serializable {
         }
         return pagination;
     }
-
-    public void nuevoExamen() {
-        current = new TblExamenes();
-        mostrarFormExamen = true;
-        mostrarTablaExamen = false;
-        tblEstadosFacade.finAllByTipoEstado(tipoEstado);
-        tblTipoExamenesFacade.findAll();
-    }
-
-    public void mostrarTablaDeExamen() {
+    
+    public void mostrarTablaDeExamen(){
         mostrarFormExamen = false;
-        mostrarTablaExamen = true;
+        mostrarTblExamen = true;
     }
-
-    public void ingresarExamen() throws IOException {
-        try {
-            n1 = numero.nextInt(10);
-            n2 = numero.nextInt(10);
-            current.setIdExamen(current.getNombreExamen().substring(0, 1).toUpperCase() + current.getNombreExamen().substring(current.getNombreExamen().length() - 1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2));
-            ejbFacade.create(current);
-            current = new TblExamenes();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos ingresados Exitosamente!"));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Necesita llenar los campos requeridos!"));
-        }
-
+    
+    public void mostrarFormularioExamen(){
+        mostrarFormExamen = true;
+        mostrarTblExamen = false;
+        current = new TblExamenes();
     }
-
-    public List<TblEstados> getEstadosExamenes() {
-        return tblEstadosFacade.finAllByTipoEstado(tipoEstado);
-    }
-
-    public List<TblTipoExamenes> getAllTipoExamen() {
-        return tblTipoExamenesFacade.findAll();
-    }
-
-    public List<TblExamenes> getAll() {
+    
+    public List<TblExamenes> getAll(){
         return ejbFacade.findAll();
+    }
+    
+    public List<TblEstados> getAllEstadosExamenes(){
+        return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
+    }
+
+    public String prepareList() {
+        recreateModel();
+        return "List";
+    }
+
+    public String prepareView() {
+        current = (TblExamenes) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+
+    public String prepareCreate() {
+        current = new TblExamenes();
+        selectedItemIndex = -1;
+        return "Create";
+    }
+
+    public void create() {
+        n1 = numero.nextInt(10);
+        n2 = numero.nextInt(10);
+        current.setIdExamen(current.getNombreExamen().substring(0, 1).toUpperCase() + current.getNombreExamen().substring(current.getNombreExamen().length() -1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2));
+        ejbFacade.create(current);
+        current = new TblExamenes();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+    }
+
+    public String prepareEdit() {
+        current = (TblExamenes) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "Edit";
+    }
+
+    public String update() {
+        try {
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblExamenesUpdated"));
+            return "View";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String destroy() {
+        current = (TblExamenes) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        return "List";
+    }
+
+    public String destroyAndView() {
+        performDestroy();
+        recreateModel();
+        updateCurrentItem();
+        if (selectedItemIndex >= 0) {
+            return "View";
+        } else {
+            // all items were removed - go back to list
+            recreateModel();
+            return "List";
+        }
+    }
+
+    private void performDestroy() {
+        try {
+            getFacade().remove(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblExamenesDeleted"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
     }
 
     private void updateCurrentItem() {

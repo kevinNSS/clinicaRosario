@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Stateless
 public class TblEstadosFacade extends AbstractFacade<TblEstados> {
@@ -39,5 +39,4 @@ public class TblEstadosFacade extends AbstractFacade<TblEstados> {
         List<TblEstados> lista = query.getResultList();
         return lista;
     }
-
 }

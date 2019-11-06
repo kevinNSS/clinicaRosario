@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Stateless
 public class TblCargosFacade extends AbstractFacade<TblCargos> {
@@ -27,6 +27,6 @@ public class TblCargosFacade extends AbstractFacade<TblCargos> {
 
     public TblCargosFacade() {
         super(TblCargos.class);
-    }        
+    }
     
 }

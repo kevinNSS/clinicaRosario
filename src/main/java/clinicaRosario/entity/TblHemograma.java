@@ -6,7 +6,6 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,15 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Entity
 @Table(name = "tbl_hemograma")
@@ -115,8 +112,6 @@ public class TblHemograma implements Serializable {
     @Size(max = 50)
     @Column(name = "oservaciones")
     private String oservaciones;
-    @OneToMany(mappedBy = "idTblHemograma")
-    private Collection<TblExpedientes> tblExpedientesCollection;
 
     public TblHemograma() {
     }
@@ -283,15 +278,6 @@ public class TblHemograma implements Serializable {
 
     public void setOservaciones(String oservaciones) {
         this.oservaciones = oservaciones;
-    }
-
-    @XmlTransient
-    public Collection<TblExpedientes> getTblExpedientesCollection() {
-        return tblExpedientesCollection;
-    }
-
-    public void setTblExpedientesCollection(Collection<TblExpedientes> tblExpedientesCollection) {
-        this.tblExpedientesCollection = tblExpedientesCollection;
     }
 
     @Override

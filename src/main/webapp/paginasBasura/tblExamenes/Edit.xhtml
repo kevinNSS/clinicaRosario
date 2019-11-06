@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblExamenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblExamenesLabel_idExamen}" for="idExamen" />
+                    <h:inputText id="idExamen" value="#{tblExamenesController.selected.idExamen}" title="#{bundle.EditTblExamenesTitle_idExamen}" required="true" requiredMessage="#{bundle.EditTblExamenesRequiredMessage_idExamen}"/>
+                    <h:outputLabel value="#{bundle.EditTblExamenesLabel_nombreExamen}" for="nombreExamen" />
+                    <h:inputText id="nombreExamen" value="#{tblExamenesController.selected.nombreExamen}" title="#{bundle.EditTblExamenesTitle_nombreExamen}" required="true" requiredMessage="#{bundle.EditTblExamenesRequiredMessage_nombreExamen}"/>
+                    <h:outputLabel value="#{bundle.EditTblExamenesLabel_descripcionExamen}" for="descripcionExamen" />
+                    <h:inputText id="descripcionExamen" value="#{tblExamenesController.selected.descripcionExamen}" title="#{bundle.EditTblExamenesTitle_descripcionExamen}" required="true" requiredMessage="#{bundle.EditTblExamenesRequiredMessage_descripcionExamen}"/>
+                    <h:outputLabel value="#{bundle.EditTblExamenesLabel_precioExamen}" for="precioExamen" />
+                    <h:inputText id="precioExamen" value="#{tblExamenesController.selected.precioExamen}" title="#{bundle.EditTblExamenesTitle_precioExamen}" required="true" requiredMessage="#{bundle.EditTblExamenesRequiredMessage_precioExamen}"/>
+                    <h:outputLabel value="#{bundle.EditTblExamenesLabel_estadoExamen}" for="estadoExamen" />
+                    <h:selectOneMenu id="estadoExamen" value="#{tblExamenesController.selected.estadoExamen}" title="#{bundle.EditTblExamenesTitle_estadoExamen}" >
+                        <f:selectItems value="#{tblEstadosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTblExamenesLabel_tipoExamen}" for="tipoExamen" />
+                    <h:selectOneMenu id="tipoExamen" value="#{tblExamenesController.selected.tipoExamen}" title="#{bundle.EditTblExamenesTitle_tipoExamen}" >
+                        <f:selectItems value="#{tblTipoExamenesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tblExamenesController.update}" value="#{bundle.EditTblExamenesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblExamenesViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblExamenesController.prepareList}" value="#{bundle.EditTblExamenesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblExamenesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

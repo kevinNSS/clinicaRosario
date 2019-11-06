@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTblEstadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTblEstadosLabel_idEstado}" for="idEstado" />
+                    <h:inputText id="idEstado" value="#{tblEstadosController.selected.idEstado}" title="#{bundle.CreateTblEstadosTitle_idEstado}" required="true" requiredMessage="#{bundle.CreateTblEstadosRequiredMessage_idEstado}"/>
+                    <h:outputLabel value="#{bundle.CreateTblEstadosLabel_nombreEstado}" for="nombreEstado" />
+                    <h:inputText id="nombreEstado" value="#{tblEstadosController.selected.nombreEstado}" title="#{bundle.CreateTblEstadosTitle_nombreEstado}" required="true" requiredMessage="#{bundle.CreateTblEstadosRequiredMessage_nombreEstado}"/>
+                    <h:outputLabel value="#{bundle.CreateTblEstadosLabel_descripcionEstado}" for="descripcionEstado" />
+                    <h:inputText id="descripcionEstado" value="#{tblEstadosController.selected.descripcionEstado}" title="#{bundle.CreateTblEstadosTitle_descripcionEstado}" required="true" requiredMessage="#{bundle.CreateTblEstadosRequiredMessage_descripcionEstado}"/>
+                    <h:outputLabel value="#{bundle.CreateTblEstadosLabel_tipoEstado}" for="tipoEstado" />
+                    <h:inputText id="tipoEstado" value="#{tblEstadosController.selected.tipoEstado}" title="#{bundle.CreateTblEstadosTitle_tipoEstado}" required="true" requiredMessage="#{bundle.CreateTblEstadosRequiredMessage_tipoEstado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblEstadosController.create}" value="#{bundle.CreateTblEstadosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tblEstadosController.prepareList}" value="#{bundle.CreateTblEstadosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTblEstadosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

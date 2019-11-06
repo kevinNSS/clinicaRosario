@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblProveedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblProveedoresLabel_idProveedor}" for="idProveedor" />
+                    <h:inputText id="idProveedor" value="#{tblProveedoresController.selected.idProveedor}" title="#{bundle.EditTblProveedoresTitle_idProveedor}" required="true" requiredMessage="#{bundle.EditTblProveedoresRequiredMessage_idProveedor}"/>
+                    <h:outputLabel value="#{bundle.EditTblProveedoresLabel_nombreProveedor}" for="nombreProveedor" />
+                    <h:inputText id="nombreProveedor" value="#{tblProveedoresController.selected.nombreProveedor}" title="#{bundle.EditTblProveedoresTitle_nombreProveedor}" required="true" requiredMessage="#{bundle.EditTblProveedoresRequiredMessage_nombreProveedor}"/>
+                    <h:outputLabel value="#{bundle.EditTblProveedoresLabel_direccionProveedor}" for="direccionProveedor" />
+                    <h:inputText id="direccionProveedor" value="#{tblProveedoresController.selected.direccionProveedor}" title="#{bundle.EditTblProveedoresTitle_direccionProveedor}" required="true" requiredMessage="#{bundle.EditTblProveedoresRequiredMessage_direccionProveedor}"/>
+                    <h:outputLabel value="#{bundle.EditTblProveedoresLabel_correoProveedor}" for="correoProveedor" />
+                    <h:inputText id="correoProveedor" value="#{tblProveedoresController.selected.correoProveedor}" title="#{bundle.EditTblProveedoresTitle_correoProveedor}" required="true" requiredMessage="#{bundle.EditTblProveedoresRequiredMessage_correoProveedor}"/>
+                    <h:outputLabel value="#{bundle.EditTblProveedoresLabel_tel1Proveedor}" for="tel1Proveedor" />
+                    <h:inputText id="tel1Proveedor" value="#{tblProveedoresController.selected.tel1Proveedor}" title="#{bundle.EditTblProveedoresTitle_tel1Proveedor}" required="true" requiredMessage="#{bundle.EditTblProveedoresRequiredMessage_tel1Proveedor}"/>
+                    <h:outputLabel value="#{bundle.EditTblProveedoresLabel_tel2Proveedor}" for="tel2Proveedor" />
+                    <h:inputText id="tel2Proveedor" value="#{tblProveedoresController.selected.tel2Proveedor}" title="#{bundle.EditTblProveedoresTitle_tel2Proveedor}" />
+                </h:panelGrid>
+                <h:commandLink action="#{tblProveedoresController.update}" value="#{bundle.EditTblProveedoresSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblProveedoresViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblProveedoresController.prepareList}" value="#{bundle.EditTblProveedoresShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblProveedoresIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

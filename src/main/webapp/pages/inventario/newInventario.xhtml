@@ -13,23 +13,16 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoPaciente">
-                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
+            <h:form id="formIngresoInventario" rendered="#{tblInventarioController.mostrarFormInventario == true}">
                 <div class="container">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="nombreProducto" value="Nombre del Producto:"/>
-                            <p:inputText id="nombreProducto" placeholder="" class="form-control" value="#{tblInventarioController.tblInventario.nombreProducto}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
+                            <p:inputText id="nombreProducto" placeholder="Nombre del producto" class="form-control" value="#{tblInventarioController.selected.nombreProducto}" required="true" requiredMessage="Es necesario llenar el campo del nombre del producto." onkeypress="return validar(event)"/>
                         </div>
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="stock" value="Stock:"/>
-                            <p:inputText id="stock" placeholder="" class="form-control" value="#{tblInventarioController.tblInventario.stockProducto}" required="false" requiredMessage="" onkeypress="return validares(event)"/>
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="unidadMedida" value="Unidad de Medida"/>
-                            <h:selectOneMenu id="unidadMedida" class="form-control" value="#{tblInventarioController.tblInventario.unidadMedida}" required="true">
+                            <h:selectOneMenu id="unidadMedida" class="form-control" value="#{tblInventarioController.selected.unidadMedida}" required="true">
                                 <f:selectItem itemLabel="Metro" itemValue="Metro"/>
                                 <f:selectItem itemLabel="Kilogramo" itemValue="Kilogramo"/>
                                 <f:selectItem itemLabel="Litro" itemValue="Litro"/>
@@ -39,11 +32,10 @@
                         </div>
                     </div>
                     <br/>
-                    <h:commandButton  value="Ingresar" actionListener="#{tblInventarioController.crearInventario()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblInventarioController.create()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
             </h:form>
-
         </ui:composition>I
     </h:body>
 </html>

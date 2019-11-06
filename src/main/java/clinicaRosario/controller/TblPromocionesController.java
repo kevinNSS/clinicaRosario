@@ -4,17 +4,14 @@ import clinicaRosario.entity.TblPromociones;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
 import clinicaRosario.entity.TblEstados;
-import clinicaRosario.entity.TblExamenes;
 import clinicaRosario.session.TblPromocionesFacade;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -23,14 +20,9 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.faces.view.ViewScoped;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Named("tblPromocionesController")
-@ViewScoped
+@SessionScoped
 public class TblPromocionesController implements Serializable {
 
     private TblPromociones current;
@@ -39,13 +31,35 @@ public class TblPromocionesController implements Serializable {
     private clinicaRosario.session.TblPromocionesFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    @EJB
-    private clinicaRosario.session.TblExamenesFacade tblExamenesFacade;
+    private Boolean mostrarFormPromocion = false;
+    private Boolean mostrarTblPromocion = true;
     @EJB
     private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
-    private String tipoEstado = "promocion";
-    private Boolean mostrarFormProm = false;
-    private Boolean mostrarTablaProm = true;
+    private String tipoExamen = "promocion";
+
+    public Boolean getMostrarFormPromocion() {
+        return mostrarFormPromocion;
+    }
+
+    public void setMostrarFormPromocion(Boolean mostrarFormPromocion) {
+        this.mostrarFormPromocion = mostrarFormPromocion;
+    }
+
+    public Boolean getMostrarTblPromocion() {
+        return mostrarTblPromocion;
+    }
+
+    public void setMostrarTblPromocion(Boolean mostrarTblPromocion) {
+        this.mostrarTblPromocion = mostrarTblPromocion;
+    }
+
+    public String getTipoExamen() {
+        return tipoExamen;
+    }
+
+    public void setTipoExamen(String tipoExamen) {
+        this.tipoExamen = tipoExamen;
+    }
 
     public TblPromocionesController() {
     }
@@ -60,59 +74,6 @@ public class TblPromocionesController implements Serializable {
 
     private TblPromocionesFacade getFacade() {
         return ejbFacade;
-    }
-
-    public List<TblEstados> getEstadosPromociones() {
-        return tblEstadosFacade.finAllByTipoEstado(tipoEstado);
-    }
-
-    public List<TblExamenes> getAvaibleExamenes() {
-        return tblExamenesFacade.findAllExamenesByEstado();
-    }
-
-    public List<TblPromociones> getAllPromociones() {
-        return ejbFacade.findAll();
-    }
-
-    //convertir dos fechas para promociones y dar formato
-    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-    private Date datePromo1;
-    private Date datePromo2;
-
-    //metodo de conversion 2 fechas de promociones
-    public void setConversionFechaPromo(String promoFecha, String promoFecha2) throws ParseException {
-        this.datePromo1 = formatoFecha.parse(promoFecha);
-        this.datePromo2 = formatoFecha.parse(promoFecha2);
-    }
-
-    public void crearPromocion() {
-        try{
-            setConversionFechaPromo(current.getFechaInicio(),current.getFechaFinalizacion());
-            if(datePromo1.after(datePromo2) || datePromo1.equals(datePromo2)){
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Fechas no validas para la promocion!"));
-            }else{
-                ejbFacade.create(current);
-                current = new TblPromociones();
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos ingresados Exitosamente!"));
-            }
-        }catch(ParseException e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
-        }
-    }
-
-    public void leerPromocion(TblPromociones promoSelected) {
-        current = promoSelected;
-    }
-
-    public void mostrarFormularioPromocion() {
-        mostrarFormProm = true;
-        mostrarTablaProm = false;
-        current = new TblPromociones();
-    }
-
-    public void mostrarTablaPromocion() {
-        mostrarFormProm = false;
-        mostrarTablaProm = true;
     }
 
     public PaginationHelper getPagination() {
@@ -131,6 +92,100 @@ public class TblPromocionesController implements Serializable {
             };
         }
         return pagination;
+    }
+
+    public String prepareList() {
+        recreateModel();
+        return "List";
+    }
+
+    public String prepareView() {
+        current = (TblPromociones) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+
+    public String prepareCreate() {
+        current = new TblPromociones();
+        selectedItemIndex = -1;
+        return "Create";
+    }
+
+    public void mostrarTablaPromocion() {
+        mostrarFormPromocion = false;
+        mostrarTblPromocion = true;
+    }
+
+    public void mostrarFormularioPromocion() {
+        mostrarFormPromocion = true;
+        mostrarTblPromocion = false;
+        current = new TblPromociones();
+    }
+
+    public void create() {
+        ejbFacade.create(current);
+        current = new TblPromociones();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+    }
+    
+    public List<TblPromociones> getAllPromociones(){
+        return ejbFacade.findAll();
+    }
+    
+    public List<TblEstados> getAllEstadosPromociones(){
+        return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
+    }
+    
+    public void leerPromocion(TblPromociones leerProm){
+        current = leerProm;
+    }
+
+    public String prepareEdit() {
+        current = (TblPromociones) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "Edit";
+    }
+
+    public String update() {
+        try {
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblPromocionesUpdated"));
+            return "View";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String destroy() {
+        current = (TblPromociones) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        return "List";
+    }
+
+    public String destroyAndView() {
+        performDestroy();
+        recreateModel();
+        updateCurrentItem();
+        if (selectedItemIndex >= 0) {
+            return "View";
+        } else {
+            // all items were removed - go back to list
+            recreateModel();
+            return "List";
+        }
+    }
+
+    private void performDestroy() {
+        try {
+            getFacade().remove(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblPromocionesDeleted"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
     }
 
     private void updateCurrentItem() {

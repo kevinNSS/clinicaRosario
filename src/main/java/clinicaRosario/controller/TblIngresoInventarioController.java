@@ -3,13 +3,17 @@ package clinicaRosario.controller;
 import clinicaRosario.entity.TblIngresoInventario;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
+import clinicaRosario.entity.TblInventario;
+import clinicaRosario.entity.TblProveedores;
 import clinicaRosario.session.TblIngresoInventarioFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -28,6 +32,27 @@ public class TblIngresoInventarioController implements Serializable {
     private clinicaRosario.session.TblIngresoInventarioFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private Boolean mostrarFormInventarioDetalle = false;
+    private Boolean mostrarTblInventarioDetalle = true;
+    @EJB
+    private clinicaRosario.session.TblInventarioFacade tblInventarioFacade;
+    private TblInventario tblInventario;
+
+    public Boolean getMostrarFormInventarioDetalle() {
+        return mostrarFormInventarioDetalle;
+    }
+
+    public void setMostrarFormInventarioDetalle(Boolean mostrarFormInventarioDetalle) {
+        this.mostrarFormInventarioDetalle = mostrarFormInventarioDetalle;
+    }
+
+    public Boolean getMostrarTblInventarioDetalle() {
+        return mostrarTblInventarioDetalle;
+    }
+
+    public void setMostrarTblInventarioDetalle(Boolean mostrarTblInventarioDetalle) {
+        this.mostrarTblInventarioDetalle = mostrarTblInventarioDetalle;
+    }
 
     public TblIngresoInventarioController() {
     }
@@ -78,16 +103,33 @@ public class TblIngresoInventarioController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public void mostrarFormularioDetalle(){
+        mostrarFormInventarioDetalle = true;
+        mostrarTblInventarioDetalle = false;
+        current = new TblIngresoInventario();
+    }
+    
+    public void mostrarTablaDetalle(){
+        mostrarTblInventarioDetalle = true;
+        mostrarFormInventarioDetalle = false;
+    }
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblIngresoInventarioCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public void create() {
+     ejbFacade.create(current);
+     tblInventario = tblInventarioFacade.inventarioSeleccionado(current.getIdInventario());
+     tblInventario.setStockProducto(tblInventario.getStockProducto() + current.getCantidad());
+     tblInventarioFacade.edit(tblInventario);
+     current = new TblIngresoInventario();
+     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+    }
+    
+    public List<TblIngresoInventario> getAllDetalleInventario(){
+        return ejbFacade.findAll();
+    }
+    
+    public List<TblInventario> getAllInventario(){
+        return tblInventarioFacade.findAll();
     }
 
     public String prepareEdit() {

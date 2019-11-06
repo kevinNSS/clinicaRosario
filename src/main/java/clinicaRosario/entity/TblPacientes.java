@@ -46,6 +46,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblPacientes.findByFechaNacimiento", query = "SELECT t FROM TblPacientes t WHERE t.fechaNacimiento = :fechaNacimiento")})
 public class TblPacientes implements Serializable {
 
+    @OneToMany(mappedBy = "paciente")
+    private Collection<TblOrina> tblOrinaCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -243,6 +246,15 @@ public class TblPacientes implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblPacientes[ idPaciente=" + idPaciente + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TblOrina> getTblOrinaCollection() {
+        return tblOrinaCollection;
+    }
+
+    public void setTblOrinaCollection(Collection<TblOrina> tblOrinaCollection) {
+        this.tblOrinaCollection = tblOrinaCollection;
     }
     
 }

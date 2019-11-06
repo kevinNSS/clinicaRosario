@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblInventarioLabel_idInventario}"/>
+                    <h:outputText value="#{tblInventarioController.selected.idInventario}" title="#{bundle.ViewTblInventarioTitle_idInventario}"/>
+                    <h:outputText value="#{bundle.ViewTblInventarioLabel_nombreProducto}"/>
+                    <h:outputText value="#{tblInventarioController.selected.nombreProducto}" title="#{bundle.ViewTblInventarioTitle_nombreProducto}"/>
+                    <h:outputText value="#{bundle.ViewTblInventarioLabel_stockProducto}"/>
+                    <h:outputText value="#{tblInventarioController.selected.stockProducto}" title="#{bundle.ViewTblInventarioTitle_stockProducto}"/>
+                    <h:outputText value="#{bundle.ViewTblInventarioLabel_unidadMedida}"/>
+                    <h:outputText value="#{tblInventarioController.selected.unidadMedida}" title="#{bundle.ViewTblInventarioTitle_unidadMedida}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblInventarioController.destroyAndView}" value="#{bundle.ViewTblInventarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblInventarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblInventarioController.prepareCreate}" value="#{bundle.ViewTblInventarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblInventarioController.prepareList}" value="#{bundle.ViewTblInventarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblInventarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

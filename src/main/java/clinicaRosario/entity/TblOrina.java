@@ -6,7 +6,6 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,15 +16,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Entity
 @Table(name = "tbl_orina")
@@ -56,7 +53,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblOrina.findByCelulasepteliales", query = "SELECT t FROM TblOrina t WHERE t.celulasepteliales = :celulasepteliales")
     , @NamedQuery(name = "TblOrina.findByCristales", query = "SELECT t FROM TblOrina t WHERE t.cristales = :cristales")
     , @NamedQuery(name = "TblOrina.findByParasitologico", query = "SELECT t FROM TblOrina t WHERE t.parasitologico = :parasitologico")
-    , @NamedQuery(name = "TblOrina.findByObservaciones", query = "SELECT t FROM TblOrina t WHERE t.observaciones = :observaciones")})
+    , @NamedQuery(name = "TblOrina.findByObservaciones", query = "SELECT t FROM TblOrina t WHERE t.observaciones = :observaciones")
+    , @NamedQuery(name = "TblOrina.findByFechaRegistro", query = "SELECT t FROM TblOrina t WHERE t.fechaRegistro = :fechaRegistro")})
 public class TblOrina implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -131,19 +129,18 @@ public class TblOrina implements Serializable {
     @Size(max = 25)
     @Column(name = "Cristales")
     private String cristales;
-    @Column(name = "fecha_registro")
-    private String fechaRegistro;
     @Size(max = 25)
     @Column(name = "Parasitologico")
     private String parasitologico;
     @Size(max = 50)
     @Column(name = "Observaciones")
     private String observaciones;
+    @Size(max = 10)
+    @Column(name = "fecha_registro")
+    private String fechaRegistro;
     @JoinColumn(name = "paciente", referencedColumnName = "ID_PACIENTE")
     @ManyToOne
     private TblPacientes paciente;
-    @OneToMany(mappedBy = "idTblOrina")
-    private Collection<TblExpedientes> tblExpedientesCollection;
 
     public TblOrina() {
     }
@@ -296,14 +293,6 @@ public class TblOrina implements Serializable {
         this.hialinos = hialinos;
     }
 
-    public String getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(String fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
     public String getOtros() {
         return otros;
     }
@@ -360,12 +349,12 @@ public class TblOrina implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public String getpH() {
-        return pH;
+    public String getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public void setpH(String pH) {
-        this.pH = pH;
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public TblPacientes getPaciente() {
@@ -374,15 +363,6 @@ public class TblOrina implements Serializable {
 
     public void setPaciente(TblPacientes paciente) {
         this.paciente = paciente;
-    }
-
-    @XmlTransient
-    public Collection<TblExpedientes> getTblExpedientesCollection() {
-        return tblExpedientesCollection;
-    }
-
-    public void setTblExpedientesCollection(Collection<TblExpedientes> tblExpedientesCollection) {
-        this.tblExpedientesCollection = tblExpedientesCollection;
     }
 
     @Override

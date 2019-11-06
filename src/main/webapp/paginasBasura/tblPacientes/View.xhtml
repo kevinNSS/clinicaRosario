@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblPacientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_idPaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.idPaciente}" title="#{bundle.ViewTblPacientesTitle_idPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_primerNombrePaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.primerNombrePaciente}" title="#{bundle.ViewTblPacientesTitle_primerNombrePaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_segundoNombrePaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.segundoNombrePaciente}" title="#{bundle.ViewTblPacientesTitle_segundoNombrePaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_primerApellidoPaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.primerApellidoPaciente}" title="#{bundle.ViewTblPacientesTitle_primerApellidoPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_segundoApellidoPaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.segundoApellidoPaciente}" title="#{bundle.ViewTblPacientesTitle_segundoApellidoPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_direccionPaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.direccionPaciente}" title="#{bundle.ViewTblPacientesTitle_direccionPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_telPaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.telPaciente}" title="#{bundle.ViewTblPacientesTitle_telPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_correoPaciente}"/>
+                    <h:outputText value="#{tblPacientesController.selected.correoPaciente}" title="#{bundle.ViewTblPacientesTitle_correoPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_telResponsable}"/>
+                    <h:outputText value="#{tblPacientesController.selected.telResponsable}" title="#{bundle.ViewTblPacientesTitle_telResponsable}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_sexo}"/>
+                    <h:outputText value="#{tblPacientesController.selected.sexo}" title="#{bundle.ViewTblPacientesTitle_sexo}"/>
+                    <h:outputText value="#{bundle.ViewTblPacientesLabel_fechaNacimiento}"/>
+                    <h:outputText value="#{tblPacientesController.selected.fechaNacimiento}" title="#{bundle.ViewTblPacientesTitle_fechaNacimiento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblPacientesController.destroyAndView}" value="#{bundle.ViewTblPacientesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblPacientesEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblPacientesController.prepareCreate}" value="#{bundle.ViewTblPacientesCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblPacientesController.prepareList}" value="#{bundle.ViewTblPacientesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblPacientesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

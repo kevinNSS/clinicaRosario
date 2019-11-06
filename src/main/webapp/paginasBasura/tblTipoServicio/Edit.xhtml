@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblTipoServicioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblTipoServicioLabel_idServicio}" for="idServicio" />
+                    <h:inputText id="idServicio" value="#{tblTipoServicioController.selected.idServicio}" title="#{bundle.EditTblTipoServicioTitle_idServicio}" required="true" requiredMessage="#{bundle.EditTblTipoServicioRequiredMessage_idServicio}"/>
+                    <h:outputLabel value="#{bundle.EditTblTipoServicioLabel_tipoServicio}" for="tipoServicio" />
+                    <h:inputText id="tipoServicio" value="#{tblTipoServicioController.selected.tipoServicio}" title="#{bundle.EditTblTipoServicioTitle_tipoServicio}" required="true" requiredMessage="#{bundle.EditTblTipoServicioRequiredMessage_tipoServicio}"/>
+                    <h:outputLabel value="#{bundle.EditTblTipoServicioLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{tblTipoServicioController.selected.descripcion}" title="#{bundle.EditTblTipoServicioTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTblTipoServicioRequiredMessage_descripcion}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tblTipoServicioController.update}" value="#{bundle.EditTblTipoServicioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblTipoServicioViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblTipoServicioController.prepareList}" value="#{bundle.EditTblTipoServicioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblTipoServicioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

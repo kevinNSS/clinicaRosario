@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblFacturaEncabezadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_idFactura}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.idFactura}" title="#{bundle.ViewTblFacturaEncabezadoTitle_idFactura}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_fechaFacturacion}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.fechaFacturacion}" title="#{bundle.ViewTblFacturaEncabezadoTitle_fechaFacturacion}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_subTotal}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.subTotal}" title="#{bundle.ViewTblFacturaEncabezadoTitle_subTotal}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_iva}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.iva}" title="#{bundle.ViewTblFacturaEncabezadoTitle_iva}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_descuentoTotal}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.descuentoTotal}" title="#{bundle.ViewTblFacturaEncabezadoTitle_descuentoTotal}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_total}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.total}" title="#{bundle.ViewTblFacturaEncabezadoTitle_total}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_idPaciente}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.idPaciente}" title="#{bundle.ViewTblFacturaEncabezadoTitle_idPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_estado}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.estado}" title="#{bundle.ViewTblFacturaEncabezadoTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewTblFacturaEncabezadoLabel_encargadoFacturacion}"/>
+                    <h:outputText value="#{tblFacturaEncabezadoController.selected.encargadoFacturacion}" title="#{bundle.ViewTblFacturaEncabezadoTitle_encargadoFacturacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblFacturaEncabezadoController.destroyAndView}" value="#{bundle.ViewTblFacturaEncabezadoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblFacturaEncabezadoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblFacturaEncabezadoController.prepareCreate}" value="#{bundle.ViewTblFacturaEncabezadoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblFacturaEncabezadoController.prepareList}" value="#{bundle.ViewTblFacturaEncabezadoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblFacturaEncabezadoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblExamenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblExamenesLabel_idExamen}"/>
+                    <h:outputText value="#{tblExamenesController.selected.idExamen}" title="#{bundle.ViewTblExamenesTitle_idExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblExamenesLabel_nombreExamen}"/>
+                    <h:outputText value="#{tblExamenesController.selected.nombreExamen}" title="#{bundle.ViewTblExamenesTitle_nombreExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblExamenesLabel_descripcionExamen}"/>
+                    <h:outputText value="#{tblExamenesController.selected.descripcionExamen}" title="#{bundle.ViewTblExamenesTitle_descripcionExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblExamenesLabel_precioExamen}"/>
+                    <h:outputText value="#{tblExamenesController.selected.precioExamen}" title="#{bundle.ViewTblExamenesTitle_precioExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblExamenesLabel_estadoExamen}"/>
+                    <h:outputText value="#{tblExamenesController.selected.estadoExamen}" title="#{bundle.ViewTblExamenesTitle_estadoExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblExamenesLabel_tipoExamen}"/>
+                    <h:outputText value="#{tblExamenesController.selected.tipoExamen}" title="#{bundle.ViewTblExamenesTitle_tipoExamen}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblExamenesController.destroyAndView}" value="#{bundle.ViewTblExamenesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblExamenesEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblExamenesController.prepareCreate}" value="#{bundle.ViewTblExamenesCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblExamenesController.prepareList}" value="#{bundle.ViewTblExamenesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblExamenesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

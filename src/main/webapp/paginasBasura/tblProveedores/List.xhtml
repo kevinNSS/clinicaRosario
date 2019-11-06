@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblProveedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblProveedoresEmpty}" rendered="#{tblProveedoresController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblProveedoresController.items.rowCount > 0}">
+                    <h:outputText value="#{tblProveedoresController.pagination.pageFirstItem + 1}..#{tblProveedoresController.pagination.pageLastItem + 1}/#{tblProveedoresController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblProveedoresController.previous}" value="#{bundle.Previous} #{tblProveedoresController.pagination.pageSize}" rendered="#{tblProveedoresController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblProveedoresController.next}" value="#{bundle.Next} #{tblProveedoresController.pagination.pageSize}" rendered="#{tblProveedoresController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblProveedoresController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblProveedoresTitle_idProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblProveedoresTitle_nombreProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblProveedoresTitle_direccionProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblProveedoresTitle_correoProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.correoProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblProveedoresTitle_tel1Proveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tel1Proveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblProveedoresTitle_tel2Proveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tel2Proveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblProveedoresController.prepareView}" value="#{bundle.ListTblProveedoresViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblProveedoresController.prepareEdit}" value="#{bundle.ListTblProveedoresEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblProveedoresController.destroy}" value="#{bundle.ListTblProveedoresDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblProveedoresController.prepareCreate}" value="#{bundle.ListTblProveedoresCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblProveedoresIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -6,7 +6,6 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,15 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 2016
+ * @author kevin
  */
 @Entity
 @Table(name = "tbl_heces")
@@ -41,12 +38,19 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblHeces.findByMicroscopicos", query = "SELECT t FROM TblHeces t WHERE t.microscopicos = :microscopicos")
     , @NamedQuery(name = "TblHeces.findByMacroscopicos", query = "SELECT t FROM TblHeces t WHERE t.macroscopicos = :macroscopicos")
     , @NamedQuery(name = "TblHeces.findByEntamoebahistolyca", query = "SELECT t FROM TblHeces t WHERE t.entamoebahistolyca = :entamoebahistolyca")
+    , @NamedQuery(name = "TblHeces.findByEntamoebahistolyca2", query = "SELECT t FROM TblHeces t WHERE t.entamoebahistolyca2 = :entamoebahistolyca2")
     , @NamedQuery(name = "TblHeces.findByEntamoebacoli", query = "SELECT t FROM TblHeces t WHERE t.entamoebacoli = :entamoebacoli")
+    , @NamedQuery(name = "TblHeces.findByEntamoebacoli2", query = "SELECT t FROM TblHeces t WHERE t.entamoebacoli2 = :entamoebacoli2")
     , @NamedQuery(name = "TblHeces.findByEndolimaxnana", query = "SELECT t FROM TblHeces t WHERE t.endolimaxnana = :endolimaxnana")
+    , @NamedQuery(name = "TblHeces.findByEndolimaxnana2", query = "SELECT t FROM TblHeces t WHERE t.endolimaxnana2 = :endolimaxnana2")
     , @NamedQuery(name = "TblHeces.findByGiardiaLamblia", query = "SELECT t FROM TblHeces t WHERE t.giardiaLamblia = :giardiaLamblia")
+    , @NamedQuery(name = "TblHeces.findByGiardiaLamblia2", query = "SELECT t FROM TblHeces t WHERE t.giardiaLamblia2 = :giardiaLamblia2")
     , @NamedQuery(name = "TblHeces.findByTrichomonasHominis", query = "SELECT t FROM TblHeces t WHERE t.trichomonasHominis = :trichomonasHominis")
+    , @NamedQuery(name = "TblHeces.findByTrichomonasHominis2", query = "SELECT t FROM TblHeces t WHERE t.trichomonasHominis2 = :trichomonasHominis2")
     , @NamedQuery(name = "TblHeces.findByChilomastixmesnilli", query = "SELECT t FROM TblHeces t WHERE t.chilomastixmesnilli = :chilomastixmesnilli")
+    , @NamedQuery(name = "TblHeces.findByChilomastixmesnilli2", query = "SELECT t FROM TblHeces t WHERE t.chilomastixmesnilli2 = :chilomastixmesnilli2")
     , @NamedQuery(name = "TblHeces.findByLodamoebabustchlli", query = "SELECT t FROM TblHeces t WHERE t.lodamoebabustchlli = :lodamoebabustchlli")
+    , @NamedQuery(name = "TblHeces.findByLodamoebabustchlli2", query = "SELECT t FROM TblHeces t WHERE t.lodamoebabustchlli2 = :lodamoebabustchlli2")
     , @NamedQuery(name = "TblHeces.findByOtrosprotozoarios", query = "SELECT t FROM TblHeces t WHERE t.otrosprotozoarios = :otrosprotozoarios")
     , @NamedQuery(name = "TblHeces.findByAscarislumbricoides", query = "SELECT t FROM TblHeces t WHERE t.ascarislumbricoides = :ascarislumbricoides")
     , @NamedQuery(name = "TblHeces.findByTrichuristrichiura", query = "SELECT t FROM TblHeces t WHERE t.trichuristrichiura = :trichuristrichiura")
@@ -55,7 +59,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblHeces.findByEnterobiusvermicularis", query = "SELECT t FROM TblHeces t WHERE t.enterobiusvermicularis = :enterobiusvermicularis")
     , @NamedQuery(name = "TblHeces.findByTaeniasp", query = "SELECT t FROM TblHeces t WHERE t.taeniasp = :taeniasp")
     , @NamedQuery(name = "TblHeces.findByOtrosmetazoarios", query = "SELECT t FROM TblHeces t WHERE t.otrosmetazoarios = :otrosmetazoarios")
-    , @NamedQuery(name = "TblHeces.findByObservaciones", query = "SELECT t FROM TblHeces t WHERE t.observaciones = :observaciones")})
+    , @NamedQuery(name = "TblHeces.findByObservaciones", query = "SELECT t FROM TblHeces t WHERE t.observaciones = :observaciones")
+    , @NamedQuery(name = "TblHeces.findByOtrosprotozoarios2", query = "SELECT t FROM TblHeces t WHERE t.otrosprotozoarios2 = :otrosprotozoarios2")})
 public class TblHeces implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -95,23 +100,44 @@ public class TblHeces implements Serializable {
     @Column(name = "Entamoeba_histolyca")
     private String entamoebahistolyca;
     @Size(max = 25)
+    @Column(name = "Entamoeba_histolyca2")
+    private String entamoebahistolyca2;
+    @Size(max = 25)
     @Column(name = "Entamoeba_coli")
     private String entamoebacoli;
+    @Size(max = 25)
+    @Column(name = "Entamoeba_coli2")
+    private String entamoebacoli2;
     @Size(max = 25)
     @Column(name = "Endolimax_nana")
     private String endolimaxnana;
     @Size(max = 25)
+    @Column(name = "Endolimax_nana2")
+    private String endolimaxnana2;
+    @Size(max = 25)
     @Column(name = "Giardia_Lamblia")
     private String giardiaLamblia;
+    @Size(max = 25)
+    @Column(name = "Giardia_Lamblia2")
+    private String giardiaLamblia2;
     @Size(max = 25)
     @Column(name = "Trichomonas_Hominis")
     private String trichomonasHominis;
     @Size(max = 25)
+    @Column(name = "Trichomonas_Hominis2")
+    private String trichomonasHominis2;
+    @Size(max = 25)
     @Column(name = "Chilomastix_mesnilli")
     private String chilomastixmesnilli;
     @Size(max = 25)
+    @Column(name = "Chilomastix_mesnilli2")
+    private String chilomastixmesnilli2;
+    @Size(max = 25)
     @Column(name = "Lodamoeba_bustchlli")
     private String lodamoebabustchlli;
+    @Size(max = 25)
+    @Column(name = "Lodamoeba_bustchlli2")
+    private String lodamoebabustchlli2;
     @Size(max = 25)
     @Column(name = "Otros_protozoarios")
     private String otrosprotozoarios;
@@ -139,8 +165,9 @@ public class TblHeces implements Serializable {
     @Size(max = 40)
     @Column(name = "Observaciones")
     private String observaciones;
-    @OneToMany(mappedBy = "idTblHeces")
-    private Collection<TblExpedientes> tblExpedientesCollection;
+    @Size(max = 25)
+    @Column(name = "Otros_protozoarios2")
+    private String otrosprotozoarios2;
 
     public TblHeces() {
     }
@@ -237,12 +264,28 @@ public class TblHeces implements Serializable {
         this.entamoebahistolyca = entamoebahistolyca;
     }
 
+    public String getEntamoebahistolyca2() {
+        return entamoebahistolyca2;
+    }
+
+    public void setEntamoebahistolyca2(String entamoebahistolyca2) {
+        this.entamoebahistolyca2 = entamoebahistolyca2;
+    }
+
     public String getEntamoebacoli() {
         return entamoebacoli;
     }
 
     public void setEntamoebacoli(String entamoebacoli) {
         this.entamoebacoli = entamoebacoli;
+    }
+
+    public String getEntamoebacoli2() {
+        return entamoebacoli2;
+    }
+
+    public void setEntamoebacoli2(String entamoebacoli2) {
+        this.entamoebacoli2 = entamoebacoli2;
     }
 
     public String getEndolimaxnana() {
@@ -253,12 +296,28 @@ public class TblHeces implements Serializable {
         this.endolimaxnana = endolimaxnana;
     }
 
+    public String getEndolimaxnana2() {
+        return endolimaxnana2;
+    }
+
+    public void setEndolimaxnana2(String endolimaxnana2) {
+        this.endolimaxnana2 = endolimaxnana2;
+    }
+
     public String getGiardiaLamblia() {
         return giardiaLamblia;
     }
 
     public void setGiardiaLamblia(String giardiaLamblia) {
         this.giardiaLamblia = giardiaLamblia;
+    }
+
+    public String getGiardiaLamblia2() {
+        return giardiaLamblia2;
+    }
+
+    public void setGiardiaLamblia2(String giardiaLamblia2) {
+        this.giardiaLamblia2 = giardiaLamblia2;
     }
 
     public String getTrichomonasHominis() {
@@ -269,6 +328,14 @@ public class TblHeces implements Serializable {
         this.trichomonasHominis = trichomonasHominis;
     }
 
+    public String getTrichomonasHominis2() {
+        return trichomonasHominis2;
+    }
+
+    public void setTrichomonasHominis2(String trichomonasHominis2) {
+        this.trichomonasHominis2 = trichomonasHominis2;
+    }
+
     public String getChilomastixmesnilli() {
         return chilomastixmesnilli;
     }
@@ -277,12 +344,28 @@ public class TblHeces implements Serializable {
         this.chilomastixmesnilli = chilomastixmesnilli;
     }
 
+    public String getChilomastixmesnilli2() {
+        return chilomastixmesnilli2;
+    }
+
+    public void setChilomastixmesnilli2(String chilomastixmesnilli2) {
+        this.chilomastixmesnilli2 = chilomastixmesnilli2;
+    }
+
     public String getLodamoebabustchlli() {
         return lodamoebabustchlli;
     }
 
     public void setLodamoebabustchlli(String lodamoebabustchlli) {
         this.lodamoebabustchlli = lodamoebabustchlli;
+    }
+
+    public String getLodamoebabustchlli2() {
+        return lodamoebabustchlli2;
+    }
+
+    public void setLodamoebabustchlli2(String lodamoebabustchlli2) {
+        this.lodamoebabustchlli2 = lodamoebabustchlli2;
     }
 
     public String getOtrosprotozoarios() {
@@ -357,13 +440,12 @@ public class TblHeces implements Serializable {
         this.observaciones = observaciones;
     }
 
-    @XmlTransient
-    public Collection<TblExpedientes> getTblExpedientesCollection() {
-        return tblExpedientesCollection;
+    public String getOtrosprotozoarios2() {
+        return otrosprotozoarios2;
     }
 
-    public void setTblExpedientesCollection(Collection<TblExpedientes> tblExpedientesCollection) {
-        this.tblExpedientesCollection = tblExpedientesCollection;
+    public void setOtrosprotozoarios2(String otrosprotozoarios2) {
+        this.otrosprotozoarios2 = otrosprotozoarios2;
     }
 
     @Override

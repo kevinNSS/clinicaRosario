@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblExpedientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_idExpediente}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.idExpediente}" title="#{bundle.ViewTblExpedientesTitle_idExpediente}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_fechaIngreso}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.fechaIngreso}" title="#{bundle.ViewTblExpedientesTitle_fechaIngreso}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_resultado}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.resultado}" title="#{bundle.ViewTblExpedientesTitle_resultado}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_idExamen}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.idExamen}" title="#{bundle.ViewTblExpedientesTitle_idExamen}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_idPaciente}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.idPaciente}" title="#{bundle.ViewTblExpedientesTitle_idPaciente}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_reportadoPor}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.reportadoPor}" title="#{bundle.ViewTblExpedientesTitle_reportadoPor}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_idTblHeces}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.idTblHeces}" title="#{bundle.ViewTblExpedientesTitle_idTblHeces}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_idTblHemograma}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.idTblHemograma}" title="#{bundle.ViewTblExpedientesTitle_idTblHemograma}"/>
+                    <h:outputText value="#{bundle.ViewTblExpedientesLabel_idTblOrina}"/>
+                    <h:outputText value="#{tblExpedientesController.selected.idTblOrina}" title="#{bundle.ViewTblExpedientesTitle_idTblOrina}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblExpedientesController.destroyAndView}" value="#{bundle.ViewTblExpedientesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblExpedientesEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblExpedientesController.prepareCreate}" value="#{bundle.ViewTblExpedientesCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblExpedientesController.prepareList}" value="#{bundle.ViewTblExpedientesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblExpedientesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

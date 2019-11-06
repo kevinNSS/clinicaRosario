@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblFacturaEncabezadoEmpty}" rendered="#{tblFacturaEncabezadoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblFacturaEncabezadoController.items.rowCount > 0}">
+                    <h:outputText value="#{tblFacturaEncabezadoController.pagination.pageFirstItem + 1}..#{tblFacturaEncabezadoController.pagination.pageLastItem + 1}/#{tblFacturaEncabezadoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblFacturaEncabezadoController.previous}" value="#{bundle.Previous} #{tblFacturaEncabezadoController.pagination.pageSize}" rendered="#{tblFacturaEncabezadoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblFacturaEncabezadoController.next}" value="#{bundle.Next} #{tblFacturaEncabezadoController.pagination.pageSize}" rendered="#{tblFacturaEncabezadoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblFacturaEncabezadoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_idFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFactura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_fechaFacturacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFacturacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_subTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_iva}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iva}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_descuentoTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descuentoTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_total}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.total}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_idPaciente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPaciente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblFacturaEncabezadoTitle_encargadoFacturacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.encargadoFacturacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblFacturaEncabezadoController.prepareView}" value="#{bundle.ListTblFacturaEncabezadoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblFacturaEncabezadoController.prepareEdit}" value="#{bundle.ListTblFacturaEncabezadoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblFacturaEncabezadoController.destroy}" value="#{bundle.ListTblFacturaEncabezadoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblFacturaEncabezadoController.prepareCreate}" value="#{bundle.ListTblFacturaEncabezadoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblFacturaEncabezadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

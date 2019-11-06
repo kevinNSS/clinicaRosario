@@ -19,70 +19,127 @@
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="primerNombre" value="Primer Nombre:"/>
-                            <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
+                            <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerNombreEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoNombre" value="Segundo Nombre:"/>
-                            <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.segundoNombreEmpleado}" required="false" requiredMessage="" onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoNombreEmpleado}" onkeypress="return validares(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="primerApellido" value="Primer Apellido:"/>
-                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return validares(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoApellido" value="Segundo Apellido:"/>
-                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.segundoApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return validares(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="direccion" value="Direccion:"/>
-                            <p:inputText id="direccion" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.direccionEmpleado}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return valida(event)"/>
+                            <p:inputText id="direccion" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.direccionEmpleado}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return valida(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telefono1" value="Telefono 1:"/>
-                            <p:inputText id="telefono1" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.telEmpleado1}" required="true" requiredMessage="Es necesario llenar el campo del telefono 1." maxlength="8" onkeypress="return validarnum(event)"/>
+                            <p:inputText id="telefono1" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.telEmpleado1}" required="true" requiredMessage="Es necesario llenar el campo del telefono 1." maxlength="8" onkeypress="return validarnum(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telefono2" value="Telefono 2:"/>
-                            <p:inputText id="telefono2" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.telEmpleado2}" required="true" requiredMessage="Es necesario llenar el campo del telefono 2." maxlength="8" onkeypress="return validarnum(event)"/>
+                            <p:inputText id="telefono2" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.telEmpleado2}" maxlength="8" onkeypress="return validarnum(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="fechanacimiento" value="Fecha Nacimiento:"/>
-                            <p:inputText id="fechanacimiento" placeholder="" type="date" class="form-control" value="#{tblEmpleadosController.tblEmpleados.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de nacimiento."/>
+                            <p:inputText id="fechanacimiento" placeholder="" type="date" class="form-control" value="#{tblEmpleadosController.selected.fechaNacimiento}" required="true" requiredMessage="Es necesario llenar el campo de fecha de nacimiento."/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="fechacontratacion" value="Fecha Contratacion:"/>
-                            <p:inputText id="fechacontratacion" placeholder="" type="date" class="form-control" value="#{tblEmpleadosController.tblEmpleados.fechaContratacion}" required="true" requiredMessage="Es necesario llenar el campo de contratacion."/>
+                            <p:inputText id="fechacontratacion" placeholder="" type="date" class="form-control" value="#{tblEmpleadosController.selected.fechaContratacion}" required="true" requiredMessage="Es necesario llenar el campo de fecha de contratacion."/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="sueldo" value="Sueldo:"/>
-                            <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.sueldo}" required="true" requiredMessage="Es necesario llenar el campo sueldo" onkeypress="return valida(event)"/>
+                            <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.sueldo}" required="true" requiredMessage="Es necesario llenar el campo sueldo" onkeypress="return valida(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estadoEmpleado" value="Estado del empleado:"/>
-                            <h:selectOneMenu id="estadoEmpleado" class="form-control" value="#{tblExamenesController.selected.estadoExamen}" required="true" requiredMessage="Es necesario llenar el campo estado empleado">
+                            <h:selectOneMenu id="estadoEmpleado" class="form-control" value="#{tblEmpleadosController.selected.idEstado}" required="true" requiredMessage="Es necesario llenar el campo estado empleado">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblExamenesController.estadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
+                                <f:selectItems value="#{tblEmpleadosController.estadoEmpleado}" var="estado" itemLabel="#{estado.nombreEstado}" itemValue="#{estado}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="cargoEmpleado" value="Cargo del empleado:"/>
-                            <h:selectOneMenu id="cargoEmpleado" class="form-control" value="#{tblExamenesController.selected.estadoExamen}" required="true" requiredMessage="Es necesario llenar el campo del cargo">
+                            <h:selectOneMenu id="cargoEmpleado" class="form-control" value="#{tblEmpleadosController.selected.idCargo}" required="true" requiredMessage="Es necesario llenar el campo del cargo">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblExamenesController.estadosExamenes}" var="examen" itemLabel="#{examen.nombreEstado}" itemValue="#{examen}"/>
+                                <f:selectItems value="#{tblCargosController.all}" var="cargos" itemLabel="#{cargos.nombreCargo}" itemValue="#{cargos}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="contrasena" value="Contraseña:"/>
-                            <p:inputText id="contrasena" placeholder="" class="form-control" value="#{tblEmpleadosController.tblEmpleados.contrasena}" required="true" requiredMessage="Es necesario llenar el campo de contraseña." onkeypress="return valida(event)"/>
+                            <p:password id="contrasena" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.contrasena}" required="true" requiredMessage="Es necesario llenar el campo de contraseña." onkeypress="return valida(event)"/>
                         </div>
                         <br/>
                         <br/>
                     </div>
-                    <h:commandButton  value="Ingresar" actionListener="#{pacientesController.ingresoPacientes()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblEmpleadosController.create()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
             </h:form>
-
+            <script type='text/javascript'></script>
+            <script type="text/javascript">
+                function validar(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type='text/javascript'></script>
+            <script type="text/javascript">
+                function valida(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z0-9\s\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type='text/javascript'></script>
+            <script type="text/javascript">
+                function validares(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z\s\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type="text/javascript">
+                function validarnum(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /\d/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script language="JavaScript">
+                var ev = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
+                var x = document.getElementById("check");
+                function validate(correo) {
+                    if (!ev.test(correo))
+                    {
+                        x.innerHTML = "Correo no valido :(";
+                        x.style.color = "red"
+                    } else
+                    {
+                        x.innerHTML = "Correo valido!";
+                        x.style.color = "green"
+                    }
+                }
+            </script>
         </ui:composition>
     </h:body>
 </html>

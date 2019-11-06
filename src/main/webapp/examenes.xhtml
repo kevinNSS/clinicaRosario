@@ -20,8 +20,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
-                <h:commandButton style="float: right;" value="Tabla de Examenes" action="#{tblExamenesController.mostrarTablaDeExamen()}" rendered="#{(tblExamenesController.mostrarTablaExamen == false) and (loginController.tipoUsuario == 'secretaria') or (tblExamenesController.mostrarTablaExamen == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Agregar Examen" action="#{tblExamenesController.nuevoExamen()}" rendered="#{(tblExamenesController.mostrarFormExamen == false) and (loginController.tipoUsuario == 'secretaria') or (tblExamenesController.mostrarFormExamen == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton style="float: right;" value="Tabla de Examenes" action="#{tblExamenesController.mostrarTablaDeExamen()}" rendered="#{(tblExamenesController.mostrarTblExamen == false) and (loginController.tipoUsuario == 'secretaria') or (tblExamenesController.mostrarTblExamen == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Examen" action="#{tblExamenesController.mostrarFormularioExamen()}" rendered="#{(tblExamenesController.mostrarFormExamen == false) and (loginController.tipoUsuario == 'secretaria') or (tblExamenesController.mostrarFormExamen == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE EXAMENES -->

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblHecesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_idTablaHeces}" for="idTablaHeces" />
+                    <h:inputText id="idTablaHeces" value="#{tblHecesController.selected.idTablaHeces}" title="#{bundle.EditTblHecesTitle_idTablaHeces}" required="true" requiredMessage="#{bundle.EditTblHecesRequiredMessage_idTablaHeces}"/>
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_color}" for="color" />
+                    <h:inputText id="color" value="#{tblHecesController.selected.color}" title="#{bundle.EditTblHecesTitle_color}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_consistencia}" for="consistencia" />
+                    <h:inputText id="consistencia" value="#{tblHecesController.selected.consistencia}" title="#{bundle.EditTblHecesTitle_consistencia}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_mucus}" for="mucus" />
+                    <h:inputText id="mucus" value="#{tblHecesController.selected.mucus}" title="#{bundle.EditTblHecesTitle_mucus}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_hematies}" for="hematies" />
+                    <h:inputText id="hematies" value="#{tblHecesController.selected.hematies}" title="#{bundle.EditTblHecesTitle_hematies}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_leucocitos}" for="leucocitos" />
+                    <h:inputText id="leucocitos" value="#{tblHecesController.selected.leucocitos}" title="#{bundle.EditTblHecesTitle_leucocitos}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_macrofagos}" for="macrofagos" />
+                    <h:inputText id="macrofagos" value="#{tblHecesController.selected.macrofagos}" title="#{bundle.EditTblHecesTitle_macrofagos}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_restosalimenticios}" for="restosalimenticios" />
+                    <h:inputText id="restosalimenticios" value="#{tblHecesController.selected.restosalimenticios}" title="#{bundle.EditTblHecesTitle_restosalimenticios}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_microscopicos}" for="microscopicos" />
+                    <h:inputText id="microscopicos" value="#{tblHecesController.selected.microscopicos}" title="#{bundle.EditTblHecesTitle_microscopicos}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_macroscopicos}" for="macroscopicos" />
+                    <h:inputText id="macroscopicos" value="#{tblHecesController.selected.macroscopicos}" title="#{bundle.EditTblHecesTitle_macroscopicos}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_entamoebahistolyca}" for="entamoebahistolyca" />
+                    <h:inputText id="entamoebahistolyca" value="#{tblHecesController.selected.entamoebahistolyca}" title="#{bundle.EditTblHecesTitle_entamoebahistolyca}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_entamoebacoli}" for="entamoebacoli" />
+                    <h:inputText id="entamoebacoli" value="#{tblHecesController.selected.entamoebacoli}" title="#{bundle.EditTblHecesTitle_entamoebacoli}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_endolimaxnana}" for="endolimaxnana" />
+                    <h:inputText id="endolimaxnana" value="#{tblHecesController.selected.endolimaxnana}" title="#{bundle.EditTblHecesTitle_endolimaxnana}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_giardiaLamblia}" for="giardiaLamblia" />
+                    <h:inputText id="giardiaLamblia" value="#{tblHecesController.selected.giardiaLamblia}" title="#{bundle.EditTblHecesTitle_giardiaLamblia}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_trichomonasHominis}" for="trichomonasHominis" />
+                    <h:inputText id="trichomonasHominis" value="#{tblHecesController.selected.trichomonasHominis}" title="#{bundle.EditTblHecesTitle_trichomonasHominis}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_chilomastixmesnilli}" for="chilomastixmesnilli" />
+                    <h:inputText id="chilomastixmesnilli" value="#{tblHecesController.selected.chilomastixmesnilli}" title="#{bundle.EditTblHecesTitle_chilomastixmesnilli}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_lodamoebabustchlli}" for="lodamoebabustchlli" />
+                    <h:inputText id="lodamoebabustchlli" value="#{tblHecesController.selected.lodamoebabustchlli}" title="#{bundle.EditTblHecesTitle_lodamoebabustchlli}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_otrosprotozoarios}" for="otrosprotozoarios" />
+                    <h:inputText id="otrosprotozoarios" value="#{tblHecesController.selected.otrosprotozoarios}" title="#{bundle.EditTblHecesTitle_otrosprotozoarios}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_ascarislumbricoides}" for="ascarislumbricoides" />
+                    <h:inputText id="ascarislumbricoides" value="#{tblHecesController.selected.ascarislumbricoides}" title="#{bundle.EditTblHecesTitle_ascarislumbricoides}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_trichuristrichiura}" for="trichuristrichiura" />
+                    <h:inputText id="trichuristrichiura" value="#{tblHecesController.selected.trichuristrichiura}" title="#{bundle.EditTblHecesTitle_trichuristrichiura}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_uncinarias}" for="uncinarias" />
+                    <h:inputText id="uncinarias" value="#{tblHecesController.selected.uncinarias}" title="#{bundle.EditTblHecesTitle_uncinarias}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_strongyloidesestercoralis}" for="strongyloidesestercoralis" />
+                    <h:inputText id="strongyloidesestercoralis" value="#{tblHecesController.selected.strongyloidesestercoralis}" title="#{bundle.EditTblHecesTitle_strongyloidesestercoralis}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_enterobiusvermicularis}" for="enterobiusvermicularis" />
+                    <h:inputText id="enterobiusvermicularis" value="#{tblHecesController.selected.enterobiusvermicularis}" title="#{bundle.EditTblHecesTitle_enterobiusvermicularis}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_taeniasp}" for="taeniasp" />
+                    <h:inputText id="taeniasp" value="#{tblHecesController.selected.taeniasp}" title="#{bundle.EditTblHecesTitle_taeniasp}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_otrosmetazoarios}" for="otrosmetazoarios" />
+                    <h:inputText id="otrosmetazoarios" value="#{tblHecesController.selected.otrosmetazoarios}" title="#{bundle.EditTblHecesTitle_otrosmetazoarios}" />
+                    <h:outputLabel value="#{bundle.EditTblHecesLabel_observaciones}" for="observaciones" />
+                    <h:inputText id="observaciones" value="#{tblHecesController.selected.observaciones}" title="#{bundle.EditTblHecesTitle_observaciones}" />
+                </h:panelGrid>
+                <h:commandLink action="#{tblHecesController.update}" value="#{bundle.EditTblHecesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblHecesViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblHecesController.prepareList}" value="#{bundle.EditTblHecesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblHecesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

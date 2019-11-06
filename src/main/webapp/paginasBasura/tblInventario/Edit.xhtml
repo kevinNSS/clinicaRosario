@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblInventarioLabel_idInventario}" for="idInventario" />
+                    <h:inputText id="idInventario" value="#{tblInventarioController.selected.idInventario}" title="#{bundle.EditTblInventarioTitle_idInventario}" required="true" requiredMessage="#{bundle.EditTblInventarioRequiredMessage_idInventario}"/>
+                    <h:outputLabel value="#{bundle.EditTblInventarioLabel_nombreProducto}" for="nombreProducto" />
+                    <h:inputText id="nombreProducto" value="#{tblInventarioController.selected.nombreProducto}" title="#{bundle.EditTblInventarioTitle_nombreProducto}" required="true" requiredMessage="#{bundle.EditTblInventarioRequiredMessage_nombreProducto}"/>
+                    <h:outputLabel value="#{bundle.EditTblInventarioLabel_stockProducto}" for="stockProducto" />
+                    <h:inputText id="stockProducto" value="#{tblInventarioController.selected.stockProducto}" title="#{bundle.EditTblInventarioTitle_stockProducto}" required="true" requiredMessage="#{bundle.EditTblInventarioRequiredMessage_stockProducto}"/>
+                    <h:outputLabel value="#{bundle.EditTblInventarioLabel_unidadMedida}" for="unidadMedida" />
+                    <h:inputText id="unidadMedida" value="#{tblInventarioController.selected.unidadMedida}" title="#{bundle.EditTblInventarioTitle_unidadMedida}" required="true" requiredMessage="#{bundle.EditTblInventarioRequiredMessage_unidadMedida}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tblInventarioController.update}" value="#{bundle.EditTblInventarioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblInventarioViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblInventarioController.prepareList}" value="#{bundle.EditTblInventarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblInventarioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

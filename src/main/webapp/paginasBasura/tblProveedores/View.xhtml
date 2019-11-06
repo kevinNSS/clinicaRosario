@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblProveedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblProveedoresLabel_idProveedor}"/>
+                    <h:outputText value="#{tblProveedoresController.selected.idProveedor}" title="#{bundle.ViewTblProveedoresTitle_idProveedor}"/>
+                    <h:outputText value="#{bundle.ViewTblProveedoresLabel_nombreProveedor}"/>
+                    <h:outputText value="#{tblProveedoresController.selected.nombreProveedor}" title="#{bundle.ViewTblProveedoresTitle_nombreProveedor}"/>
+                    <h:outputText value="#{bundle.ViewTblProveedoresLabel_direccionProveedor}"/>
+                    <h:outputText value="#{tblProveedoresController.selected.direccionProveedor}" title="#{bundle.ViewTblProveedoresTitle_direccionProveedor}"/>
+                    <h:outputText value="#{bundle.ViewTblProveedoresLabel_correoProveedor}"/>
+                    <h:outputText value="#{tblProveedoresController.selected.correoProveedor}" title="#{bundle.ViewTblProveedoresTitle_correoProveedor}"/>
+                    <h:outputText value="#{bundle.ViewTblProveedoresLabel_tel1Proveedor}"/>
+                    <h:outputText value="#{tblProveedoresController.selected.tel1Proveedor}" title="#{bundle.ViewTblProveedoresTitle_tel1Proveedor}"/>
+                    <h:outputText value="#{bundle.ViewTblProveedoresLabel_tel2Proveedor}"/>
+                    <h:outputText value="#{tblProveedoresController.selected.tel2Proveedor}" title="#{bundle.ViewTblProveedoresTitle_tel2Proveedor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblProveedoresController.destroyAndView}" value="#{bundle.ViewTblProveedoresDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblProveedoresEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblProveedoresController.prepareCreate}" value="#{bundle.ViewTblProveedoresCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblProveedoresController.prepareList}" value="#{bundle.ViewTblProveedoresShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblProveedoresIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

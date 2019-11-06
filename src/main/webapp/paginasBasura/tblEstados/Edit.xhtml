@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTblEstadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTblEstadosLabel_idEstado}" for="idEstado" />
+                    <h:inputText id="idEstado" value="#{tblEstadosController.selected.idEstado}" title="#{bundle.EditTblEstadosTitle_idEstado}" required="true" requiredMessage="#{bundle.EditTblEstadosRequiredMessage_idEstado}"/>
+                    <h:outputLabel value="#{bundle.EditTblEstadosLabel_nombreEstado}" for="nombreEstado" />
+                    <h:inputText id="nombreEstado" value="#{tblEstadosController.selected.nombreEstado}" title="#{bundle.EditTblEstadosTitle_nombreEstado}" required="true" requiredMessage="#{bundle.EditTblEstadosRequiredMessage_nombreEstado}"/>
+                    <h:outputLabel value="#{bundle.EditTblEstadosLabel_descripcionEstado}" for="descripcionEstado" />
+                    <h:inputText id="descripcionEstado" value="#{tblEstadosController.selected.descripcionEstado}" title="#{bundle.EditTblEstadosTitle_descripcionEstado}" required="true" requiredMessage="#{bundle.EditTblEstadosRequiredMessage_descripcionEstado}"/>
+                    <h:outputLabel value="#{bundle.EditTblEstadosLabel_tipoEstado}" for="tipoEstado" />
+                    <h:inputText id="tipoEstado" value="#{tblEstadosController.selected.tipoEstado}" title="#{bundle.EditTblEstadosTitle_tipoEstado}" required="true" requiredMessage="#{bundle.EditTblEstadosRequiredMessage_tipoEstado}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tblEstadosController.update}" value="#{bundle.EditTblEstadosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTblEstadosViewLink}"/>
+                <br />
+                <h:commandLink action="#{tblEstadosController.prepareList}" value="#{bundle.EditTblEstadosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTblEstadosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

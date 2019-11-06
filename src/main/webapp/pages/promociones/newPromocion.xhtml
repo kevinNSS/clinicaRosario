@@ -14,7 +14,7 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoPromocion" rendered="#{tblPromocionesController.mostrarFormProm == true}">
+            <h:form id="formIngresoPromocion" rendered="#{tblPromocionesController.mostrarFormPromocion == true}">
                 <div class="container">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
@@ -25,21 +25,21 @@
                             <h:outputLabel for="examen1" value="Examen1:"/>
                             <h:selectOneMenu id="examen1" class="form-control" value="#{tblPromocionesController.selected.examen1}" required="true" requiredMessage="Es necesario ingresar al menos un examen en la promoción">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblPromocionesController.avaibleExamenes}" var="examen1" itemLabel="#{examen1.nombreExamen}" itemValue="#{examen1}"/>
+                                <f:selectItems value="#{tblExamenesController.all}" var="examen1" itemLabel="#{examen1.nombreExamen}" itemValue="#{examen1}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="examen1" value="Examen2:"/>
                             <h:selectOneMenu id="examen2" class="form-control" value="#{tblPromocionesController.selected.examen2}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblPromocionesController.avaibleExamenes}" var="examen2" itemLabel="#{examen2.nombreExamen}" itemValue="#{examen2}"/>
+                                <f:selectItems value="#{tblExamenesController.all}" var="examen2" itemLabel="#{examen2.nombreExamen}" itemValue="#{examen2}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="examen1" value="Examen3:"/>
                             <h:selectOneMenu id="examen3" class="form-control" value="#{tblPromocionesController.selected.examen3}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblPromocionesController.avaibleExamenes}" var="examen3" itemLabel="#{examen3.nombreExamen}" itemValue="#{examen3}"/>
+                                <f:selectItems value="#{tblExamenesController.all}" var="examen3" itemLabel="#{examen3.nombreExamen}" itemValue="#{examen3}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
@@ -58,50 +58,47 @@
                             <h:outputLabel for="estado" value="Estado:"/>
                             <h:selectOneMenu id="estado" class="form-control" value="#{tblPromocionesController.selected.estado}" required="true" requiredMessage="Es necesario ponerle un estado a la promoción">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblPromocionesController.estadosPromociones}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
+                                <f:selectItems value="#{tblPromocionesController.allEstadosPromociones}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
                             </h:selectOneMenu>
                         </div>
-
-
-
-                        <script type='text/javascript'></script>
-                        <script type="text/javascript">
-                            function validares(e) {
-                                tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla === 8)
-                                    return true;
-                                patron = /[A-Za-z\s\ñ\Ñ]/;
-                                te = String.fromCharCode(tecla);
-                                return patron.test(te);
-                            }
-                        </script>
-                        <script type="text/javascript">
-                            function valida(e) {
-                                tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla === 8)
-                                    return true;
-                                patron = /[0-9\.]/;
-                                te = String.fromCharCode(tecla);
-                                return patron.test(te);
-                            }
-                        </script>
-                        <script type="text/javascript">
-                            function validanumle(e) {
-                                tecla = (document.all) ? e.keyCode : e.which;
-                                if (tecla === 8)
-                                    return true;
-                                patron = /[A-Za-z0-9\s\ñ\Ñ]/;
-                                te = String.fromCharCode(tecla);
-                                return patron.test(te);
-                            }
-                        </script>
                     </div>
                     <br/>
-                    <h:commandButton  value="Ingresar" actionListener="#{tblPromocionesController.crearPromocion()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblPromocionesController.create()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/>
                 <br/><br/>
             </h:form>
+            <script type='text/javascript'></script>
+            <script type="text/javascript">
+                function validares(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z\s\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type="text/javascript">
+                function valida(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[0-9\.]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+            <script type="text/javascript">
+                function validanumle(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z0-9\s\ñ\Ñ]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
         </ui:composition>
     </h:body>
 </html>

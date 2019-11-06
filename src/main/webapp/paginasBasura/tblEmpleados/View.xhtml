@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblEmpleadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_idEmpleado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.idEmpleado}" title="#{bundle.ViewTblEmpleadosTitle_idEmpleado}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_primerNombreEmpleado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.primerNombreEmpleado}" title="#{bundle.ViewTblEmpleadosTitle_primerNombreEmpleado}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_segundoNombreEmpleado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.segundoNombreEmpleado}" title="#{bundle.ViewTblEmpleadosTitle_segundoNombreEmpleado}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_primerApellidoEmpleado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.primerApellidoEmpleado}" title="#{bundle.ViewTblEmpleadosTitle_primerApellidoEmpleado}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_segundoApellidoEmpleado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.segundoApellidoEmpleado}" title="#{bundle.ViewTblEmpleadosTitle_segundoApellidoEmpleado}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_direccionEmpleado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.direccionEmpleado}" title="#{bundle.ViewTblEmpleadosTitle_direccionEmpleado}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_telEmpleado1}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.telEmpleado1}" title="#{bundle.ViewTblEmpleadosTitle_telEmpleado1}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_telEmpleado2}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.telEmpleado2}" title="#{bundle.ViewTblEmpleadosTitle_telEmpleado2}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_fechaNacimiento}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.fechaNacimiento}" title="#{bundle.ViewTblEmpleadosTitle_fechaNacimiento}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_fechaContratacion}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.fechaContratacion}" title="#{bundle.ViewTblEmpleadosTitle_fechaContratacion}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_sueldo}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.sueldo}" title="#{bundle.ViewTblEmpleadosTitle_sueldo}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_contrasena}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.contrasena}" title="#{bundle.ViewTblEmpleadosTitle_contrasena}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_idCargo}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.idCargo}" title="#{bundle.ViewTblEmpleadosTitle_idCargo}"/>
+                    <h:outputText value="#{bundle.ViewTblEmpleadosLabel_idEstado}"/>
+                    <h:outputText value="#{tblEmpleadosController.selected.idEstado}" title="#{bundle.ViewTblEmpleadosTitle_idEstado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblEmpleadosController.destroyAndView}" value="#{bundle.ViewTblEmpleadosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblEmpleadosEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblEmpleadosController.prepareCreate}" value="#{bundle.ViewTblEmpleadosCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblEmpleadosController.prepareList}" value="#{bundle.ViewTblEmpleadosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblEmpleadosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

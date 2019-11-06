@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblPromocionesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_idPromocion}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.idPromocion}" title="#{bundle.ViewTblPromocionesTitle_idPromocion}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_nombrePromocion}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.nombrePromocion}" title="#{bundle.ViewTblPromocionesTitle_nombrePromocion}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_fechaInicio}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.fechaInicio}" title="#{bundle.ViewTblPromocionesTitle_fechaInicio}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_fechaFinalizacion}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.fechaFinalizacion}" title="#{bundle.ViewTblPromocionesTitle_fechaFinalizacion}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_totalPagar}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.totalPagar}" title="#{bundle.ViewTblPromocionesTitle_totalPagar}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_examen1}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.examen1}" title="#{bundle.ViewTblPromocionesTitle_examen1}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_examen2}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.examen2}" title="#{bundle.ViewTblPromocionesTitle_examen2}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_examen3}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.examen3}" title="#{bundle.ViewTblPromocionesTitle_examen3}"/>
+                    <h:outputText value="#{bundle.ViewTblPromocionesLabel_estado}"/>
+                    <h:outputText value="#{tblPromocionesController.selected.estado}" title="#{bundle.ViewTblPromocionesTitle_estado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblPromocionesController.destroyAndView}" value="#{bundle.ViewTblPromocionesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblPromocionesEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblPromocionesController.prepareCreate}" value="#{bundle.ViewTblPromocionesCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblPromocionesController.prepareList}" value="#{bundle.ViewTblPromocionesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblPromocionesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

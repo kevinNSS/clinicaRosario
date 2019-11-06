@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Detalle de Inventario</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
@@ -12,7 +13,30 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <div class="container">
+                <h:form id="formTablaDetalleInventario" rendered="#{tblIngresoInventarioController.mostrarTblInventarioDetalle == true}" style="text-align: center;">
+                    <p:dataTable id="tablaDetalleInventario" value="#{tblIngresoInventarioController.allDetalleInventario}" var="detalleInventario">
+                        <p:column headerText="Codigo Del Producto">
+                            <h:outputLabel id="codigoProducto" value="#{detalleInventario.idInventario.idInventario}"/>
+                        </p:column>
+                        <p:column headerText="Nombre del Producto">
+                            <h:outputLabel id="nombreProductoDetalle" value="#{detalleInventario.idInventario.nombreProducto}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad Ingresada">
+                            <h:outputLabel id="cantidadIngresada" value="#{detalleInventario.cantidad}"/>
+                        </p:column>
+                        <p:column headerText="Proveedor">
+                            <h:outputLabel id="proveedor" value="#{detalleInventario.proveedor}"/>
+                        </p:column>
+                        <p:column headerText="Fecha De Ingreso">
+                            <h:outputLabel id="fechaIngreso" value="#{detalleInventario.fechaIngreso}"/>
+                        </p:column>
+                        <p:column headerText="Fecha De Caducidad">
+                            <h:outputLabel id="fechaCaducidad" value="#{detalleInventario.fechaCaducidad}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>

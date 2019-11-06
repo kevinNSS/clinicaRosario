@@ -14,7 +14,7 @@
     <h:body>
         <ui:composition>
             <div class="container">
-                <h:form id="formTablaExamen" rendered="#{tblExamenesController.mostrarTablaExamen == true}" style="text-align: center;">
+                <h:form id="formTablaExamen" rendered="#{tblExamenesController.mostrarTblExamen == true}" style="text-align: center;">
                     <p:dataTable id="tablaExamenes" value="#{tblExamenesController.all}" var="examen">
                         <p:column headerText="ID Examen">
                             <h:outputLabel id="idExamen" value="#{examen.idExamen}"/>

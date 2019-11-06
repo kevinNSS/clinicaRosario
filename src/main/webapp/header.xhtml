@@ -30,7 +30,10 @@
                     <p:menuitem value="Empleados" outcome="empleados" icon="pi pi-star"/>
                     <p:menuitem value="Examenes" outcome="examenes" icon="pi pi-star"/>
                     <p:menuitem value="Promociones" outcome="promociones" icon="pi pi-star"/>
-                    <p:menuitem value="Inventario" outcome="inventario"  icon="pi pi-star"/>
+                    <p:submenu label="Inventario" icon="pi pi-pencil">
+                        <p:menuitem value="Inventario General" outcome="inventario" />
+                        <p:menuitem value="Inventario Detalle" outcome="detalleInventario" />
+                    </p:submenu>
                     <p:submenu label="Laboratorio" icon="pi pi-pencil">
                         <p:menuitem value="Examenes de Heces" outcome="heces" />
                         <p:menuitem value="Examenes de Orina" outcome="orines" action="#{examOrinesController.nuevoFormulario()}" />
