@@ -35,12 +35,30 @@ public class TblEmpleadosController implements Serializable {
     @EJB
     private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
     private String tipoExamen = "empleados";
+    private Boolean mostrarTblEmpleados = true;
+    private Boolean mostrarFormEmpleados = false;
 
     Random numero = new Random();
     private int n1;
     private int n2;
     private int n3;
     private int n4;
+
+    public Boolean getMostrarTblEmpleados() {
+        return mostrarTblEmpleados;
+    }
+
+    public void setMostrarTblEmpleados(Boolean mostrarTblEmpleados) {
+        this.mostrarTblEmpleados = mostrarTblEmpleados;
+    }
+
+    public Boolean getMostrarFormEmpleados() {
+        return mostrarFormEmpleados;
+    }
+
+    public void setMostrarFormEmpleados(Boolean mostrarFormEmpleados) {
+        this.mostrarFormEmpleados = mostrarFormEmpleados;
+    }
 
     public String getTipoExamen() {
         return tipoExamen;
@@ -123,6 +141,17 @@ public class TblEmpleadosController implements Serializable {
         current = (TblEmpleados) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
+    }
+    
+    public void mostrarTablaEmpleados(){
+        mostrarFormEmpleados = false;
+        mostrarTblEmpleados = true;
+    }
+    
+    public void mostrarFormularioEmpleados(){
+        mostrarFormEmpleados = true;
+        mostrarTblEmpleados = false;
+        current = new TblEmpleados();
     }
 
     public String update() {

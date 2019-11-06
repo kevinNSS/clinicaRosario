@@ -146,15 +146,8 @@ public class TblPromocionesController implements Serializable {
         return "Edit";
     }
 
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblPromocionesUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public void update() {
+        ejbFacade.edit(current);
     }
 
     public String destroy() {

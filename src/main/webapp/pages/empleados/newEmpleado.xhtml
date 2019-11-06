@@ -13,7 +13,7 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoEmpleado"> 
+            <h:form id="formIngresoEmpleado" rendered="#{tblEmpleadosController.mostrarFormEmpleados == true}"> 
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
                 <div class="container">
                     <div class="form-row">

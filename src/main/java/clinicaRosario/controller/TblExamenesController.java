@@ -117,6 +117,10 @@ public class TblExamenesController implements Serializable {
     public List<TblEstados> getAllEstadosExamenes(){
         return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
     }
+    
+    public void leerExamen(TblExamenes leerExamen){
+        current = leerExamen;
+    }
 
     public String prepareList() {
         recreateModel();
@@ -143,22 +147,17 @@ public class TblExamenesController implements Serializable {
         current = new TblExamenes();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
+    
+    public void editar(){
+        ejbFacade.edit(current);
+        current = new TblExamenes();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Editados Exitosamente!"));
+    }
 
     public String prepareEdit() {
         current = (TblExamenes) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
-    }
-
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblExamenesUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
     }
 
     public String destroy() {
