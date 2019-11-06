@@ -19,23 +19,23 @@
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="primerNombre" value="Primer Nombre:"/>
-                            <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerNombreEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
+                            <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerNombreEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return valiletrassn(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoNombre" value="Segundo Nombre:"/>
-                            <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoNombreEmpleado}" onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoNombreEmpleado}" onkeypress="return valiletrascone(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="primerApellido" value="Primer Apellido:"/>
-                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return valiletrascone(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="segundoApellido" value="Segundo Apellido:"/>
-                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return validares(event)"/>
+                            <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return valiletrascone(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="direccion" value="Direccion:"/>
-                            <p:inputText id="direccion" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.direccionEmpleado}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return valida(event)"/>
+                            <p:inputText id="direccion" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.direccionEmpleado}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return validireccion(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="telefono1" value="Telefono 1:"/>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="sueldo" value="Sueldo:"/>
-                            <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.sueldo}" required="true" requiredMessage="Es necesario llenar el campo sueldo" onkeypress="return valida(event)"/>
+                            <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.sueldo}" required="true" requiredMessage="Es necesario llenar el campo sueldo"  onkeypress="return validecimal(event)"/>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estadoEmpleado" value="Estado del empleado:"/>
@@ -84,33 +84,22 @@
             </h:form>
             <script type='text/javascript'></script>
             <script type="text/javascript">
-                function validar(e) {
+                function valiletrassn (e) {
                     tecla = (document.all) ? e.keyCode : e.which;
                     if (tecla === 8)
                         return true;
-                    patron = /[A-Za-z\ñ\Ñ]/;
+                    patron = /[A-Za-z\s\ñ\Ñ\á\é\í\ó\ú]/;
                     te = String.fromCharCode(tecla);
                     return patron.test(te);
                 }
             </script>
             <script type='text/javascript'></script>
             <script type="text/javascript">
-                function valida(e) {
+                function valiletrascone(e) {
                     tecla = (document.all) ? e.keyCode : e.which;
                     if (tecla === 8)
                         return true;
-                    patron = /[A-Za-z0-9\s\ñ\Ñ]/;
-                    te = String.fromCharCode(tecla);
-                    return patron.test(te);
-                }
-            </script>
-            <script type='text/javascript'></script>
-            <script type="text/javascript">
-                function validares(e) {
-                    tecla = (document.all) ? e.keyCode : e.which;
-                    if (tecla === 8)
-                        return true;
-                    patron = /[A-Za-z\s\ñ\Ñ]/;
+                    patron = /[A-Za-z\s\ñ\Ñ\á\é\í\ó\ú]/;
                     te = String.fromCharCode(tecla);
                     return patron.test(te);
                 }
@@ -125,21 +114,27 @@
                     return patron.test(te);
                 }
             </script>
-            <script language="JavaScript">
-                var ev = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
-                var x = document.getElementById("check");
-                function validate(correo) {
-                    if (!ev.test(correo))
-                    {
-                        x.innerHTML = "Correo no valido :(";
-                        x.style.color = "red"
-                    } else
-                    {
-                        x.innerHTML = "Correo valido!";
-                        x.style.color = "green"
-                    }
+            <script type="text/javascript">
+                function validireccion(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[A-Za-z0-9\s\ñ\Ñ\á\é\í\ó\ú]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
                 }
             </script>
+             <script type="text/javascript">
+                function validecimal(e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    if (tecla === 8)
+                        return true;
+                    patron = /[0-9\.]/;
+                    te = String.fromCharCode(tecla);
+                    return patron.test(te);
+                }
+            </script>
+         
         </ui:composition>
     </h:body>
 </html>
