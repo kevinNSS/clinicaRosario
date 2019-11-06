@@ -10,200 +10,121 @@
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
         <h:outputStylesheet library = "css" name = "bootstrap.css"/>
         <h:outputStylesheet library = "css" name = "buttons.css"/>
+        <h:outputStylesheet library = "css" name = "hemogramaCSS.css"/>
     </h:head>
     <h:body>
         <ui:composition>
 
-            <h:form id="formIngresoEmpleado"> 
-                  <!--formulario encabezado boleta-->
-                            <h2 align="center">LABORATORIO CLINICO EL ROSARIO</h2>
-                            <h5 align="center">2a calle oriente entre 2a y 4a av sur El Rosario La Paz</h5>
-                            <h6 align="center">Examen de HEMOGRAMA para el paciente:</h6>
-                <hr></hr>
-                <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
-                <div class="container">                  
-                    <div class="form-row">
-                        <h:panelGrid columns="20" cellpadding="31">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="idPaciente" value="Id Paciente:"/>
-                            <p:inputText id="idPaciente" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            
+            <h:form id="formIngresoEmpleado">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <!--formulario encabezado-->
+                            <h:outputLabel value="Boleta de examen para el paciente"/>
+                            <h:outputLabel value="Paciente"/>
+                            <h:inputText type="text" class="form-control" placeholder="paciente"/>
+                            <h:outputLabel value="fecha"/>
+                            <p:inputText type="date" class="form-control"/>
+                        </div><!--formulario encabezado-->
+
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <!--formulario parte1-->
+                            <br/>
+                            <br/>
+                            <h:outputLabel value="HEMOGRAMA"/>
+                            <br/>
+                            <h:outputLabel value="Globulos Rojos"/>
+                            <h:inputText type="text" class="form-control" placeholder="Globulos rojos"/>
+                            <br/>
+                            <h:outputLabel value="Hemoglobina"/>
+                            <h:inputText type="text" class="form-control"  placeholder="Hemoglobina"/>
+                            <br/>
+                            <h:outputLabel value="Hematocrito"/>
+                            <h:inputText type="text" class="form-control" placeholder="Hematocrito"/>
+                            <br/>
+                            <h:outputLabel value="VCM"/>
+                            <h:inputText type="text" class="form-control" placeholder="VCM"/>
+                            <br/>
+                            <h:outputLabel value="HCM"/>
+                            <h:inputText type="text" class="form-control" placeholder="HCM"/>
+                            <br/>
+                            <h:outputLabel value="CHCM"/>
+                            <h:inputText type="text" class="form-control" placeholder="CHCM"/>
+                            <br/>
+                            <h:outputLabel value="Leucocitos"/>
+                            <h:inputText type="text" class="form-control" placeholder="LEUCOCITOS"/>
+                            <br/>
+                            <h:outputLabel value="Neutrofilos segmentados"/>
+                            <h:inputText type="text" class="form-control" placeholder="Neutrofilos segmentados"/>
+                            <br/>
+                            <h:outputLabel value="Neutrofilos en banda"/>
+                            <h:inputText type="text" class="form-control" placeholder="Neutrofilos en banda"/>
+                            <br/>
+                            <h:outputLabel value="Linfocitos"/>
+                            <h:inputText type="text" class="form-control" placeholder="Linfocitos"/>
+                            <br/>
+                            <h:outputLabel value="Monocitos"/>
+                            <h:inputText type="text" class="form-control" placeholder="Monocitos"/>
+                            <br/>
+                            <h:outputLabel value="Eosinofilos"/>
+                            <h:inputText type="text" class="form-control" placeholder="Eosinofilos"/>
+                            <br/>
+                            <h:outputLabel value="Basofilos"/>
+                            <h:inputText type="text" class="form-control" placeholder="Basofilos"/>
                         </div>
-                        </h:panelGrid>
-                        <br/><br/>
-                        <h:panelGrid columns="20" cellpadding="33"> 
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="primerNombre" value="Nombres: "/>
-                            <p:inputText id="primerNombre" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            
+                        <div class="col">
+                            <!--texto a la derecha-->
+                            <br/>
+                            <br/>
+                            <p class="style">Por mm3</p>
+                            <p class="style">gr/dl</p>
+                            <p class="style">%</p>
+                            <p class="style">mic. cub.</p>
+                            <p class="style">urg</p>
+                            <p class="style">%</p>
+                            <p class="style">Por mm3</p>
+                            <p class="style">%</p>
+                            <p class="style">%</p>
+                            <p class="style">%</p>
+                            <p class="style">%</p>
+                            <p class="style">%</p>
+                            <p class="style">%</p>
                         </div>
-                        </h:panelGrid>
-                        <br/><br/>
-                        <h:panelGrid columns="20" cellpadding="33"> 
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="primerApellido" value="Apellidos: "/>
-                            <p:inputText id="primerApellido" style="width : 500px;"  class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="40" cellpadding="38">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="Fecha" value="Fecha :"/>
-                            <p:inputText id="fecha" style="width : 500px;" type="date" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            
-                        </div>
-                        </h:panelGrid>
-                        <br/><br/><br/><br/><br/><br/>
-                        
-                        
-                        
-                        
-                        
-                        
-                        <h:panelGrid columns="20" cellpadding="25">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="globulosRojos" value="Gl&oacute;bulos Rojos :"/>
-                            <p:inputText id="globulosRojos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp;por mm3"/>
-                        </div>
-                        </h:panelGrid>
-                        <br/><br/><br/>
-                        <h:panelGrid columns="20" cellpadding="27">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="hemoglobina" value="Hemoglobina :"/>
-                            <p:inputText id="hemoglobina" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp; gr/dl"/>
-                        </div>
-                        </h:panelGrid>
-                        <br/><br/><br/>
-                        <h:panelGrid columns="20" cellpadding="29">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="hematocrito" value="Hematocrito :"  /> 
-                            <p:inputText id="hematocrito" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp;%"/>
-                        </div>
-                        </h:panelGrid>
-                        <br/><br/>
-                        <h:panelGrid columns="20" cellpadding="41">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="vcm" value="VCM :"  /> 
-                            <p:inputText id="vcm" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel value="mic. sub."/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="20" cellpadding="41">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="hcm" value="HCM :"  /> 
-                            <p:inputText id="hcm" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="ugr"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="20" cellpadding="40">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="chcm" value="CHCM:"  /> 
-                            <p:inputText id="chcm" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="%"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="33">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="leucocitos" value="Leucocitos   :"  /> 
-                            <p:inputText id="leucocitos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; por mm3"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="11">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="neutrofilosSeg" value="Neutr&oacute;filos Segmentados :"  /> 
-                            <p:inputText id="neutrofilosSeg" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  %"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="18">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="neutrofilosEnBanda" value="    Neutr&oacute;filos en Banda   :"  /> 
-                            <p:inputText id="neutrofilosEnBanda" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value=" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; %"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="35">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="linfocitos" value=" Linfocitos   :"  /> 
-                            <p:inputText id="linfocitos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value=" &nbsp; &nbsp; % "/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="34">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="monocitos" value=" Monocitos   :"  /> 
-                            <p:inputText id="monocitos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; %"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="34">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="eosinofilos" value=" Eosinofilos   :"  /> 
-                            <p:inputText id="eosinofilos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp; %"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="37">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="basofilos" value=" Basofilos   :"  /> 
-                            <p:inputText id="basofilos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp;%"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="17">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="recuentoPlaquetas" value="Recuento de Plaquetas:"  /> 
-                            <p:inputText id="recuentoPlaquetas" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; X mmc"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="12">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="recuentoReticulos" value="Recuento de Reticulocitos:"  /> 
-                            <p:inputText id="recuentoReticulos" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value=" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="20">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="eritro" value="Eritrosedimientaci&oacute;n:"  /> 
-                            <p:inputText id="eritro" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                            <h:outputLabel   value="&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;mm x h"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="32">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="gotagruesa" value="Gota Gruesa:"  /> 
-                            <p:inputText id="gotagruesa" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="42">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="otros" value="Otros:"  /> 
-                            <p:inputText id="otros" style="width : 500px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="29">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="observaciones" value="Observaciones:"  /> 
-                            <p:inputText id="observaciones" style="width : 675px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                        </div>
-                        </h:panelGrid>
-                        <h:panelGrid columns="25" cellpadding="29">
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel  for="reportado" value="Reportado por:"  /> 
-                            <p:inputText id="reportado" style="width : 675px;" placeholder="" class="form-control" value="" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return validar(event)"/>
-                        </div>
-                        </h:panelGrid>
                     </div>
+                    <div class="row"><!--Footer-->
+                        <div class="col">
+                            <!--formulario encabezado-->
+                            <br/>
+                            <hr/>
+                            <h:outputLabel value="Recuento de plaquetas"/>
+                            <h:inputText type="text" class="form-control" placeholder="Recuento de plaquetas"/>
+                            <br/>
+                            <h:outputLabel value="Recuento de reticulocitos"/>
+                            <h:inputText type="text" class="form-control" placeholder="Recuento de reticulocitos"/>
+                            <br/>
+                            <h:outputLabel value="Eritrosedimentacion"/>
+                            <h:inputText type="text" class="form-control" placeholder="Eritrosedimentacion"/>
+                            <br/>
+                            <h:outputLabel value="Gota gruesa"/>
+                            <h:inputText type="text" class="form-control" placeholder="Gota gruesa"/>
+                        </div>
+                        <!--texto a la derecha-->
+                        <div class="col">
+                            <br/>
+                            <br/>
+                            <p class="style">X mmc</p>
+                            <p class="style">%</p>
+                            <p class="style">mm x h</p>
+                            <p class="style"></p>
+                        </div>
+                        <!--texto a la derecha-->
+                    </div><!--Footer-->
+                    <br/>
+                    <h:inputText type="button" class="btn btn-primary btn-log btn-block" value="Ingresar"/>
+                    <br/>
+                    <br/>
                 </div>
-                <br/>
-                
-                <h:commandButton  value="Imprimir" class="btn btn-primary btn-lg btn-block"/>
             </h:form>
             <br/>
         </ui:composition>
