@@ -7,7 +7,6 @@ package clinicaRosario.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,15 +20,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_factura_encabezado")
@@ -52,6 +50,7 @@ public class TblFacturaEncabezado implements Serializable {
     private Integer idFactura;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "FECHA_FACTURACION")
     private String fechaFacturacion;
     @Basic(optional = false)
@@ -63,6 +62,7 @@ public class TblFacturaEncabezado implements Serializable {
     @Column(name = "IVA")
     private double iva;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "DESCUENTO_TOTAL")
     private double descuentoTotal;
     @Basic(optional = false)

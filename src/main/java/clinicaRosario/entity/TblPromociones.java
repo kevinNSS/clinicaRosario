@@ -6,6 +6,7 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,14 +17,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_promociones")
@@ -58,6 +61,8 @@ public class TblPromociones implements Serializable {
     @NotNull
     @Column(name = "TOTAL_PAGAR")
     private double totalPagar;
+    @OneToMany(mappedBy = "idPromocion")
+    private Collection<TblFacturaDetalle> tblFacturaDetalleCollection;
     @JoinColumn(name = "EXAMEN1", referencedColumnName = "ID_EXAMEN")
     @ManyToOne(optional = false)
     private TblExamenes examen1;
@@ -122,6 +127,15 @@ public class TblPromociones implements Serializable {
 
     public void setTotalPagar(double totalPagar) {
         this.totalPagar = totalPagar;
+    }
+
+    @XmlTransient
+    public Collection<TblFacturaDetalle> getTblFacturaDetalleCollection() {
+        return tblFacturaDetalleCollection;
+    }
+
+    public void setTblFacturaDetalleCollection(Collection<TblFacturaDetalle> tblFacturaDetalleCollection) {
+        this.tblFacturaDetalleCollection = tblFacturaDetalleCollection;
     }
 
     public TblExamenes getExamen1() {

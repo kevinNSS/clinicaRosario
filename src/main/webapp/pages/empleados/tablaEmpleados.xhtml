@@ -17,19 +17,19 @@
                 <h:form id="formTablaEmpleados" rendered="#{tblEmpleadosController.mostrarTblEmpleados == true}" style="text-align: center;">
                     <p:dataTable id="tablaEmpleado" value="#{tblEmpleadosController.allEmpleados}" var="empleados">
                         <p:column headerText="Nombre del Empleado">
-                            <h:outputLabel id="" value="#{empleados.primerNombreEmpleado}"/>
+                            <h:outputLabel id="nombreEmpleado" value="#{empleados.primerNombreEmpleado}"/>
                         </p:column>
                         <p:column headerText="Apellido del Empleado">
-                            <h:outputLabel id="" value="#{empleados.primerApellidoEmpleado}"/>
+                            <h:outputLabel id="apellidoEmpleado" value="#{empleados.primerApellidoEmpleado}"/>
                         </p:column>
                         <p:column headerText="Cargo del Empleado">
-                            <h:outputLabel id="" value="#{empleados.idCargo.nombreCargo}"/>
+                            <h:outputLabel id="cargoEmpleado" value="#{empleados.idCargo.nombreCargo}"/>
                         </p:column>
                         <p:column headerText="Teléfono">
-                            <h:outputLabel id="" value="#{empleados.telEmpleado1}"/>
+                            <h:outputLabel id="telefonoEmpleado" value="#{empleados.telEmpleado1}"/>
                         </p:column>
-                        <p:column headerText="">
-                            <h:outputLabel id="" value="#{empleados.idEstado.nombreEstado}"/>
+                        <p:column headerText="Estado">
+                            <h:outputLabel id="estadoEmpleado" value="#{empleados.idEstado.nombreEstado}"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>

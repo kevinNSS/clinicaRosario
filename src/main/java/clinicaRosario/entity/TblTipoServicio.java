@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_tipo_servicio")

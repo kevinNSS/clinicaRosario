@@ -6,7 +6,6 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,14 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_expedientes")
@@ -33,13 +31,37 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TblExpedientes.findAll", query = "SELECT t FROM TblExpedientes t")
     , @NamedQuery(name = "TblExpedientes.findByIdExpediente", query = "SELECT t FROM TblExpedientes t WHERE t.idExpediente = :idExpediente")
-    , @NamedQuery(name = "TblExpedientes.findByFechaIngreso", query = "SELECT t FROM TblExpedientes t WHERE t.fechaIngreso = :fechaIngreso")})
+    , @NamedQuery(name = "TblExpedientes.findByResultado", query = "SELECT t FROM TblExpedientes t WHERE t.resultado = :resultado")
+    , @NamedQuery(name = "TblExpedientes.findByFechaIngreso", query = "SELECT t FROM TblExpedientes t WHERE t.fechaIngreso = :fechaIngreso")
+    , @NamedQuery(name = "TblExpedientes.findByReportadoPor", query = "SELECT t FROM TblExpedientes t WHERE t.reportadoPor = :reportadoPor")})
 public class TblExpedientes implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_EXPEDIENTE")
+    private Integer idExpediente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
+    @Column(name = "RESULTADO")
+    private String resultado;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "FECHA_INGRESO")
+    private String fechaIngreso;
     @Basic(optional = false)
     @NotNull
     @Column(name = "REPORTADO_POR")
     private int reportadoPor;
+    @JoinColumn(name = "ID_EXAMEN", referencedColumnName = "ID_EXAMEN")
+    @ManyToOne(optional = false)
+    private TblExamenes idExamen;
+    @JoinColumn(name = "ID_PACIENTE", referencedColumnName = "ID_PACIENTE")
+    @ManyToOne(optional = false)
+    private TblPacientes idPaciente;
     @JoinColumn(name = "ID_TBL_HECES", referencedColumnName = "id_tabla_heces")
     @ManyToOne
     private TblHeces idTblHeces;
@@ -50,27 +72,6 @@ public class TblExpedientes implements Serializable {
     @ManyToOne
     private TblOrina idTblOrina;
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_EXPEDIENTE")
-    private Integer idExpediente;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_INGRESO")
-    private String fechaIngreso;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "RESULTADO")
-    private String resultado;
-    @JoinColumn(name = "ID_EXAMEN", referencedColumnName = "ID_EXAMEN")
-    @ManyToOne(optional = false)
-    private TblExamenes idExamen;
-    @JoinColumn(name = "ID_PACIENTE", referencedColumnName = "ID_PACIENTE")
-    @ManyToOne(optional = false)
-    private TblPacientes idPaciente;
-
     public TblExpedientes() {
     }
 
@@ -78,9 +79,11 @@ public class TblExpedientes implements Serializable {
         this.idExpediente = idExpediente;
     }
 
-    public TblExpedientes(Integer idExpediente, String fechaIngreso) {
+    public TblExpedientes(Integer idExpediente, String resultado, String fechaIngreso, int reportadoPor) {
         this.idExpediente = idExpediente;
+        this.resultado = resultado;
         this.fechaIngreso = fechaIngreso;
+        this.reportadoPor = reportadoPor;
     }
 
     public Integer getIdExpediente() {
@@ -91,6 +94,14 @@ public class TblExpedientes implements Serializable {
         this.idExpediente = idExpediente;
     }
 
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+
     public String getFechaIngreso() {
         return fechaIngreso;
     }
@@ -99,12 +110,12 @@ public class TblExpedientes implements Serializable {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getResultado() {
-        return resultado;
+    public int getReportadoPor() {
+        return reportadoPor;
     }
 
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
+    public void setReportadoPor(int reportadoPor) {
+        this.reportadoPor = reportadoPor;
     }
 
     public TblExamenes getIdExamen() {
@@ -121,6 +132,30 @@ public class TblExpedientes implements Serializable {
 
     public void setIdPaciente(TblPacientes idPaciente) {
         this.idPaciente = idPaciente;
+    }
+
+    public TblHeces getIdTblHeces() {
+        return idTblHeces;
+    }
+
+    public void setIdTblHeces(TblHeces idTblHeces) {
+        this.idTblHeces = idTblHeces;
+    }
+
+    public TblHemograma getIdTblHemograma() {
+        return idTblHemograma;
+    }
+
+    public void setIdTblHemograma(TblHemograma idTblHemograma) {
+        this.idTblHemograma = idTblHemograma;
+    }
+
+    public TblOrina getIdTblOrina() {
+        return idTblOrina;
+    }
+
+    public void setIdTblOrina(TblOrina idTblOrina) {
+        this.idTblOrina = idTblOrina;
     }
 
     @Override
@@ -146,38 +181,6 @@ public class TblExpedientes implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblExpedientes[ idExpediente=" + idExpediente + " ]";
-    }
-
-    public int getReportadoPor() {
-        return reportadoPor;
-    }
-
-    public void setReportadoPor(int reportadoPor) {
-        this.reportadoPor = reportadoPor;
-    }
-
-    public TblHeces getIdTblHeces() {
-        return idTblHeces;
-    }
-
-    public void setIdTblHeces(TblHeces idTblHeces) {
-        this.idTblHeces = idTblHeces;
-    }
-
-    public TblHemograma getIdTblHemograma() {
-        return idTblHemograma;
-    }
-
-    public void setIdTblHemograma(TblHemograma idTblHemograma) {
-        this.idTblHemograma = idTblHemograma;
-    }
-
-    public TblOrina getIdTblOrina() {
-        return idTblOrina;
-    }
-
-    public void setIdTblOrina(TblOrina idTblOrina) {
-        this.idTblOrina = idTblOrina;
     }
     
 }

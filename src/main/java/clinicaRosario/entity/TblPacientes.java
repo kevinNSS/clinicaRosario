@@ -7,7 +7,6 @@ package clinicaRosario.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,8 +16,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_pacientes")
@@ -45,9 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblPacientes.findBySexo", query = "SELECT t FROM TblPacientes t WHERE t.sexo = :sexo")
     , @NamedQuery(name = "TblPacientes.findByFechaNacimiento", query = "SELECT t FROM TblPacientes t WHERE t.fechaNacimiento = :fechaNacimiento")})
 public class TblPacientes implements Serializable {
-
-    @OneToMany(mappedBy = "paciente")
-    private Collection<TblOrina> tblOrinaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -69,6 +63,9 @@ public class TblPacientes implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "PRIMER_APELLIDO_PACIENTE")
     private String primerApellidoPaciente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "SEGUNDO_APELLIDO_PACIENTE")
     private String segundoApellidoPaciente;
     @Basic(optional = false)
@@ -76,11 +73,19 @@ public class TblPacientes implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "DIRECCION_PACIENTE")
     private String direccionPaciente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
     @Column(name = "TEL_PACIENTE")
     private String telPaciente;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "CORREO_PACIENTE")
     private String correoPaciente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
     @Column(name = "TEL_RESPONSABLE")
     private String telResponsable;
     @Basic(optional = false)
@@ -90,10 +95,13 @@ public class TblPacientes implements Serializable {
     private String sexo;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "FECHA_NACIMIENTO")
     private String fechaNacimiento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private Collection<TblFacturaEncabezado> tblFacturaEncabezadoCollection;
+    @OneToMany(mappedBy = "paciente")
+    private Collection<TblOrina> tblOrinaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private Collection<TblExpedientes> tblExpedientesCollection;
 
@@ -215,6 +223,15 @@ public class TblPacientes implements Serializable {
     }
 
     @XmlTransient
+    public Collection<TblOrina> getTblOrinaCollection() {
+        return tblOrinaCollection;
+    }
+
+    public void setTblOrinaCollection(Collection<TblOrina> tblOrinaCollection) {
+        this.tblOrinaCollection = tblOrinaCollection;
+    }
+
+    @XmlTransient
     public Collection<TblExpedientes> getTblExpedientesCollection() {
         return tblExpedientesCollection;
     }
@@ -246,15 +263,6 @@ public class TblPacientes implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblPacientes[ idPaciente=" + idPaciente + " ]";
-    }
-
-    @XmlTransient
-    public Collection<TblOrina> getTblOrinaCollection() {
-        return tblOrinaCollection;
-    }
-
-    public void setTblOrinaCollection(Collection<TblOrina> tblOrinaCollection) {
-        this.tblOrinaCollection = tblOrinaCollection;
     }
     
 }

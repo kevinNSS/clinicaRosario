@@ -6,6 +6,7 @@
 package clinicaRosario.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +15,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_heces")
@@ -168,6 +171,8 @@ public class TblHeces implements Serializable {
     @Size(max = 25)
     @Column(name = "Otros_protozoarios2")
     private String otrosprotozoarios2;
+    @OneToMany(mappedBy = "idTblHeces")
+    private Collection<TblExpedientes> tblExpedientesCollection;
 
     public TblHeces() {
     }
@@ -446,6 +451,15 @@ public class TblHeces implements Serializable {
 
     public void setOtrosprotozoarios2(String otrosprotozoarios2) {
         this.otrosprotozoarios2 = otrosprotozoarios2;
+    }
+
+    @XmlTransient
+    public Collection<TblExpedientes> getTblExpedientesCollection() {
+        return tblExpedientesCollection;
+    }
+
+    public void setTblExpedientesCollection(Collection<TblExpedientes> tblExpedientesCollection) {
+        this.tblExpedientesCollection = tblExpedientesCollection;
     }
 
     @Override

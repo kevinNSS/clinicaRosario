@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_estados")
@@ -37,9 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblEstados.findByDescripcionEstado", query = "SELECT t FROM TblEstados t WHERE t.descripcionEstado = :descripcionEstado")
     , @NamedQuery(name = "TblEstados.findByTipoEstado", query = "SELECT t FROM TblEstados t WHERE t.tipoEstado = :tipoEstado")})
 public class TblEstados implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
-    private Collection<TblPromociones> tblPromocionesCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,10 +59,10 @@ public class TblEstados implements Serializable {
     @Size(min = 1, max = 11)
     @Column(name = "TIPO_ESTADO")
     private String tipoEstado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoFacturaDetalle")
-    private Collection<TblFacturaDetalle> tblFacturaDetalleCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoExamen")
+    @OneToMany(mappedBy = "estadoExamen")
     private Collection<TblExamenes> tblExamenesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
+    private Collection<TblPromociones> tblPromocionesCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
     private Collection<TblFacturaEncabezado> tblFacturaEncabezadoCollection;
     @OneToMany(mappedBy = "idEstado")
@@ -118,21 +115,21 @@ public class TblEstados implements Serializable {
     }
 
     @XmlTransient
-    public Collection<TblFacturaDetalle> getTblFacturaDetalleCollection() {
-        return tblFacturaDetalleCollection;
-    }
-
-    public void setTblFacturaDetalleCollection(Collection<TblFacturaDetalle> tblFacturaDetalleCollection) {
-        this.tblFacturaDetalleCollection = tblFacturaDetalleCollection;
-    }
-
-    @XmlTransient
     public Collection<TblExamenes> getTblExamenesCollection() {
         return tblExamenesCollection;
     }
 
     public void setTblExamenesCollection(Collection<TblExamenes> tblExamenesCollection) {
         this.tblExamenesCollection = tblExamenesCollection;
+    }
+
+    @XmlTransient
+    public Collection<TblPromociones> getTblPromocionesCollection() {
+        return tblPromocionesCollection;
+    }
+
+    public void setTblPromocionesCollection(Collection<TblPromociones> tblPromocionesCollection) {
+        this.tblPromocionesCollection = tblPromocionesCollection;
     }
 
     @XmlTransient
@@ -176,15 +173,6 @@ public class TblEstados implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblEstados[ idEstado=" + idEstado + " ]";
-    }
-
-    @XmlTransient
-    public Collection<TblPromociones> getTblPromocionesCollection() {
-        return tblPromocionesCollection;
-    }
-
-    public void setTblPromocionesCollection(Collection<TblPromociones> tblPromocionesCollection) {
-        this.tblPromocionesCollection = tblPromocionesCollection;
     }
     
 }

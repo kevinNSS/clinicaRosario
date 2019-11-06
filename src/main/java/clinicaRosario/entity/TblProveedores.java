@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_proveedores")
@@ -39,9 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblProveedores.findByTel1Proveedor", query = "SELECT t FROM TblProveedores t WHERE t.tel1Proveedor = :tel1Proveedor")
     , @NamedQuery(name = "TblProveedores.findByTel2Proveedor", query = "SELECT t FROM TblProveedores t WHERE t.tel2Proveedor = :tel2Proveedor")})
 public class TblProveedores implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
-    private Collection<TblIngresoInventario> tblIngresoInventarioCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -72,6 +69,8 @@ public class TblProveedores implements Serializable {
     @Size(max = 8)
     @Column(name = "TEL2_PROVEEDOR")
     private String tel2Proveedor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
+    private Collection<TblIngresoInventario> tblIngresoInventarioCollection;
 
     public TblProveedores() {
     }
@@ -136,6 +135,15 @@ public class TblProveedores implements Serializable {
         this.tel2Proveedor = tel2Proveedor;
     }
 
+    @XmlTransient
+    public Collection<TblIngresoInventario> getTblIngresoInventarioCollection() {
+        return tblIngresoInventarioCollection;
+    }
+
+    public void setTblIngresoInventarioCollection(Collection<TblIngresoInventario> tblIngresoInventarioCollection) {
+        this.tblIngresoInventarioCollection = tblIngresoInventarioCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -159,15 +167,6 @@ public class TblProveedores implements Serializable {
     @Override
     public String toString() {
         return "clinicaRosario.entity.TblProveedores[ idProveedor=" + idProveedor + " ]";
-    }
-
-    @XmlTransient
-    public Collection<TblIngresoInventario> getTblIngresoInventarioCollection() {
-        return tblIngresoInventarioCollection;
-    }
-
-    public void setTblIngresoInventarioCollection(Collection<TblIngresoInventario> tblIngresoInventarioCollection) {
-        this.tblIngresoInventarioCollection = tblIngresoInventarioCollection;
     }
     
 }

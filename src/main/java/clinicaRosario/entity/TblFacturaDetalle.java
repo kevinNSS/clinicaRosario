@@ -17,23 +17,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_factura_detalle")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TblFacturaDetalle.findAll", query = "SELECT t FROM TblFacturaDetalle t")
-    , @NamedQuery(name = "TblFacturaDetalle.findByIdFacturaDetalle", query = "SELECT t FROM TblFacturaDetalle t WHERE t.idFacturaDetalle = :idFacturaDetalle")
-    , @NamedQuery(name = "TblFacturaDetalle.findByCantidad", query = "SELECT t FROM TblFacturaDetalle t WHERE t.cantidad = :cantidad")
-    , @NamedQuery(name = "TblFacturaDetalle.findBySubTotal", query = "SELECT t FROM TblFacturaDetalle t WHERE t.subTotal = :subTotal")
-    , @NamedQuery(name = "TblFacturaDetalle.findByDescuento", query = "SELECT t FROM TblFacturaDetalle t WHERE t.descuento = :descuento")
-    , @NamedQuery(name = "TblFacturaDetalle.findByTotal", query = "SELECT t FROM TblFacturaDetalle t WHERE t.total = :total")})
+    , @NamedQuery(name = "TblFacturaDetalle.findByIdFacturaDetalle", query = "SELECT t FROM TblFacturaDetalle t WHERE t.idFacturaDetalle = :idFacturaDetalle")})
 public class TblFacturaDetalle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,31 +37,15 @@ public class TblFacturaDetalle implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_FACTURA_DETALLE")
     private Integer idFacturaDetalle;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "CANTIDAD")
-    private int cantidad;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "SUB_TOTAL")
-    private double subTotal;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "DESCUENTO")
-    private double descuento;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "TOTAL")
-    private double total;
     @JoinColumn(name = "ID_FACTURA_ENCABEZADO", referencedColumnName = "ID_FACTURA")
     @ManyToOne(optional = false)
     private TblFacturaEncabezado idFacturaEncabezado;
     @JoinColumn(name = "ID_EXAMEN", referencedColumnName = "ID_EXAMEN")
     @ManyToOne(optional = false)
     private TblExamenes idExamen;
-    @JoinColumn(name = "ESTADO_FACTURA_DETALLE", referencedColumnName = "ID_ESTADO")
-    @ManyToOne(optional = false)
-    private TblEstados estadoFacturaDetalle;
+    @JoinColumn(name = "ID_PROMOCION", referencedColumnName = "ID_PROMOCION")
+    @ManyToOne
+    private TblPromociones idPromocion;
 
     public TblFacturaDetalle() {
     }
@@ -75,52 +54,12 @@ public class TblFacturaDetalle implements Serializable {
         this.idFacturaDetalle = idFacturaDetalle;
     }
 
-    public TblFacturaDetalle(Integer idFacturaDetalle, int cantidad, double subTotal, double descuento, double total) {
-        this.idFacturaDetalle = idFacturaDetalle;
-        this.cantidad = cantidad;
-        this.subTotal = subTotal;
-        this.descuento = descuento;
-        this.total = total;
-    }
-
     public Integer getIdFacturaDetalle() {
         return idFacturaDetalle;
     }
 
     public void setIdFacturaDetalle(Integer idFacturaDetalle) {
         this.idFacturaDetalle = idFacturaDetalle;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
-    }
-
-    public double getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 
     public TblFacturaEncabezado getIdFacturaEncabezado() {
@@ -139,12 +78,12 @@ public class TblFacturaDetalle implements Serializable {
         this.idExamen = idExamen;
     }
 
-    public TblEstados getEstadoFacturaDetalle() {
-        return estadoFacturaDetalle;
+    public TblPromociones getIdPromocion() {
+        return idPromocion;
     }
 
-    public void setEstadoFacturaDetalle(TblEstados estadoFacturaDetalle) {
-        this.estadoFacturaDetalle = estadoFacturaDetalle;
+    public void setIdPromocion(TblPromociones idPromocion) {
+        this.idPromocion = idPromocion;
     }
 
     @Override

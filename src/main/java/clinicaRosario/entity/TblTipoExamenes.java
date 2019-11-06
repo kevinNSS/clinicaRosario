@@ -8,7 +8,6 @@ package clinicaRosario.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kevin
+ * @author 2016
  */
 @Entity
 @Table(name = "tbl_tipo_examenes")
@@ -51,7 +50,7 @@ public class TblTipoExamenes implements Serializable {
     @Size(max = 50)
     @Column(name = "DESCRIPCION_TIPO_EXAMEN")
     private String descripcionTipoExamen;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoExamen")
+    @OneToMany(mappedBy = "tipoExamen")
     private Collection<TblExamenes> tblExamenesCollection;
 
     public TblTipoExamenes() {

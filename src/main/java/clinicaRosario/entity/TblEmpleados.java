@@ -7,8 +7,8 @@ package clinicaRosario.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,8 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -88,10 +86,12 @@ public class TblEmpleados implements Serializable {
     private String telEmpleado2;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "FECHA_NACIMIENTO")
     private String fechaNacimiento;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "FECHA_CONTRATACION")
     private String fechaContratacion;
     @Basic(optional = false)
@@ -103,6 +103,8 @@ public class TblEmpleados implements Serializable {
     @Size(min = 1, max = 256)
     @Column(name = "contrasena")
     private String contrasena;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "encargadoFacturacion")
+    private Collection<TblFacturaEncabezado> tblFacturaEncabezadoCollection;
     @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
     @ManyToOne
     private TblCargos idCargo;
@@ -226,6 +228,15 @@ public class TblEmpleados implements Serializable {
         this.contrasena = contrasena;
     }
 
+    @XmlTransient
+    public Collection<TblFacturaEncabezado> getTblFacturaEncabezadoCollection() {
+        return tblFacturaEncabezadoCollection;
+    }
+
+    public void setTblFacturaEncabezadoCollection(Collection<TblFacturaEncabezado> tblFacturaEncabezadoCollection) {
+        this.tblFacturaEncabezadoCollection = tblFacturaEncabezadoCollection;
+    }
+
     public TblCargos getIdCargo() {
         return idCargo;
     }
@@ -264,7 +275,7 @@ public class TblEmpleados implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entity.TblEmpleados[ idEmpleado=" + idEmpleado + " ]";
+        return "clinicaRosario.entity.TblEmpleados[ idEmpleado=" + idEmpleado + " ]";
     }
     
 }
