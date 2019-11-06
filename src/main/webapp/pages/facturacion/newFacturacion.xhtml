@@ -58,42 +58,21 @@
                             <h:outputLabel for="total" value="Total"/>
                             <p:inputText id="total" class="form-control" value="#{tblFacturaEncabezadoController.selected.total}" required="true" onkeypress="return valida(event)"/>
                         </div>
+                        
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="examenes" value="Examenes"/>
+                            <p:inputText id="examenes" class="form-control" value="" required="true" onkeypress=""/>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="promociones" value="Promociones"/>
+                            <p:inputText id="promociones" class="form-control" value="" required="true" onkeypress=""/>
+                        </div>
                         <br/>
                         <br/>
                     </div>
                     <h:commandButton  value="Ingresar" actionListener="#{tblFacturaEncabezadoController.create()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
-                <script type="text/javascript">
-                    function validares(e) {
-                        tecla = (document.all) ? e.keyCode : e.which;
-                        if (tecla === 8)
-                            return true;
-                        patron = /[A-Za-z\s\ñ\Ñ]/;
-                        te = String.fromCharCode(tecla);
-                        return patron.test(te);
-                    }
-                </script>
-                <script type="text/javascript">
-                    function valida(e) {
-                        tecla = (document.all) ? e.keyCode : e.which;
-                        if (tecla === 8)
-                            return true;
-                        patron = /[0-9\.]/;
-                        te = String.fromCharCode(tecla);
-                        return patron.test(te);
-                    }
-                </script>
-                <script type="text/javascript">
-                    function validanumle(e) {
-                        tecla = (document.all) ? e.keyCode : e.which;
-                        if (tecla === 8)
-                            return true;
-                        patron = /[A-Za-z0-9\s\ñ\Ñ]/;
-                        te = String.fromCharCode(tecla);
-                        return patron.test(te);
-                    }
-                </script>
             </h:form>
         </ui:composition>
     </h:body>
