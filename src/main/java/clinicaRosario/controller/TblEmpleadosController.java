@@ -103,6 +103,10 @@ public class TblEmpleadosController implements Serializable {
     public List<TblEstados> getEstadoEmpleado() {
         return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
     }
+    
+    public List<TblEmpleados> getAllEmpleados(){
+        return ejbFacade.findAll();
+    }
 
     public void create() {
         n1 = numero.nextInt(10);

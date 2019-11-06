@@ -3,13 +3,17 @@ package clinicaRosario.controller;
 import clinicaRosario.entity.TblFacturaEncabezado;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
+import clinicaRosario.entity.TblEstados;
+import clinicaRosario.entity.TblFacturaDetalle;
 import clinicaRosario.session.TblFacturaEncabezadoFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -28,6 +32,30 @@ public class TblFacturaEncabezadoController implements Serializable {
     private clinicaRosario.session.TblFacturaEncabezadoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    @EJB
+    private clinicaRosario.session.TblFacturaDetalleFacade tblFacturaDetalleFacade;
+    private TblFacturaDetalle tblFacturaDetalle;
+    private Boolean mostrarTblFactura = true;
+    private Boolean mostrarFormFactura = false;
+    @EJB
+    private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
+    private String tipoExamen = "factura";
+
+    public Boolean getMostrarTblFactura() {
+        return mostrarTblFactura;
+    }
+
+    public void setMostrarTblFactura(Boolean mostrarTblFactura) {
+        this.mostrarTblFactura = mostrarTblFactura;
+    }
+
+    public Boolean getMostrarFormFactura() {
+        return mostrarFormFactura;
+    }
+
+    public void setMostrarFormFactura(Boolean mostrarFormFactura) {
+        this.mostrarFormFactura = mostrarFormFactura;
+    }
 
     public TblFacturaEncabezadoController() {
     }
@@ -78,16 +106,30 @@ public class TblFacturaEncabezadoController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public void mostrarTablaFactura(){
+        mostrarFormFactura = false;
+        mostrarTblFactura = true;
+    }
+    
+    public void mostrarFormularioFactura(){
+        mostrarFormFactura = true;
+        mostrarTblFactura = false;
+        current = new TblFacturaEncabezado();
+    }
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblFacturaEncabezadoCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
+    public void create() {
+        ejbFacade.create(current);
+        current = new TblFacturaEncabezado();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso","¡Datos Ingresados Exitosamente!"));
+    }
+    
+    public List<TblFacturaEncabezado> getAllFacturas(){
+        return ejbFacade.findAll();
+    }
+    
+    public List<TblEstados> getAllEstadosFacturacion(){
+        return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
     }
 
     public String prepareEdit() {

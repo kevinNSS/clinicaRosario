@@ -13,7 +13,7 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <h:form id="formIngresoFactura">
+            <h:form id="formIngresoFactura" rendered="#{tblFacturaEncabezadoController.mostrarFormFactura == true}">
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
                 <div class="container">
                     <div class="form-row">
@@ -21,7 +21,7 @@
                             <h:outputLabel for="paciente" value="Paciente"/>
                             <h:selectOneMenu id="paciente" class="form-control" value="#{tblFacturaEncabezadoController.selected.idPaciente}" required="true">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblFacturaEncabezadoController.allPacientes}" var="pacientes" itemLabel="#{pacientes.primerNombrePaciente}" itemValue="#{pacientes}"/>
+                                <f:selectItems value="#{tblPacientesController.allPacientes}" var="pacientes" itemLabel="#{pacientes.primerNombrePaciente}" itemValue="#{pacientes}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
@@ -32,14 +32,14 @@
                             <h:outputLabel for="empleado" value="Encargado Facturación"/>
                             <h:selectOneMenu id="empleado" class="form-control" value="#{tblFacturaEncabezadoController.selected.encargadoFacturacion}" required="true">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblFacturaEncabezadoController.allEmpleados}" var="empleados" itemLabel="#{empleados.primerNombreEmpleado}" itemValue="#{empleados}"/>
+                                <f:selectItems value="#{tblEmpleadosController.allEmpleados}" var="empleados" itemLabel="#{empleados.primerNombreEmpleado}" itemValue="#{empleados}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="estadoFac" value="Estado Facturación"/>
                             <h:selectOneMenu id="estadoFac" class="form-control" value="#{tblFacturaEncabezadoController.selected.estado}" required="true">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                <f:selectItems value="#{tblFacturaEncabezadoController.allEstadosFactura}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
+                                <f:selectItems value="#{tblFacturaEncabezadoController.allEstadosFacturacion}" var="estados" itemLabel="#{estados.nombreEstado}" itemValue="#{estados}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
@@ -61,7 +61,7 @@
                         <br/>
                         <br/>
                     </div>
-                    <h:commandButton  value="Ingresar" actionListener="#{tblFacturaEncabezadoController.crearFactura()}" class="btn btn-primary btn-lg btn-block"/>
+                    <h:commandButton  value="Ingresar" actionListener="#{tblFacturaEncabezadoController.create()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
                 <script type="text/javascript">

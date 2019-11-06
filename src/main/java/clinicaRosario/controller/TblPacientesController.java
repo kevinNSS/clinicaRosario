@@ -6,6 +6,7 @@ import clinicaRosario.controller.util.PaginationHelper;
 import clinicaRosario.session.TblPacientesFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -88,6 +89,10 @@ public class TblPacientesController implements Serializable {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
+    }
+    
+    public List<TblPacientes> getAllPacientes(){
+        return ejbFacade.findAll();
     }
 
     public String prepareEdit() {
