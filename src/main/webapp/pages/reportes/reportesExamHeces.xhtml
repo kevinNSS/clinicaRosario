@@ -28,11 +28,11 @@
                                 <p:column headerText="Fecha de Ingreso" />
                             </p:row>
                         </p:columnGroup>
-                        <p:column>
-                            #{expedienteHeces.idPaciente.primerNombrePaciente} #{expedienteHeces.idPaciente.segundoNombrePaciente} #{expedienteHeces.idPaciente.primerApellidoPaciente} #{expedienteHeces.idPaciente.segundoApellidoPaciente}
+                        <p:column headerText="Paciente">
+                            <h:outputText value="#{expedienteHeces.idPaciente.primerNombrePaciente} "/> <h:outputText value="#{expedienteHeces.idPaciente.segundoNombrePaciente} "/> <h:outputText value="#{expedienteHeces.idPaciente.primerApellidoPaciente} "/> <h:outputText value="#{expedienteHeces.idPaciente.segundoApellidoPaciente}"/>                   
                         </p:column>
-                        <p:column>
-                            #{expedienteHeces.fechaIngreso}
+                        <p:column headerText="Fecha de Ingreso">
+                            <h:outputText value="#{expedienteHeces.fechaIngreso}"/>
                         </p:column>
                         <f:facet name="footer">
                             <h5>El Total De Registros Es: #{tblHecesController.allExamHeces.size()}</h5>

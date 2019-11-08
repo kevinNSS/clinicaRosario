@@ -43,23 +43,6 @@
                             </h:selectOneMenu>
                         </div>
                         <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="subTotal" value="Sub Total"/>
-                            <p:inputText id="subTotal" class="form-control" value="#{tblFacturaEncabezadoController.selected.subTotal}" required="true" onkeypress="return valida(event)"/>
-                        </div>
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="iva" value="IVA"/>
-                            <p:inputText id="iva" class="form-control" value="#{tblFacturaEncabezadoController.selected.iva}" required="true" onkeypress="return valida(event)"/>
-                        </div>
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="descuento" value="descuento"/>
-                            <p:inputText id="descuento" class="form-control" value="#{tblFacturaEncabezadoController.selected.descuentoTotal}" required="true" onkeypress="return valida(event)"/>
-                        </div>
-                        <div class="form-group col-xs-12 col-md-6">
-                            <h:outputLabel for="total" value="Total"/>
-                            <p:inputText id="total" class="form-control" value="#{tblFacturaEncabezadoController.selected.total}" required="true" onkeypress="return valida(event)"/>
-                        </div>
-
-                        <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="examenes" value="Examenes"/>
                             <h:selectOneMenu id="examenes" class="form-control" value="#{tblFacturaEncabezadoController.f1.idExamen}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
@@ -69,6 +52,36 @@
                         <div class="form-group col-xs-12 col-md-6">
                             <h:outputLabel for="promociones" value="Promociones"/>
                             <h:selectOneMenu id="promociones" class="form-control" value="#{tblFacturaEncabezadoController.f1.idPromocion}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPromocionesController.allPromociones}" var="promociones" itemLabel="#{promociones.nombrePromocion}" itemValue="#{promociones}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="examenes2" value="Examenes"/>
+                            <h:selectOneMenu id="examenes2" class="form-control" value="#{tblFacturaEncabezadoController.f2.idExamen}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.all}" var="examenes" itemLabel="#{examenes.nombreExamen}" itemValue="#{examenes}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="promociones2" value="Promociones"/>
+                            <h:selectOneMenu id="promociones2" class="form-control" value="#{tblFacturaEncabezadoController.f2.idPromocion}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblPromocionesController.allPromociones}" var="promociones" itemLabel="#{promociones.nombrePromocion}" itemValue="#{promociones}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="examenes3" value="Examenes"/>
+                            <h:selectOneMenu id="examenes3" class="form-control" value="#{tblFacturaEncabezadoController.f3.idExamen}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItems value="#{tblExamenesController.all}" var="examenes" itemLabel="#{examenes.nombreExamen}" itemValue="#{examenes}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6">
+                            <h:outputLabel for="promociones3" value="Promociones"/>
+                            <h:selectOneMenu id="promociones3" class="form-control" value="#{tblFacturaEncabezadoController.f3.idPromocion}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItems value="#{tblPromocionesController.allPromociones}" var="promociones" itemLabel="#{promociones.nombrePromocion}" itemValue="#{promociones}"/>
                             </h:selectOneMenu>

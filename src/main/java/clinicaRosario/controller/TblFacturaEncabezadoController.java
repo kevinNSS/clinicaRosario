@@ -45,6 +45,7 @@ public class TblFacturaEncabezadoController implements Serializable {
     private TblFacturaDetalle f3;
     private TblFacturaDetalle f4;
     private TblFacturaDetalle f5;
+    private double totalPagar = 0.0;
 
     public Boolean getMostrarTblFactura() {
         return mostrarTblFactura;
@@ -195,9 +196,58 @@ public class TblFacturaEncabezadoController implements Serializable {
     }
 
     public void create() {
+        current.setDescuentoTotal(0.0);
+        current.setSubTotal(0.0);
+        current.setIva(0.0);
+        current.setTotal(0.0);
         ejbFacade.create(current);
         f1.setIdFacturaEncabezado(current);
+        if (f1.getIdExamen() != null) {
+            totalPagar = totalPagar + f1.getIdExamen().getPrecioExamen();
+        } else if (f1.getIdPromocion() != null) {
+            totalPagar = totalPagar + f1.getIdPromocion().getTotalPagar();
+        }
         tblFacturaDetalleFacade.create(f1);
+        if (f2.getIdExamen() != null || f2.getIdPromocion() != null) {
+            f2.setIdFacturaEncabezado(current);
+            if (f2.getIdExamen() != null) {
+                totalPagar = totalPagar + f2.getIdExamen().getPrecioExamen();
+            } else if (f2.getIdPromocion() != null) {
+                totalPagar = totalPagar + f2.getIdPromocion().getTotalPagar();
+            }
+            tblFacturaDetalleFacade.create(f2);
+        }
+        if (f3.getIdExamen() != null || f3.getIdPromocion() != null) {
+            f3.setIdFacturaEncabezado(current);
+            if (f3.getIdExamen() != null) {
+                totalPagar = totalPagar + f3.getIdExamen().getPrecioExamen();
+            } else if (f3.getIdPromocion() != null) {
+                totalPagar = totalPagar + f3.getIdPromocion().getTotalPagar();
+            }
+            tblFacturaDetalleFacade.create(f3);
+        }
+        /*if (f4.getIdExamen() != null || f4.getIdPromocion() != null) {
+            f4.setIdFacturaEncabezado(current);
+            if (f4.getIdExamen() != null) {
+                totalPagar = totalPagar + f4.getIdExamen().getPrecioExamen();
+            } else if (f4.getIdPromocion() != null) {
+                totalPagar = totalPagar + f4.getIdPromocion().getTotalPagar();
+            }
+            tblFacturaDetalleFacade.create(f4);
+        }
+        if (f5.getIdExamen() != null || f5.getIdPromocion() != null) {
+            f5.setIdFacturaEncabezado(current);
+            if (f5.getIdExamen() != null) {
+                totalPagar = totalPagar + f5.getIdExamen().getPrecioExamen();
+            } else if (f5.getIdPromocion() != null) {
+                totalPagar = totalPagar + f5.getIdPromocion().getTotalPagar();
+            }
+            tblFacturaDetalleFacade.create(f5);
+        }*/
+        current.setSubTotal(totalPagar);
+        current.setIva(totalPagar * 0.13);
+        current.setTotal(totalPagar + (totalPagar * 0.13));
+        ejbFacade.edit(current);
         current = new TblFacturaEncabezado();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
