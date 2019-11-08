@@ -38,7 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TblFacturaEncabezado.findByFechaFacturacion", query = "SELECT t FROM TblFacturaEncabezado t WHERE t.fechaFacturacion = :fechaFacturacion")
     , @NamedQuery(name = "TblFacturaEncabezado.findBySubTotal", query = "SELECT t FROM TblFacturaEncabezado t WHERE t.subTotal = :subTotal")
     , @NamedQuery(name = "TblFacturaEncabezado.findByIva", query = "SELECT t FROM TblFacturaEncabezado t WHERE t.iva = :iva")
-    , @NamedQuery(name = "TblFacturaEncabezado.findByDescuentoTotal", query = "SELECT t FROM TblFacturaEncabezado t WHERE t.descuentoTotal = :descuentoTotal")
     , @NamedQuery(name = "TblFacturaEncabezado.findByTotal", query = "SELECT t FROM TblFacturaEncabezado t WHERE t.total = :total")})
 public class TblFacturaEncabezado implements Serializable {
 
@@ -63,10 +62,6 @@ public class TblFacturaEncabezado implements Serializable {
     private double iva;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DESCUENTO_TOTAL")
-    private double descuentoTotal;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "TOTAL")
     private double total;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFacturaEncabezado")
@@ -88,12 +83,11 @@ public class TblFacturaEncabezado implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public TblFacturaEncabezado(Integer idFactura, String fechaFacturacion, double subTotal, double iva, double descuentoTotal, double total) {
+    public TblFacturaEncabezado(Integer idFactura, String fechaFacturacion, double subTotal, double iva, double total) {
         this.idFactura = idFactura;
         this.fechaFacturacion = fechaFacturacion;
         this.subTotal = subTotal;
         this.iva = iva;
-        this.descuentoTotal = descuentoTotal;
         this.total = total;
     }
 
@@ -127,14 +121,6 @@ public class TblFacturaEncabezado implements Serializable {
 
     public void setIva(double iva) {
         this.iva = iva;
-    }
-
-    public double getDescuentoTotal() {
-        return descuentoTotal;
-    }
-
-    public void setDescuentoTotal(double descuentoTotal) {
-        this.descuentoTotal = descuentoTotal;
     }
 
     public double getTotal() {

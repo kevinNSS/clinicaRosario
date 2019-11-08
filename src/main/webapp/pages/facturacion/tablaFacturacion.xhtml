@@ -17,16 +17,18 @@
                 <h:form id="formTablaFacturas" rendered="#{tblFacturaEncabezadoController.mostrarTblFactura == true}" style="text-align: center;">
                     <p:dataTable id="tablaFacturas" value="#{tblFacturaEncabezadoController.allFacturas}" var="facturas">
                         <p:column headerText="Paciente">
-                            <h:outputLabel id="paciente" value="#{facturas.idPaciente.primerNombrePaciente}"/>
+                            <h:outputText value="#{facturas.idPaciente.primerNombrePaciente} "/> <h:outputText value="#{facturas.idPaciente.segundoNombrePaciente} "/> <h:outputText value="#{facturas.idPaciente.primerApellidoPaciente} "/> <h:outputText value="#{facturas.idPaciente.segundoApellidoPaciente} "/>
                         </p:column>
                         <p:column headerText="Encargado de Facturación">
-                            <h:outputLabel id="encargadoFacturacion" value="#{facturas.encargadoFacturacion.primerNombreEmpleado}"/>
+                            <h:outputText value="#{facturas.encargadoFacturacion.primerNombreEmpleado} "/> <h:outputText value="#{facturas.encargadoFacturacion.segundoNombreEmpleado} "/> <h:outputText value="#{facturas.encargadoFacturacion.primerApellidoEmpleado} "/> <h:outputText value="#{facturas.encargadoFacturacion.segundoApellidoEmpleado} "/>
                         </p:column>
                         <p:column headerText="Fecha de Facturación">
                             <h:outputLabel id="fechaFacturacion" value="#{facturas.fechaFacturacion}"/>
                         </p:column>
                         <p:column headerText="Total">
-                            <h:outputLabel id="total" value="#{facturas.total}"/>
+                            $<h:outputLabel id="total" value="#{facturas.total}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputLabel>
                         </p:column>
                     </p:dataTable>
                 </h:form>
