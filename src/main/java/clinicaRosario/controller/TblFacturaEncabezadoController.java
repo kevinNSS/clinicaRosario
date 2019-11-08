@@ -170,16 +170,20 @@ public class TblFacturaEncabezadoController implements Serializable {
     }
 
     public void addDetalleFactura() {
-        if (agregarDetalleFactura.getIdExamen() != null || agregarDetalleFactura.getIdPromocion() != null) {
-            facturaDetalleList.add(agregarDetalleFactura);
-            if (agregarDetalleFactura.getIdExamen() != null) {
-                totalPagar = totalPagar + agregarDetalleFactura.getIdExamen().getPrecioExamen();
-            } else if (agregarDetalleFactura.getIdPromocion() != null) {
-                totalPagar = totalPagar + agregarDetalleFactura.getIdPromocion().getTotalPagar();
+        if (agregarDetalleFactura.getIdExamen() != null && agregarDetalleFactura.getIdPromocion() != null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "¡Se Debe Agregar Una Opción A La Vez!"));
+        } else {
+            if (agregarDetalleFactura.getIdExamen() != null || agregarDetalleFactura.getIdPromocion() != null) {
+                facturaDetalleList.add(agregarDetalleFactura);
+                if (agregarDetalleFactura.getIdExamen() != null) {
+                    totalPagar = totalPagar + agregarDetalleFactura.getIdExamen().getPrecioExamen();
+                } else if (agregarDetalleFactura.getIdPromocion() != null) {
+                    totalPagar = totalPagar + agregarDetalleFactura.getIdPromocion().getTotalPagar();
+                }
+                agregarDetalleFactura = null;
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "¡Se Debe Ingresar Al Menos Un Examen ó Promoción!"));
             }
-            agregarDetalleFactura = null;
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "¡Se Debe Ingresar Al Menos Un Examen ó Promoción!"));
         }
     }
 
