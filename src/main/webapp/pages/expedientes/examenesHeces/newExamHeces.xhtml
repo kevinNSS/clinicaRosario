@@ -101,61 +101,80 @@
                             <br/>      
                         </div>
                         <div class="w-100"></div>
-                        <div class="form-group col-xs-12 col-md-3"><p align="center">PROTOZOARIOS</p>
-                            <h:outputLabel for="entamoeba"  value="Entamoeba histolyca"/>
-                            <br/>
-                            <h:outputLabel for="entamoebacoli"  value="Entamoeba coli"/>
-                            <br/>
+                        <div class="form-group col-xs-25 col-md-2"><p align="center">PROTOZOARIOS</p>
+                            <h:outputLabel for="entamoeba"  value="Entamoeba histolyca" style="heigth:150px "/>
+                            <br/><br/>                           
+                            <h:outputLabel for="entamoebacoli"  value="Entamoeba coli" style="heigth:250px "/>
+                            <br/><br/>
                             <h:outputLabel for="endolimaxnana"  value="Endolimax nana"/>
-                            <br/>
+                            <br/><br/>
                             <h:outputLabel for="giardialamblia"  value="Giardia lamblia"/>
                             <br/>
-                            <h:outputLabel for="trichomonashominis"  value="Trichomonas hominis"/>
+                            <p></p>
+                            <h:outputLabel for="trichomonashominis"  value="Trichomonas hominis" style="weigth:80px "/>
+                            <br/>
                             <br/>
                             <h:outputLabel for="chilomastixmesnilii"  value="Chilomastix mesnilii"/>
                             <br/>
+                            <br/>
                             <h:outputLabel for="lodamoebabustchilii"  value="Lodamoeba butschlii"/>
                             <br/>
-                            <h:outputLabel for="otros"  value="Otros"/>
                             <br/>
+                            <h:outputLabel for="otros"  value="Otros"/>
+                            
                         </div>
                         <div class="form-group col-xs-12 col-md-2"><p align="center">ACTIVOS</p>
                             <p:inputText id="entamoeba1" class="form-control" type="text" value="#{tblHecesController.selected.entamoebahistolyca}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="entamoebacoli1" class="form-control" type="text" value="#{tblHecesController.selected.entamoebacoli}" placeholder="Resultado"/>
+                           <p></p>
                             <p:inputText id="endolimaxnana1" class="form-control" type="text" value="#{tblHecesController.selected.endolimaxnana}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="giardialamblia1" class="form-control" type="text" value="#{tblHecesController.selected.giardiaLamblia}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="trichomonas1" class="form-control" type="text" value="#{tblHecesController.selected.trichomonasHominis}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="chilomastix1" class="form-control" type="text" value="#{tblHecesController.selected.chilomastixmesnilli}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="lodamoeba1" class="form-control" type="text" value="#{tblHecesController.selected.lodamoebabustchlli}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="otros1" class="form-control" type="text" value="#{tblHecesController.selected.otrosprotozoarios}" placeholder="Resultado"/>  
                         </div>
                         <div class="form-group col-xs-12 col-md-2"><p align="center">QUISTES</p>
                             <p:inputText id="entamoeba2" class="form-control" type="text" value="#{tblHecesController.selected.entamoebahistolyca2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="entamoebacoli2" class="form-control" type="text" value="#{tblHecesController.selected.entamoebacoli2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="endolimaxnana2" class="form-control" type="text" value="#{tblHecesController.selected.endolimaxnana2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="giardialamblia2" class="form-control" type="text" value="#{tblHecesController.selected.giardiaLamblia2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="trichomonas2" class="form-control" type="text" value="#{tblHecesController.selected.trichomonasHominis2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="chilomastix2" class="form-control" type="text" value="#{tblHecesController.selected.chilomastixmesnilli2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="lodamoeba2" class="form-control" type="text" value="#{tblHecesController.selected.lodamoebabustchlli2}" placeholder="Resultado"/>
+                            <p></p>
                             <p:inputText id="otros2" class="form-control" type="text" value="#{tblHecesController.selected.otrosprotozoarios2}" placeholder="Resultado"/>       
+                        
                         </div>
-                        <div class="form-group col-xs-12 col-md-2"><p align="center">METAZOARIOS</p>
-                            <h:outputLabel for="ascaris"  value="Ascaris lumbricoides"/> <br/>
-                            <h:outputLabel for="trichuris"  value="Trichuris trichura"/> <br/>
-                            <h:outputLabel for="uncinarias"  value="Uncinarias"/> <br/>
-                            <h:outputLabel for="strongyloides"  value="Strongyloides estercoralis"/> <br/>
-                            <h:outputLabel for="enterobius"  value="Enterobius vermicularis"/> <br/>
-                            <h:outputLabel for="taeniasp"  value="Taenia sp"/> <br/>
+                        <div class="form-group col-xs-12 col-md-3"><p align="center">METAZOARIOS</p>
+                            <h:outputLabel for="ascaris"  value="Ascaris lumbricoides" style="text-align:right"/> <br/><br/>
+                            <h:outputLabel for="trichuris"  value="Trichuris trichura"/> <br/><br/>
+                            <h:outputLabel for="uncinarias"  value="Uncinarias"/> <br/><br/>
+                            <h:outputLabel for="strongyloides"  value="Strongyloides estercoralis"/> <br/><br/>
+                            <h:outputLabel for="enterobius"  value="Enterobius vermicularis"/> <br/><br/>
+                            <h:outputLabel for="taeniasp"  value="Taenia sp"/> <br/><br/>
                             <h:outputLabel for="otros"  value="Otros"/>
 
                         </div>
                         <div class="form-group col-xs-12 col-md-3"><p align="center">RESULTADOS</p>
-                            <p:inputText id="ascaris" class="form-control" type="text" value="#{tblHecesController.selected.ascarislumbricoides}" placeholder="Resultado"/>
-                            <p:inputText id="trichuris" class="form-control" type="text" value="#{tblHecesController.selected.trichuristrichiura}" placeholder="Resultado"/>
-                            <p:inputText id="uncinarias" class="form-control" type="text" value="#{tblHecesController.selected.uncinarias}" placeholder="Resultado"/>
-                            <p:inputText id="strongyloides" class="form-control" type="text" value="#{tblHecesController.selected.strongyloidesestercoralis}" placeholder="Resultado"/>
-                            <p:inputText id="enterobius" class="form-control" type="text" value="#{tblHecesController.selected.enterobiusvermicularis}" placeholder="Resultado"/>
-                            <p:inputText id="taeniasp" class="form-control" type="text" value="#{tblHecesController.selected.taeniasp}" placeholder="Resultado"/>
+                            <p:inputText id="ascaris" class="form-control" type="text" value="#{tblHecesController.selected.ascarislumbricoides}" placeholder="Resultado" /><p></p>
+                            <p:inputText id="trichuris" class="form-control" type="text" value="#{tblHecesController.selected.trichuristrichiura}" placeholder="Resultado"/><p></p>
+                            <p:inputText id="uncinarias" class="form-control" type="text" value="#{tblHecesController.selected.uncinarias}" placeholder="Resultado"/><p></p>
+                            <p:inputText id="strongyloides" class="form-control" type="text" value="#{tblHecesController.selected.strongyloidesestercoralis}" placeholder="Resultado"/><p></p>
+                            <p:inputText id="enterobius" class="form-control" type="text" value="#{tblHecesController.selected.enterobiusvermicularis}" placeholder="Resultado"/><p></p>
+                            <p:inputText id="taeniasp" class="form-control" type="text" value="#{tblHecesController.selected.taeniasp}" placeholder="Resultado"/><p></p>
                             <p:inputText id="otros" class="form-control" type="text" value="#{tblHecesController.selected.otrosmetazoarios}" placeholder="Resultado"/>
 
                         </div>

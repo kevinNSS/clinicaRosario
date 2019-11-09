@@ -129,6 +129,7 @@ public class TblHecesController implements Serializable {
     public List<TblExpedientes> getAllExamHeces(){
         return tblExpedientesFacade.findAllExpedientesHeces();
     }
+    
 
     public void create() {
         ejbFacade.create(current);
