@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -20,9 +19,10 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 
 @Named("tblHecesController")
-@SessionScoped
+@ViewScoped
 public class TblHecesController implements Serializable {
 
     private TblHeces current;
@@ -102,23 +102,6 @@ public class TblHecesController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
-        current = (TblHeces) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
-    }
-
-    public String prepareCreate() {
-        current = new TblHeces();
-        selectedItemIndex = -1;
-        return "Create";
-    }
-
-    public void mostrarTablaExamHeces() {
-        mostrarFormHeces = false;
-        mostrarTblHeces = true;
-    }
-
     public void mostrarFormularioExamHeces() {
         mostrarFormHeces = true;
         mostrarTblHeces = false;
@@ -130,6 +113,10 @@ public class TblHecesController implements Serializable {
         return tblExpedientesFacade.findAllExpedientesHeces();
     }
     
+    public void leerExamHeces(TblExpedientes leer){
+        tblExpedientes = leer;
+        current = tblExpedientes.getIdTblHeces();
+    }
 
     public void create() {
         ejbFacade.create(current);
@@ -139,31 +126,11 @@ public class TblHecesController implements Serializable {
         tblExpedientes = new TblExpedientes();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
-
-    public String prepareEdit() {
-        current = (TblHeces) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
-    }
-
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblHecesUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
-    }
-
-    public String destroy() {
-        current = (TblHeces) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        performDestroy();
-        recreatePagination();
-        recreateModel();
-        return "List";
+    
+    public void editar(){
+        ejbFacade.edit(current);
+        current = new TblHeces();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
 
     public String destroyAndView() {
@@ -216,18 +183,6 @@ public class TblHecesController implements Serializable {
 
     private void recreatePagination() {
         pagination = null;
-    }
-
-    public String next() {
-        getPagination().nextPage();
-        recreateModel();
-        return "List";
-    }
-
-    public String previous() {
-        getPagination().previousPage();
-        recreateModel();
-        return "List";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
