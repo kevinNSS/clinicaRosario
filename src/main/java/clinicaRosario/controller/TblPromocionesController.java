@@ -20,6 +20,12 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+//importamos los paquetes para trabajar con las fechas
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
 
 @Named("tblPromocionesController")
 @SessionScoped
@@ -44,6 +50,34 @@ public class TblPromocionesController implements Serializable {
     public void setMostrarFormPromocion(Boolean mostrarFormPromocion) {
         this.mostrarFormPromocion = mostrarFormPromocion;
     }
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
+
+    //fecha de nacimiento convertida a date con formato para IF
+    private Date dateFinalizacion;
+    //metodo set para convertir fechaNacio a Date
+    public void setConversionFechaFinalizacion(String fechaFinaliza) throws ParseException{
+        this.dateFinalizacion = formatoFecha.parse(fechaFinaliza);
+    }//fin metodo set
 
     public Boolean getMostrarTblPromocion() {
         return mostrarTblPromocion;
@@ -123,10 +157,25 @@ public class TblPromocionesController implements Serializable {
     }
 
     public void create() {
-        ejbFacade.create(current);
-        current = new TblPromociones();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
-    }
+        String fechaUsuario = current.getFechaInicio();
+        String fechaFinal = current.getFechaFinalizacion();
+        //capturar fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+       try {
+           setConversionFechaHoy(fechaHoy);
+           setConversionFecha(fechaUsuario);
+           setConversionFechaFinalizacion(fechaFinal);
+           if (dateUser.before(dateHoy) || dateFinalizacion.before(dateHoy)){
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verificar", "Fechas ingresadas no validas"));
+           }else{
+               ejbFacade.create(current);
+               current = new TblPromociones();
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+           }
+       }catch (ParseException e){
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
+       }//fin try
+    }//fin del metodo create
     
     public List<TblPromociones> getAllPromociones(){
         return ejbFacade.findAll();

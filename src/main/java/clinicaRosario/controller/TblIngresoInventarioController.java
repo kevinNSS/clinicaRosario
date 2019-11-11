@@ -8,6 +8,11 @@ import clinicaRosario.entity.TblProveedores;
 import clinicaRosario.session.TblIngresoInventarioFacade;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -37,6 +42,34 @@ public class TblIngresoInventarioController implements Serializable {
     @EJB
     private clinicaRosario.session.TblInventarioFacade tblInventarioFacade;
     private TblInventario tblInventario;
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
+
+    //fecha de caducidad convertida a date con formato para IF
+    private Date dateCaducidad;
+    //metodo set para convertir fechaNacio a Date
+    public void setConversionFechaCaducidad(String fechaCaduca) throws ParseException{
+        this.dateCaducidad = formatoFecha.parse(fechaCaduca);
+    }//fin metodo set
 
     public Boolean getMostrarFormInventarioDetalle() {
         return mostrarFormInventarioDetalle;
@@ -116,13 +149,28 @@ public class TblIngresoInventarioController implements Serializable {
     }
 
     public void create() {
-     ejbFacade.create(current);
-     tblInventario = tblInventarioFacade.inventarioSeleccionado(current.getIdInventario());
-     tblInventario.setStockProducto(tblInventario.getStockProducto() + current.getCantidad());
-     tblInventarioFacade.edit(tblInventario);
-     current = new TblIngresoInventario();
-     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
-    }
+        String fechaUsuario = current.getFechaIngreso();
+        //obtener fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+        String fechaCaduca = current.getFechaCaducidad();
+         try {
+             setConversionFecha(fechaUsuario);
+             setConversionFechaHoy(fechaHoy);
+             setConversionFechaCaducidad(fechaCaduca);
+             if (dateCaducidad.before(dateHoy) || dateUser.after(dateHoy)){
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verifica", "Fechas ingresadas no son validas"));
+             }else{
+                 ejbFacade.create(current);
+                 tblInventario = tblInventarioFacade.inventarioSeleccionado(current.getIdInventario());
+                 tblInventario.setStockProducto(tblInventario.getStockProducto() + current.getCantidad());
+                 tblInventarioFacade.edit(tblInventario);
+                 current = new TblIngresoInventario();
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+             }
+         }catch(ParseException e){
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
+         }//fin try
+    }//fin metodo create
     
     public List<TblIngresoInventario> getAllDetalleInventario(){
         return ejbFacade.findAll();

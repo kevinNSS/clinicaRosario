@@ -21,6 +21,12 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+//importamos los paquetes para trabajar con las fechas
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
 
 @Named("tblEmpleadosController")
 @SessionScoped
@@ -43,6 +49,34 @@ public class TblEmpleadosController implements Serializable {
     private int n2;
     private int n3;
     private int n4;
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
+
+    //fecha de nacimiento convertida a date con formato para IF
+    private Date dateNacimiento;
+    //metodo set para convertir fechaNacio a Date
+    public void setConversionFechaNacer(String fechaNacio) throws ParseException{
+        this.dateNacimiento = formatoFecha.parse(fechaNacio);
+    }//fin metodo set
 
     public Boolean getMostrarTblEmpleados() {
         return mostrarTblEmpleados;
@@ -127,14 +161,29 @@ public class TblEmpleadosController implements Serializable {
     }
 
     public void create() {
-        n1 = numero.nextInt(10);
-        n2 = numero.nextInt(10);
-        n3 = numero.nextInt(10);
-        n4 = numero.nextInt(10);
-        current.setIdEmpleado(current.getPrimerNombreEmpleado().substring(0, 1).toUpperCase() + current.getPrimerApellidoEmpleado().substring(0, 1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
-        ejbFacade.create(current);
-        current = new TblEmpleados();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Existosamente!"));
+        String fechaUsuario = current.getFechaContratacion();
+        String fechaNacio = current.getFechaNacimiento();
+        //Obtener fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+        try {
+            setConversionFechaNacer(fechaNacio);
+            setConversionFecha(fechaUsuario);
+            setConversionFechaHoy(fechaHoy);
+            if (dateUser.after(dateHoy) || dateNacimiento.after(dateHoy) || dateNacimiento.equals(dateHoy)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verificar", "Fecha ingresada no es valida"));
+            }else{
+                n1 = numero.nextInt(10);
+                n2 = numero.nextInt(10);
+                n3 = numero.nextInt(10);
+                n4 = numero.nextInt(10);
+                current.setIdEmpleado(current.getPrimerNombreEmpleado().substring(0, 1).toUpperCase() + current.getPrimerApellidoEmpleado().substring(0, 1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
+                ejbFacade.create(current);
+                current = new TblEmpleados();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Existosamente!"));
+            }
+        }catch (ParseException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
+        }
     }
 
     public String prepareEdit() {

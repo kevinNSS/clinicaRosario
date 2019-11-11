@@ -39,6 +39,8 @@ public class TblInventarioController implements Serializable {
     private Boolean mostrarFormInventario = false;
     private Boolean mostrarTblInventario = true;
 
+
+
     public Boolean getMostrarFormInventario() {
         return mostrarFormInventario;
     }
@@ -117,15 +119,15 @@ public class TblInventarioController implements Serializable {
     }
 
     public void create() {
-        n1 = numero.nextInt(10);
-        n2 = numero.nextInt(10);
-        n3 = numero.nextInt(10);
-        n4 = numero.nextInt(10);
-        current.setIdInventario(current.getNombreProducto().substring(0, 1).toUpperCase() + current.getNombreProducto().substring(current.getNombreProducto().length() -1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
-        current.setStockProducto(0);
-        ejbFacade.create(current);
-        current = new TblInventario();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+                n1 = numero.nextInt(10);
+                n2 = numero.nextInt(10);
+                n3 = numero.nextInt(10);
+                n4 = numero.nextInt(10);
+                current.setIdInventario(current.getNombreProducto().substring(0, 1).toUpperCase() + current.getNombreProducto().substring(current.getNombreProducto().length() -1).toUpperCase() + Integer.toString(n1) + Integer.toString(n2) + Integer.toString(n3) + Integer.toString(n4));
+                current.setStockProducto(0);
+                ejbFacade.create(current);
+                current = new TblInventario();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
     }
     
     public List<TblInventario> getAllInventario(){
