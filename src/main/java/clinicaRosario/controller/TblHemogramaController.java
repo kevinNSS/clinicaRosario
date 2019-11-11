@@ -20,6 +20,12 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+//importamos los paquetes para trabajar con las fechas
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
 
 @Named("tblHemogramaController")
 @SessionScoped
@@ -36,6 +42,27 @@ public class TblHemogramaController implements Serializable {
     private TblExpedientes tblExpedientes;
     private Boolean mostrarFormHemograma = false;
     private Boolean mostrarTblHemograma = true;
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
 
     public TblHemogramaController() {
     }
@@ -131,13 +158,27 @@ public class TblHemogramaController implements Serializable {
     }
 
     public void create() {
-        ejbFacade.create(current);
-        tblExpedientes.setIdTblHemograma(current);
-        tblExpedientesFacade.create(tblExpedientes);
-        current = new TblHemograma();
-        tblExpedientes = new TblExpedientes();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "¡Datos Ingresados Exitosamente!"));
-    }
+       String fechaUsuario = tblExpedientes.getFechaIngreso();
+       //obtener la fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+
+        try{
+            setConversionFecha(fechaUsuario);
+            setConversionFechaHoy(fechaHoy);
+            if (dateUser.after(dateHoy)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "¡La fecha ingresada no es valida!"));
+            }else{
+                ejbFacade.create(current);
+                tblExpedientes.setIdTblHemograma(current);
+                tblExpedientesFacade.create(tblExpedientes);
+                current = new TblHemograma();
+                tblExpedientes = new TblExpedientes();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "¡Datos Ingresados Exitosamente!"));
+            }
+        }catch (ParseException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "Error: " + e));
+        }//fin del try
+    }//fin del metodo create
 
     public String prepareEdit() {
         current = (TblHemograma) getItems().getRowData();

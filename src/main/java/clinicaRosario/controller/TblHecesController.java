@@ -20,6 +20,12 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
+//importamos los paquetes para trabajar con las fechas
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
 
 @Named("tblHecesController")
 @ViewScoped
@@ -63,6 +69,27 @@ public class TblHecesController implements Serializable {
         return tblExpedientes;
     }
 
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
+
     public void setTblExpedientes(TblExpedientes tblExpedientes) {
         this.tblExpedientes = tblExpedientes;
     }
@@ -74,6 +101,7 @@ public class TblHecesController implements Serializable {
         }
         return current;
     }
+
 
     private TblHecesFacade getFacade() {
         return ejbFacade;
@@ -108,7 +136,12 @@ public class TblHecesController implements Serializable {
         tblExpedientes = new TblExpedientes();
         current = new TblHeces();
     }
-    
+
+    public void mostrarTablaExamHeces() {
+        mostrarFormHeces = false;
+        mostrarTblHeces = true;
+    }
+
     public List<TblExpedientes> getAllExamHeces(){
         return tblExpedientesFacade.findAllExpedientesHeces();
     }
@@ -119,13 +152,28 @@ public class TblHecesController implements Serializable {
     }
 
     public void create() {
-        ejbFacade.create(current);
-        tblExpedientes.setIdTblHeces(current);
-        tblExpedientesFacade.create(tblExpedientes);
-        current = new TblHeces();
-        tblExpedientes = new TblExpedientes();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
-    }
+       String fechaUsuario = tblExpedientes.getFechaIngreso();
+       //obtener la fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+
+        //try para validacion de fecha
+        try{
+            setConversionFecha(fechaUsuario);
+            setConversionFechaHoy(fechaHoy);
+            if (dateUser.after(dateHoy)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verifica!", "La fecha ingresada no es valida."));
+            }else{
+                ejbFacade.create(current);
+                tblExpedientes.setIdTblHeces(current);
+                tblExpedientesFacade.create(tblExpedientes);
+                current = new TblHeces();
+                tblExpedientes = new TblExpedientes();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+            }
+        }catch (ParseException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verifica!", "Error: " + e));
+        }//fin del try
+    }//fin del metodo create
     
     public void editar(){
         ejbFacade.edit(current);

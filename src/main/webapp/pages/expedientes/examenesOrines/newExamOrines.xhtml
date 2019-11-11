@@ -24,7 +24,7 @@
                             <!--formulario encabezado-->
                             <h:outputLabel  value="Paciente"/>
                             <p:selectOneMenu class="form-control" value="#{examOrinesController.tblOrina.paciente}" required="true" requiredMessage="Es necesario llenar el paciente al que se le hace el examen">
-                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/>
                                 <f:selectItems value="#{examOrinesController.allPacientes}" var="paciente" itemLabel="#{paciente.primerNombrePaciente}" itemValue="#{paciente}"/>
                             </p:selectOneMenu>
                             <h:outputLabel   value="Fecha"/>
@@ -162,7 +162,7 @@
                 </div>
                 <!--Footer-->
                 <br/>
-                <h:commandButton  value="Ingresar" actionListener="#{examOrinesController.registrarFormulario()}" class="btn btn-primary btn-lg btn-block"/>
+                <h:commandButton  value="Guardar Modificacion" actionListener="#{examOrinesController.registrarFormulario()}" class="btn btn-primary btn-lg btn-block"/>
                 </div>
                 <br/><br/>
             </h:form>

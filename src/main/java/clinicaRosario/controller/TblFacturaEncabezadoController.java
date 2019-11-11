@@ -23,10 +23,19 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+//importamos los paquetes para trabajar con las fechas
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
+
+
 
 @Named("tblFacturaEncabezadoController")
 @SessionScoped
 public class TblFacturaEncabezadoController implements Serializable {
+
 
     private TblFacturaEncabezado current;
     private DataModel items = null;
@@ -46,6 +55,28 @@ public class TblFacturaEncabezadoController implements Serializable {
     private List<TblFacturaDetalle> facturaDetalleList = new ArrayList<>();
     private TblFacturaDetalle agregarDetalleFactura;
     DecimalFormat df = new DecimalFormat("###.##");
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
+
 
     public Boolean getMostrarTblFactura() {
         return mostrarTblFactura;
@@ -122,7 +153,7 @@ public class TblFacturaEncabezadoController implements Serializable {
     }
 
     public PaginationHelper getPagination() {
-        if (pagination == null) {
+        if (pagination == null){
             pagination = new PaginationHelper(10) {
 
                 @Override
@@ -188,20 +219,34 @@ public class TblFacturaEncabezadoController implements Serializable {
     }
 
     public void create() {
-        ejbFacade.create(current);
-        for (int i = 0; i < facturaDetalleList.size(); i++) {
-            facturaDetalleList.get(i).setIdFacturaEncabezado(current);
-            tblFacturaDetalleFacade.create(facturaDetalleList.get(i));
-        }
-        current.setSubTotal(totalPagar - (totalPagar * 0.13));
-        current.setIva(totalPagar * 0.13);
-        current.setTotal(totalPagar);
-        ejbFacade.edit(current);
-        current = new TblFacturaEncabezado();
-        facturaDetalleList = new ArrayList<>();
-        totalPagar = 0.0;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
-    }
+        String fechaUsuario = current.getFechaFacturacion();
+        //capturar fecha de hoy
+        Date fechaHoy = Calendar.getInstance().getTime();
+        //try para validacion de fecha
+        try{
+            setConversionFecha(fechaUsuario);
+            setConversionFechaHoy(fechaHoy);
+            if (dateUser.after(dateHoy)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verifica!", "La fecha ingresada no es valida."));
+            }else{
+                ejbFacade.create(current);
+                for (int i = 0; i < facturaDetalleList.size(); i++) {
+                    facturaDetalleList.get(i).setIdFacturaEncabezado(current);
+                    tblFacturaDetalleFacade.create(facturaDetalleList.get(i));
+                }
+                current.setSubTotal(totalPagar - (totalPagar * 0.13));
+                current.setIva(totalPagar * 0.13);
+                current.setTotal(totalPagar);
+                ejbFacade.edit(current);
+                current = new TblFacturaEncabezado();
+                facturaDetalleList = new ArrayList<>();
+                totalPagar = 0.0;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+            }//fin ELSE
+        }catch (ParseException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error!", "Error:" + e));
+        }//final try validacion de fecha
+    }//fin de metodo create
 
     public List<TblFacturaEncabezado> getAllFacturas() {
         return ejbFacade.findAll();

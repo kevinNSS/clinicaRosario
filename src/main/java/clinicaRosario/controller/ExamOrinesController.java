@@ -17,6 +17,12 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
+//importamos los paquetes para trabajar con las fechas
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
 
 @Getter
 @Setter
@@ -31,6 +37,27 @@ public class ExamOrinesController implements Serializable{
     private TblPacientesFacade tblPacientesFacade;
     private Boolean mostrarFormOrina = false;
     private Boolean mostrarTblOrina = true;
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow){
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException{
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
     
     @PostConstruct
     public void init(){
@@ -53,10 +80,24 @@ public class ExamOrinesController implements Serializable{
     }
     
     public void registrarFormulario(){
-        tblOrinaFacade.create(tblOrina);
-        tblOrina = new TblOrina();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Información Ingresada Exitosamente!"));
-    }
+        String fechaUsuario = tblOrina.getFechaRegistro();
+        //obtener la fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+
+        try {
+            setConversionFecha(fechaUsuario);
+            setConversionFechaHoy(fechaHoy);
+            if (dateUser.after(dateHoy)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Fecha ingresada no es valida!"));
+            }else{
+                tblOrinaFacade.create(tblOrina);
+                tblOrina = new TblOrina();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Información Ingresada Exitosamente!"));
+            }//Final IF ELSE
+        }catch (ParseException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
+        }//Final try
+    }//Final metodo registrarFormulario
     
     public List<TblOrina> getAllExamenesOrina(){
         return tblOrinaFacade.findAll();
