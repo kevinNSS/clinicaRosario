@@ -58,7 +58,7 @@
                                 <h:outputLabel for="promociones" value="Promociones"/>
                                 <h:selectOneMenu id="promociones" class="form-control" value="#{tblFacturaEncabezadoController.agregarDetalleFactura.idPromocion}">
                                     <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
-                                    <f:selectItems value="#{tblPromocionesController.allPromociones}" var="promociones" itemLabel="#{promociones.nombrePromocion}" itemValue="#{promociones}"/>
+                                    <f:selectItems value="#{tblPromocionesController.allActivePromociones}" var="promociones" itemLabel="#{promociones.nombrePromocion}" itemValue="#{promociones}"/>
                                 </h:selectOneMenu>
                             </div>
                             <div class="form-group col-xs-12 col-md-4">

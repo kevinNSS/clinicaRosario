@@ -81,6 +81,10 @@ public class pacientesController implements Serializable {
         mostrarTablaPaciente = true;
     }
 
+    public void leerPaciente(TblPacientes leer){
+     tblPacientes = leer;   
+    }
+    
     public void ingresoPacientes() throws IOException {
         String fechaUsuario = tblPacientes.getFechaNacimiento();
         //capturar fecha de hoy
@@ -104,6 +108,11 @@ public class pacientesController implements Serializable {
           
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Verifica!", "Error al interpretar "));
         }
+    }
+    
+    public void editar(){
+        tblPacientesFacade.edit(tblPacientes);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Editados Exitosamente!"));
     }
     
     public List<TblPacientes> getAll(){

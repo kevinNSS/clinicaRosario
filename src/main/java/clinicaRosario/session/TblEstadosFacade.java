@@ -39,4 +39,22 @@ public class TblEstadosFacade extends AbstractFacade<TblEstados> {
         List<TblEstados> lista = query.getResultList();
         return lista;
     }
+
+    public TblEstados cambioEstadoPromociones(String tipoEstado, String nombEstado) {
+        TblEstados tblEstados = null;
+        String consulta;
+        try {
+            consulta = "FROM TblEstados e WHERE e.tipoEstado = ?1 and e.nombreEstado = ?2";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, tipoEstado);
+            query.setParameter(2, nombEstado);
+            List<TblEstados> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                tblEstados = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return tblEstados;
+    }
 }

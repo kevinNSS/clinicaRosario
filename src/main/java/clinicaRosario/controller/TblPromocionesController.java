@@ -41,7 +41,9 @@ public class TblPromocionesController implements Serializable {
     private Boolean mostrarTblPromocion = true;
     @EJB
     private clinicaRosario.session.TblEstadosFacade tblEstadosFacade;
+    private TblEstados tblEstados;
     private String tipoExamen = "promocion";
+    private String nombEstado;
 
     public Boolean getMostrarFormPromocion() {
         return mostrarFormPromocion;
@@ -55,8 +57,9 @@ public class TblPromocionesController implements Serializable {
     DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
     //fecha actual en date a utiliza en IF con formato
     private Date dateHoy;
+
     //metodo set para convertir datehoy a tipo Date(dateNow)
-    public void setConversionFechaHoy(Date dateNow){
+    public void setConversionFechaHoy(Date dateNow) {
         try {
             String fechaAhora = formatoFecha.format(dateNow);
             this.dateHoy = formatoFecha.parse(fechaAhora);
@@ -67,15 +70,17 @@ public class TblPromocionesController implements Serializable {
 
     //fecha del usuario convertida a date con formato para IF
     private Date dateUser;
+
     //metodo set para convertir fechaUsuario a Date
-    public void setConversionFecha(String fechaUsuario) throws ParseException{
+    public void setConversionFecha(String fechaUsuario) throws ParseException {
         this.dateUser = formatoFecha.parse(fechaUsuario);
     }//fin metodo set
 
     //fecha de nacimiento convertida a date con formato para IF
     private Date dateFinalizacion;
+
     //metodo set para convertir fechaNacio a Date
-    public void setConversionFechaFinalizacion(String fechaFinaliza) throws ParseException{
+    public void setConversionFechaFinalizacion(String fechaFinaliza) throws ParseException {
         this.dateFinalizacion = formatoFecha.parse(fechaFinaliza);
     }//fin metodo set
 
@@ -156,93 +161,68 @@ public class TblPromocionesController implements Serializable {
         current = new TblPromociones();
     }
 
+    public void desactivarPromocion() {
+        nombEstado = "INACTIVO";
+        tblEstados = tblEstadosFacade.cambioEstadoPromociones(tipoExamen, nombEstado);
+        current.setEstado(tblEstados);
+        ejbFacade.edit(current);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Promoción Desactivada Exitosamente!"));
+    }
+
+    public void activarPromocion() {
+        nombEstado = "ACTIVO";
+        tblEstados = tblEstadosFacade.cambioEstadoPromociones(tipoExamen, nombEstado);
+        current.setEstado(tblEstados);
+        ejbFacade.edit(current);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Promoción Activada Exitosamente!"));
+    }
+
+    public void eliminarPromocion() {
+        ejbFacade.remove(current);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Eliminados Exitosamente!"));
+    }
+
     public void create() {
         String fechaUsuario = current.getFechaInicio();
         String fechaFinal = current.getFechaFinalizacion();
         //capturar fecha actual
         Date fechaHoy = Calendar.getInstance().getTime();
-       try {
-           setConversionFechaHoy(fechaHoy);
-           setConversionFecha(fechaUsuario);
-           setConversionFechaFinalizacion(fechaFinal);
-           if (dateUser.before(dateHoy) || dateFinalizacion.before(dateHoy)){
-               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verificar", "Fechas ingresadas no validas"));
-           }else{
-               ejbFacade.create(current);
-               current = new TblPromociones();
-               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
-           }
-       }catch (ParseException e){
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
-       }//fin try
+        try {
+            setConversionFechaHoy(fechaHoy);
+            setConversionFecha(fechaUsuario);
+            setConversionFechaFinalizacion(fechaFinal);
+            if (dateUser.before(dateHoy) || dateFinalizacion.before(dateHoy)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Verificar", "Fechas ingresadas no validas"));
+            } else {
+                ejbFacade.create(current);
+                current = new TblPromociones();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Ingresados Exitosamente!"));
+            }
+        } catch (ParseException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
+        }//fin try
     }//fin del metodo create
-    
-    public List<TblPromociones> getAllPromociones(){
+
+    public List<TblPromociones> getAllPromociones() {
         return ejbFacade.findAll();
     }
-    
-    public List<TblEstados> getAllEstadosPromociones(){
-        return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
-    }
-    
-    public void leerPromocion(TblPromociones leerProm){
-        current = leerProm;
+
+    public List<TblPromociones> getAllActivePromociones() {
+        nombEstado = "ACTIVO";
+        return ejbFacade.allActivePromociones(nombEstado);
     }
 
-    public String prepareEdit() {
-        current = (TblPromociones) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+    public List<TblEstados> getAllEstadosPromociones() {
+        return tblEstadosFacade.finAllByTipoEstado(tipoExamen);
+    }
+
+    public void leerPromocion(TblPromociones leerProm) {
+        current = leerProm;
     }
 
     public void update() {
         ejbFacade.edit(current);
-    }
-
-    public String destroy() {
-        current = (TblPromociones) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        performDestroy();
-        recreatePagination();
-        recreateModel();
-        return "List";
-    }
-
-    public String destroyAndView() {
-        performDestroy();
-        recreateModel();
-        updateCurrentItem();
-        if (selectedItemIndex >= 0) {
-            return "View";
-        } else {
-            // all items were removed - go back to list
-            recreateModel();
-            return "List";
-        }
-    }
-
-    private void performDestroy() {
-        try {
-            getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblPromocionesDeleted"));
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-        }
-    }
-
-    private void updateCurrentItem() {
-        int count = getFacade().count();
-        if (selectedItemIndex >= count) {
-            // selected index cannot be bigger than number of items:
-            selectedItemIndex = count - 1;
-            // go to previous page if last page disappeared:
-            if (pagination.getPageFirstItem() >= count) {
-                pagination.previousPage();
-            }
-        }
-        if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
-        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Modificados Exitosamente!"));
     }
 
     public DataModel getItems() {
