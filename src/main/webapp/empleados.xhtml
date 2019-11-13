@@ -21,8 +21,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
-                <h:commandButton style="float: right;" value="Tabla de Empleados" action="#{tblEmpleadosController.mostrarTablaEmpleados()}" rendered="#{(tblEmpleadosController.mostrarTblEmpleados == false) and (loginController.tipoUsuario == 'secretaria') or (tblEmpleadosController.mostrarTblEmpleados == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Agregar Empleado" action="#{tblEmpleadosController.mostrarFormularioEmpleados()}" rendered="#{(tblEmpleadosController.mostrarFormEmpleados == false) and (loginController.tipoUsuario == 'secretaria') or (tblEmpleadosController.mostrarFormEmpleados == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton style="float: right;" value="Tabla de Empleados" action="#{tblEmpleadosController.mostrarTablaEmpleados()}" rendered="#{(tblEmpleadosController.mostrarTblEmpleados == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Empleado" action="#{tblEmpleadosController.mostrarFormularioEmpleados()}" rendered="#{(tblEmpleadosController.mostrarFormEmpleados == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE EMPLEADOS -->

@@ -16,10 +16,13 @@
             <div class="container">
                 <h:form id="formTablaPacientes" rendered="#{tblHecesController.mostrarTblHeces == true}">
                     <p:dataTable value="#{tblHecesController.allExamHeces}" var="expedienteHeces" style="text-align: center;">
-                        <p:column headerText="Paciente">
+                        <p:column filterBy="#{expedienteHeces.idPaciente.idPaciente}" headerText="ID Paciente" style="width: 200px;">
+                            #{expedienteHeces.idPaciente.idPaciente}
+                        </p:column>
+                        <p:column filterBy="#{expedienteHeces.idPaciente.primerNombrePaciente}" headerText="Paciente">
                             #{expedienteHeces.idPaciente.primerNombrePaciente} #{expedienteHeces.idPaciente.segundoNombrePaciente} #{expedienteHeces.idPaciente.primerApellidoPaciente} #{expedienteHeces.idPaciente.segundoApellidoPaciente}
                         </p:column>
-                        <p:column headerText="Fecha de Ingreso">
+                        <p:column filterBy="#{expedienteHeces.fechaIngreso}" headerText="Fecha de Ingreso">
                             #{expedienteHeces.fechaIngreso}
                         </p:column>
                         <p:column headerText="Acciones">

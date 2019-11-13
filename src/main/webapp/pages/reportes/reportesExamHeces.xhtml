@@ -21,13 +21,17 @@
                         </f:facet>
                         <p:columnGroup type="header">
                             <p:row>
-                                <h5><p:column colspan="2" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
+                                <h5><p:column colspan="3" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
                             </p:row>
                             <p:row>
-                                <p:column headerText="Paciente" />
-                                <p:column headerText="Fecha de Ingreso" />
+                                <p:column filterBy="#{expedienteHeces.idPaciente.idPaciente}" headerText="Codigo Paciente" />
+                                <p:column filterBy="#{expedienteHeces.idPaciente.primerNombrePaciente}" headerText="Paciente" />
+                                <p:column filterBy="#{expedienteHeces.fechaIngreso}" headerText="Fecha de Ingreso" />
                             </p:row>
                         </p:columnGroup>
+                        <p:column headerText="Codigo Paciente">
+                            <h:outputText value="#{expedienteHeces.idPaciente.idPaciente}"/>
+                        </p:column>
                         <p:column headerText="Paciente">
                             <h:outputText value="#{expedienteHeces.idPaciente.primerNombrePaciente} "/> <h:outputText value="#{expedienteHeces.idPaciente.segundoNombrePaciente} "/> <h:outputText value="#{expedienteHeces.idPaciente.primerApellidoPaciente} "/> <h:outputText value="#{expedienteHeces.idPaciente.segundoApellidoPaciente}"/>                   
                         </p:column>

@@ -16,11 +16,14 @@
             <div class="container">
                 <h:form id="formTablaPacientes" rendered="#{tblHemogramaController.mostrarTblHemograma == true}">
                     <p:dataTable value="#{tblHemogramaController.allExpedientesHemogramas}" var="expedienteHemograma" style="text-align: center;">
-                        <p:column headerText="Paciente">
-                            #{expedienteHemograma.idPaciente.primerNombrePaciente} #{expedienteHemograma.idPaciente.segundoNombrePaciente} #{expedienteHemograma.idPaciente.primerApellidoPaciente} #{expedienteHemograma.idPaciente.segundoApellidoPaciente}
+                        <p:column filterBy="#{expedienteHemograma.idPaciente.idPaciente}" headerText="ID Paciente" style="width: 200px;">
+                            <h:outputText value="#{expedienteHemograma.idPaciente.idPaciente}"/> 
                         </p:column>
-                        <p:column headerText="Fecha de Ingreso">
-                            #{expedienteHemograma.fechaIngreso}
+                        <p:column filterBy="#{expedienteHemograma.idPaciente.primerNombrePaciente}" headerText="Paciente">
+                            <h:outputText value="#{expedienteHemograma.idPaciente.primerNombrePaciente} "/><h:outputText value="#{expedienteHemograma.idPaciente.segundoNombrePaciente} "/><h:outputText value="#{expedienteHemograma.idPaciente.primerApellidoPaciente} "/><h:outputText value="#{expedienteHemograma.idPaciente.segundoApellidoPaciente}"/>
+                        </p:column>
+                        <p:column filterBy="#{expedienteHemograma.fechaIngreso}" headerText="Fecha de Ingreso">
+                            <h:outputText value="#{expedienteHemograma.fechaIngreso}"/>
                         </p:column>
                         <p:column headerText="Acciones">
                             <p:commandButton value="Modificar" oncomplete="PF('modificarHemo').show()" class="pi pi-eye" style="width:120px "/>                        

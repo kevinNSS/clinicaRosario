@@ -6,9 +6,11 @@
 package clinicaRosario.session;
 
 import clinicaRosario.entity.TblFacturaDetalle;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,15 @@ public class TblFacturaDetalleFacade extends AbstractFacade<TblFacturaDetalle> {
 
     public TblFacturaDetalleFacade() {
         super(TblFacturaDetalle.class);
+    }
+    
+    public List<TblFacturaDetalle> findAllDetalleByEncabezado(int tblfacturaEncabezado){
+        String consulta;
+        consulta = "FROM TblFacturaDetalle fe WHERE fe.idFacturaEncabezado.idFactura = ?1";
+        Query query = em.createQuery(consulta);
+        query.setParameter(1, tblfacturaEncabezado);
+        List<TblFacturaDetalle> lista = query.getResultList();
+        return lista;
     }
     
 }

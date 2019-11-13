@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9e20dafe-2824-438c-9922-917e53ef39b8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="deb18705-492e-4fa4-91f5-42f93588dda3"/>
+	<parameter name="fechaFacturacion" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.Double"/>
+	<parameter name="idPaciente" class="java.lang.String"/>
+	<parameter name="encargadoFacturacion" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_promociones.`TOTAL_PAGAR` AS tbl_promociones_TOTAL_PAGAR,
+     tbl_factura_detalle.`ID_EXAMEN` AS tbl_factura_detalle_ID_EXAMEN,
+     tbl_factura_detalle.`ID_PROMOCION` AS tbl_factura_detalle_ID_PROMOCION
+FROM
+     `tbl_factura_detalle` tbl_factura_detalle INNER JOIN `tbl_promociones` tbl_promociones ON tbl_factura_detalle.`ID_PROMOCION` = tbl_promociones.`ID_PROMOCION`]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="d829b124-f846-40e1-bbd5-2d45ebce80c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABORATORIO CLINICO EL ROSARIO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="35" uuid="cbd25f72-7b1d-4fb7-83b1-5cc899309cdd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2a calle oriente entre 2a y 4a av sur El Rosario La Paz]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="43" y="77" width="227" height="20" uuid="956a65a5-0f4d-47a2-b1f8-66143ef19196"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Examenes / Promociones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="77" width="192" height="20" uuid="50088a64-3418-47e4-8550-e296bf86d65d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="386" y="34" width="143" height="20" uuid="2a0ea4e7-2bf5-4a3b-b0a1-85b7ffaa743b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{fechaFacturacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="34" width="123" height="20" uuid="981261f1-5472-487a-8519-4e617d08a324"/>
+				<textFieldExpression><![CDATA[$P{idPaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="34" width="142" height="20" uuid="a6108b50-886f-44be-b649-fe4b594e2f7a"/>
+				<textFieldExpression><![CDATA[$P{encargadoFacturacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="43" y="14" width="123" height="20" uuid="6ac9fd3d-b77b-4ea3-a9a1-1ad147387d49"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="14" width="142" height="20" uuid="5b566817-c52d-402c-adb9-ead048c01807"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Encargado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="14" width="143" height="20" uuid="33c27709-254e-4e82-98b6-6759c8294b2a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Facturación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="2" width="100" height="20" uuid="4bdf83da-4465-411b-8602-c4469c1e85b5"/>
+				<text><![CDATA[nombrePromocion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="429" y="10" width="100" height="20" uuid="037e3dd8-65b9-4678-a86a-85a6c3733848"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="77" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

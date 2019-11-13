@@ -6,6 +6,8 @@ import clinicaRosario.controller.util.PaginationHelper;
 import clinicaRosario.entity.TblEstados;
 import clinicaRosario.entity.TblFacturaDetalle;
 import clinicaRosario.session.TblFacturaEncabezadoFacade;
+import java.io.File;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -29,6 +31,15 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 
@@ -218,7 +229,7 @@ public class TblFacturaEncabezadoController implements Serializable {
         }
     }
 
-    public void create() {
+    public void create() throws JRException, IOException {
         String fechaUsuario = current.getFechaFacturacion();
         //capturar fecha de hoy
         Date fechaHoy = Calendar.getInstance().getTime();
@@ -238,6 +249,7 @@ public class TblFacturaEncabezadoController implements Serializable {
                 current.setIva(totalPagar * 0.13);
                 current.setTotal(totalPagar);
                 ejbFacade.edit(current);
+                exportarPDF();
                 current = new TblFacturaEncabezado();
                 facturaDetalleList = new ArrayList<>();
                 totalPagar = 0.0;
@@ -247,6 +259,30 @@ public class TblFacturaEncabezadoController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error!", "Error:" + e));
         }//final try validacion de fecha
     }//fin de metodo create
+    
+    public void exportarPDF() throws JRException, IOException{
+        Map<String,Object> parametros = new HashMap<>();
+        parametros.put("idPaciente", current.getIdPaciente());
+        parametros.put("fechaFacturacion", current.getFechaFacturacion());
+        parametros.put("total", current.getTotal());
+        
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reporteFacturacion.jasper"));
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), null, new JRBeanCollectionDataSource(this.getAllDetalleByFacEncabezado()));
+        
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition","attachment; filename=facturacion.pdf");
+        ServletOutputStream stream = response.getOutputStream();
+        
+        JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+        
+        stream.flush();
+        stream.close();
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+    
+    public List<TblFacturaDetalle> getAllDetalleByFacEncabezado(){
+        return tblFacturaDetalleFacade.findAllDetalleByEncabezado(current.getIdFactura());
+    }
 
     public List<TblFacturaEncabezado> getAllFacturas() {
         return ejbFacade.findAll();
