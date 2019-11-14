@@ -14,10 +14,175 @@
     <h:body>
         <ui:composition>
             <div class="container">
-                <h:form id="formTablaExamOrines" rendered="#{tblOrinaController.mostrarTblOrina == true}" style="text-align: center;">
-  
+                <h:form id="formTablaExamOrines" rendered="#{examOrinesController.mostrarTblOrina == true}" style="text-align: center;">
+                    <p:dataTable id="tablaExamenesOrines" value="#{examOrinesController.allExamenesOrina}" var="examenOrina">
+                        <p:column headerText="Pacientes">
+                            <h:outputLabel id="pacientes" value="#{examenOrina.paciente.primerNombrePaciente}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Ingreso">
+                            <h:outputLabel id="fechaIngreso" value="#{examenOrina.fechaRegistro}"/>
+                        </p:column>
+                        <p:column headerText="Color">
+                            <h:outputLabel id="color" value="#{examenOrina.color}"/>
+                        </p:column>
+                        <p:column headerText="Aspecto">
+                            <h:outputLabel id="aspecto" value="#{examenOrina.aspecto}"/>
+                        </p:column>
+                        <p:column headerText="Observaciones">
+                            <h:outputLabel id="Observaciones" value="#{examenOrina.observaciones}"/>
+                        </p:column>
+                        <p:column headerText="Acciones">
+                            <p:commandButton value="Modificar" update="tblModificarOrines" oncomplete="PF('modificarOrines').show()" class="pi pi-eye" style="width:120px "/>
+                        </p:column>
+                    </p:dataTable>
                 </h:form>
             </div>
+           <!--INICIO Formulario emergente Orines-->
+            <p:dialog id="tblModificarOrines"  header="MODIFICAR EXAMEN ORINES" widgetVar="modificarOrines" modal="true" resizable="false" positionType="absolute" >
+                <h:form id="formEditOrines">
+                    <div class="container">
+                        <!--formulario encabezado boleta-->
+                        <h2 align="center">LABORATORIO CLINICO EL ROSARIO</h2>
+                        <h5 align="center">2a calle oriente entre 2a y 4a av sur El Rosario La Paz</h5>
+                        <h6 align="center">Examen de Orina para el paciente:</h6>
+                        <div class="row">
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <!--formulario parte1-->
+                                <br/>
+                                <br/>
+                                <p>EXAMEN FISICO QUIMICO</p>
+                                <h:outputLabel   value="Color"/>
+                                <h:selectOneMenu id="colororina" value="#{examOrinesController.tblOrina.color}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Amarillo" itemValue="Amarillo"/>
+                                    <f:selectItem itemLabel="Ambar" itemValue="Ambar"/>
+                                    <f:selectItem itemLabel="Rojo" itemValue="Rojo"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Aspecto"/>
+                                <h:selectOneMenu id="aspectorina" value="#{examOrinesController.tblOrina.aspecto}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Limpio" itemValue="Limpio"/>
+                                    <f:selectItem itemLabel="Ligeramentes turbio" itemValue="Ligeramente turbio"/>
+                                    <f:selectItem itemLabel="Turbio" itemValue="Turbio"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Densidad"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.densidad}" placeholder="Densidad"/>
+                                <br/>
+                                <h:outputLabel   value="pH"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.PH}"  placeholder="pH"/>
+                                <br/>
+                                <h:outputLabel   value="Proteina"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.proteina}"  placeholder="Proteina"/>
+                                <br/>
+                                <h:outputLabel   value="Glucosa"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.glucosa}"  placeholder="Glucosa"/>
+                                <br/>
+                                <h:outputLabel   value="Sangre Oculta"/>
+                                <h:selectOneMenu id="sangreoculta" value="#{examOrinesController.tblOrina.sangreoculta}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                    <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Cuerpos cetónicos"/>
+                                <h:selectOneMenu id="cuerposcetonicos" value="#{examOrinesController.tblOrina.cuerposcetonicos}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                    <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Urobilinogeno"/>
+                                <h:selectOneMenu id="urobilinogeno" value="#{examOrinesController.tblOrina.urobilinogeno}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                    <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Bilirrubina"/>
+                                <h:selectOneMenu id="bilirrubina" value="#{examOrinesController.tblOrina.bilirrubina}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                    <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Nitritos"/>
+                                <h:selectOneMenu id="nitritos" value="#{examOrinesController.tblOrina.nitritos}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                    <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Hemoglobina"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.hemoglobina}"  placeholder="Hemoglobina"/>
+                                <br/>
+                                <h:outputLabel   value="Esterasa leucocitaria"/>
+                                <h:selectOneMenu id="esterasaleucocitaria" value="#{examOrinesController.tblOrina.esterasaleucocitaria}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Positivo" itemValue="Positivo"/>
+                                    <f:selectItem itemLabel="Negativo" itemValue="Negativo"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col">
+                                <!--formulario parte2-->
+                                <br/>
+                                <br/>
+                                <p>EXAMEN MICROSCÓPICO</p>
+                                <!--<h:outputLabel   value="CILINDROS"/>
+                                <p:inputText class="form-control" type="text"   placeholder="Granulosos"/>
+                                <br/>-->
+                                <h:outputLabel   value="Leucocitarios"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.leucocitarios}"   placeholder="Leucocitarios"/>
+                                <br/>
+                                <h:outputLabel   value="Hemáticos"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.hematicos}" placeholder="Hemáticos"/>
+                                <br/>
+                                <h:outputLabel   value="Hialinos"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.hialinos}" placeholder="Hialinos"/>
+                                <br/>
+                                <h:outputLabel   value="Hematies"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.hematies}"  placeholder="Hematies"/>
+                                <br/>
+                                <h:outputLabel   value="Leucocitos"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.leucocitos}"  placeholder="Leucocitos"/>
+                                <br/>
+                                <h:outputLabel   value="Celulas epiteliales"/>
+                                <h:selectOneMenu id="celulasepiteliales" value="#{examOrinesController.tblOrina.celulasepteliales}" class="form-control" >
+                                    <f:selectItem itemLabel="Elija una opción" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Escasas" itemValue="Escases"/>
+                                    <f:selectItem itemLabel="Moderadas" itemValue="Moderadas"/>
+                                    <f:selectItem itemLabel="Abundantes" itemValue="Abundantes"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputLabel   value="Cristales"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.cristales}"  placeholder="Cristales"/>
+                                <br/>
+                                <h:outputLabel   value="Parasitológico"/>
+                                <p:inputText class="form-control" type="text" value="#{examOrinesController.tblOrina.parasitologico}"  placeholder="Parasitológico"/>
+                            </div>
+                        </div>
+                        <!--Footer-->
+                        <div class="row">
+                            <div class="col">
+                                <!--formulario Footer-->
+                                <br/>
+                                <hr/>
+                                <h:outputLabel  value="Observaciones"/>
+                                <p:inputText  class="form-control" type="text" value="#{examOrinesController.tblOrina.observaciones}"  placeholder="Observaciones"/>
+                                <br/>
+                                <!--<h:outputLabel   value="Reportado por"/>
+                               <p:inputText class="form-control" type="text" placeholder="Reportado por"/>-->
+                            </div>
+                        </div>
+                        <!--Footer-->
+                        <br/>
+                        <h:commandButton  value="Ingresar"  class="btn btn-primary btn-lg btn-block"/>
+                    </div>
+                    <br/><br/>
+                </h:form>
+            </p:dialog><!--FIN Formulario emergente Orines-->
         </ui:composition>
     </h:body>
 </html>

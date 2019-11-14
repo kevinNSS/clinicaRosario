@@ -40,7 +40,7 @@
                         <p:menuitem value="Examenes Hemograma" outcome="hemogramas" />
                     </p:submenu>
                     <p:menuitem value="Facturaciones" outcome="facturacion" icon="pi pi-star"/>
-                    <p:menuitem value="Reportes" outcome="reportes" icon="pi pi-star"/>
+                    <p:menuitem value="Reportes" outcome="reportes" icon="pi pi-star" rendered="#{loginController.tipoUsuario == 'regente'}"/>
                 </p:menubar>
             </h:form>
         </ui:composition>
