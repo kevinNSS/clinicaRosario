@@ -25,15 +25,15 @@
                         <div class="col">
                             <!--formulario encabezado-->
                             <h:outputLabel value="Boleta de examen para el paciente"/>
-                            <h:outputLabel for="pacienteOrines" value="Paciente"/>
-                            <h:selectOneMenu id="pacienteOrines" class="form-control" value="#{tblHemogramaController.tblExpedientes.idPaciente}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                            <h:outputLabel for="pacienteHemograma" value="Paciente"/>
+                            <h:selectOneMenu id="pacienteHemograma" class="form-control" value="#{tblHemogramaController.tblExpedientes.idPaciente}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItems value="#{tblPacientesController.allPacientes}" var="pacientes" itemLabel="#{pacientes.primerNombrePaciente}" itemValue="#{pacientes}"/>
                             </h:selectOneMenu>
                             <h:outputLabel value="fecha"/>
                             <p:inputText type="date" value="#{tblHemogramaController.tblExpedientes.fechaIngreso}" class="form-control"/>
-                            <h:outputLabel for="examenOrina" value="Examen"/>
-                            <h:selectOneMenu id="examenOrina" class="form-control" value="#{tblHemogramaController.tblExpedientes.idExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
+                            <h:outputLabel for="examenHemograma" value="Examen"/>
+                            <h:selectOneMenu id="examenHemograma" class="form-control" value="#{tblHemogramaController.tblExpedientes.idExamen}" required="true" requiredMessage="Es necesario llenar el tipo de examen">
                                 <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
                                 <f:selectItems value="#{tblExamenesController.all}" var="examenes" itemLabel="#{examenes.nombreExamen}" itemValue="#{examenes}"/>
                             </h:selectOneMenu>

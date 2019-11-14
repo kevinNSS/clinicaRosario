@@ -3,13 +3,20 @@ package clinicaRosario.controller;
 import clinicaRosario.entity.TblOrina;
 import clinicaRosario.controller.util.JsfUtil;
 import clinicaRosario.controller.util.PaginationHelper;
+import clinicaRosario.entity.TblExpedientes;
 import clinicaRosario.session.TblOrinaFacade;
 
 import java.io.Serializable;
-import java.util.ResourceBundle;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -28,8 +35,60 @@ public class TblOrinaController implements Serializable {
     private clinicaRosario.session.TblOrinaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private Boolean mostrarFormOrina = false;
+    private Boolean mostrarTblOrina = true;
+    private TblExpedientes tblExpedientes;
+    @EJB
+    private clinicaRosario.session.TblExpedientesFacade tblExpedientesFacade;
 
     public TblOrinaController() {
+    }
+
+    //formato para la fecha actual e indicamos e formato
+    DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    //fecha actual en date a utiliza en IF con formato
+    private Date dateHoy;
+
+    //metodo set para convertir datehoy a tipo Date(dateNow)
+    public void setConversionFechaHoy(Date dateNow) {
+        try {
+            String fechaAhora = formatoFecha.format(dateNow);
+            this.dateHoy = formatoFecha.parse(fechaAhora);
+        } catch (ParseException e) {
+
+        }
+    }//fin metodo set
+
+    //fecha del usuario convertida a date con formato para IF
+    private Date dateUser;
+
+    //metodo set para convertir fechaUsuario a Date
+    public void setConversionFecha(String fechaUsuario) throws ParseException {
+        this.dateUser = formatoFecha.parse(fechaUsuario);
+    }//fin metodo set
+
+    public Boolean getMostrarFormOrina() {
+        return mostrarFormOrina;
+    }
+
+    public void setMostrarFormOrina(Boolean mostrarFormOrina) {
+        this.mostrarFormOrina = mostrarFormOrina;
+    }
+
+    public Boolean getMostrarTblOrina() {
+        return mostrarTblOrina;
+    }
+
+    public void setMostrarTblOrina(Boolean mostrarTblOrina) {
+        this.mostrarTblOrina = mostrarTblOrina;
+    }
+
+    public TblExpedientes getTblExpedientes() {
+        return tblExpedientes;
+    }
+
+    public void setTblExpedientes(TblExpedientes tblExpedientes) {
+        this.tblExpedientes = tblExpedientes;
     }
 
     public TblOrina getSelected() {
@@ -62,95 +121,47 @@ public class TblOrinaController implements Serializable {
         return pagination;
     }
 
-    public String prepareList() {
-        recreateModel();
-        return "List";
-    }
-
-    public String prepareView() {
-        current = (TblOrina) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
-    }
-
-    public String prepareCreate() {
+    public void mostrarFormularioOrina() {
+        mostrarFormOrina = true;
+        mostrarTblOrina = false;
         current = new TblOrina();
-        selectedItemIndex = -1;
-        return "Create";
+        tblExpedientes = new TblExpedientes();
     }
 
-    public String create() {
+    public void mostrarTablaOrina() {
+        mostrarFormOrina = false;
+        mostrarTblOrina = true;
+    }
+
+    public void nuevoFormulario() {
+        current = new TblOrina();
+        tblExpedientes = new TblExpedientes();
+    }
+
+    public void registrarFormulario() {
+        //obtener la fecha actual
+        Date fechaHoy = Calendar.getInstance().getTime();
+
         try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblOrinaCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
-    }
+            setConversionFecha(tblExpedientes.getFechaIngreso());
+            setConversionFechaHoy(fechaHoy);
+            if (dateUser.after(dateHoy)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Fecha ingresada no es valida!"));
+            } else {
+                ejbFacade.create(current);
+                tblExpedientes.setIdTblOrina(current);
+                tblExpedientesFacade.create(tblExpedientes);
+                current = new TblOrina();
+                tblExpedientes = new TblExpedientes();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Información Ingresada Exitosamente!"));
+            }//Final IF ELSE
+        } catch (ParseException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
+        }//Final try
+    }//Final metodo registrarFormulario
 
-    public String prepareEdit() {
-        current = (TblOrina) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
-    }
-
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblOrinaUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
-    }
-
-    public String destroy() {
-        current = (TblOrina) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        performDestroy();
-        recreatePagination();
-        recreateModel();
-        return "List";
-    }
-
-    public String destroyAndView() {
-        performDestroy();
-        recreateModel();
-        updateCurrentItem();
-        if (selectedItemIndex >= 0) {
-            return "View";
-        } else {
-            // all items were removed - go back to list
-            recreateModel();
-            return "List";
-        }
-    }
-
-    private void performDestroy() {
-        try {
-            getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TblOrinaDeleted"));
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-        }
-    }
-
-    private void updateCurrentItem() {
-        int count = getFacade().count();
-        if (selectedItemIndex >= count) {
-            // selected index cannot be bigger than number of items:
-            selectedItemIndex = count - 1;
-            // go to previous page if last page disappeared:
-            if (pagination.getPageFirstItem() >= count) {
-                pagination.previousPage();
-            }
-        }
-        if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
-        }
+    public List<TblOrina> getAllExamenesOrina() {
+        return ejbFacade.findAll();
     }
 
     public DataModel getItems() {

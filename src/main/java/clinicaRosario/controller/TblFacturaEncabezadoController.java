@@ -326,7 +326,7 @@ public class TblFacturaEncabezadoController implements Serializable {
         parametros.put("total", current.getTotal());
         
         File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reporteFacturacion.jasper"));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), null, new JRBeanCollectionDataSource(this.getAllDetalleByFacEncabezado()));
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.getAllDetalleByFacEncabezado()));
         
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         response.addHeader("Content-disposition","attachment; filename=facturacion.pdf");
