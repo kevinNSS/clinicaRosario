@@ -25,7 +25,7 @@
                         <p:column filterBy="#{expedienteHemograma.fechaIngreso}" headerText="Fecha de Ingreso">
                             <h:outputText value="#{expedienteHemograma.fechaIngreso}"/>
                         </p:column>
-                        <p:column headerText="Acciones" rendered="#{(tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'laboratorista') or (tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'regente')}">
+                        <p:column headerText="Acciones">
                             <p:commandButton value="Modificar" oncomplete="PF('modificarHemo').show()" class="pi pi-eye" style="width:120px "/>                        
                         </p:column>
                     </p:dataTable>

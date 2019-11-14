@@ -31,7 +31,7 @@
                         <p:column headerText="Observaciones">
                             <h:outputLabel id="Observaciones" value="#{examenOrina.observaciones}"/>
                         </p:column>
-                        <p:column headerText="Acciones" rendered="#{(tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'laboratorista') or (tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'regente')}">
+                        <p:column headerText="Acciones">
                             <p:commandButton value="Modificar" actionListener="#{examOrinesController.leerExamOrina(examenOrina)}" update="tblModificarOrines" oncomplete="PF('modificarOrines').show()" class="pi pi-eye" style="width:120px "/>
                         </p:column>
                     </p:dataTable>
