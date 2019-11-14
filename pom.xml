@@ -88,7 +88,12 @@
             <artifactId>jasperreports</artifactId>
             <version>6.1.0</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions -->
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>7.0.3</version>
+        </dependency>
     </dependencies>
     
     <repositories>

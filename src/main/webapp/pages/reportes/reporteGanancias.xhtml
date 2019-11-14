@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Reportes</title>
         <f:event type="preRenderView" listener="#{verificacionController.verificarSesion()}"/>
@@ -12,7 +13,58 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <div class="container">
+                <h:form id="formTablaReportesGanancias" rendered="#{reportesController.mostrarReporteFinanciero == true}">
+                    <p:dataTable id="tablaReporteGanancias" value="#{tblFacturaEncabezadoController.reporteFinancieroDiario}" var="reporteFinanciero" style="text-align: center;">
+                        <f:facet name="header">  
+                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
+                        </f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <h5><p:column colspan="5" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Codigo Paciente" />
+                                <p:column headerText="Paciente" />
+                                <p:column headerText="Encargado" />
+                                <p:column headerText="Fecha de Facturación" />
+                                <p:column headerText="Total Facturado" />
+                            </p:row>
+                        </p:columnGroup>
+                        <p:column headerText="Codigo Paciente">
+                            <h:outputText value="#{reporteFinanciero.idPaciente.idPaciente}"/>
+                        </p:column>
+                        <p:column headerText="Paciente">
+                            <h:outputText value="#{reporteFinanciero.idPaciente.primerNombrePaciente} "/> <h:outputText value="#{reporteFinanciero.idPaciente.segundoNombrePaciente} "/> <h:outputText value="#{reporteFinanciero.idPaciente.primerApellidoPaciente} "/> <h:outputText value="#{reporteFinanciero.idPaciente.segundoApellidoPaciente}"/>                   
+                        </p:column>
+                        <p:column headerText="Encargado">
+                            <h:outputText value="#{reporteFinanciero.encargadoFacturacion.primerNombreEmpleado} "/><h:outputText value="#{reporteFinanciero.encargadoFacturacion.primerApellidoEmpleado}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Facturación">
+                            <h:outputText value="#{reporteFinanciero.fechaFacturacion}"/>
+                        </p:column>
+                        <p:column headerText="Total Facturado">
+                            <h:outputText value="#{reporteFinanciero.total}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <h5>La ganancia total del día es: $<h:outputLabel value="#{tblFacturaEncabezadoController.totalReporteFinancieroDiario}">
+                                    <f:convertNumber pattern="#0.00" />
+                                </h:outputLabel></h5>
+                        </f:facet>
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage name="./images/excel.png" width="24"/>
+                        <p:outputLabel value="Excel"/>
+                        <p:dataExporter type="xls" target="tablaReporteGanancias" fileName="Reporte De Ganancias del día #{tblFacturaEncabezadoController.fechaHoy}" />
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:commandLink>
+                        <p:graphicImage name="./images/pdf.png" width="24"/>
+                        <p:outputLabel value="PDF"/>
+                        <p:dataExporter type="pdf" target="tablaReporteGanancias" fileName="Reporte De Ganancias del día #{tblFacturaEncabezadoController.fechaHoy}"/>
+                    </h:commandLink>
+                </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>

@@ -6,9 +6,11 @@
 package clinicaRosario.session;
 
 import clinicaRosario.entity.TblFacturaEncabezado;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,12 @@ public class TblFacturaEncabezadoFacade extends AbstractFacade<TblFacturaEncabez
         super(TblFacturaEncabezado.class);
     }
     
+    public List<TblFacturaEncabezado> findAllFacturaDiario(String fechaHoy) {
+        String consulta;
+        consulta = "FROM TblFacturaEncabezado fe WHERE fe.fechaFacturacion = ?1";
+        Query query = em.createQuery(consulta);
+        query.setParameter(1, fechaHoy);
+        List<TblFacturaEncabezado> lista = query.getResultList();
+        return lista;
+    }
 }

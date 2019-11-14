@@ -13,7 +13,48 @@
     </h:head>
     <h:body>
         <ui:composition>
-
+            <div class="container">
+                <h:form id="formTablaReportesPacientes" rendered="#{reportesController.mostrarReportePacientes == true}">
+                    <p:dataTable id="tablaReportePacientes" value="#{tblFacturaEncabezadoController.reportePacientesDiario}" var="reportePacientes" style="text-align: center;">
+                        <f:facet name="header">  
+                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
+                        </f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <h5><p:column colspan="3" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Codigo Paciente" />
+                                <p:column headerText="Paciente" />
+                                <p:column headerText="Encargado" />
+                            </p:row>
+                        </p:columnGroup>
+                        <p:column headerText="Codigo Paciente">
+                            <h:outputText value="#{reportePacientes.idPaciente.idPaciente}"/>
+                        </p:column>
+                        <p:column headerText="Paciente">
+                            <h:outputText value="#{reportePacientes.idPaciente.primerNombrePaciente} "/> <h:outputText value="#{reportePacientes.idPaciente.segundoNombrePaciente} "/> <h:outputText value="#{reportePacientes.idPaciente.primerApellidoPaciente} "/> <h:outputText value="#{reportePacientes.idPaciente.segundoApellidoPaciente}"/>                   
+                        </p:column>
+                        <p:column headerText="Encargado">
+                            <h:outputText value="#{reportePacientes.encargadoFacturacion.primerNombreEmpleado} "/><h:outputText value="#{reportePacientes.encargadoFacturacion.primerApellidoEmpleado}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <h5>El total de pacientes del día es: #{tblFacturaEncabezadoController.totalPacientesDia}</h5>
+                        </f:facet>
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage name="./images/excel.png" width="24"/>
+                        <p:outputLabel value="Excel"/>
+                        <p:dataExporter type="xls" target="tablaReportePacientes" fileName="Reporte De Pacientes del día #{tblFacturaEncabezadoController.fechaHoy}" />
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:commandLink>
+                        <p:graphicImage name="./images/pdf.png" width="24"/>
+                        <p:outputLabel value="PDF"/>
+                        <p:dataExporter type="pdf" target="tablaReportePacientes" fileName="Reporte De Pacientes del día #{tblFacturaEncabezadoController.fechaHoy}"/>
+                    </h:commandLink>
+                </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>

@@ -22,6 +22,7 @@ public class ReportesController implements Serializable {
     private Boolean mostrarReporteOrina = false;
     private Boolean mostrarReporteFinanciero = false;
     private Boolean mostrarReportePacientes = false;
+    private Boolean mostrarReporteInventario = false;
 
     public void mostrarReporteExamHeces() {
         mostrarReporteHeces = true;
@@ -29,6 +30,7 @@ public class ReportesController implements Serializable {
         mostrarReporteOrina = false;
         mostrarReporteFinanciero = false;
         mostrarReportePacientes = false;
+        mostrarReporteInventario = false;
     }
     
     public void mostrarReporteExamHemogramas(){
@@ -37,6 +39,7 @@ public class ReportesController implements Serializable {
         mostrarReporteOrina = false;
         mostrarReporteFinanciero = false;
         mostrarReportePacientes = false;
+        mostrarReporteInventario = false;
     }
     
     public void mostrarReporteExamOrina(){
@@ -45,6 +48,7 @@ public class ReportesController implements Serializable {
         mostrarReporteOrina = true;
         mostrarReporteFinanciero = false;
         mostrarReportePacientes = false;
+        mostrarReporteInventario = false;
     }
     
     public void mostrarReporteFinancieroFacturas(){
@@ -53,6 +57,7 @@ public class ReportesController implements Serializable {
         mostrarReporteOrina = false;
         mostrarReporteFinanciero = true;
         mostrarReportePacientes = false;
+        mostrarReporteInventario = false;
     }
     
     public void mostrarReporteExamenesPacientes(){
@@ -61,5 +66,15 @@ public class ReportesController implements Serializable {
         mostrarReporteOrina = false;
         mostrarReporteFinanciero = false;
         mostrarReportePacientes = true;
+        mostrarReporteInventario = false;
+    }
+    
+    public void mostrarReporteInventarioTotal(){
+        mostrarReporteHeces = false;
+        mostrarReporteHemograma = false;
+        mostrarReporteOrina = false;
+        mostrarReporteFinanciero = false;
+        mostrarReportePacientes = false;
+        mostrarReporteInventario = true;
     }
 }

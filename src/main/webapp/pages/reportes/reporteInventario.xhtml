@@ -1,12 +1,55 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Reportes</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+                <ui:composition>
+            <div class="container">
+                <h:form id="formTablaReportesInventario" rendered="#{reportesController.mostrarReporteInventario == true}">
+                    <p:dataTable id="tablaReporteInventario" value="#{tblInventarioController.allInventario}" var="reporteInventario" style="text-align: center;">
+                        <f:facet name="header">  
+                            <h2><h:outputText style="text-align: center;" value="LABORATORIO CLINICO EL ROSARIO"/></h2>  
+                        </f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <h5><p:column colspan="3" headerText="2a calle oriente entre 2a y 4a av sur ario La Paz" /></h5>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Codigo Producto" />
+                                <p:column headerText="Producto" />
+                                <p:column headerText="Stock" />
+                            </p:row>
+                        </p:columnGroup>
+                        <p:column headerText="Codigo Producto">
+                            <h:outputText value="#{reporteInventario.idInventario}"/>
+                        </p:column>
+                        <p:column headerText="Producto">
+                            <h:outputText value="#{reporteInventario.nombreProducto}"/>
+                        </p:column>
+                        <p:column headerText="Stock">
+                            <h:outputText value="#{reporteInventario.stockProducto}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage name="./images/excel.png" width="24"/>
+                        <p:outputLabel value="Excel"/>
+                        <p:dataExporter type="xls" target="tablaReporteInventario" fileName="Reporte De Inventario #{tblFacturaEncabezadoController.fechaHoy}" />
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:commandLink>
+                        <p:graphicImage name="./images/pdf.png" width="24"/>
+                        <p:outputLabel value="PDF"/>
+                        <p:dataExporter type="pdf" target="tablaReporteInventario" fileName="Reporte De Inventario #{tblFacturaEncabezadoController.fechaHoy}"/>
+                    </h:commandLink>
+                </h:form>
+            </div>
+        </ui:composition>
     </h:body>
 </html>
 

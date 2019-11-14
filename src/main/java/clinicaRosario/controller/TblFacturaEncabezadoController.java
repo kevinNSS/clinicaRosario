@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletOutputStream;
@@ -66,6 +67,10 @@ public class TblFacturaEncabezadoController implements Serializable {
     private List<TblFacturaDetalle> facturaDetalleList = new ArrayList<>();
     private TblFacturaDetalle agregarDetalleFactura;
     DecimalFormat df = new DecimalFormat("###.##");
+    private List<TblFacturaEncabezado> facturaEncabezadosList = null;
+    private int totalPacientesDia;
+    private double totalReporteFinancieroDiario;
+    private LocalDate fechaHoy = LocalDate.now();
 
     //formato para la fecha actual e indicamos e formato
     DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -151,12 +156,44 @@ public class TblFacturaEncabezadoController implements Serializable {
         this.tblFacturaDetalle = tblFacturaDetalle;
     }
 
+    public List<TblFacturaEncabezado> getFacturaEncabezadosList() {
+        return facturaEncabezadosList;
+    }
+
+    public void setFacturaEncabezadosList(List<TblFacturaEncabezado> facturaEncabezadosList) {
+        this.facturaEncabezadosList = facturaEncabezadosList;
+    }
+
+    public int getTotalPacientesDia() {
+        return totalPacientesDia;
+    }
+
+    public void setTotalPacientesDia(int totalPacientesDia) {
+        this.totalPacientesDia = totalPacientesDia;
+    }
+
+    public double getTotalReporteFinancieroDiario() {
+        return totalReporteFinancieroDiario;
+    }
+
+    public void setTotalReporteFinancieroDiario(double totalReporteFinancieroDiario) {
+        this.totalReporteFinancieroDiario = totalReporteFinancieroDiario;
+    }
+
     public TblFacturaEncabezado getSelected() {
         if (current == null) {
             current = new TblFacturaEncabezado();
             selectedItemIndex = -1;
         }
         return current;
+    }
+
+    public LocalDate getFechaHoy() {
+        return fechaHoy;
+    }
+
+    public void setFechaHoy(LocalDate fechaHoy) {
+        this.fechaHoy = fechaHoy;
     }
 
     private TblFacturaEncabezadoFacade getFacade() {
@@ -209,6 +246,28 @@ public class TblFacturaEncabezadoController implements Serializable {
         current = new TblFacturaEncabezado();
         facturaDetalleList = new ArrayList<>();
         totalPagar = 0.0;
+    }
+    
+    public List<TblFacturaEncabezado> getReporteFinancieroDiario() {
+        facturaEncabezadosList = ejbFacade.findAllFacturaDiario(fechaHoy.toString());
+        setTotalReporteFinancieroDiario(0.0);
+        if (facturaEncabezadosList.size() > 0) {
+            for (int i = 0; i < facturaEncabezadosList.size(); i++) {
+                totalReporteFinancieroDiario = totalReporteFinancieroDiario + facturaEncabezadosList.get(i).getTotal();
+            }
+        }
+        return ejbFacade.findAllFacturaDiario(fechaHoy.toString());
+    }
+    
+    public List<TblFacturaEncabezado> getReportePacientesDiario(){
+        facturaEncabezadosList = ejbFacade.findAllFacturaDiario(fechaHoy.toString());
+        setTotalPacientesDia(0);
+        if(facturaEncabezadosList.size() > 0){
+            for(int i = 0; i < facturaEncabezadosList.size(); i++){
+                totalPacientesDia = totalPacientesDia + 1;
+            }
+        }
+        return ejbFacade.findAllFacturaDiario(fechaHoy.toString());
     }
 
     public void addDetalleFactura() {

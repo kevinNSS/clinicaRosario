@@ -24,6 +24,7 @@
                 <h:commandButton  value="Examenes Hemograma" action="#{reportesController.mostrarReporteExamHemogramas()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
                 <h:commandButton  value="Examenes Heces" action="#{reportesController.mostrarReporteExamHeces()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
                 <h:commandButton  value="Examenes Orina" action="#{reportesController.mostrarReporteExamOrina()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  value="Inventario" action="#{reportesController.mostrarReporteInventarioTotal()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
                 <h:commandButton  value="Pacientes" action="#{reportesController.mostrarReporteExamenesPacientes()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
                 <h:commandButton  value="Ventas" action="#{reportesController.mostrarReporteFinancieroFacturas()}" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
@@ -39,6 +40,10 @@
             <!-- REPORTE DE EXAMENES ORINA-->
             <ui:insert name="reporteExamenesOrina">
                 <ui:include src="pages/reportes/reporteExamOrina.xhtml"/>
+            </ui:insert>
+            <!-- REPORTE DE INVENTARIO-->
+            <ui:insert name="reporteInventario">
+                <ui:include src="pages/reportes/reporteInventario.xhtml"/>
             </ui:insert>
             <!-- REPORTE DE PACIENTES-->
             <ui:insert name="reportePacientes">
