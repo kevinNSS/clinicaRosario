@@ -21,8 +21,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>  
-                <h:commandButton style="float: right;" value="Tabla de Examenes Hemograma" action="#{tblHemogramaController.mostrarTablaHemograma()}" rendered="#{(tblHemogramaController.mostrarTblHemograma == false) and (loginController.tipoUsuario == 'secretaria') or (tblHemogramaController.mostrarTblHemograma == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Agregar Examen Hemograma" action="#{tblHemogramaController.mostrarFormularioHemograma()}" rendered="#{(tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'secretaria') or (tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton style="float: right;" value="Tabla de Examenes Hemograma" action="#{tblHemogramaController.mostrarTablaHemograma()}" rendered="#{(tblHemogramaController.mostrarTblHemograma == false) and (loginController.tipoUsuario == 'laboratorista') or (tblHemogramaController.mostrarTblHemograma == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Examen Hemograma" action="#{tblHemogramaController.mostrarFormularioHemograma()}" rendered="#{(tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'laboratorista') or (tblHemogramaController.mostrarFormHemograma == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE EXPEDIENTES DE HEMOGRAMA DE PACIENTES -->

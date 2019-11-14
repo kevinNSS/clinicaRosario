@@ -25,7 +25,7 @@
                         <p:column headerText="Teléfono">
                             #{pacientes.telPaciente}
                         </p:column>
-                        <p:column>
+                        <p:column rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}">
                             <p:commandButton value="Modificar" action="#{pacientesController.leerPaciente(pacientes)}" update=":tblModiPaciente" oncomplete="PF('modificarPaciente').show()" class="pi pi-eye" style="width:120px"/>
                         </p:column>
                     </p:dataTable>

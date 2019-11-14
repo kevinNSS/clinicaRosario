@@ -31,7 +31,7 @@
                         <p:column headerText="Estado Examen">
                             <h:outputLabel id="estadoExam" value="#{examen.estadoExamen.nombreEstado}"/>
                         </p:column>
-                        <p:column headerText="Estado del Examen">
+                        <p:column headerText="Estado del Examen" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}">
                             <p:commandButton value="Modificar" action="#{tblExamenesController.leerExamen(examen)}" update=":tblModificarExamen" oncomplete="PF('modificarExamen').show()" class="pi pi-eye" style="width:120px"/>                        
                         </p:column>
                     </p:dataTable>

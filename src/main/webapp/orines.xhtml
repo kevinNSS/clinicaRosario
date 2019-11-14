@@ -21,8 +21,8 @@
         <div class="container-fluid">
             <h:form>
                 <p:growl id="growl" life="5000" showDetail="true" sticky="true" escape="false"/>
-                <h:commandButton  style="float: right;" value="Agregar Nuevo Examen de Orina" action="#{examOrinesController.mostrarFormularioOrina()}" rendered="#{(examOrinesController.mostrarFormOrina == false) and (loginController.tipoUsuario == 'secretaria') or (examOrinesController.mostrarFormOrina == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
-                <h:commandButton  style="float: right;" value="Mostrar Tabla de Examenes de Orina" action="#{examOrinesController.mostrarTablaOrina()}" rendered="#{(examOrinesController.mostrarTblOrina == false) and (loginController.tipoUsuario == 'secretaria') or (examOrinesController.mostrarTblOrina == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Agregar Nuevo Examen de Orina" action="#{examOrinesController.mostrarFormularioOrina()}" rendered="#{(examOrinesController.mostrarFormOrina == false) and (loginController.tipoUsuario == 'laboratorista') or (examOrinesController.mostrarFormOrina == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
+                <h:commandButton  style="float: right;" value="Mostrar Tabla de Examenes de Orina" action="#{examOrinesController.mostrarTablaOrina()}" rendered="#{(examOrinesController.mostrarTblOrina == false) and (loginController.tipoUsuario == 'laboratorista') or (examOrinesController.mostrarTblOrina == false) and (loginController.tipoUsuario == 'regente')}" class="buttonNew"/>
             </h:form>
             <br/><br/><br/>
             <!-- TABLA DE EXPEDIENTES DE EXAMES DE ORINES DE PACIENTES -->
