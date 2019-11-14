@@ -79,6 +79,10 @@ public class ExamOrinesController implements Serializable{
         tblOrina = new TblOrina();
     }
     
+    public void leerExamOrina(TblOrina leer){
+        tblOrina = leer;
+    }
+    
     public void registrarFormulario(){
         String fechaUsuario = tblOrina.getFechaRegistro();
         //obtener la fecha actual
@@ -98,6 +102,12 @@ public class ExamOrinesController implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
         }//Final try
     }//Final metodo registrarFormulario
+    
+    public void editar(){
+        tblOrinaFacade.edit(tblOrina);
+        tblOrina = new TblOrina();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Información Modificada Exitosamente!"));
+    }
     
     public List<TblOrina> getAllExamenesOrina(){
         return tblOrinaFacade.findAll();

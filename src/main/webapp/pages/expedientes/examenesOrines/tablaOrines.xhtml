@@ -32,7 +32,7 @@
                             <h:outputLabel id="Observaciones" value="#{examenOrina.observaciones}"/>
                         </p:column>
                         <p:column headerText="Acciones">
-                            <p:commandButton value="Modificar" update="tblModificarOrines" oncomplete="PF('modificarOrines').show()" class="pi pi-eye" style="width:120px "/>
+                            <p:commandButton value="Modificar" actionListener="#{examOrinesController.leerExamOrina(examenOrina)}" update="tblModificarOrines" oncomplete="PF('modificarOrines').show()" class="pi pi-eye" style="width:120px "/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
@@ -178,7 +178,7 @@
                         </div>
                         <!--Footer-->
                         <br/>
-                        <h:commandButton  value="Ingresar"  class="btn btn-primary btn-lg btn-block"/>
+                        <h:commandButton  value="Guardar Modificaciones" actionListener="#{examOrinesController.editar()}" class="btn btn-primary btn-lg btn-block"/>
                     </div>
                     <br/><br/>
                 </h:form>
