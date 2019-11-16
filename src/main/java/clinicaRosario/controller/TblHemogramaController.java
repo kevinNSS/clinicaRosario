@@ -179,6 +179,16 @@ public class TblHemogramaController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "Error: " + e));
         }//fin del try
     }//fin del metodo create
+    
+    public void leer(TblHemograma leer){
+       current = leer;
+    }
+    
+    public void editar(){
+        ejbFacade.edit(current);
+        current = new TblHemograma();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "¡Datos Modificados Exitosamente!"));
+    }
 
     public String prepareEdit() {
         current = (TblHemograma) getItems().getRowData();

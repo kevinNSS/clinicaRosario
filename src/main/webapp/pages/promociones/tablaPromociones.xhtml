@@ -37,6 +37,7 @@
                             <p:commandButton value="Eliminar" actionListener="#{tblPromocionesController.leerPromocion(promociones)}" update="eliminarDialog" oncomplete="PF('eliminarPromDialog').show()" rendered="#{(loginController.tipoUsuario == 'secretaria') or (loginController.tipoUsuario == 'regente')}" style="width:140px"/>
                         </p:column>
                     </p:dataTable>
+                    <br/><br/>
                 </h:form>
                 <p:dialog id="habilitarDialog" header="¿Desea Habilitar esta promoción?" widgetVar="habilitarPromDialog" modal="true">
                     <h:form>

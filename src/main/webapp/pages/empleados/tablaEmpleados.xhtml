@@ -16,6 +16,9 @@
             <div class="container">
                 <h:form id="formTablaEmpleados" rendered="#{tblEmpleadosController.mostrarTblEmpleados == true}" style="text-align: center;">
                     <p:dataTable id="tablaEmpleado" value="#{tblEmpleadosController.allEmpleados}" var="empleados">
+                        <p:column headerText="ID Empleado">
+                            <h:outputLabel id="idEmpleado" value="#{empleados.idEmpleado}"/>
+                        </p:column>
                         <p:column headerText="Nombre del Empleado">
                             #{empleados.primerNombreEmpleado} #{empleados.segundoNombreEmpleado} #{empleados.primerApellidoEmpleado} #{empleados.segundoApellidoEmpleado}
                         </p:column>
@@ -28,8 +31,82 @@
                         <p:column headerText="Estado">
                             <h:outputLabel id="estadoEmpleado" value="#{empleados.idEstado.nombreEstado}"/>
                         </p:column>
+                        <p:column headerText="Acciones">
+                            <p:commandButton value="Modificar" actionListener="#{tblEmpleadosController.leerEmpleado(empleados)}" oncomplete="PF('dialogModificarEmpleados').show()" update="modificarEmpleados" class="pi pi-eye" style="width:120px "/>                        
+                        </p:column>
                     </p:dataTable>
+                    <br/><br/>
                 </h:form>
+
+                <p:dialog id="modificarEmpleados"  header="MODIFICAR EMPLEADOS" widgetVar="dialogModificarEmpleados" modal="true" resizable="false" positionType="absolute" >
+                    <h:form id="formEditarEmpleados"> 
+                        <div class="form-row">
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="primerNombre" value="Primer Nombre:"/>
+                                <p:inputText id="primerNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerNombreEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer nombre." onkeypress="return valiletrassn(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="segundoNombre" value="Segundo Nombre:"/>
+                                <p:inputText id="segundoNombre" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoNombreEmpleado}" onkeypress="return valiletrascone(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="primerApellido" value="Primer Apellido:"/>
+                                <p:inputText id="primerApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.primerApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del primer apellido." onkeypress="return valiletrascone(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="segundoApellido" value="Segundo Apellido:"/>
+                                <p:inputText id="segundoApellido" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.segundoApellidoEmpleado}" required="true" requiredMessage="Es necesario llenar el campo del segundo apellido." onkeypress="return valiletrascone(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="direccion" value="Direccion:"/>
+                                <p:inputText id="direccion" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.direccionEmpleado}" required="true" requiredMessage="Es necesario llenar el campo de direccion." onkeypress="return validireccion(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="telefono1" value="Telefono 1:"/>
+                                <p:inputText id="telefono1" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.telEmpleado1}" required="true" requiredMessage="Es necesario llenar el campo del telefono 1." maxlength="8" onkeypress="return validarnum(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="telefono2" value="Telefono 2:"/>
+                                <p:inputText id="telefono2" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.telEmpleado2}" maxlength="8" onkeypress="return validarnum(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="sueldo" value="Sueldo:"/>
+                                <p:inputText id="sueldo" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.sueldo}" required="true" requiredMessage="Es necesario llenar el campo sueldo"  onkeypress="return validecimal(event)"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="estadoEmpleado" value="Estado del empleado:"/>
+                                <h:selectOneMenu id="estadoEmpleado" class="form-control" value="#{tblEmpleadosController.selected.idEstado}" required="true" requiredMessage="Es necesario llenar el campo estado empleado">
+                                    <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                    <f:selectItems value="#{tblEmpleadosController.estadoEmpleado}" var="estado" itemLabel="#{estado.nombreEstado}" itemValue="#{estado}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <h:outputLabel for="cargoEmpleado" value="Cargo del empleado:"/>
+                                <h:selectOneMenu id="cargoEmpleado" class="form-control" value="#{tblEmpleadosController.selected.idCargo}" required="true" requiredMessage="Es necesario llenar el campo del cargo">
+                                    <f:selectItem itemValue="#{null}" itemLabel="Selecciona una opción"/> 
+                                    <f:selectItems value="#{tblCargosController.all}" var="cargos" itemLabel="#{cargos.nombreCargo}" itemValue="#{cargos}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12">
+                            <h:commandButton  value="Guardar Modificación" actionListener="#{tblEmpleadosController.editar()}" class="btn btn-primary btn-lg btn-block"/>
+                            <p:commandButton value="Modificar Contraseña" oncomplete="PF('dialogModificarPassEmpleados').show(); PF('dialogModificarEmpleados').hide()" update="modificarPasswordEmpleados" class="pi pi-eye"/>                        
+                        </div>
+                        <br/><br/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="modificarPasswordEmpleados"  header="MODIFICAR CONTRASEÑA DE #{tblEmpleadosController.selected.idEmpleado}" widgetVar="dialogModificarPassEmpleados" modal="true" resizable="false" positionType="absolute" >
+                    <h:form id="formEditarPassEmpleados">
+                        <div class="form-group col-xs-12 col-md-12">
+                            <h:outputLabel for="contrasena" value="Contraseña:"/>
+                            <p:password id="contrasena" placeholder="" class="form-control" value="#{tblEmpleadosController.selected.contrasena}" required="true" requiredMessage="Es necesario llenar el campo de contraseña." onkeypress="return valida(event)"/>
+                        </div>
+                        <h:commandButton  value="Guardar Modificación" actionListener="#{tblEmpleadosController.editar()}" class="btn btn-primary btn-lg btn-block"/>
+                    </h:form>
+                </p:dialog>
             </div>
         </ui:composition>
     </h:body>

@@ -26,12 +26,13 @@
                             <h:outputText value="#{expedienteHemograma.fechaIngreso}"/>
                         </p:column>
                         <p:column headerText="Acciones">
-                            <p:commandButton value="Modificar" oncomplete="PF('modificarHemo').show()" class="pi pi-eye" style="width:120px "/>                        
+                            <p:commandButton value="Modificar" actionListener="#{tblHemogramaController.leer(expedienteHemograma)}" update="tblModificarHemo" oncomplete="PF('modificarExamHemograma').show()" class="pi pi-eye" style="width:120px "/>                        
                         </p:column>
                     </p:dataTable>
+                    <br/><br/>
                 </h:form>
             </div>
-            <p:dialog id="tblModificarHemo"  header="MODIFICAR EXAMEN HECES" widgetVar="modificarHemo" modal="true" resizable="false" positionType="absolute" >
+            <p:dialog id="tblModificarHemo"  header="MODIFICAR EXAMEN HECES" widgetVar="modificarExamHemograma" modal="true" resizable="false" positionType="absolute" >
                 <h:form id="formEditHemo">
                     <div class="container">
                     <!--formulario encabezado boleta-->
@@ -40,14 +41,7 @@
                     <h6 align="center">Examen de Hemograma para el paciente:</h6><br/><br/>
                     <div class="row">
                         <div class="col">
-                            <!--formulario encabezado-->
-                            
-                        </div><!--formulario encabezado-->
-
-                        <div class="w-100"></div>
-                        <div class="col">
                             <!--formulario parte1-->
-                            <br/>
                             <br/>
                             <h:outputLabel value="HEMOGRAMA"/>
                             <br/>
@@ -114,8 +108,7 @@
                     </div><!--Footer-->
                     <br/>
                     <br/>
-                    <h:commandButton  value="Guardar Modificacion"  class="btn btn-primary btn-lg btn-block"/>
-                    <br/>
+                    <h:commandButton  value="Guardar Modificacion" actionListener="#{tblHemogramaController.editar()}" class="btn btn-primary btn-lg btn-block"/>
                     <br/>
                 </div>
                 </h:form>

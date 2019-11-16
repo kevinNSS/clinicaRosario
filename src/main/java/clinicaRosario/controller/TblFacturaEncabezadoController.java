@@ -308,7 +308,6 @@ public class TblFacturaEncabezadoController implements Serializable {
                 current.setIva(totalPagar * 0.13);
                 current.setTotal(totalPagar);
                 ejbFacade.edit(current);
-                exportarPDF();
                 current = new TblFacturaEncabezado();
                 facturaDetalleList = new ArrayList<>();
                 totalPagar = 0.0;

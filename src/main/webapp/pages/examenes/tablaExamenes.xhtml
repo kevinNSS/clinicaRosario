@@ -35,6 +35,7 @@
                             <p:commandButton value="Modificar" action="#{tblExamenesController.leerExamen(examen)}" update=":tblModificarExamen" oncomplete="PF('modificarExamen').show()" class="pi pi-eye" style="width:120px"/>                        
                         </p:column>
                     </p:dataTable>
+                    <br/><br/>
                 </h:form>
             </div>
             <p:dialog id="tblModificarExamen" header="Modificación de Examen" widgetVar="modificarExamen" modal="true">

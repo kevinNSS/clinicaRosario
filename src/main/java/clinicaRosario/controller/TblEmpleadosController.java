@@ -185,6 +185,16 @@ public class TblEmpleadosController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Error: " + e));
         }
     }
+    
+    public void editar(){
+        ejbFacade.edit(current);
+        current = new TblEmpleados();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "¡Datos Modificados Existosamente!"));
+    }
+    
+    public void leerEmpleado(TblEmpleados leer){
+        current = leer;
+    }
 
     public String prepareEdit() {
         current = (TblEmpleados) getItems().getRowData();
