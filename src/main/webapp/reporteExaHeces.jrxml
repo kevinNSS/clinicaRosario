@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a676c0a-6801-4557-a80c-ef3efc8da82c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="231"/>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_pacientes.`ID_PACIENTE` AS tbl_pacientes_ID_PACIENTE,
+     tbl_pacientes.`PRIMER_NOMBRE_PACIENTE` AS tbl_pacientes_PRIMER_NOMBRE_PACIENTE,
+     tbl_pacientes.`SEGUNDO_NOMBRE_PACIENTE` AS tbl_pacientes_SEGUNDO_NOMBRE_PACIENTE,
+     tbl_pacientes.`PRIMER_APELLIDO_PACIENTE` AS tbl_pacientes_PRIMER_APELLIDO_PACIENTE,
+     tbl_pacientes.`SEGUNDO_APELLIDO_PACIENTE` AS tbl_pacientes_SEGUNDO_APELLIDO_PACIENTE,
+     tbl_pacientes.`DIRECCION_PACIENTE` AS tbl_pacientes_DIRECCION_PACIENTE,
+     tbl_pacientes.`TEL_PACIENTE` AS tbl_pacientes_TEL_PACIENTE,
+     tbl_pacientes.`CORREO_PACIENTE` AS tbl_pacientes_CORREO_PACIENTE,
+     tbl_pacientes.`TEL_RESPONSABLE` AS tbl_pacientes_TEL_RESPONSABLE,
+     tbl_pacientes.`SEXO` AS tbl_pacientes_SEXO,
+     tbl_pacientes.`FECHA_NACIMIENTO` AS tbl_pacientes_FECHA_NACIMIENTO,
+     tbl_expedientes.`ID_EXPEDIENTE` AS tbl_expedientes_ID_EXPEDIENTE,
+     tbl_expedientes.`ID_PACIENTE` AS tbl_expedientes_ID_PACIENTE,
+     tbl_expedientes.`ID_EXAMEN` AS tbl_expedientes_ID_EXAMEN,
+     tbl_expedientes.`RESULTADO` AS tbl_expedientes_RESULTADO,
+     tbl_expedientes.`ID_TBL_HECES` AS tbl_expedientes_ID_TBL_HECES,
+     tbl_expedientes.`ID_TBL_HEMOGRAMA` AS tbl_expedientes_ID_TBL_HEMOGRAMA,
+     tbl_expedientes.`ID_TBL_ORINA` AS tbl_expedientes_ID_TBL_ORINA,
+     tbl_expedientes.`FECHA_INGRESO` AS tbl_expedientes_FECHA_INGRESO,
+     tbl_expedientes.`REPORTADO_POR` AS tbl_expedientes_REPORTADO_POR,
+     tbl_heces.`id_tabla_heces` AS tbl_heces_id_tabla_heces,
+     tbl_heces.`Color` AS tbl_heces_Color,
+     tbl_heces.`Consistencia` AS tbl_heces_Consistencia,
+     tbl_heces.`Mucus` AS tbl_heces_Mucus,
+     tbl_heces.`Hematies` AS tbl_heces_Hematies,
+     tbl_heces.`Leucocitos` AS tbl_heces_Leucocitos,
+     tbl_heces.`Macrofagos` AS tbl_heces_Macrofagos,
+     tbl_heces.`Restos_alimenticios` AS tbl_heces_Restos_alimenticios,
+     tbl_heces.`Microscopicos` AS tbl_heces_Microscopicos,
+     tbl_heces.`Macroscopicos` AS tbl_heces_Macroscopicos,
+     tbl_heces.`Entamoeba_histolyca` AS tbl_heces_Entamoeba_histolyca,
+     tbl_heces.`Entamoeba_histolyca2` AS tbl_heces_Entamoeba_histolyca2,
+     tbl_heces.`Entamoeba_coli` AS tbl_heces_Entamoeba_coli,
+     tbl_heces.`Entamoeba_coli2` AS tbl_heces_Entamoeba_coli2,
+     tbl_heces.`Endolimax_nana` AS tbl_heces_Endolimax_nana,
+     tbl_heces.`Endolimax_nana2` AS tbl_heces_Endolimax_nana2,
+     tbl_heces.`Giardia_Lamblia` AS tbl_heces_Giardia_Lamblia,
+     tbl_heces.`Giardia_Lamblia2` AS tbl_heces_Giardia_Lamblia2,
+     tbl_heces.`Trichomonas_Hominis` AS tbl_heces_Trichomonas_Hominis,
+     tbl_heces.`Trichomonas_Hominis2` AS tbl_heces_Trichomonas_Hominis2,
+     tbl_heces.`Chilomastix_mesnilli` AS tbl_heces_Chilomastix_mesnilli,
+     tbl_heces.`Chilomastix_mesnilli2` AS tbl_heces_Chilomastix_mesnilli2,
+     tbl_heces.`Lodamoeba_bustchlli` AS tbl_heces_Lodamoeba_bustchlli,
+     tbl_heces.`Lodamoeba_bustchlli2` AS tbl_heces_Lodamoeba_bustchlli2,
+     tbl_heces.`Otros_protozoarios` AS tbl_heces_Otros_protozoarios,
+     tbl_heces.`Ascaris_lumbricoides` AS tbl_heces_Ascaris_lumbricoides,
+     tbl_heces.`Trichuris_trichiura` AS tbl_heces_Trichuris_trichiura,
+     tbl_heces.`Uncinarias` AS tbl_heces_Uncinarias,
+     tbl_heces.`Strongyloides_estercoralis` AS tbl_heces_Strongyloides_estercoralis,
+     tbl_heces.`Enterobius_vermicularis` AS tbl_heces_Enterobius_vermicularis,
+     tbl_heces.`Taenia_sp` AS tbl_heces_Taenia_sp,
+     tbl_heces.`Otros_metazoarios` AS tbl_heces_Otros_metazoarios,
+     tbl_heces.`Observaciones` AS tbl_heces_Observaciones,
+     tbl_heces.`Otros_protozoarios2` AS tbl_heces_Otros_protozoarios2
+FROM
+     `tbl_pacientes` tbl_pacientes INNER JOIN `tbl_expedientes` tbl_expedientes ON tbl_pacientes.`ID_PACIENTE` = tbl_expedientes.`ID_PACIENTE`
+     INNER JOIN `tbl_heces` tbl_heces ON tbl_expedientes.`ID_TBL_HECES` = tbl_heces.`id_tabla_heces`]]>
+	</queryString>
+	<field name="tbl_pacientes_ID_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_PRIMER_NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEGUNDO_NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_PRIMER_APELLIDO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEGUNDO_APELLIDO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_DIRECCION_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_TEL_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_CORREO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_TEL_RESPONSABLE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEXO" class="java.lang.String"/>
+	<field name="tbl_pacientes_FECHA_NACIMIENTO" class="java.lang.String"/>
+	<field name="tbl_expedientes_ID_EXPEDIENTE" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_ID_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_expedientes_ID_EXAMEN" class="java.lang.String"/>
+	<field name="tbl_expedientes_RESULTADO" class="java.lang.String"/>
+	<field name="tbl_expedientes_ID_TBL_HECES" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_ID_TBL_HEMOGRAMA" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_ID_TBL_ORINA" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_FECHA_INGRESO" class="java.lang.String"/>
+	<field name="tbl_expedientes_REPORTADO_POR" class="java.lang.Integer"/>
+	<field name="tbl_heces_id_tabla_heces" class="java.lang.Integer"/>
+	<field name="tbl_heces_Color" class="java.lang.String"/>
+	<field name="tbl_heces_Consistencia" class="java.lang.String"/>
+	<field name="tbl_heces_Mucus" class="java.lang.String"/>
+	<field name="tbl_heces_Hematies" class="java.lang.String"/>
+	<field name="tbl_heces_Leucocitos" class="java.lang.String"/>
+	<field name="tbl_heces_Macrofagos" class="java.lang.String"/>
+	<field name="tbl_heces_Restos_alimenticios" class="java.lang.String"/>
+	<field name="tbl_heces_Microscopicos" class="java.lang.String"/>
+	<field name="tbl_heces_Macroscopicos" class="java.lang.String"/>
+	<field name="tbl_heces_Entamoeba_histolyca" class="java.lang.String"/>
+	<field name="tbl_heces_Entamoeba_histolyca2" class="java.lang.String"/>
+	<field name="tbl_heces_Entamoeba_coli" class="java.lang.String"/>
+	<field name="tbl_heces_Entamoeba_coli2" class="java.lang.String"/>
+	<field name="tbl_heces_Endolimax_nana" class="java.lang.String"/>
+	<field name="tbl_heces_Endolimax_nana2" class="java.lang.String"/>
+	<field name="tbl_heces_Giardia_Lamblia" class="java.lang.String"/>
+	<field name="tbl_heces_Giardia_Lamblia2" class="java.lang.String"/>
+	<field name="tbl_heces_Trichomonas_Hominis" class="java.lang.String"/>
+	<field name="tbl_heces_Trichomonas_Hominis2" class="java.lang.String"/>
+	<field name="tbl_heces_Chilomastix_mesnilli" class="java.lang.String"/>
+	<field name="tbl_heces_Chilomastix_mesnilli2" class="java.lang.String"/>
+	<field name="tbl_heces_Lodamoeba_bustchlli" class="java.lang.String"/>
+	<field name="tbl_heces_Lodamoeba_bustchlli2" class="java.lang.String"/>
+	<field name="tbl_heces_Otros_protozoarios" class="java.lang.String"/>
+	<field name="tbl_heces_Ascaris_lumbricoides" class="java.lang.String"/>
+	<field name="tbl_heces_Trichuris_trichiura" class="java.lang.String"/>
+	<field name="tbl_heces_Uncinarias" class="java.lang.String"/>
+	<field name="tbl_heces_Strongyloides_estercoralis" class="java.lang.String"/>
+	<field name="tbl_heces_Enterobius_vermicularis" class="java.lang.String"/>
+	<field name="tbl_heces_Taenia_sp" class="java.lang.String"/>
+	<field name="tbl_heces_Otros_metazoarios" class="java.lang.String"/>
+	<field name="tbl_heces_Observaciones" class="java.lang.String"/>
+	<field name="tbl_heces_Otros_protozoarios2" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="10" width="465" height="36" uuid="f5d91b5d-b8e4-41cb-91df-264270cb977b"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABORATORIO CLINICO "EL ROSARIO"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="46" width="465" height="33" uuid="72755cb4-418c-4a85-97c5-fd58852b8398"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2a calle oriente entre 2a y 4a av sur El Rosario La Paz]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="84" height="79" uuid="6981eb37-8391-4a7e-a0aa-a1b5083c9a15"/>
+				<imageExpression><![CDATA["C:\\Users\\Optiplex 380\\Desktop\\logo1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="644" splitType="Stretch">
+			<staticText>
+				<reportElement x="32" y="11" width="100" height="20" uuid="409b47b6-afac-4d98-afd6-0e52f667e0dd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="11" width="100" height="20" uuid="710c0d96-367a-4c35-b957-25205fd7ae2b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_pacientes_ID_PACIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="13" width="100" height="20" uuid="29b52248-a22b-4663-8423-ef60d06e53af"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="371" y="13" width="100" height="20" uuid="2ac49e7f-ed16-404a-90a1-b03aa305be74"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_expedientes_FECHA_INGRESO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="32" y="43" width="100" height="20" uuid="cb46e89b-4565-4400-aeeb-98d58c98c948"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Examen]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="43" width="100" height="20" uuid="1ffabe31-4063-4cbf-8444-4de246e14a50"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_expedientes_ID_EXAMEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="69" width="528" height="26" uuid="9a5bfa62-d318-4eb7-a743-fdf2c0491f59"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXAMEN GENERAL DE HECES ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="107" width="100" height="20" uuid="8be70679-56f1-4358-8070-90172e0b50b1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="107" width="100" height="20" uuid="dd699f0b-2583-4b28-ad6e-fb6096f4462e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Color}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="140" width="100" height="20" uuid="d87a6789-1bf9-4e28-9eb6-107808a7e803"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consistencia ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="174" width="100" height="20" uuid="57597c4c-8b6b-4b8f-8eb7-21ffe6dc05c5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mucus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="209" width="100" height="20" uuid="6aea407b-1145-43a1-8fcb-26c4dff9be95"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hematies ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="140" width="100" height="20" uuid="49c1d538-c860-4ed1-84e2-9641ec39c1b7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Consistencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="209" width="100" height="20" uuid="21526a22-4736-457f-b536-4fb7fd0213e3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Hematies}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="174" width="100" height="20" uuid="1ea59df5-44ae-4f43-b504-3aa6fce421cf"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Mucus}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="243" width="100" height="20" uuid="1ce6f91f-b484-40c1-802a-2418b8f6c150"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leucocitos ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="243" width="100" height="20" uuid="77a972e2-3f11-4819-9ef3-16dbe4d06999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Leucocitos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="107" width="138" height="20" uuid="ae2850f4-20b2-4179-979d-e492dc23b88f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Macrofagos ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="140" width="138" height="20" uuid="b37baaf1-ad60-4ef5-ba1b-0c73e452dd55"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Restos alimenticios ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="174" width="138" height="20" uuid="1f4da49b-1764-40a2-b673-98a6ef9403d4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Microscopicos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="209" width="138" height="20" uuid="e27b2eee-f06f-435c-bb41-c94d5943deaf"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Macroscopicos ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="427" y="107" width="100" height="20" uuid="00af7e22-ab08-479a-b95a-00d05f9b8f61"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Macrofagos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="140" width="100" height="20" uuid="99bf8735-e945-4c16-8653-5036e04db88d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Restos_alimenticios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="174" width="100" height="20" uuid="d36d1a5e-263d-4016-8846-e4dcd2cb6ebc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Microscopicos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="209" width="100" height="20" uuid="5a4916c1-aec5-4bd8-9c4f-57af4f411ef7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Macroscopicos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="293" width="132" height="20" uuid="9cb3ca34-5b9f-43fc-91d5-3f6fbbf626b3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROTOZOARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="293" width="70" height="20" uuid="a21b13f0-36aa-4341-85c1-372f7823a876"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTIVOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="293" width="84" height="20" uuid="099e06c6-79b8-47d8-b4fb-d864a4dea12a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUISTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="293" width="114" height="20" uuid="1f72de6e-ad6f-437e-9d3b-7da796d0f8f8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[METAZOARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="293" width="100" height="20" uuid="45afb70f-34a2-475e-b23c-a736fc6031ba"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESULTADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="326" width="134" height="20" uuid="94a883de-bb0f-49c1-8cf6-ca1b9c5fcb60"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Entamoeba hystolica]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="144" y="326" width="70" height="20" uuid="132f8eb9-5997-4ca6-a8b3-c3c100f01142"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Entamoeba_histolyca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="326" width="84" height="20" uuid="226add64-7cba-4f66-afa4-9d1df88f926e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Entamoeba_histolyca2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="356" width="132" height="20" uuid="8e94627a-ff70-49cc-92f2-42487d8fb9d0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Entamoeba coli]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="386" width="130" height="20" uuid="135d041e-e729-49c0-92b5-6336e84069b0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Endolimax nana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="416" width="132" height="20" uuid="d0771f7e-870f-4e4c-baf2-84d418910b66"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Giardia lamblia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="446" width="134" height="20" uuid="3c916758-af12-429f-9aa5-1d229fc7f016"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Trichomonas hominis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="478" width="130" height="20" uuid="b49d7ddb-0ecd-4c1a-8348-af4a753a632c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Chilomastix mesnilii]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="508" width="130" height="20" uuid="1041ff3f-fb02-464c-83a1-0b0f35593c10"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Lodamoeba butschlii]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="534" width="130" height="20" uuid="f053528d-aaee-4130-91e3-a28e209e34a8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Otros]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="144" y="356" width="70" height="20" uuid="a2b7565e-7acd-4940-9a6d-600e1bf18af3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Entamoeba_coli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="356" width="84" height="20" uuid="7f603591-ecfe-4b2e-814c-c06afd253441"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Entamoeba_coli2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="386" width="70" height="20" uuid="37ea6c8e-2a35-4dad-9243-57ddeeae976a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Endolimax_nana}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="386" width="84" height="20" uuid="fdf877fd-3f28-4f0a-8bab-47cf597c4a0e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Endolimax_nana2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="416" width="70" height="20" uuid="0bef27ee-7747-417c-a580-bcede0a669b2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Giardia_Lamblia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="416" width="84" height="20" uuid="fb301082-8ec3-49e6-bb8c-65d23d14588f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Giardia_Lamblia2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="447" width="70" height="20" uuid="0ca6f602-9446-4f6a-9c97-c9d60efd930d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Trichomonas_Hominis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="446" width="84" height="20" uuid="6cd90df9-513f-4d31-8971-c3247e94e5c0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Trichomonas_Hominis2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="478" width="70" height="20" uuid="68101529-bf6f-4368-822b-2c010c56e36b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Chilomastix_mesnilli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="478" width="84" height="20" uuid="97bd1aa6-dc1b-41a6-95b3-1525377c5c11"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Chilomastix_mesnilli2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="508" width="70" height="20" uuid="8e1148d9-2992-4f95-b35c-bbd9c1563908"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Lodamoeba_bustchlli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="508" width="84" height="20" uuid="1da40a25-2489-4549-93ee-68910cd7e1c6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Lodamoeba_bustchlli2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="534" width="70" height="20" uuid="d46096a0-021f-4599-bc79-49b4362663d1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Otros_protozoarios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="314" y="326" width="130" height="20" uuid="ad749926-9b53-4bc9-897a-941264e8714e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Ascaris lumbricoides]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="356" width="130" height="20" uuid="765c1a57-687a-4a7f-aa41-dc0cfa66c107"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Trichuris trichura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="386" width="130" height="20" uuid="7fe04007-61c1-4dd4-b67c-2c0a4b8fa771"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Uncinarias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="416" width="168" height="20" uuid="40807eb5-8c5c-4b17-8cd4-007b98fdc039"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Strongyloides estercoralis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="447" width="157" height="20" uuid="59b15879-64db-4084-9835-e16193d02da9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Enterobius vermicularis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="478" width="100" height="20" uuid="4cf4de70-b421-4ea4-9b7a-1e6fd01aab1f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Taenia sp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="508" width="100" height="20" uuid="ff81085e-ccae-4d86-9f0d-d5f5791c8e24"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Otros]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="482" y="326" width="73" height="20" uuid="dd10c109-ad1a-47e7-bce4-e62f4db8c846"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Ascaris_lumbricoides}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="356" width="73" height="20" uuid="54cf5ea9-b1fd-4f20-b293-2df6c99ff7e9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Trichuris_trichiura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="386" width="73" height="20" uuid="df3fa865-3670-4fde-83f4-866d9f875e77"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Uncinarias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="416" width="73" height="20" uuid="b2098ae9-052a-49cf-baf2-4518f8a2a863"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Strongyloides_estercoralis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="447" width="73" height="20" uuid="a601b7fc-c053-4c32-b609-45bf80a227f9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Enterobius_vermicularis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="478" width="58" height="20" uuid="ca4eed80-b5d0-4bbe-86bb-da9d1b3c62a1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Taenia_sp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="508" width="73" height="20" uuid="09c7711b-1f41-4855-bbda-b7c93b0fe493"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Otros_metazoarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="534" width="84" height="20" uuid="8621f89d-d451-422d-86f2-79a1e5386ccc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Otros_protozoarios2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="572" width="118" height="20" uuid="bc71d5f3-ae32-4d3b-8396-836076fc0050"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="607" width="553" height="37" uuid="1eab9306-fc27-4f81-9ea6-901636f15fae"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_heces_Observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

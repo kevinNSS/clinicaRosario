@@ -40,6 +40,8 @@
 FROM
      `tbl_factura_detalle` tbl_factura_detalle INNER JOIN `tbl_promociones` tbl_promociones ON tbl_factura_detalle.`ID_PROMOCION` = tbl_promociones.`ID_PROMOCION`]]>
 	</queryString>
+	<field name="idExamen" class="java.lang.String"/>
+	<field name="idPromocion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -115,17 +117,22 @@ FROM
 				</textElement>
 				<text><![CDATA[Fecha Facturación]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="78" y="2" width="100" height="20" uuid="4bdf83da-4465-411b-8602-c4469c1e85b5"/>
-				<text><![CDATA[nombrePromocion]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch"/>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="43" y="0" width="227" height="20" uuid="563f831d-de15-4ab6-9012-d23549cc7b5a"/>
+				<textFieldExpression><![CDATA[$F{idPromocion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="3" width="192" height="20" uuid="94395b26-a6f9-4218-8153-c8a074229819"/>
+				<textFieldExpression><![CDATA[$F{idExamen}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="511" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField>
 				<reportElement x="429" y="10" width="100" height="20" uuid="037e3dd8-65b9-4678-a86a-85a6c3733848"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
