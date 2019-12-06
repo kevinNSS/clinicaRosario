@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a676c0a-6801-4557-a80c-ef3efc8da82c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="231"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
      tbl_pacientes.`ID_PACIENTE` AS tbl_pacientes_ID_PACIENTE,
@@ -137,8 +137,8 @@ FROM
 				<text><![CDATA[2a calle oriente entre 2a y 4a av sur El Rosario La Paz]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="84" height="79" uuid="6981eb37-8391-4a7e-a0aa-a1b5083c9a15"/>
-				<imageExpression><![CDATA["C:\\Users\\Optiplex 380\\Desktop\\logo1.png"]]></imageExpression>
+				<reportElement x="2" y="0" width="88" height="79" uuid="e7607542-39df-4e50-94ab-4131139b6c54"/>
+				<imageExpression><![CDATA["C:\\Users\\Optiplex 380\\Desktop\\clinicaRosario\\src\\main\\webapp\\images\\logo1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

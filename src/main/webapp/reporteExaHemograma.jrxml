@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b2a34d1-16c4-45f4-871c-0cbb504d08e2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_pacientes.`ID_PACIENTE` AS tbl_pacientes_ID_PACIENTE,
+     tbl_pacientes.`PRIMER_NOMBRE_PACIENTE` AS tbl_pacientes_PRIMER_NOMBRE_PACIENTE,
+     tbl_pacientes.`SEGUNDO_NOMBRE_PACIENTE` AS tbl_pacientes_SEGUNDO_NOMBRE_PACIENTE,
+     tbl_pacientes.`PRIMER_APELLIDO_PACIENTE` AS tbl_pacientes_PRIMER_APELLIDO_PACIENTE,
+     tbl_pacientes.`SEGUNDO_APELLIDO_PACIENTE` AS tbl_pacientes_SEGUNDO_APELLIDO_PACIENTE,
+     tbl_pacientes.`DIRECCION_PACIENTE` AS tbl_pacientes_DIRECCION_PACIENTE,
+     tbl_pacientes.`TEL_PACIENTE` AS tbl_pacientes_TEL_PACIENTE,
+     tbl_pacientes.`CORREO_PACIENTE` AS tbl_pacientes_CORREO_PACIENTE,
+     tbl_pacientes.`TEL_RESPONSABLE` AS tbl_pacientes_TEL_RESPONSABLE,
+     tbl_pacientes.`SEXO` AS tbl_pacientes_SEXO,
+     tbl_pacientes.`FECHA_NACIMIENTO` AS tbl_pacientes_FECHA_NACIMIENTO,
+     tbl_expedientes.`ID_EXPEDIENTE` AS tbl_expedientes_ID_EXPEDIENTE,
+     tbl_expedientes.`ID_PACIENTE` AS tbl_expedientes_ID_PACIENTE,
+     tbl_expedientes.`ID_EXAMEN` AS tbl_expedientes_ID_EXAMEN,
+     tbl_expedientes.`RESULTADO` AS tbl_expedientes_RESULTADO,
+     tbl_expedientes.`ID_TBL_HECES` AS tbl_expedientes_ID_TBL_HECES,
+     tbl_expedientes.`ID_TBL_HEMOGRAMA` AS tbl_expedientes_ID_TBL_HEMOGRAMA,
+     tbl_expedientes.`ID_TBL_ORINA` AS tbl_expedientes_ID_TBL_ORINA,
+     tbl_expedientes.`FECHA_INGRESO` AS tbl_expedientes_FECHA_INGRESO,
+     tbl_expedientes.`REPORTADO_POR` AS tbl_expedientes_REPORTADO_POR,
+     tbl_hemograma.`id_tbl_hemograma` AS tbl_hemograma_id_tbl_hemograma,
+     tbl_hemograma.`Globulos_rojos` AS tbl_hemograma_Globulos_rojos,
+     tbl_hemograma.`Hemoglobina` AS tbl_hemograma_Hemoglobina,
+     tbl_hemograma.`Hematocrito` AS tbl_hemograma_Hematocrito,
+     tbl_hemograma.`VCM` AS tbl_hemograma_VCM,
+     tbl_hemograma.`HCM` AS tbl_hemograma_HCM,
+     tbl_hemograma.`CHCM` AS tbl_hemograma_CHCM,
+     tbl_hemograma.`Leucocitos` AS tbl_hemograma_Leucocitos,
+     tbl_hemograma.`Neutrofilos_segmentados` AS tbl_hemograma_Neutrofilos_segmentados,
+     tbl_hemograma.`Neutrofilos_en_banda` AS tbl_hemograma_Neutrofilos_en_banda,
+     tbl_hemograma.`Linfocitos` AS tbl_hemograma_Linfocitos,
+     tbl_hemograma.`Monocitos` AS tbl_hemograma_Monocitos,
+     tbl_hemograma.`Eosinofilos` AS tbl_hemograma_Eosinofilos,
+     tbl_hemograma.`Basofilos` AS tbl_hemograma_Basofilos,
+     tbl_hemograma.`Recuento_plaquetas` AS tbl_hemograma_Recuento_plaquetas,
+     tbl_hemograma.`Recuento_reticulocitos` AS tbl_hemograma_Recuento_reticulocitos,
+     tbl_hemograma.`Eritrosedimentacion` AS tbl_hemograma_Eritrosedimentacion,
+     tbl_hemograma.`Gota_gruesa` AS tbl_hemograma_Gota_gruesa,
+     tbl_hemograma.`otros_hemogramas` AS tbl_hemograma_otros_hemogramas,
+     tbl_hemograma.`oservaciones` AS tbl_hemograma_oservaciones
+FROM
+     `tbl_pacientes` tbl_pacientes INNER JOIN `tbl_expedientes` tbl_expedientes ON tbl_pacientes.`ID_PACIENTE` = tbl_expedientes.`ID_PACIENTE`
+     INNER JOIN `tbl_hemograma` tbl_hemograma ON tbl_expedientes.`ID_TBL_HEMOGRAMA` = tbl_hemograma.`id_tbl_hemograma`]]>
+	</queryString>
+	<field name="tbl_pacientes_ID_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_PRIMER_NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEGUNDO_NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_PRIMER_APELLIDO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEGUNDO_APELLIDO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_DIRECCION_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_TEL_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_CORREO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_TEL_RESPONSABLE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEXO" class="java.lang.String"/>
+	<field name="tbl_pacientes_FECHA_NACIMIENTO" class="java.lang.String"/>
+	<field name="tbl_expedientes_ID_EXPEDIENTE" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_ID_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_expedientes_ID_EXAMEN" class="java.lang.String"/>
+	<field name="tbl_expedientes_RESULTADO" class="java.lang.String"/>
+	<field name="tbl_expedientes_ID_TBL_HECES" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_ID_TBL_HEMOGRAMA" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_ID_TBL_ORINA" class="java.lang.Integer"/>
+	<field name="tbl_expedientes_FECHA_INGRESO" class="java.lang.String"/>
+	<field name="tbl_expedientes_REPORTADO_POR" class="java.lang.Integer"/>
+	<field name="tbl_hemograma_id_tbl_hemograma" class="java.lang.Integer"/>
+	<field name="tbl_hemograma_Globulos_rojos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Hemoglobina" class="java.lang.String"/>
+	<field name="tbl_hemograma_Hematocrito" class="java.lang.String"/>
+	<field name="tbl_hemograma_VCM" class="java.lang.String"/>
+	<field name="tbl_hemograma_HCM" class="java.lang.String"/>
+	<field name="tbl_hemograma_CHCM" class="java.lang.String"/>
+	<field name="tbl_hemograma_Leucocitos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Neutrofilos_segmentados" class="java.lang.String"/>
+	<field name="tbl_hemograma_Neutrofilos_en_banda" class="java.lang.String"/>
+	<field name="tbl_hemograma_Linfocitos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Monocitos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Eosinofilos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Basofilos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Recuento_plaquetas" class="java.lang.String"/>
+	<field name="tbl_hemograma_Recuento_reticulocitos" class="java.lang.String"/>
+	<field name="tbl_hemograma_Eritrosedimentacion" class="java.lang.String"/>
+	<field name="tbl_hemograma_Gota_gruesa" class="java.lang.String"/>
+	<field name="tbl_hemograma_otros_hemogramas" class="java.lang.String"/>
+	<field name="tbl_hemograma_oservaciones" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="88" height="79" uuid="8d19d0e0-8a5c-48f3-9e3e-b6369b4c678d"/>
+				<imageExpression><![CDATA["C:\\Users\\Optiplex 380\\Desktop\\clinicaRosario\\src\\main\\webapp\\images\\logo1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="88" y="0" width="465" height="36" uuid="d1ed7fff-c9b0-414f-be2f-7d771db57188"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABORATORIO CLINICO "EL ROSARIO"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="88" y="46" width="465" height="33" uuid="63f60e22-a8a6-4513-bbec-e33df15a3695"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2a calle oriente entre 2a y 4a av sur El Rosario La Paz]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="624" splitType="Stretch">
+			<textField>
+				<reportElement x="391" y="6" width="101" height="20" uuid="71dc0c5a-ab0a-4556-9024-8ff6448f8b6e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_expedientes_FECHA_INGRESO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="29" width="100" height="20" uuid="e71d1523-80c2-4189-95b1-2aa60e561034"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_expedientes_ID_EXAMEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="6" width="100" height="20" uuid="cb351de0-435a-43b8-b91f-b65eb1647ade"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="6" width="100" height="20" uuid="68b139d3-361c-4866-a694-b21c6e370b66"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_pacientes_ID_PACIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="6" width="100" height="20" uuid="923f3f66-a280-419a-9141-8c8e2898e673"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="29" width="100" height="20" uuid="f4bd325b-f49b-429a-b759-8cbd01f6c272"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Examen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="553" height="20" uuid="5b449ead-bab0-4e5e-9187-b67a9825e67f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HEMOGRAMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="78" width="243" height="20" uuid="72b30f4c-4ab8-457d-9928-b038742b77fb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Globulos_rojos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="103" width="243" height="20" uuid="a2c93d58-4d0e-4d2a-ab9a-63cb95af9882"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Hemoglobina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="128" width="243" height="20" uuid="111c7843-e712-47f1-861e-cbf67bbbeedb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Hematocrito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="153" width="243" height="20" uuid="8058db5a-ea2c-46b7-bd54-545f9dc8418e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_VCM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="178" width="243" height="20" uuid="4bafe274-759c-4117-bbe9-c9a0adef11e5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_HCM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="203" width="243" height="20" uuid="4df6a5d1-219a-482c-a40c-2a84025597db"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_CHCM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="78" width="100" height="20" uuid="736a39d8-ef11-4b51-9001-16b928a027ac"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[por mm3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="103" width="100" height="20" uuid="e86b2d29-068d-4120-bf75-293d34eb91f9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[gr/dl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="128" width="100" height="20" uuid="fc728996-a4df-472e-81d0-4d44c7b4809a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="153" width="98" height="20" uuid="f6aa8b1f-7567-4b2e-a450-16a912abf87e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[mic. cub.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="178" width="100" height="20" uuid="250fe755-0cd4-4281-b028-3d5576404d63"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ugr]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="203" width="100" height="20" uuid="24768466-26ed-44b9-ab89-4a913377c890"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="78" width="137" height="20" uuid="480c080c-3af4-4c25-b21e-fbf379e7a14b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Globulos rojos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="103" width="137" height="20" uuid="435f7061-3f6f-4e69-8959-6bf3bd61bf58"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hemoglobina ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="128" width="137" height="20" uuid="275b8cca-8a8b-4684-8d16-722ea681b8cb"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hematocrito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="153" width="137" height="20" uuid="f59b7669-6a97-4ce7-a4e4-01485ad312f1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VCM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="178" width="137" height="20" uuid="04b61dd5-7a6d-4212-9ef3-3bd86a4237b6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HCM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="203" width="137" height="20" uuid="cca96d8b-4d01-4c2e-9f2b-b05fbcadf58e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHCM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="228" width="242" height="20" uuid="a0929b91-197d-4ab8-aa0c-a3718c0eb63c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Leucocitos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="253" width="242" height="20" uuid="271e7442-71d0-4313-a044-59ffb80d88db"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Neutrofilos_segmentados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="278" width="243" height="20" uuid="9ac99c70-7626-4fd3-89be-61ad60b503be"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Neutrofilos_en_banda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="228" width="137" height="20" uuid="bc99e265-a9bd-4832-8651-d0a407b521ad"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leucocitos ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="253" width="177" height="20" uuid="e06cbfb0-b129-4656-b33f-53e70481acb5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Neutrofilos segmentados ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="278" width="177" height="20" uuid="41b75c96-d6a1-43b7-b91d-1e5acbc24e58"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Neutrofilos en banda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="228" width="100" height="20" uuid="1112f564-9fcd-4e09-a1af-9c16b341c541"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[por mm3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="253" width="100" height="20" uuid="80bd59d1-2fa6-4774-9521-2eefbf15f49b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="278" width="100" height="20" uuid="91254570-692e-4c65-b2db-75f8c9279453"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="303" width="242" height="20" uuid="5c8af730-baa2-4cb8-8b83-5abcef4dbd83"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Linfocitos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="328" width="242" height="20" uuid="807a2ab3-5bc5-476d-bfcc-dddc57fa4964"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Monocitos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="353" width="242" height="20" uuid="1a93f96b-26dd-415c-8698-446fae2b295b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Eosinofilos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="378" width="242" height="20" uuid="f00cfd42-0c69-410e-a86f-93ba0ef63142"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Basofilos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="435" width="242" height="20" uuid="2417ca6d-2aab-4d84-b8fe-50200611c633"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Recuento_plaquetas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="303" width="100" height="20" uuid="7da5c325-b819-48bd-943d-e7e49e701299"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Linfocitos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="328" width="100" height="20" uuid="06ccae82-08f1-429f-8adb-31acb04de332"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monocitos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="353" width="100" height="20" uuid="8a0b4753-5e38-4190-beba-7e1aa01ccb62"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Eosinofilos ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="378" width="100" height="20" uuid="fc5cfb46-e864-416a-a170-42be7e7a79ed"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Basofilos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="435" width="188" height="20" uuid="ba26a914-a96e-4ab5-9412-374f4acb0959"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recuento de plaquetas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="303" width="100" height="20" uuid="f438ac0c-03a6-407d-9428-1197c73bb4ee"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="328" width="100" height="20" uuid="551fa346-74d5-4013-bf40-201afb983e4d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="353" width="100" height="20" uuid="0540c924-38b6-4c58-9f29-22f02c77c2f2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="378" width="100" height="20" uuid="5ec9fad8-a469-4af8-b15e-f9ec0fbf39a2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="460" width="242" height="20" uuid="2c987d2d-61c2-4f26-bf78-f350512bed43"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Recuento_reticulocitos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="485" width="242" height="20" uuid="3d30ef22-5773-4b14-bcc5-eb9fcc826400"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Eritrosedimentacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="460" width="188" height="20" uuid="30423a7c-2a64-412c-9247-de8b44a83fc4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recuento de reticulocitos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="485" width="188" height="20" uuid="e95de8c4-1fe9-4c35-83aa-43ca8997d79e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Eritrosedimentacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="435" width="100" height="20" uuid="4554944b-4dbd-4b0e-a67c-5327770cda60"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[X mmc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="460" width="100" height="20" uuid="70cc0b5e-9ef7-445c-ba80-48fc877bf721"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="485" width="100" height="20" uuid="653a0774-0254-43eb-8702-89910c3bec10"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[mm x h]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="510" width="242" height="20" uuid="21bdf3df-533b-45c8-b0a1-7920d120dac6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_Gota_gruesa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="535" width="242" height="20" uuid="bdcd9021-d51a-423f-93e5-d60c915816fe"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_otros_hemogramas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="510" width="188" height="20" uuid="dab93117-85c0-451d-bc96-de3cc17f99dd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gota gruesa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="535" width="188" height="20" uuid="2757e1b2-434a-43cd-90a1-e6d0040319fd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Otros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="561" width="188" height="20" uuid="7ba3b3bf-b7f7-432d-ad78-2d9e9094dab6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="586" width="530" height="20" uuid="502b8b86-6aa4-4b7c-afef-4b9beba657a1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_hemograma_oservaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

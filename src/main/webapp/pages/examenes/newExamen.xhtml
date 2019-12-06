@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group col-xs-12 col-md-12">
                             <h:outputLabel for="descripcion" value="Descripción:"/>
-                            <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{tblExamenesController.selected.descripcionExamen}" onkeypress="return validanumle(event)"/>
+                            <p:inputTextarea id="descripcion" placeholder="Descripción" class="form-control" value="#{tblExamenesController.selected.descripcionExamen}" required="false" requiredMessage="" onkeypress="return validanumle(event)"/>
                         </div>
                     </div>
                     <br/>
