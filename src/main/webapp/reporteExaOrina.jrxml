@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2af64055-b047-4bce-84d9-92af435bb9f0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="58"/>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_pacientes.`ID_PACIENTE` AS tbl_pacientes_ID_PACIENTE,
+     tbl_pacientes.`PRIMER_NOMBRE_PACIENTE` AS tbl_pacientes_PRIMER_NOMBRE_PACIENTE,
+     tbl_pacientes.`SEGUNDO_NOMBRE_PACIENTE` AS tbl_pacientes_SEGUNDO_NOMBRE_PACIENTE,
+     tbl_pacientes.`PRIMER_APELLIDO_PACIENTE` AS tbl_pacientes_PRIMER_APELLIDO_PACIENTE,
+     tbl_pacientes.`SEGUNDO_APELLIDO_PACIENTE` AS tbl_pacientes_SEGUNDO_APELLIDO_PACIENTE,
+     tbl_pacientes.`DIRECCION_PACIENTE` AS tbl_pacientes_DIRECCION_PACIENTE,
+     tbl_pacientes.`TEL_PACIENTE` AS tbl_pacientes_TEL_PACIENTE,
+     tbl_pacientes.`CORREO_PACIENTE` AS tbl_pacientes_CORREO_PACIENTE,
+     tbl_pacientes.`TEL_RESPONSABLE` AS tbl_pacientes_TEL_RESPONSABLE,
+     tbl_pacientes.`SEXO` AS tbl_pacientes_SEXO,
+     tbl_pacientes.`FECHA_NACIMIENTO` AS tbl_pacientes_FECHA_NACIMIENTO,
+     tbl_orina.`id_tbl_orina` AS tbl_orina_id_tbl_orina,
+     tbl_orina.`Color` AS tbl_orina_Color,
+     tbl_orina.`Aspecto` AS tbl_orina_Aspecto,
+     tbl_orina.`Densidad` AS tbl_orina_Densidad,
+     tbl_orina.`pH` AS tbl_orina_pH,
+     tbl_orina.`Proteina` AS tbl_orina_Proteina,
+     tbl_orina.`Glucosa` AS tbl_orina_Glucosa,
+     tbl_orina.`Sangre_oculta` AS tbl_orina_Sangre_oculta,
+     tbl_orina.`Cuerpos_cetonicos` AS tbl_orina_Cuerpos_cetonicos,
+     tbl_orina.`Urobilinogeno` AS tbl_orina_Urobilinogeno,
+     tbl_orina.`Bilirrubina` AS tbl_orina_Bilirrubina,
+     tbl_orina.`Nitritos` AS tbl_orina_Nitritos,
+     tbl_orina.`Hemoglobina` AS tbl_orina_Hemoglobina,
+     tbl_orina.`Esterasa_leucocitaria` AS tbl_orina_Esterasa_leucocitaria,
+     tbl_orina.`Granulosos` AS tbl_orina_Granulosos,
+     tbl_orina.`Leucocitarios` AS tbl_orina_Leucocitarios,
+     tbl_orina.`Hematicos` AS tbl_orina_Hematicos,
+     tbl_orina.`Hialinos` AS tbl_orina_Hialinos,
+     tbl_orina.`Otros` AS tbl_orina_Otros,
+     tbl_orina.`Hematies` AS tbl_orina_Hematies,
+     tbl_orina.`Leucocitos` AS tbl_orina_Leucocitos,
+     tbl_orina.`Celulas_epteliales` AS tbl_orina_Celulas_epteliales,
+     tbl_orina.`Cristales` AS tbl_orina_Cristales,
+     tbl_orina.`Parasitologico` AS tbl_orina_Parasitologico,
+     tbl_orina.`Observaciones` AS tbl_orina_Observaciones,
+     tbl_orina.`paciente` AS tbl_orina_paciente,
+     tbl_orina.`fecha_registro` AS tbl_orina_fecha_registro
+FROM
+     `tbl_pacientes` tbl_pacientes INNER JOIN `tbl_orina` tbl_orina ON tbl_pacientes.`ID_PACIENTE` = tbl_orina.`paciente`]]>
+	</queryString>
+	<field name="tbl_pacientes_ID_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_PRIMER_NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEGUNDO_NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_PRIMER_APELLIDO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEGUNDO_APELLIDO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_DIRECCION_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_TEL_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_CORREO_PACIENTE" class="java.lang.String"/>
+	<field name="tbl_pacientes_TEL_RESPONSABLE" class="java.lang.String"/>
+	<field name="tbl_pacientes_SEXO" class="java.lang.String"/>
+	<field name="tbl_pacientes_FECHA_NACIMIENTO" class="java.lang.String"/>
+	<field name="tbl_orina_id_tbl_orina" class="java.lang.Integer"/>
+	<field name="tbl_orina_Color" class="java.lang.String"/>
+	<field name="tbl_orina_Aspecto" class="java.lang.String"/>
+	<field name="tbl_orina_Densidad" class="java.lang.String"/>
+	<field name="tbl_orina_pH" class="java.lang.String"/>
+	<field name="tbl_orina_Proteina" class="java.lang.String"/>
+	<field name="tbl_orina_Glucosa" class="java.lang.String"/>
+	<field name="tbl_orina_Sangre_oculta" class="java.lang.String"/>
+	<field name="tbl_orina_Cuerpos_cetonicos" class="java.lang.String"/>
+	<field name="tbl_orina_Urobilinogeno" class="java.lang.String"/>
+	<field name="tbl_orina_Bilirrubina" class="java.lang.String"/>
+	<field name="tbl_orina_Nitritos" class="java.lang.String"/>
+	<field name="tbl_orina_Hemoglobina" class="java.lang.String"/>
+	<field name="tbl_orina_Esterasa_leucocitaria" class="java.lang.String"/>
+	<field name="tbl_orina_Granulosos" class="java.lang.String"/>
+	<field name="tbl_orina_Leucocitarios" class="java.lang.String"/>
+	<field name="tbl_orina_Hematicos" class="java.lang.String"/>
+	<field name="tbl_orina_Hialinos" class="java.lang.String"/>
+	<field name="tbl_orina_Otros" class="java.lang.String"/>
+	<field name="tbl_orina_Hematies" class="java.lang.String"/>
+	<field name="tbl_orina_Leucocitos" class="java.lang.String"/>
+	<field name="tbl_orina_Celulas_epteliales" class="java.lang.String"/>
+	<field name="tbl_orina_Cristales" class="java.lang.String"/>
+	<field name="tbl_orina_Parasitologico" class="java.lang.String"/>
+	<field name="tbl_orina_Observaciones" class="java.lang.String"/>
+	<field name="tbl_orina_paciente" class="java.lang.String"/>
+	<field name="tbl_orina_fecha_registro" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="88" height="79" uuid="69f8152e-893d-4389-a118-3f7c7f1d6a77"/>
+				<imageExpression><![CDATA["C:\\Users\\Optiplex 380\\Desktop\\clinicaRosario\\src\\main\\webapp\\images\\logo1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="90" y="0" width="465" height="36" uuid="405d7787-0a9c-4c3e-9582-a8af867eb3d8"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABORATORIO CLINICO "EL ROSARIO"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="46" width="465" height="33" uuid="b747609f-1c8e-4a04-abb3-f796afc1e803"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2a calle oriente entre 2a y 4a av sur El Rosario La Paz]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="521" splitType="Stretch">
+			<textField>
+				<reportElement x="127" y="3" width="123" height="20" uuid="9d203c0e-648d-4d19-a926-1ab08301446b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_pacientes_ID_PACIENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="3" width="100" height="20" uuid="a758b6a3-c7dd-4c06-bb03-babf7a16e664"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_fecha_registro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="3" width="100" height="20" uuid="44558f2b-4852-484a-bdd1-a0427771f842"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="3" width="100" height="20" uuid="292ae50f-5043-442c-aec0-3decfd269042"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="36" width="528" height="20" uuid="dd565a57-1403-404f-bac6-1812b4e0f183"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXAMEN GENERAL DE ORINA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="151" y="98" width="152" height="20" uuid="b26cf78e-ea07-4d3e-a786-4821a4838a0c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="123" width="152" height="20" uuid="c377dd11-3e8c-460b-b2ca-f1a600bf06cb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Aspecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="149" width="152" height="20" uuid="d2ffbc63-f93d-4448-a354-4d9b2895c197"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Densidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="67" width="233" height="20" uuid="7a9b43f0-3575-4761-94ad-5ea3e267e726"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXAMEN FISICO QUIMICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="98" width="150" height="20" uuid="9412ba4b-e07a-48d1-800d-d91a30920dea"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="123" width="150" height="20" uuid="dc032d66-f4ae-4d3c-b271-e9d1b814a8d8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aspecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="149" width="150" height="20" uuid="218e3e11-641e-4235-8168-27f3a9441224"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Densidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="67" width="224" height="20" uuid="17fc13c7-2204-47b1-83e0-f3771bc68372"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXAMEN MICROSCOPICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="401" width="150" height="20" uuid="01f4db71-b4b0-4944-b73d-9e9d082c034a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Esterasa leucocitaria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="174" width="150" height="20" uuid="696bd145-5aba-4512-bb6f-8df2b2bef40d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[pH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="199" width="150" height="20" uuid="927fb2fe-338d-4553-9adf-e68ca9c1f072"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proteina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="224" width="150" height="20" uuid="8f243787-e2e0-46a4-93ba-c83e30a88c55"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Glucosa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="249" width="150" height="20" uuid="c18ba718-bbbd-4715-bcc6-10c8dfbb85e5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sangre Oculta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="275" width="150" height="20" uuid="e2c4dd43-5271-48d3-97f7-3f11331e05fc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuerpos cetonicos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="300" width="150" height="20" uuid="9167e073-2611-4c01-a1c2-016093e5b0ab"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Urobilinogeno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="326" width="150" height="20" uuid="6e43eed9-276e-44e7-9d61-129e9b654a97"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bilirrubina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="351" width="150" height="20" uuid="65e7c3e8-fea2-42dc-8964-dee88f763161"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nitritos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="376" width="150" height="20" uuid="f6697406-f6ac-47f1-ad84-ff2d32743963"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hemoglobina]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="151" y="174" width="151" height="20" uuid="e82a87c8-d1e2-4c1a-b060-8b1821874782"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_pH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="199" width="151" height="20" uuid="9318647c-18ad-42d7-a331-34a7acb216fc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Proteina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="224" width="151" height="20" uuid="738fd6f2-dbb9-4cc5-8d9c-3651e8d67ab9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Glucosa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="249" width="151" height="20" uuid="681f0224-5a54-411a-9b66-1742955fbc4a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Sangre_oculta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="275" width="152" height="20" uuid="176501a9-82a5-4233-bf6f-81044cd9d2d4"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Cuerpos_cetonicos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="300" width="152" height="20" uuid="9efaffc7-5953-414c-93b8-ba9bec3649ea"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Urobilinogeno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="326" width="151" height="20" uuid="93f84251-b9ab-4ee0-b519-fe85decfc249"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Bilirrubina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="351" width="151" height="20" uuid="fe6229cc-2566-4611-b0f8-3905690894f1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Nitritos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="376" width="151" height="20" uuid="5f81cd92-48c8-4095-9fdb-6f89d584eca6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Hemoglobina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="401" width="151" height="20" uuid="5a955085-2108-4e63-9692-f96718f97c4f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Esterasa_leucocitaria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="303" y="98" width="224" height="20" uuid="0e9cb71f-5d5c-4495-ace4-6cc73caff4ed"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CILINDROS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="326" width="130" height="20" uuid="c030a816-735d-423d-a81c-3473bde6d28c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celulas epiteliales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="123" width="130" height="20" uuid="bb6f5dc5-cd08-4eae-969d-41ba3097b2cf"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Granulosos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="149" width="130" height="20" uuid="41b1a9d0-80ea-4529-8678-c76ff24753a6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leucocitarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="174" width="130" height="20" uuid="d6e26e2c-af24-4129-a059-f57788e73fd0"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hematicos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="199" width="130" height="20" uuid="fc78447f-550f-4245-b934-1db06e579a21"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hialinos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="224" width="130" height="20" uuid="6917e2a2-1087-4583-8cc5-545918d2a7b5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Otros]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="433" y="123" width="122" height="20" uuid="2533cfb5-82dd-4139-b9bd-a2881e8d3fee"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Granulosos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="149" width="122" height="20" uuid="d949547b-4cb3-46b6-ac83-cead90f09cdc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Leucocitarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="174" width="122" height="20" uuid="f0a5a234-ae9f-46c8-bb6b-ff601e115fb5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Hematicos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="199" width="122" height="20" uuid="d9d0f862-5b6b-467c-94b7-e02a8968293f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Hialinos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="224" width="122" height="20" uuid="a3fa44cd-e515-4132-8909-7e451a4e90c8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Otros}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="303" y="275" width="130" height="20" uuid="02b83d13-bcb5-46c5-8d50-b5a7a78f23ba"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hematies]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="300" width="129" height="20" uuid="f66f92f9-ecd1-459e-b79f-dbd78e287898"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leucocitos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="351" width="129" height="20" uuid="c83e1904-5771-4c4c-a698-25ab60844cec"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cristales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="376" width="129" height="20" uuid="498c8e0f-0679-4993-85e9-8c1f2b8533d9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Parasitologico]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="433" y="275" width="66" height="20" uuid="398c4301-0982-48b2-bc92-1a5810da455b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Hematies}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="499" y="275" width="58" height="20" uuid="fa659b1c-8f3e-4990-b351-61a907f96963"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[x campo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="433" y="300" width="66" height="20" uuid="c07a2c0e-a415-4f31-a0d1-34016769b33c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Leucocitos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="499" y="300" width="58" height="20" uuid="a7ddab87-75cb-4cd1-91f3-0cb02d35e0f7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[x campo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="433" y="326" width="122" height="20" uuid="df925395-5825-4098-9d8a-6fa129a7aacc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Celulas_epteliales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="351" width="122" height="20" uuid="e35e25fc-7235-431c-8b01-fcfc74f3d5ff"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Cristales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="376" width="122" height="20" uuid="fa4e47f2-3d65-4a48-93b4-a4d8e8241a40"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Parasitologico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="443" width="127" height="20" uuid="0440e09f-ae44-4ec3-a8b6-71405a49177b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="476" width="555" height="31" uuid="c426b1a5-b1bb-48f8-b594-1c870458aacb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_orina_Observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
